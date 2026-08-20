@@ -1,0 +1,398 @@
+# =============================================================================
+# SITE
+# =============================================================================
+
+[project]
+site_url = "https://flowbyadapt.github.io/Flow.Help/"
+site_name = "Flow Help"
+site_description = "User guide for Flow by Adapt"
+site_author = "Flow by Adapt"
+
+repo_url = "https://github.com/FlowByAdapt/Flow.Help"
+repo_name = "FlowByAdapt/Flow.Help"
+edit_uri = "edit/main/docs/"
+
+
+# =============================================================================
+# NAVIGATION
+# =============================================================================
+
+nav = [
+  { "Home" = "index.md" },
+
+
+  # ---------------------------------------------------------------------------
+  # PROJECT PANEL
+  # ---------------------------------------------------------------------------
+
+  { "Project" = [
+    { "Overview" = "project/index.md" },
+
+    # Project Setup
+    # -------------------------------------------------------------------------
+
+    { "Project Setup" = [
+      { "Overview" = "project/project-setup/index.md" },
+      { "New Projects" = "project/project-setup/new-projects.md" },
+      { "Current Projects" = "project/project-setup/current-projects.md" },
+      { "Project Information" = "project/project-setup/project-information.md" },
+      { "Project Folders" = "project/project-setup/project-folders.md" },
+      { "Worksets" = "project/project-setup/worksets.md" },
+      { "Troubleshooting" = "project/project-setup/troubleshooting.md" },
+    ] },
+  ] },
+
+
+  # ---------------------------------------------------------------------------
+  # WORKSPACE PANEL
+  # ---------------------------------------------------------------------------
+
+  { "Workspace" = [
+    { "Overview" = "workspace/index.md" },
+
+    # Workspace
+    # -------------------------------------------------------------------------
+
+    { "Workspace" = [
+      { "Overview" = "workspace/workspace/index.md" },
+      { "Saving a Workspace" = "workspace/workspace/saving-a-workspace.md" },
+      { "Restoring a Workspace" = "workspace/workspace/restoring-a-workspace.md" },
+      { "Managing Saved Workspaces" = "workspace/workspace/managing-saved-workspaces.md" },
+      { "Recovering Windows" = "workspace/workspace/recovering-windows.md" },
+    ] },
+
+    # Flow Hub
+    # -------------------------------------------------------------------------
+
+    { "Flow Hub" = [
+      { "Overview" = "workspace/flow-hub/index.md" },
+      { "Finding and Running Tools" = "workspace/flow-hub/finding-and-running-tools.md" },
+      { "Finding and Loading Content" = "workspace/flow-hub/finding-and-loading-content.md" },
+      { "Pinned and Recent Tools" = "workspace/flow-hub/pinned-and-recent.md" },
+      { "Workspace Controls" = "workspace/flow-hub/workspace-controls.md" },
+      { "Troubleshooting" = "workspace/flow-hub/troubleshooting.md" },
+    ] },
+
+    # Command Palette
+    # -------------------------------------------------------------------------
+
+    { "Command Palette" = [
+      { "Overview" = "workspace/command-palette/index.md" },
+      { "Finding and Running Commands" = "workspace/command-palette/finding-and-running-commands.md" },
+      { "Pinned and Recent Commands" = "workspace/command-palette/pinned-and-recent.md" },
+      { "Troubleshooting" = "workspace/command-palette/troubleshooting.md" },
+    ] },
+
+    # Visibility Manager
+    # -------------------------------------------------------------------------
+
+    { "Visibility Manager" = [
+      { "Overview" = "workspace/visibility-manager/index.md" },
+      { "Project Controls" = "workspace/visibility-manager/project-controls.md" },
+      { "Active View Controls" = "workspace/visibility-manager/active-view-controls.md" },
+      { "Troubleshooting" = "workspace/visibility-manager/troubleshooting.md" },
+    ] },
+  ] },
+
+
+  # ---------------------------------------------------------------------------
+  # CONTENT PANEL
+  # ---------------------------------------------------------------------------
+
+  { "Content" = [
+    { "Overview" = "content/index.md" },
+
+    # Content Browser
+    # -------------------------------------------------------------------------
+
+    { "Content Browser" = [
+      { "Overview" = "content/content-browser/index.md" },
+      { "Browsing and Searching" = "content/content-browser/browsing-and-searching.md" },
+      { "Loading Content" = "content/content-browser/loading-content.md" },
+      { "Project Content" = "content/content-browser/project-content.md" },
+      { "Content Actions" = "content/content-browser/content-actions.md" },
+      { "Content Browser Tools" = "content/content-browser/content-browser-tools.md" },
+      { "Troubleshooting" = "content/content-browser/troubleshooting.md" },
+    ] },
+
+    # Type Catalogue
+    # -------------------------------------------------------------------------
+
+    { "Type Catalogue" = [
+      { "Overview" = "content/type-catalogue-manager/index.md" },
+      { "Opening and Reviewing" = "content/type-catalogue-manager/opening-and-reviewing.md" },
+      { "Editing Catalogues" = "content/type-catalogue-manager/editing-catalogues.md" },
+      { "Validation and Inspection" = "content/type-catalogue-manager/validation-and-inspection.md" },
+      { "Conforming Catalogues" = "content/type-catalogue-manager/conforming-catalogues.md" },
+      { "Generating Catalogues" = "content/type-catalogue-manager/generating-catalogues.md" },
+      { "Troubleshooting" = "content/type-catalogue-manager/troubleshooting.md" },
+    ] },
+
+    # Drafting Views
+    # -------------------------------------------------------------------------
+
+    { "Drafting Views" = [
+      { "Overview" = "content/drafting-views/index.md" },
+      { "Extracting Drafting Views" = "content/drafting-views/extracting-drafting-views.md" },
+      { "Managing Extracted Views" = "content/drafting-views/managing-extracted-views.md" },
+      { "Troubleshooting" = "content/drafting-views/troubleshooting.md" },
+    ] },
+
+    # Preview Generator
+    # -------------------------------------------------------------------------
+
+    { "Preview Generator" = [
+      { "Overview" = "content/preview-generator/index.md" },
+      { "Generating Previews" = "content/preview-generator/generating-previews.md" },
+      { "Troubleshooting" = "content/preview-generator/troubleshooting.md" },
+    ] },
+
+    # Revit Upgrade
+    # -------------------------------------------------------------------------
+
+    { "Revit Upgrade" = [
+      { "Overview" = "content/revit-upgrade/index.md" },
+      { "Upgrading Revit Content" = "content/revit-upgrade/upgrading-revit-content.md" },
+      { "Troubleshooting" = "content/revit-upgrade/troubleshooting.md" },
+    ] },
+  ] },
+
+
+  # ---------------------------------------------------------------------------
+  # MODEL PANEL
+  # ---------------------------------------------------------------------------
+
+  { "Model" = [
+    { "Overview" = "model/index.md" },
+
+    # Openings Manager
+    # -------------------------------------------------------------------------
+
+    { "Openings Manager" = [
+      { "Overview" = "model/openings-manager/index.md" },
+
+      { "Reviewing Openings" = "model/openings-manager/reviewing-openings.md" },
+      { "Selecting Openings" = "model/openings-manager/selecting-openings.md" },
+
+      { "Opening Marks" = "model/openings-manager/opening-marks.md" },
+      { "Standardising Openings" = "model/openings-manager/standardising-openings.md" },
+      { "Guided Renumbering" = "model/openings-manager/guided-renumbering.md" },
+      { "Tagging Openings" = "model/openings-manager/tagging-openings.md" },
+
+      { "Opening Views" = "model/openings-manager/opening-views.md" },
+      { "Generating Opening Views" = "model/openings-manager/generating-opening-views.md" },
+      { "Curtain Wall Views" = "model/openings-manager/curtain-wall-views.md" },
+      { "Conforming Opening Views" = "model/openings-manager/conforming-opening-views.md" },
+      { "Placing Views on Sheets" = "model/openings-manager/placing-views-on-sheets.md" },
+      { "Dimensioning Window Views" = "model/openings-manager/dimensioning-window-views.md" },
+
+      { "Door Heights" = "model/openings-manager/door-heights.md" },
+      { "Global Parameters" = "model/openings-manager/global-parameters.md" },
+      { "Head Height Overrides" = "model/openings-manager/head-height-overrides.md" },
+
+      { "Troubleshooting" = "model/openings-manager/troubleshooting.md" },
+    ] },
+
+    
+    # Keynotes
+    # -------------------------------------------------------------------------
+
+    { "Keynotes" = [
+      { "Overview" = "model/keynotes/index.md" },
+      { "Working with Keynotes" = "model/keynotes/working-with-keynotes.md" },
+      { "Project Keynotes Files" = "model/keynotes/project-keynote-files.md" },
+      { "Troubleshooting" = "model/keynotes/troubleshooting.md" },
+    ] },
+
+
+    # Risk Matrix
+    # -------------------------------------------------------------------------
+
+    { "Risk Matrix" = [
+      { "Overview" = "model/risk-matrix/index.md" },
+      { "Identifying Risk Faces" = "model/risk-matrix/identifying-risk-faces.md" },
+      { "Assigning Risk Information" = "model/risk-matrix/assigning-risk-information.md" },
+      { "Reviewing Risk Results" = "model/risk-matrix/reviewing-risk-results.md" },
+      { "Risk Documentation" = "model/risk-matrix/risk-documentation.md" },
+      { "Troubleshooting" = "model/risk-matrix/troubleshooting.md" },
+    ] },
+    
+    
+    # Model Health
+    # -------------------------------------------------------------------------
+
+    { "Model Health" = [
+      { "Overview" = "model/model-health/index.md" },
+      { "Running Health Checks" = "model/model-health/running-health-checks.md" },
+      { "Reviewing Model Health Issues" = "model/model-health/reviewing-issues.md" },
+      { "Troubleshooting" = "model/model-health/troubleshooting.md" },
+    ] },
+    
+
+    # Pattern Manager
+    # -------------------------------------------------------------------------
+
+    { "Pattern Manager" = [
+      { "Overview" = "model/pattern-manager/index.md" },
+      { "Browsing Pattern Library" = "model/pattern-manager/browsing-pattern-library.md" },
+      { "Project Patterns" = "model/pattern-manager/project-patterns.md" },
+      { "Creating and Editing Patterns" = "model/pattern-manager/creating-and-editing-patterns.md" },
+      { "Generating Patterns from Geometry" = "model/pattern-manager/generating-patterns-from-geometry.md" },
+      { "Importing and Exporting Patterns" = "model/pattern-manager/importing-and-exporting-patterns.md" },
+      { "Standardising Patterns" = "model/pattern-manager/standardising-patterns.md" },
+      { "Filled Region Tools" = "model/pattern-manager/filled-region-tools.md" },
+      { "Troubleshooting" = "model/pattern-manager/troubleshooting.md" },
+    ] },
+    
+    
+    # Area Envelope
+    # -------------------------------------------------------------------------
+
+    { "Area Envelope" = [
+      { "Overview" = "model/area-envelope/index.md" },
+      { "Creating Area Envelopes" = "model/area-envelope/creating-area-envelopes.md" },
+      { "Framing and Cladding" = "model/area-envelope/framing-and-cladding.md" },
+      { "Troubleshooting" = "model/area-envelope/troubleshooting.md" },
+    ] },
+        
+    
+    # Parameters Manager
+    # -------------------------------------------------------------------------
+
+    { "Parameters Manager" = [
+      { "Overview" = "model/parameters-manager/index.md" },
+      { "Reviewing Global Parameters" = "model/parameters-manager/reviewing-global-parameters.md" },
+      { "Editing Global Parameter Values" = "model/parameters-manager/editing-global-parameter-values.md" },
+      { "Reviewing Associations" = "model/parameters-manager/reviewing-associations.md" },
+      { "Copying GP Setup" = "model/parameters-manager/copying-gp-setup.md" },
+      { "Removing Associations" = "model/parameters-manager/removing-associations.md" },
+      { "Auditing Global Parameters" = "model/parameters-manager/auditing-global-parameters.md" },
+      { "Applying Window Standards" = "model/parameters-manager/applying-window-standards.md" },
+      { "Applying Door Standards" = "model/parameters-manager/applying-door-standards.md" },
+      { "Applying Existing Window Standards" = "model/parameters-manager/applying-existing-window-standards.md" },
+      { "Importing Office Standard Global Parameters" = "model/parameters-manager/importing-office-standard-global-parameters.md" },
+      { "Finding Unused Opening Global Parameters" = "model/parameters-manager/finding-unused-opening-gps.md" },
+      { "Fixing Keynotes" = "model/parameters-manager/fixing-keynotes.md" },
+      { "Native Global Parameter Editor" = "model/parameters-manager/native-global-parameter-editor.md" },
+      { "Project Parameters" = "model/parameters-manager/project-parameters.md" },
+      { "Family Parameters" = "model/parameters-manager/family-parameters.md" },
+      { "Bulk Parameter Editor" = "model/parameters-manager/bulk-parameter-editor.md" },
+      { "Troubleshooting" = "model/parameters-manager/troubleshooting.md" },
+    ] },
+  ] },
+]
+
+
+# =============================================================================
+# CUSTOM STYLES AND SCRIPTS
+# =============================================================================
+
+extra_css = ["stylesheets/extra.css"]
+# extra_javascript = ["javascripts/extra.js"]
+
+
+# =============================================================================
+# THEME
+# =============================================================================
+
+[project.theme]
+
+# variant = "classic"
+# custom_dir = "overrides"
+# favicon = "images/favicon.png"
+
+language = "en"
+
+features = [
+  "announce.dismiss",
+  # "content.action.edit",
+  # "content.action.view",
+  "content.code.annotate",
+  "content.code.copy",
+  "content.code.select",
+  "content.footnote.tooltips",
+  "content.tabs.link",
+  "content.tooltips",
+  # "header.autohide",
+  # "navigation.expand",
+  "navigation.footer",
+  "navigation.indexes",
+  "navigation.instant",
+  "navigation.instant.prefetch",
+  # "navigation.instant.progress",
+  "navigation.path",
+  # "navigation.prune",
+  "navigation.sections",
+  # "navigation.tabs",
+  # "navigation.tabs.sticky",
+  "navigation.top",
+  "navigation.tracking",
+  "search.highlight",
+  # "toc.follow",
+  # "toc.integrate",
+]
+
+
+# =============================================================================
+# THEME PALETTE
+# =============================================================================
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+toggle.icon = "lucide/sun-moon"
+toggle.name = "Switch to light mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to system preference"
+
+
+# =============================================================================
+# MARKDOWN EXTENSIONS
+# =============================================================================
+
+[project.markdown_extensions]
+
+abbr = {}
+admonition = {}
+attr_list = {}
+def_list = {}
+footnotes = {}
+md_in_html = {}
+
+toc.permalink = true
+
+pymdownx.arithmatex.generic = true
+pymdownx.betterem = {}
+pymdownx.caret = {}
+pymdownx.details = {}
+
+pymdownx.emoji.emoji_generator = "zensical.extensions.emoji.to_svg"
+pymdownx.emoji.emoji_index = "zensical.extensions.emoji.twemoji"
+
+pymdownx.highlight.anchor_linenums = true
+pymdownx.highlight.line_spans = "__span"
+pymdownx.highlight.pygments_lang_class = true
+
+pymdownx.inlinehilite = {}
+pymdownx.keys = {}
+pymdownx.magiclink = {}
+pymdownx.mark = {}
+pymdownx.smartsymbols = {}
+
+pymdownx.superfences.custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
+]
+
+pymdownx.tabbed.alternate_style = true
+pymdownx.tabbed.combine_header_slug = true
+pymdownx.tasklist.custom_checkbox = true
+pymdownx.tilde = {}

@@ -1,0 +1,219 @@
+/* =========================================================
+   FLOW HELP — CUSTOM STYLES
+   ========================================================= */
+
+
+/* =========================================================
+   SIDEBAR — RIBBON PANEL HEADINGS
+   ========================================================= */
+
+.md-nav__item--section > .md-nav__link {
+    color: #fd51b1;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.78rem;
+}
+
+
+/* =========================================================
+   SIDEBAR — TOOL INDENTATION
+   ========================================================= */
+
+.md-nav__item--section > .md-nav > .md-nav__list {
+    padding-left: 0.6rem;
+}
+
+
+/* =========================================================
+   SIDEBAR — HOME
+   ========================================================= */
+
+.md-nav--primary > .md-nav__list > .md-nav__item:first-child > .md-nav__link {
+    font-weight: 700;
+    color: #5c7cfa;
+    font-size: 0.9rem;
+
+    background: rgba(155, 124, 255, 0.08);
+    border-left: 3px solid #6394fd;
+    border-radius: 0.35rem;
+
+    padding: 0.55rem 0.75rem;
+    margin-bottom: 1.2rem;
+}
+
+
+/* =========================================================
+   HOME PAGE — FLOW LOGO
+   ========================================================= */
+
+.flow-home-logo {
+    margin: 1rem 0 2rem 0;
+}
+
+.flow-home-logo img {
+    display: block;
+    width: min(500px, 100%);
+    height: auto;
+}
+
+
+/* =========================================================
+   HOME PAGE — PANEL GRID
+   ========================================================= */
+
+.flow-panel-grid {
+    columns: 2;
+    column-gap: 1.25rem;
+
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+
+/* =========================================================
+   HOME PAGE — PANEL CARDS
+   ========================================================= */
+
+.flow-panel-card {
+    display: inline-block;
+    width: 100%;
+
+    min-width: 0;
+    padding: 1.15rem;
+    margin: 0 0 1.25rem 0;
+
+    vertical-align: top;
+    break-inside: avoid;
+
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: 0.75rem;
+}
+
+
+/* =========================================================
+   HOME PAGE — PANEL HEADERS
+   ========================================================= */
+
+.flow-panel-header {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+
+    padding-bottom: 1rem;
+    margin-bottom: 0.5rem;
+
+    border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.flow-panel-icon {
+    width: 54px;
+    height: 54px;
+
+    object-fit: contain;
+    flex: 0 0 auto;
+}
+
+.flow-panel-header h2 {
+    margin: 0;
+    padding: 0;
+
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+
+/* =========================================================
+   HOME PAGE — TOOL LINKS
+   ========================================================= */
+
+.flow-tool-link {
+    display: block;
+
+    padding: 0.7rem 0.7rem;
+    margin: 0 -0.7rem;
+
+    color: var(--md-default-fg-color);
+    text-decoration: none;
+
+    border-radius: 0.45rem;
+
+    transition:
+        background-color 0.15s ease,
+        transform 0.15s ease;
+}
+
+.flow-tool-link:hover {
+    background: var(--md-default-fg-color--lightest);
+    transform: translateX(3px);
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   HOME PAGE — REMOVE LINK UNDERLINES
+   ========================================================= */
+
+.flow-panel-card a,
+.flow-panel-card a:hover,
+.flow-panel-card a:focus,
+.flow-panel-card a:active,
+.flow-panel-card a strong,
+.flow-panel-card a span {
+    text-decoration: none !important;
+}
+
+
+/* =========================================================
+   HOME PAGE — TOOL TITLES
+   ========================================================= */
+
+.flow-tool-link strong {
+    display: block;
+
+    margin-bottom: 0.2rem;
+
+    color: var(--md-accent-fg-color);
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   HOME PAGE — TOOL DESCRIPTIONS
+   ========================================================= */
+
+.flow-tool-link span {
+    display: block;
+
+    color: var(--md-default-fg-color--light);
+    font-size: 0.78rem;
+    line-height: 1.45;
+}
+
+
+/* =========================================================
+   HOME PAGE — PLACEHOLDER CONTENT
+   ========================================================= */
+
+.flow-panel-placeholder {
+    padding: 0.8rem 0;
+
+    color: var(--md-default-fg-color--light);
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
+
+@media screen and (max-width: 700px) {
+
+    .flow-panel-grid {
+        columns: 1;
+    }
+
+}
