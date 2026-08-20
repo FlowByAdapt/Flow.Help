@@ -8,7 +8,13 @@
      ========================================================= -->
 
 <div class="flow-home-logo">
-<img src="assets/branding/logo-FlowByAdapt.png" alt="Flow by Adapt">
+  <img
+    src="assets/branding/flow-logo-light.png#only-light"
+    alt="Flow by Adapt">
+
+  <img
+    src="assets/branding/flow-logo-dark.png#only-dark"
+    alt="Flow by Adapt">
 </div>
 
 
