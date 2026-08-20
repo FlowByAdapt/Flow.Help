@@ -3,7 +3,7 @@
 # =============================================================================
 
 [project]
-site_url = "https://flowbyadapt.github.io/Flow.Help/"
+site_url = "https://help.flowbyadapt.com/"
 site_name = "Flow Help"
 site_description = "User guide for Flow by Adapt"
 site_author = "Flow by Adapt"
