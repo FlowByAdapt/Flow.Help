@@ -299,7 +299,7 @@ extra_css = ["stylesheets/extra.css"]
 
 # variant = "classic"
 # custom_dir = "overrides"
-# favicon = "images/favicon.png"
+# favicon = "assets/branding/favicon.png"
 
 language = "en"
 
