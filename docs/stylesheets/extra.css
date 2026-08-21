@@ -63,11 +63,21 @@
    ========================================================= */
 
 .flow-panel-grid {
-    columns: 2;
-    column-gap: 1.25rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
 
     margin-top: 2rem;
     margin-bottom: 2rem;
+}
+
+
+/* =========================================================
+   HOME PAGE — FULL-WIDTH PANELS
+   ========================================================= */
+
+.flow-panel-card--wide {
+    grid-column: 1 / -1;
 }
 
 
@@ -76,15 +86,9 @@
    ========================================================= */
 
 .flow-panel-card {
-    display: inline-block;
-    width: 100%;
-
     min-width: 0;
     padding: 1.15rem;
-    margin: 0 0 1.25rem 0;
-
-    vertical-align: top;
-    break-inside: avoid;
+    margin: 0;
 
     border: 1px solid var(--md-default-fg-color--lightest);
     border-radius: 0.75rem;
@@ -121,6 +125,17 @@
     font-size: 1.25rem;
     font-weight: 700;
     line-height: 1.2;
+}
+
+
+/* =========================================================
+   HOME PAGE — TOOL GRID
+   ========================================================= */
+
+.flow-tool-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 1.5rem;
 }
 
 
@@ -213,7 +228,15 @@
 @media screen and (max-width: 700px) {
 
     .flow-panel-grid {
-        columns: 1;
+        grid-template-columns: 1fr;
+    }
+
+    .flow-panel-card--wide {
+        grid-column: auto;
+    }
+
+    .flow-tool-grid {
+        grid-template-columns: 1fr;
     }
 
 }

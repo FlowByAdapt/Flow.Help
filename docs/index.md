@@ -42,7 +42,7 @@ Use the navigation to browse Flow tools and workflows.
      PROJECT PANEL
      ========================================================= -->
 
-<div class="flow-panel-card">
+<div class="flow-panel-card flow-panel-card--wide">
 
 <div class="flow-panel-header">
 <img src="assets/categories/project_icon.png" class="flow-panel-icon" alt="">
@@ -114,19 +114,18 @@ Use the navigation to browse Flow tools and workflows.
 
 <a class="flow-tool-link" href="content/drafting-views/">
 <strong>Drafting Views</strong>
-<span>Extract, manage and utilise drafting views from the Revit model.</span>
+<span>Extract and manage reusable drafting views from Revit content.</span>
 </a>
 
 <a class="flow-tool-link" href="content/preview-generator/">
 <strong>Preview Generator</strong>
-<span>Generate and manage preview images for Revit content.</span>
+<span>Generate consistent preview images for supported Revit content.</span>
 </a>
 
 <a class="flow-tool-link" href="content/revit-upgrade/">
 <strong>Revit Upgrade</strong>
-<span>Upgrade Revit files to the latest version.</span>
+<span>Batch upgrade supported Revit content to Revit 2027.</span>
 </a>
-
 
 </div>
 
@@ -135,48 +134,51 @@ Use the navigation to browse Flow tools and workflows.
      MODEL PANEL
      ========================================================= -->
 
-<div class="flow-panel-card">
+<div class="flow-panel-card flow-panel-card--wide">
 
 <div class="flow-panel-header">
 <img src="assets/categories/model_icon.png" class="flow-panel-icon" alt="">
 <h2>Model</h2>
 </div>
 
+<div class="flow-tool-grid">
+
 <a class="flow-tool-link" href="model/openings-manager/">
 <strong>Openings Manager</strong>
-<span>Manage and manipulate opening elements within the Revit model.</span>
+<span>Review, standardise and document windows, doors and other project openings.</span>
 </a>
 
 <a class="flow-tool-link" href="model/keynotes/">
 <strong>Keynotes</strong>
-<span>Manage and utilise keynotes within the Revit model.</span>
+<span>Create, review and maintain keynote information for the current Revit project.</span>
 </a>
 
 <a class="flow-tool-link" href="model/risk-matrix/">
 <strong>Risk Matrix</strong>
-<span>Manage and utilise risk matrices within the Revit model.</span>
+<span>Assess and document external moisture risk across building faces.</span>
 </a>
 
 <a class="flow-tool-link" href="model/model-health/">
 <strong>Model Health</strong>
-<span>Assess and improve the overall health of the Revit model.</span>
+<span>Review common model-quality issues and identify areas requiring attention.</span>
 </a>
 
 <a class="flow-tool-link" href="model/pattern-manager/">
 <strong>Pattern Manager</strong>
-<span>Manage and utilise patterns within the Revit model.</span>
+<span>Create, manage and standardise Revit fill patterns and related content.</span>
 </a>
 
 <a class="flow-tool-link" href="model/area-envelope/">
 <strong>Area Envelope</strong>
-<span>Manage and utilise area envelopes within the Revit model.</span>
+<span>Create area boundaries and areas from selected building walls.</span>
 </a>
 
 <a class="flow-tool-link" href="model/parameters-manager/">
 <strong>Parameters Manager</strong>
-<span>Manage and utilise parameters within the Revit model.</span>
+<span>Review and manage supported parameters within Revit projects and families.</span>
 </a>
 
+</div>
 
 </div>
 
