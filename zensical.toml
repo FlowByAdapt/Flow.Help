@@ -12,6 +12,11 @@ repo_url = "https://github.com/FlowByAdapt/Flow.Help"
 repo_name = "FlowByAdapt/Flow.Help"
 edit_uri = "edit/main/docs/"
 
+copyright = """
+© 2026 ADarchitecture Limited ·
+<a href="/legal/terms-of-use/">Terms of Use &amp; Privacy</a>
+"""
+
 
 # =============================================================================
 # NAVIGATION
