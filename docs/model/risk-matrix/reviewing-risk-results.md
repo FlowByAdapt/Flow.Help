@@ -91,26 +91,40 @@ Zone** value.
 
 ## Review Cladding Coordination
 
-Open the **Cladding** tab and review:
+Open the **Cladding** tab and review the project-wide configuration.
 
 ### Project Cladding Legend
 
-Shows up to four cladding descriptions used by processed walls.
+Shows the coordinated **Cladding 1–4** descriptions for the project. Unused
+slots are shown as **N/A**.
 
-Unused slots are shown as **N/A**.
+### Wall Types to Include
+
+Check that the exterior wall types required by the Risk Matrix workflow are
+included and that wall types which should not participate are excluded.
+
+Review the cladding description and assigned group for each included wall type.
+Wall types sharing the same description should normally share the same cladding
+group.
 
 ### Wall Type Cladding Mapping
 
-Review the cladding description associated with the relevant wall types.
+Review the resulting relationship between Revit wall types and the coordinated
+project cladding descriptions. This mapping is used automatically when Risk
+Faces are processed.
 
-Risk Matrix normalises the processed wall information so that each
-recognised description is assigned to a coordinated project cladding
-slot.
+### Project Cladding Health
 
-The current implementation supports a maximum of **four unique cladding
-types**.
+Review **Project Cladding Health** for configuration that still requires
+attention. Resolve unexpected descriptions or group assignments before relying
+on the coordinated cladding information in project documentation.
 
-------------------------------------------------------------------------
+The current implementation supports a maximum of **four unique coordinated
+cladding descriptions**.
+
+!!! info "Cladding setup is persistent"
+
+    Included wall types, edited descriptions and group selections are stored with the Revit project and restored when Risk Matrix is reopened.
 
 ## Correcting a Face
 

@@ -51,6 +51,19 @@ for more information.
 
 ------------------------------------------------------------------------
 
+## Review the Cladding Setup
+
+Before processing Risk Faces, review the **Cladding** tab and confirm that the
+required exterior wall types are included and mapped to the intended project
+cladding descriptions and groups.
+
+The saved project cladding mapping is used automatically during **Pick Walls**.
+
+➡️ See [**Assigning Risk Information**](assigning-risk-information.md#cladding-information)
+for more information.
+
+------------------------------------------------------------------------
+
 ## Pick Exterior Walls
 
 Click:
@@ -60,9 +73,12 @@ Click:
 Then select the exterior walls that make up the Risk Face or faces you
 want to process.
 
-Risk Matrix processes wall types whose names begin with:
+Risk Matrix discovers exterior wall types whose names begin with:
 
 **ADa_E\_**
+
+The **Cladding** tab can then be used to control which discovered wall types
+participate in the project cladding configuration.
 
 The selected walls are analysed and grouped according to their position
 in the current Risk View.
@@ -180,7 +196,9 @@ Resetting an individual face clears its Risk Matrix wall parameters,
 removes its Risk Face graphics and tags, and then compacts the remaining
 face numbering.
 
-**Reset Risk Matrix** performs a much broader project-wide reset.
+**Reset Risk Matrix** performs a much broader project-wide reset. It also
+clears the saved project cladding configuration, which is then rebuilt from the
+automatic wall-type discovery and default mappings.
 
 ➡️ See [**Troubleshooting**](troubleshooting.md) before using a full
 reset if you only need to correct one face.

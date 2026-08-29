@@ -188,20 +188,48 @@ same Risk Face.
 
 ## Cladding Information Is Unexpected
 
-Risk Matrix builds the project cladding legend from processed Risk
-Faces.
+Open the **Cladding** tab and review the project configuration before changing
+wall parameters manually.
 
-Check the **Cladding** tab and review the wall type cladding mapping.
+### A Wall Type Is Missing
 
-The current workflow supports a maximum of **four unique cladding
-descriptions**.
+Risk Matrix discovers exterior wall types using the configured wall-type rules.
+Confirm that the wall type is an applicable exterior type and follows the
+project naming/configuration expected by Risk Matrix.
 
-Unused project slots are shown as **N/A**.
+### A Wall Type Should Not Participate
 
-If more than four unique cladding descriptions are present, the cladding
-normalisation workflow cannot complete normally.
+Use **Wall Types to Include** and clear **Include** for a discovered wall type
+that should not participate in the project cladding configuration.
 
-------------------------------------------------------------------------
+### Two Wall Types Should Use the Same Cladding Group
+
+Confirm that their cladding descriptions match. Wall types with the same
+description are automatically coordinated into the same cladding group.
+
+### A Cladding Group Cannot Be Selected
+
+A project cladding group cannot contain different cladding descriptions. If the
+selected group is already assigned to another description, Risk Matrix rejects
+the change and retains the previous valid group.
+
+Either use the matching existing description or select an available group.
+
+### Cladding Changes Do Not Appear After Reopening Risk Matrix
+
+The project cladding configuration is stored in the Revit model and should be
+restored when Risk Matrix or Revit is reopened.
+
+If the expected setup is not restored, check that the model was saved after the
+changes were made.
+
+### Maximum Number of Cladding Groups
+
+The current workflow supports a maximum of **four unique coordinated cladding
+descriptions**. Unused project slots are shown as **N/A**.
+
+If more than four unique descriptions are required, review the project cladding
+configuration before continuing.
 
 ## Risk Face Graphics Are Missing
 
@@ -225,9 +253,14 @@ Remember that the overrides are view-specific.
 It clears Risk Matrix information from exterior walls, clears associated
 Risk Matrix project parameters, removes Risk Face graphical overrides
 from Risk Views, removes Risk Matrix tags and clears the Risk Face
-numbering state.
+numbering state. It also clears the saved project cladding configuration.
 
-For a local correction, use the individual face-reset workflow instead.
+After the full reset, the Cladding tab is rebuilt from the automatic wall-type
+discovery and default mappings. Custom exclusions, edited descriptions and
+manual group selections therefore return to the discovered defaults.
+
+For a local correction, use the individual face-reset workflow instead. A
+selected-face reset preserves the project cladding configuration.
 
 !!! warning "Use the full reset carefully"
 

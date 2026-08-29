@@ -63,6 +63,14 @@ that will be written to processed walls.
 
 ➡️ [**Assigning Risk Information**](assigning-risk-information.md)
 
+### Configure Project Cladding
+
+Review discovered exterior wall types, control which wall types are included,
+confirm or edit their cladding descriptions, and coordinate them into the
+project **Cladding 1–4** legend.
+
+➡️ [**Assigning Risk Information**](assigning-risk-information.md#cladding-information)
+
 ### Review Risk Faces
 
 Check the completed Risk Face numbering, colours, tags and assigned
@@ -102,7 +110,8 @@ view for graphical continuity. This is a graphics-only operation.
 
 **Reset Risk Matrix**\
 Clear Risk Matrix data, Risk Face graphics and Risk Matrix tags from the
-project.
+project. A full reset also clears the saved project cladding configuration so
+it can be rebuilt from the automatic wall-type discovery and default mappings.
 
 ------------------------------------------------------------------------
 

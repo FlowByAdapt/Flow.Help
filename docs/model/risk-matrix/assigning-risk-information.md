@@ -144,21 +144,79 @@ another group of walls.
 
 ## Cladding Information
 
-Cladding information is managed separately on the **Cladding** tab.
+Cladding information is managed on the **Cladding** tab and acts as the
+project-wide configuration used when Risk Faces are processed.
 
-Processed walls are normalised into up to four project cladding slots:
+Risk Matrix discovers applicable exterior wall types and uses the configured
+cladding rules to suggest a cladding description for each recognised type.
+Review this setup before processing Risk Faces, particularly when first setting
+up a project.
+
+### Project Cladding Legend
+
+The project legend contains up to four coordinated cladding groups:
 
 -   **Cladding 1**
 -   **Cladding 2**
 -   **Cladding 3**
 -   **Cladding 4**
 
-Unused project slots are shown as **N/A**.
+Wall types with the same cladding description are automatically grouped into
+the same cladding group. Unused project slots are shown as **N/A**.
 
-The **Wall Type Cladding Mapping** and **Project Cladding Legend** help
-keep the cladding descriptions coordinated across processed Risk Faces.
+### Wall Types to Include
 
-------------------------------------------------------------------------
+Use **Wall Types to Include** to review the exterior wall types discovered in
+the project.
+
+For each wall type you can:
+
+-   include or exclude it from the project cladding configuration;
+-   review or edit its cladding description; and
+-   review or change its **Cladding 1–4** group.
+
+A wall type that does not belong in the Risk Matrix workflow can be excluded
+without changing its Revit wall type name.
+
+### Automatic and Manual Grouping
+
+When two included wall types use the same cladding description, Risk Matrix
+coordinates them into the same cladding group automatically.
+
+If a description is changed to match another existing description, the wall
+type is moved to that existing group. A new unique description is assigned to
+the next available group where possible.
+
+Groups can also be changed manually. Risk Matrix prevents a group already used
+for one cladding description from being assigned to a different description.
+
+!!! warning "Maximum four cladding groups"
+
+    The current workflow supports a maximum of four coordinated project cladding descriptions.
+
+### Wall Type Cladding Mapping
+
+Use **Wall Type Cladding Mapping** to review the resulting relationship between
+Revit wall types and the coordinated project cladding descriptions.
+
+The mapping is used automatically when **Pick Walls** processes Risk Faces.
+You do not need to select a cladding value separately for each face.
+
+### Project Cladding Health
+
+Use **Project Cladding Health** to check the current cladding configuration and
+identify setup that still requires attention before relying on the coordinated
+project information.
+
+### Saving the Project Cladding Setup
+
+The cladding configuration is stored in the Revit project. Changes to included
+wall types, descriptions and cladding groups are restored when Risk Matrix is
+reopened and remain available after closing and reopening Revit.
+
+!!! info "Project-wide configuration"
+
+    Cladding setup belongs to the project rather than to an individual Risk View or Risk Face.
 
 ## Automated Risk Scoring
 

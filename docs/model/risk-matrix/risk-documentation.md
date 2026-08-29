@@ -76,30 +76,34 @@ not changed.
 
 ## Cladding Documentation
 
-Risk Matrix coordinates processed wall cladding information into a
-project legend containing up to four slots:
+Risk Matrix maintains a project-wide cladding configuration based on the
+exterior wall types discovered in the model. Included wall types are mapped to
+a coordinated cladding description and one of four project slots:
 
 -   **RM - Cladding 1**
 -   **RM - Cladding 2**
 -   **RM - Cladding 3**
 -   **RM - Cladding 4**
 
-Distinct cladding descriptions are normalised into these slots and
-unused slots are set to:
+Wall types with matching cladding descriptions are coordinated into the same
+slot. Unused slots are set to:
 
 **N/A**
 
-The associated wall **Cladding Category** identifies which project slot
-applies to that wall.
+The associated wall **Cladding Category** identifies which project slot applies
+to that wall when Risk Faces are processed.
 
-This provides coordinated model information that can be consumed by
-project documentation.
+The project cladding setup is stored in the Revit model, including included or
+excluded wall types, edited descriptions and selected cladding groups. It is
+restored when Risk Matrix is reopened.
+
+This provides stable coordinated model information that can be consumed by
+project documentation without requiring the cladding setup to be recreated for
+each Risk View or session.
 
 !!! warning "Maximum four cladding types"
 
-    The current Risk Matrix cladding workflow supports up to four unique cladding descriptions across processed walls.
-
-------------------------------------------------------------------------
+    The current Risk Matrix cladding workflow supports up to four coordinated project cladding descriptions.
 
 ## Risk Views
 
@@ -123,11 +127,13 @@ Risk Views as part of the documentation check.
 
 Resetting an individual Risk Face removes its Risk Matrix wall
 information, relevant Risk Face graphics and tags before the remaining
-faces are renumbered.
+faces are renumbered. The project cladding configuration is preserved.
 
 **Reset Risk Matrix** performs a project-wide cleanup of Risk Matrix
 wall/project parameters, Risk Face graphical overrides, Risk Matrix tags
-and face-numbering state.
+and face-numbering state. It also clears the saved project cladding
+configuration. Risk Matrix then rebuilds the Cladding tab from the automatic
+wall-type discovery and default mappings.
 
 !!! warning "Reset Risk Matrix is a broad reset"
 
