@@ -1,12 +1,13 @@
 # Project Information
 
-Project Information allows important project metadata to be reviewed and
-maintained as part of the Project Setup workflow.
+Project Information allows supported project metadata stored in the
+active Revit project to be inspected, reviewed and updated as part of
+Project Setup.
 
-This keeps project information together with the other project setup tasks
-rather than requiring separate setup tools.
+It is distinct from **Project Identity**, which contains shared values
+used by Project Setup workflows.
 
----
+------------------------------------------------------------------------
 
 ## Opening Project Information
 
@@ -14,102 +15,81 @@ Open:
 
 **Flow → Project → Setup**
 
-Open the **Project Information** section for the current project.
+Inspect the current project, then open the **Project Information**
+review.
 
----
+------------------------------------------------------------------------
 
-## Existing Values
+## Inspection
 
-Flow reads the existing project information from the Revit project and
-displays the current values.
+Project Setup reads supported Project Information parameters and reports
+their current state.
 
-This allows existing projects to be reviewed without replacing information
-that has already been entered.
+Inspection does not overwrite existing values.
 
-!!! info "Existing information is not changed during inspection"
+!!! info "Inspection does not change Project Information"
 
-    Opening or refreshing Project Information reads the current values from
-    the Revit project.
+    Changes are only written when you deliberately apply the proposed edits.
 
-    Project information is only modified when you choose to apply the
-    proposed changes.
+------------------------------------------------------------------------
 
----
+## Reviewing and Editing Values
 
-## Editing Project Information
+The review presents current values and allows proposed values to be
+entered before anything is written back to Revit.
 
-Update the required fields within Project Setup.
-
-Changes are shown as proposed values before they are applied to the Revit
-project.
-
-This allows the information to be reviewed before modifying the model.
+Supported information is grouped into configured sections, including
+project, internal-team, external-team and site-information fields.
 
 !!! tip "Review before applying"
 
-    Check the proposed values before applying the changes, particularly
-    project identification information such as the project number and
-    project name.
+    Check proposed values carefully before applying them.
 
----
+------------------------------------------------------------------------
 
 ## Parameter Checks
 
-Project Setup can identify situations where a required project information
+Project Setup can identify a supported field where the required
 parameter:
 
-- exists and can be edited;
-- is missing; or
-- cannot currently be modified.
-
-This helps identify configuration problems rather than silently ignoring
-missing project information.
+-   exists and can be edited;
+-   is missing; or
+-   is read-only or otherwise unavailable for modification.
 
 !!! warning "Parameter unavailable?"
 
-    If a required parameter is missing or cannot be modified, Project Setup
-    cannot write the proposed value to that parameter.
+    Do not create an ad-hoc replacement parameter merely to clear the status. Review or report the configuration problem.
 
-    Review the reported status before applying the remaining project
-    information changes.
-
----
+------------------------------------------------------------------------
 
 ## Applying Changes
 
-Review the proposed project information before applying the changes.
+Apply the reviewed changes when you are satisfied with the proposed
+values.
 
-Only the appropriate project information values are written back to the
-Revit project.
+Re-inspect the project when required to confirm the resulting Project
+Information state.
 
-After the changes are applied, the Project Setup inspection can be refreshed
-to confirm the current project information.
+------------------------------------------------------------------------
 
----
+## Project Identity Is Different
 
-## New Projects
+Project Identity contains **Project Year**, **Project Number**,
+**Client** and **Location** and is used by workflows such as folder
+planning and new-project creation.
 
-Project information is also used during the new-project workflow.
+Project Information represents supported information stored in the
+active Revit model.
 
-Some information may be used elsewhere in Project Setup, including project
-identification and project folder creation.
+➡️ **[Project Identity →](project-identity.md)**
 
-!!! note "Project information is used elsewhere"
-
-    Project information is not only stored in the Revit model.
-
-    Values such as the project number and project name may also be used by
-    other Project Setup workflows, including project folder naming and
-    project creation.
-
-    Confirm these values are correct before continuing with related setup tasks.
-
----
+------------------------------------------------------------------------
 
 ## Related Help
 
-- [Project Setup](index.md)
-- [Creating a New Project](new-projects.md)
-- [Reviewing a Current Project](current-projects.md)
-- [Project Folders](project-folders.md)
-- [Troubleshooting](troubleshooting.md)
+-   [Project Setup](index.md)
+-   [Project Identity](project-identity.md)
+-   [Creating a New Project](new-projects.md)
+-   [Reviewing a Current Project](current-projects.md)
+-   [Project Folders](project-folders.md)
+-   [Troubleshooting](troubleshooting.md)

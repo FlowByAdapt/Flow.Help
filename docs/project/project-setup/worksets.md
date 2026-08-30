@@ -1,112 +1,80 @@
 # Worksets
 
-The Worksets section checks the worksets in the current Revit project
-against the worksets expected by Flow.
+The Worksets section checks the worksets in the active Revit project
+against the worksets expected by the configured Flow workflow.
 
-This helps ensure that workshared projects use a consistent office-standard
-workset structure.
+------------------------------------------------------------------------
 
----
-
-## Opening Worksets
+## Inspect Worksets
 
 Open:
 
 **Flow → Project → Setup**
 
-Open the **Worksets** section.
+Select **Inspect Project**.
 
-Flow inspects the worksets currently present in the Revit project.
+If the project is workshared, Project Setup compares the current
+worksets with the expected configuration.
 
 !!! info "Inspection does not change the project"
 
-    Workset inspection only checks the current workset configuration.
+    Missing worksets are created only when you deliberately choose the relevant setup action.
 
-    Worksets are only created when you choose to apply the relevant
-    Project Setup action.
-
----
+------------------------------------------------------------------------
 
 ## Inspection Results
 
-The inspection identifies whether the expected worksets are already present.
+Existing required worksets contribute to a complete state. Missing
+required worksets are reported for review.
 
-Existing worksets that satisfy the expected configuration are reported as
-complete.
+------------------------------------------------------------------------
 
-Missing worksets are identified for review.
+## Configure Missing Worksets
 
----
+Where required, Project Setup can create the missing office-standard
+worksets.
 
-## Creating Missing Worksets
-
-Where required, Project Setup can create missing office-standard worksets.
-
-Review the inspection results before applying the changes.
-
-Flow creates the required worksets through the Project Setup workflow.
+Existing required worksets are preserved rather than recreated.
 
 !!! note "Existing worksets are preserved"
 
-    Project Setup creates required worksets that are missing.
+    Project Setup adds required worksets that are missing. It does not recreate a required workset simply because it already exists.
 
-    Existing worksets are not recreated simply because you run the
-    workset setup again.
+------------------------------------------------------------------------
 
----
+## Existing Project-Specific Worksets
 
-## Existing Worksets
+A live project may contain additional project-specific worksets beyond
+those required by Flow.
 
-Project Setup is intended to help establish the required workset structure
-without unnecessarily changing existing project content.
+Project Setup checks for its expected worksets; it is not an instruction
+to remove unrelated existing worksets.
 
-Existing project worksets should therefore be reviewed before making
-structural changes to a live project.
-
-!!! warning "Existing project worksets"
-
-    Project Setup checks for the worksets required by Flow, but existing
-    project-specific worksets may also be present.
-
-    Review the current workset structure before making other manual changes
-    to worksets in a live project.
-
----
+------------------------------------------------------------------------
 
 ## Non-Workshared Projects
 
-Workset configuration only applies to workshared Revit projects.
+Workset configuration requires a workshared Revit project.
 
-!!! note "Worksharing required"
+If worksharing is appropriate, complete the **Worksharing** step first.
+Project Setup can enable worksharing when the action is available.
 
-    If the current project is not workshared, Flow cannot inspect or create
-    the required project worksets.
+➡️ **[Worksharing →](worksharing.md)**
 
-    Enable Revit worksharing before completing the Worksets section of
-    Project Setup.
+------------------------------------------------------------------------
 
----
+## Re-inspection
 
-## Refreshing the Results
+After configuring worksets, inspect or refresh the project as required
+so the displayed state reflects the resulting configuration.
 
-After worksets have been created or changed, use **Refresh** to run the
-Project Setup inspection again.
-
-The inspection results should then reflect the current workset configuration.
-
-!!! tip "Changed a workset directly in Revit?"
-
-    Use **Refresh** after making workset changes outside Project Setup.
-
-    This updates the inspection results without needing to close and reopen
-    Project Setup.
-
----
+------------------------------------------------------------------------
 
 ## Related Help
 
-- [Project Setup](index.md)
-- [Reviewing a Current Project](current-projects.md)
-- [Project Information](project-information.md)
-- [Project Folders](project-folders.md)
-- [Troubleshooting](troubleshooting.md)
+-   [Project Setup](index.md)
+-   [Reviewing a Current Project](current-projects.md)
+-   [Worksharing](worksharing.md)
+-   [Project Information](project-information.md)
+-   [Project Folders](project-folders.md)
+-   [Troubleshooting](troubleshooting.md)

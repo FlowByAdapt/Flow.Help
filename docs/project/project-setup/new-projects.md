@@ -1,103 +1,99 @@
 # Creating a New Project
 
-Project Setup provides a guided workflow for creating a new Revit project
-using the appropriate Flow project standards.
+Project Setup provides a guided workflow for creating a new Revit
+project using the appropriate Flow project standards.
 
----
+New-project creation can be started without an existing Revit project
+open.
+
+------------------------------------------------------------------------
 
 ## Before You Begin
 
-Open **Project Setup** from:
+Open:
 
 **Flow → Project → Setup**
 
-Select **New Project** to begin.
+Begin with **Project Identity**.
 
----
+------------------------------------------------------------------------
 
-## Project Profile
+## 1. Review Project Identity
 
-Select the project profile that best matches the project being created.
+Enter **Project Year**, **Project Number**, **Client** and **Location**,
+then select **Review Identity**.
 
-Project profiles allow Flow to determine the appropriate project
+The identity must be valid before **Create Project** becomes available.
+
+If an identity value is edited after review, Project Setup clears the
+review and requires the revised identity to be reviewed again.
+
+➡️ **[Project Identity →](project-identity.md)**
+
+------------------------------------------------------------------------
+
+## 2. Select a Project Profile
+
+Select the Project Profile that best matches the project being created.
+
+Project Profiles allow Flow to determine the appropriate project
 configuration and Revit template.
 
-Available profiles may vary depending on:
+Profiles can represent differences such as project type, work type,
+client requirements, documentation requirements and project role or
+starting configuration.
 
-- Revit version
-- Project type
-- Work type
-- Client requirements
-- Documentation requirements
+!!! tip "Choose the profile, not the template"
 
-Only profiles compatible with the current version of Revit are available.
+    Select the Project Profile that describes the project. Flow uses that profile to resolve the approved Revit template.
 
-!!! tip "Not sure which profile to use?"
+------------------------------------------------------------------------
 
-    Choose the profile that best describes the project rather than selecting a template manually.
+## 3. Review the Resolved Revit Template
 
-    Flow uses the project profile to determine the appropriate project configuration and Revit template.
+Flow uses the selected Project Profile and current Revit version to
+resolve the appropriate office-approved template.
 
----
-
-## Revit Template
-
-Flow uses the selected project profile to determine the appropriate
-office-approved Revit template.
-
-This removes the need to manually locate the correct template for the
-current version of Revit.
+Project Setup reports whether that template is available.
 
 !!! note "Revit version"
 
-    Flow automatically uses templates compatible with the version of Revit currently running.
+    Project Setup resolves the template for the version of Revit currently running.
 
-    Templates from another Revit version are not offered for selection.
+    Do not substitute an unrelated template if the expected template is unavailable.
 
----
+------------------------------------------------------------------------
 
-## Project Information
+## 4. Create the Project
 
-Enter the project information required to establish the new project.
+**Create Project** becomes available only when the required creation
+state is valid:
 
-Project information is used throughout the setup workflow and may also be
-used when creating project folders and project files.
+-   a valid reviewed Project Identity;
+-   a selected Project Profile;
+-   a successful template preflight; and
+-   an available compatible template.
 
-See:
+Select **Create Project** to begin project creation.
 
-➡️ **[Project Information](project-information.md)**
-
----
-
-## Creating the Project
-
-Once the required selections and project information are complete,
-the project can be created.
-
-Flow validates the selected configuration before allowing project creation.
-
-!!! note "Create Project unavailable?"
-
-    **Create Project** is only available when the required project setup information is valid.
-
-    Check the project profile, template and required project information if the command is unavailable.
-
----
+------------------------------------------------------------------------
 
 ## After Creating the Project
 
-Once the project has been created, Project Setup can be used to inspect and
-complete the remaining project configuration.
+Project Setup can then inspect and complete the remaining
+current-project setup areas, including Project Information, Project
+Folders, Worksharing, Worksets and Existing Building preparation where
+applicable.
 
-See:
+➡️ **[Reviewing a Current Project →](current-projects.md)**
 
-➡️ **[Reviewing a Current Project](current-projects.md)**
-
----
+------------------------------------------------------------------------
 
 ## Related Help
 
-- [Project Setup](index.md)
-- [Project Information](project-information.md)
-- [Worksets](worksets.md)
-- [Project Folders](project-folders.md)
+-   [Project Setup](index.md)
+-   [Project Identity](project-identity.md)
+-   [Reviewing a Current Project](current-projects.md)
+-   [Project Information](project-information.md)
+-   [Project Folders](project-folders.md)
+-   [Troubleshooting](troubleshooting.md)

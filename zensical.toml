@@ -38,11 +38,14 @@ nav = [
 
     { "Project Setup" = [
       { "Overview" = "project/project-setup/index.md" },
+      { "Project Identity" = "project/project-setup/project-identity.md" },
       { "New Projects" = "project/project-setup/new-projects.md" },
       { "Current Projects" = "project/project-setup/current-projects.md" },
       { "Project Information" = "project/project-setup/project-information.md" },
       { "Project Folders" = "project/project-setup/project-folders.md" },
+      { "Worksharing" = "project/project-setup/worksharing.md" },
       { "Worksets" = "project/project-setup/worksets.md" },
+      { "Existing Building" = "project/project-setup/existing-building.md" },
       { "Troubleshooting" = "project/project-setup/troubleshooting.md" },
     ] },
   ] },
