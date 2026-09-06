@@ -58,6 +58,25 @@ Use the navigation to browse Flow tools and workflows.
 
 
 <!-- =========================================================
+     ANNOTATION PANEL
+     ========================================================= -->
+
+<div class="flow-panel-card flow-panel-card--wide">
+
+<div class="flow-panel-header">
+<img src="assets/categories/annotation_icon.png" class="flow-panel-icon" alt="">
+<h2>Annotation</h2>
+</div>
+
+<a class="flow-tool-link" href="model/annotation/">
+<strong>Annotation</strong>
+<span>Access common dimensioning, tagging, text and numbering workflows.</span>
+</a>
+
+</div>
+
+
+<!-- =========================================================
      WORKSPACE PANEL
      ========================================================= -->
 
@@ -142,11 +161,6 @@ Use the navigation to browse Flow tools and workflows.
 </div>
 
 <div class="flow-tool-grid">
-
-<a class="flow-tool-link" href="model/annotation/">
-<strong>Annotation</strong>
-<span>Access common dimensioning, tagging, text and numbering workflows.</span>
-</a>
 
 <a class="flow-tool-link" href="model/openings-manager/">
 <strong>Openings Manager</strong>

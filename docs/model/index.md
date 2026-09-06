@@ -8,12 +8,6 @@ You can find the Model panel on the **Flow** ribbon in Revit.
 
 ## Tools
 
-### Annotation
-
-Access common Revit documentation workflows for dimensions, tags, text and numbering, including wall and grid dimensioning, dimension labels, automatic tagging and renumbering tools.
-
-[Annotation →](annotation-tools/index.md)
-
 ### Area Envelope
 
 Create area-based views and boundaries for reviewing external wall areas, including framing and cladding workflows.

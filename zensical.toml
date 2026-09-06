@@ -50,6 +50,32 @@ nav = [
     ] },
   ] },
 
+  
+    # ---------------------------------------------------------------------------
+  # ANNOTATION PANEL
+  # ---------------------------------------------------------------------------
+
+  { "Annotation" = [
+    { "Overview" = "annotation/index.md" },
+
+    
+    # Annotation Tools
+    # -------------------------------------------------------------------------
+
+    { "Annotation Tools" = [
+      { "Overview" = "annotation/annotation-tools/index.md" },
+      { "Auto Tag" = "annotation/annotation-tools/auto-tag.md" },
+      { "Dimension Labels" = "annotation/annotation-tools/dimension-labels.md" },
+      { "Grid Dimensions" = "annotation/annotation-tools/grid-dimensions.md" },
+      { "Grid Renumber" = "annotation/annotation-tools/grid-renumber.md" },
+      { "Join Dimensions" = "annotation/annotation-tools/join-dimensions.md" },
+      { "Renumber" = "annotation/annotation-tools/renumber.md" },
+      { "Text Tools" = "annotation/annotation-tools/text-tools.md" },
+      { "Wall Dimensions" = "annotation/annotation-tools/wall-dimensions.md" },
+      { "Troubleshooting" = "annotation/annotation-tools/troubleshooting.md" },
+    ] },
+  ] },
+
 
   # ---------------------------------------------------------------------------
   # WORKSPACE PANEL
@@ -180,22 +206,6 @@ nav = [
 
   { "Model" = [
     { "Overview" = "model/index.md" },
-
-    # Annotation Tools
-    # -------------------------------------------------------------------------
-
-    { "Annotation Tools" = [
-      { "Overview" = "model/annotation-tools/index.md" },
-      { "Auto Tag" = "model/annotation-tools/auto-tag.md" },
-      { "Dimension Labels" = "model/annotation-tools/dimension-labels.md" },
-      { "Grid Dimensions" = "model/annotation-tools/grid-dimensions.md" },
-      { "Grid Renumber" = "model/annotation-tools/grid-renumber.md" },
-      { "Join Dimensions" = "model/annotation-tools/join-dimensions.md" },
-      { "Renumber" = "model/annotation-tools/renumber.md" },
-      { "Text Tools" = "model/annotation-tools/text-tools.md" },
-      { "Wall Dimensions" = "model/annotation-tools/wall-dimensions.md" },
-      { "Troubleshooting" = "model/annotation-tools/troubleshooting.md" },
-    ] },
 
     
     # Area Envelope
