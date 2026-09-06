@@ -8,6 +8,12 @@ You can find the Model panel on the **Flow** ribbon in Revit.
 
 ## Tools
 
+### Annotation
+
+Access common Revit documentation workflows for dimensions, tags, text and numbering, including wall and grid dimensioning, dimension labels, automatic tagging and renumbering tools.
+
+[Annotation →](annotation-tools/index.md)
+
 ### Area Envelope
 
 Create area-based views and boundaries for reviewing external wall areas, including framing and cladding workflows.
@@ -49,6 +55,12 @@ Browse, create and manage Revit fill patterns, including project patterns and pa
 Assess and document exterior wall risk using the Flow Risk Matrix workflow, including risk faces, project conditions and visual coordination.
 
 [Risk Matrix →](risk-matrix/index.md)
+
+### Roof Tools
+
+Access roof documentation and detailing tools, including creating clean roof outlines and adding caps to open gutter ends.
+
+[Roof Tools →](roof-tools/index.md)
 
 !!! tip "Working with the model?"
 

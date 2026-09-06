@@ -58,16 +58,17 @@ nav = [
   { "Workspace" = [
     { "Overview" = "workspace/index.md" },
 
-    # Workspace
+
+    # Command Palette
     # -------------------------------------------------------------------------
 
-    { "Workspace" = [
-      { "Overview" = "workspace/workspace/index.md" },
-      { "Saving a Workspace" = "workspace/workspace/saving-a-workspace.md" },
-      { "Restoring a Workspace" = "workspace/workspace/restoring-a-workspace.md" },
-      { "Managing Saved Workspaces" = "workspace/workspace/managing-saved-workspaces.md" },
-      { "Recovering Windows" = "workspace/workspace/recovering-windows.md" },
+    { "Command Palette" = [
+      { "Overview" = "workspace/command-palette/index.md" },
+      { "Finding and Running Commands" = "workspace/command-palette/finding-and-running-commands.md" },
+      { "Pinned and Recent Commands" = "workspace/command-palette/pinned-and-recent.md" },
+      { "Troubleshooting" = "workspace/command-palette/troubleshooting.md" },
     ] },
+
 
     # Flow Hub
     # -------------------------------------------------------------------------
@@ -81,16 +82,7 @@ nav = [
       { "Troubleshooting" = "workspace/flow-hub/troubleshooting.md" },
     ] },
 
-    # Command Palette
-    # -------------------------------------------------------------------------
-
-    { "Command Palette" = [
-      { "Overview" = "workspace/command-palette/index.md" },
-      { "Finding and Running Commands" = "workspace/command-palette/finding-and-running-commands.md" },
-      { "Pinned and Recent Commands" = "workspace/command-palette/pinned-and-recent.md" },
-      { "Troubleshooting" = "workspace/command-palette/troubleshooting.md" },
-    ] },
-
+    
     # Visibility Manager
     # -------------------------------------------------------------------------
 
@@ -99,6 +91,18 @@ nav = [
       { "Project Controls" = "workspace/visibility-manager/project-controls.md" },
       { "Active View Controls" = "workspace/visibility-manager/active-view-controls.md" },
       { "Troubleshooting" = "workspace/visibility-manager/troubleshooting.md" },
+    ] },
+
+
+    # Workspace
+    # -------------------------------------------------------------------------
+
+    { "Workspace" = [
+      { "Overview" = "workspace/workspace/index.md" },
+      { "Saving a Workspace" = "workspace/workspace/saving-a-workspace.md" },
+      { "Restoring a Workspace" = "workspace/workspace/restoring-a-workspace.md" },
+      { "Managing Saved Workspaces" = "workspace/workspace/managing-saved-workspaces.md" },
+      { "Recovering Windows" = "workspace/workspace/recovering-windows.md" },
     ] },
   ] },
 
@@ -123,6 +127,38 @@ nav = [
       { "Troubleshooting" = "content/content-browser/troubleshooting.md" },
     ] },
 
+    
+    # Drafting Views
+    # -------------------------------------------------------------------------
+
+    { "Drafting Views" = [
+      { "Overview" = "content/drafting-views/index.md" },
+      { "Extracting Drafting Views" = "content/drafting-views/extracting-drafting-views.md" },
+      { "Managing Extracted Views" = "content/drafting-views/managing-extracted-views.md" },
+      { "Troubleshooting" = "content/drafting-views/troubleshooting.md" },
+    ] },
+
+
+    # Preview Generator
+    # -------------------------------------------------------------------------
+
+    { "Preview Generator" = [
+      { "Overview" = "content/preview-generator/index.md" },
+      { "Generating Previews" = "content/preview-generator/generating-previews.md" },
+      { "Troubleshooting" = "content/preview-generator/troubleshooting.md" },
+    ] },
+
+
+    # Revit Upgrade
+    # -------------------------------------------------------------------------
+
+    { "Revit Upgrade" = [
+      { "Overview" = "content/revit-upgrade/index.md" },
+      { "Upgrading Revit Content" = "content/revit-upgrade/upgrading-revit-content.md" },
+      { "Troubleshooting" = "content/revit-upgrade/troubleshooting.md" },
+    ] },
+
+
     # Type Catalogue
     # -------------------------------------------------------------------------
 
@@ -135,34 +171,6 @@ nav = [
       { "Generating Catalogues" = "content/type-catalogue-manager/generating-catalogues.md" },
       { "Troubleshooting" = "content/type-catalogue-manager/troubleshooting.md" },
     ] },
-
-    # Drafting Views
-    # -------------------------------------------------------------------------
-
-    { "Drafting Views" = [
-      { "Overview" = "content/drafting-views/index.md" },
-      { "Extracting Drafting Views" = "content/drafting-views/extracting-drafting-views.md" },
-      { "Managing Extracted Views" = "content/drafting-views/managing-extracted-views.md" },
-      { "Troubleshooting" = "content/drafting-views/troubleshooting.md" },
-    ] },
-
-    # Preview Generator
-    # -------------------------------------------------------------------------
-
-    { "Preview Generator" = [
-      { "Overview" = "content/preview-generator/index.md" },
-      { "Generating Previews" = "content/preview-generator/generating-previews.md" },
-      { "Troubleshooting" = "content/preview-generator/troubleshooting.md" },
-    ] },
-
-    # Revit Upgrade
-    # -------------------------------------------------------------------------
-
-    { "Revit Upgrade" = [
-      { "Overview" = "content/revit-upgrade/index.md" },
-      { "Upgrading Revit Content" = "content/revit-upgrade/upgrading-revit-content.md" },
-      { "Troubleshooting" = "content/revit-upgrade/troubleshooting.md" },
-    ] },
   ] },
 
 
@@ -172,6 +180,56 @@ nav = [
 
   { "Model" = [
     { "Overview" = "model/index.md" },
+
+    # Annotation Tools
+    # -------------------------------------------------------------------------
+
+    { "Annotation Tools" = [
+      { "Overview" = "model/annotation-tools/index.md" },
+      { "Auto Tag" = "model/annotation-tools/auto-tag.md" },
+      { "Dimension Labels" = "model/annotation-tools/dimension-labels.md" },
+      { "Grid Dimensions" = "model/annotation-tools/grid-dimensions.md" },
+      { "Grid Renumber" = "model/annotation-tools/grid-renumber.md" },
+      { "Join Dimensions" = "model/annotation-tools/join-dimensions.md" },
+      { "Renumber" = "model/annotation-tools/renumber.md" },
+      { "Text Tools" = "model/annotation-tools/text-tools.md" },
+      { "Wall Dimensions" = "model/annotation-tools/wall-dimensions.md" },
+      { "Troubleshooting" = "model/annotation-tools/troubleshooting.md" },
+    ] },
+
+    
+    # Area Envelope
+    # -------------------------------------------------------------------------
+
+    { "Area Envelope" = [
+      { "Overview" = "model/area-envelope/index.md" },
+      { "Creating Area Envelopes" = "model/area-envelope/creating-area-envelopes.md" },
+      { "Framing and Cladding" = "model/area-envelope/framing-and-cladding.md" },
+      { "Troubleshooting" = "model/area-envelope/troubleshooting.md" },
+    ] },
+
+        
+    # Keynotes
+    # -------------------------------------------------------------------------
+
+    { "Keynotes" = [
+      { "Overview" = "model/keynotes/index.md" },
+      { "Working with Keynotes" = "model/keynotes/working-with-keynotes.md" },
+      { "Project Keynotes Files" = "model/keynotes/project-keynote-files.md" },
+      { "Troubleshooting" = "model/keynotes/troubleshooting.md" },
+    ] },
+       
+    
+    # Model Health
+    # -------------------------------------------------------------------------
+
+    { "Model Health" = [
+      { "Overview" = "model/model-health/index.md" },
+      { "Running Health Checks" = "model/model-health/running-health-checks.md" },
+      { "Reviewing Model Health Issues" = "model/model-health/reviewing-issues.md" },
+      { "Troubleshooting" = "model/model-health/troubleshooting.md" },
+    ] },
+
 
     # Openings Manager
     # -------------------------------------------------------------------------
@@ -201,69 +259,7 @@ nav = [
       { "Troubleshooting" = "model/openings-manager/troubleshooting.md" },
     ] },
 
-    
-    # Keynotes
-    # -------------------------------------------------------------------------
-
-    { "Keynotes" = [
-      { "Overview" = "model/keynotes/index.md" },
-      { "Working with Keynotes" = "model/keynotes/working-with-keynotes.md" },
-      { "Project Keynotes Files" = "model/keynotes/project-keynote-files.md" },
-      { "Troubleshooting" = "model/keynotes/troubleshooting.md" },
-    ] },
-
-
-    # Risk Matrix
-    # -------------------------------------------------------------------------
-
-    { "Risk Matrix" = [
-      { "Overview" = "model/risk-matrix/index.md" },
-      { "Identifying Risk Faces" = "model/risk-matrix/identifying-risk-faces.md" },
-      { "Assigning Risk Information" = "model/risk-matrix/assigning-risk-information.md" },
-      { "Reviewing Risk Results" = "model/risk-matrix/reviewing-risk-results.md" },
-      { "Risk Documentation" = "model/risk-matrix/risk-documentation.md" },
-      { "Troubleshooting" = "model/risk-matrix/troubleshooting.md" },
-    ] },
-    
-    
-    # Model Health
-    # -------------------------------------------------------------------------
-
-    { "Model Health" = [
-      { "Overview" = "model/model-health/index.md" },
-      { "Running Health Checks" = "model/model-health/running-health-checks.md" },
-      { "Reviewing Model Health Issues" = "model/model-health/reviewing-issues.md" },
-      { "Troubleshooting" = "model/model-health/troubleshooting.md" },
-    ] },
-    
-
-    # Pattern Manager
-    # -------------------------------------------------------------------------
-
-    { "Pattern Manager" = [
-      { "Overview" = "model/pattern-manager/index.md" },
-      { "Browsing Pattern Library" = "model/pattern-manager/browsing-pattern-library.md" },
-      { "Project Patterns" = "model/pattern-manager/project-patterns.md" },
-      { "Creating and Editing Patterns" = "model/pattern-manager/creating-and-editing-patterns.md" },
-      { "Generating Patterns from Geometry" = "model/pattern-manager/generating-patterns-from-geometry.md" },
-      { "Importing and Exporting Patterns" = "model/pattern-manager/importing-and-exporting-patterns.md" },
-      { "Standardising Patterns" = "model/pattern-manager/standardising-patterns.md" },
-      { "Filled Region Tools" = "model/pattern-manager/filled-region-tools.md" },
-      { "Troubleshooting" = "model/pattern-manager/troubleshooting.md" },
-    ] },
-    
-    
-    # Area Envelope
-    # -------------------------------------------------------------------------
-
-    { "Area Envelope" = [
-      { "Overview" = "model/area-envelope/index.md" },
-      { "Creating Area Envelopes" = "model/area-envelope/creating-area-envelopes.md" },
-      { "Framing and Cladding" = "model/area-envelope/framing-and-cladding.md" },
-      { "Troubleshooting" = "model/area-envelope/troubleshooting.md" },
-    ] },
         
-    
     # Parameters Manager
     # -------------------------------------------------------------------------
 
@@ -286,6 +282,45 @@ nav = [
       { "Family Parameters" = "model/parameters-manager/family-parameters.md" },
       { "Bulk Parameter Editor" = "model/parameters-manager/bulk-parameter-editor.md" },
       { "Troubleshooting" = "model/parameters-manager/troubleshooting.md" },
+    ] },
+
+    
+    # Pattern Manager
+    # -------------------------------------------------------------------------
+
+    { "Pattern Manager" = [
+      { "Overview" = "model/pattern-manager/index.md" },
+      { "Browsing Pattern Library" = "model/pattern-manager/browsing-pattern-library.md" },
+      { "Project Patterns" = "model/pattern-manager/project-patterns.md" },
+      { "Creating and Editing Patterns" = "model/pattern-manager/creating-and-editing-patterns.md" },
+      { "Generating Patterns from Geometry" = "model/pattern-manager/generating-patterns-from-geometry.md" },
+      { "Importing and Exporting Patterns" = "model/pattern-manager/importing-and-exporting-patterns.md" },
+      { "Standardising Patterns" = "model/pattern-manager/standardising-patterns.md" },
+      { "Filled Region Tools" = "model/pattern-manager/filled-region-tools.md" },
+      { "Troubleshooting" = "model/pattern-manager/troubleshooting.md" },
+    ] },
+
+
+    # Risk Matrix
+    # -------------------------------------------------------------------------
+
+    { "Risk Matrix" = [
+      { "Overview" = "model/risk-matrix/index.md" },
+      { "Identifying Risk Faces" = "model/risk-matrix/identifying-risk-faces.md" },
+      { "Assigning Risk Information" = "model/risk-matrix/assigning-risk-information.md" },
+      { "Reviewing Risk Results" = "model/risk-matrix/reviewing-risk-results.md" },
+      { "Risk Documentation" = "model/risk-matrix/risk-documentation.md" },
+      { "Troubleshooting" = "model/risk-matrix/troubleshooting.md" },
+    ] },
+
+    # Roof Tools
+    # -------------------------------------------------------------------------
+
+    { "Roof Tools" = [
+      { "Overview" = "model/roof-tools/index.md" },
+      { "Gutter Caps" = "model/roof-tools/gutter-caps.md" },
+      { "Roof Outline" = "model/roof-tools/roof-outline.md" },
+      { "Troubleshooting" = "model/roof-tools/troubleshooting.md" },
     ] },
   ] },
 ]

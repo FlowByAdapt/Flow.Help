@@ -143,6 +143,11 @@ Use the navigation to browse Flow tools and workflows.
 
 <div class="flow-tool-grid">
 
+<a class="flow-tool-link" href="model/annotation/">
+<strong>Annotation</strong>
+<span>Access common dimensioning, tagging, text and numbering workflows.</span>
+</a>
+
 <a class="flow-tool-link" href="model/openings-manager/">
 <strong>Openings Manager</strong>
 <span>Review, standardise and document windows, doors and other project openings.</span>
@@ -178,9 +183,15 @@ Use the navigation to browse Flow tools and workflows.
 <span>Review and manage supported parameters within Revit projects and families.</span>
 </a>
 
+<a class="flow-tool-link" href="model/roof-tools/">
+<strong>Roof Tools</strong>
+<span>Create roof documentation and detailing, including roof outlines and gutter caps.</span>
+</a>
+
 </div>
 
 </div>
+
 
 
 <!-- =========================================================
