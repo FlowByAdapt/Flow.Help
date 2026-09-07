@@ -1,326 +1,385 @@
 # Placing Opening Views on Sheets
 
-Use **Place Opening Views on Sheet** to arrange generated Window or Door
-elevations on the appropriate opening schedule sheets.
+Use **Place on Sheet** to arrange generated Window or Door elevations on their documentation sheets.
 
-Window and Door placement use different workflows.
+Window and Door placement use different workflows. Window placement includes persisted session memory and multi-sheet handling, while Door placement is a simpler single-sheet operation.
 
-------------------------------------------------------------------------
+---
 
-## Start the Placement Tool
+## Start Place on Sheet
 
-Run **Place Opening Views on Sheet**.
+From Openings Manager, click **Place on Sheet**.
 
-Choose whether you want to place:
+Choose:
 
--   Window Views
--   Door Views
+- **Window Views**
+- **Door Views**
 
-If a previous Window placement session is available, Flow can also
-provide an option to reset that session.
+If a previous Window placement session exists, the workflow can also offer a reset option.
 
-------------------------------------------------------------------------
+While placement is running from Openings Manager, the Manager is minimised so you can work directly on the Revit sheets. It is restored when the placement workflow finishes.
+
+!!! note "Register checkboxes are not used"
+
+    Place on Sheet does not use the checked rows in the Opening Register.
+
+    Each placement workflow finds the eligible unplaced views itself.
+
+---
 
 # Window View Placement
 
-Window placement is designed to distribute New window and curtain wall
-elevations across the A4-series opening sheets.
+Window placement is designed to arrange unplaced New W## opening elevations across the A4-series opening sheets.
 
-------------------------------------------------------------------------
+This workflow includes placement memory so a large set of opening views can be placed over more than one session.
+
+---
 
 ## Required Starting Sheet
 
-The Window placement workflow requires:
+The Window placement workflow requires the sheet:
 
-``` text
+```text
 A401
 ```
 
-to exist in the project.
+Flow uses A401 as the reference and starting sheet for the Window placement sequence.
 
-Flow uses A401 as the starting point for the Window opening-sheet
-sequence.
+If A401 cannot be found, the automatic Window placement workflow cannot begin.
 
-If A401 cannot be found, the automatic Window placement workflow cannot
-proceed normally.
+---
 
-------------------------------------------------------------------------
+## Which Views Are Included?
 
-## Which Window Views Are Placed?
+Flow looks for unplaced opening elevation views using the New Window-style naming convention:
 
-Flow looks for unplaced New opening views using the strict:
-
-``` text
+```text
 W##
 ```
 
-naming pattern.
-
 For example:
 
-``` text
+```text
 W01
 W02
 W03
 ```
 
-Existing `Wx##` views are not included.
+Views already placed on sheets are excluded.
 
-Views that are already placed are excluded.
+Existing Window views using the `Wx##` convention are not part of this placement workflow.
 
-Views recorded as placed in the current Flow placement session are also
-excluded.
+Because Curtain Wall elevations also use the W## opening sequence, eligible New Curtain Wall views can participate in the Window placement workflow.
 
-------------------------------------------------------------------------
+---
+
+## Previous Window Placement Sessions
+
+Flow stores Window placement progress.
+
+If placement memory from an earlier session exists, you can continue working with that recorded session rather than starting the complete workflow again.
+
+Depending on the current state, Flow can offer options such as:
+
+- **Resume Placement**
+- **Reset and Start Again**
+
+This allows a large opening schedule to be completed progressively.
+
+!!! info "Placement memory"
+
+    Flow remembers which views it placed and the placement area used by the workflow.
+
+    This memory is specific to the managed Window placement process.
+
+<!-- SCREENSHOT: Window placement prompt showing Resume Placement / Reset and Start Again for a project with an existing session. -->
+
+---
 
 ## Define the Placement Area
 
-On the sheet, pick:
+When a placement area is required, Flow activates the target sheet and asks you to pick:
 
-1.  **Top Left**
-2.  **Bottom Right**
+1. **Top Left**
+2. **Bottom Right**
 
-These two points define the usable area in which Flow can arrange the
-opening views.
+These points define the sheet region available for automatic placement.
 
-Flow calculates the layout from the estimated paper size of the actual
-elevation views rather than treating every viewport as the same size.
+Flow uses the actual/estimated paper-space dimensions of the opening elevations when determining how they can be arranged rather than assuming that every viewport has the same size.
 
-------------------------------------------------------------------------
+<!-- SCREENSHOT: A401 with the user defining the Top Left and Bottom Right placement area. -->
 
-## Automatic Layout
+---
 
-Flow arranges the views into rows within the selected placement area.
+## Reuse the Previous Placement Area
 
-The layout can use up to six rows.
+After an area has been defined, Flow remembers it for the Window placement workflow.
 
-Spacing is calculated from the available area and the estimated size of
-the opening elevations.
+When placement continues onto another sheet, Flow can offer to reuse that area.
 
-Mixed-height window and curtain wall views are aligned along common row
-baselines to produce a more consistent sheet layout.
+This is useful when the A4-series sheets use the same titleblock and the opening-view region is intended to remain consistent from sheet to sheet.
 
-------------------------------------------------------------------------
+You can choose a new area where the next sheet requires a different layout.
 
-## Reuse the Placement Area
+---
 
-After a placement area has been defined, Flow can remember it for the
-current placement workflow.
+## Automatic Window Layout
 
-On a subsequent sheet, you may be offered the option to reuse the
-previous placement area.
+Flow calculates which remaining views can fit inside the selected region and places them automatically.
 
-This avoids having to pick the same sheet region repeatedly.
+The layout is based on the available sheet area and the paper-space size of the opening elevations.
 
-------------------------------------------------------------------------
+Where possible, views are arranged into a consistent grid/row layout rather than simply being placed at arbitrary fixed offsets.
+
+The managed placement workflow also records each successfully placed view so it can distinguish completed work from the views still remaining.
+
+---
 
 ## Continue onto Additional Sheets
 
-If all remaining views cannot fit on the current sheet, Flow can
-continue the placement workflow onto the next A4-series sheet.
+If views remain after the current sheet has been processed, Flow can continue the workflow.
 
 The available actions can include:
 
--   **Continue to Next Sheet**
--   **Stop and Resume Later**
--   **Reset Placement**
+- **Continue to Next Sheet**
+- **Stop and Resume Later**
+- **Reset Placement**
 
-------------------------------------------------------------------------
+Choose **Continue to Next Sheet** to keep working through the A4-series sequence.
 
-## Creating Additional Window Sheets
+Choose **Stop and Resume Later** when the current placement should be retained but the remaining views will be dealt with in a later session.
 
-Where required, Flow can create additional A4-series sheets from A401.
+---
 
-The new sheet is created by duplicating A401 **with detailing** and
-retaining the A401 sheet name while assigning the next required A4 sheet
-number.
+## Creating the Next Window Sheet
 
-Existing A4-series sheets can be shifted where necessary to make room in
-the sequence.
+Where another Window sheet is required, Flow can create the next A4-series sheet from A401.
 
-------------------------------------------------------------------------
+The workflow uses A401 as the reference and duplicates it **with detailing** for the new sheet.
+
+Flow then assigns the required A4-series sheet number while retaining the reference sheet setup needed by the opening documentation workflow.
+
+This allows Window placement to continue without requiring every subsequent opening sheet to be prepared manually beforehand.
+
+!!! important
+
+    A401 is therefore more than just the first destination sheet. It is also the reference used by the managed Window sheet workflow.
+
+---
 
 ## Stop and Resume Later
 
-Window placement state is persisted.
+Choose **Stop and Resume Later** when you want to keep the completed placements but end the current run.
 
-Choose **Stop and Resume Later** when you want to end the current
-placement run without losing the recorded placement progress.
+Flow retains the placement state so a later session can continue with the remaining unplaced views.
 
-The next placement session can continue from the remaining unplaced
-views.
+When **Place on Sheet → Window Views** is run again, the existing session can be resumed.
 
-------------------------------------------------------------------------
+---
 
-## Reset Previous Session
+## Reset Window Placement
 
-If a previous Window placement session needs to be undone, choose
-**Reset Previous Session** from the initial placement workflow where
-available.
+Use the reset option when the managed Window placement session should be discarded and restarted.
 
-Flow removes the Window viewports created by the recorded placement
-session and clears the placement memory.
+The reset workflow uses the stored placement information to remove the Window viewports created by that recorded session and clears the associated placement memory.
 
-!!! info "Reset does not delete the views or sheets"
+!!! warning "Reset does not delete the opening views or sheets"
 
-    Reset Previous Session removes the recorded placed viewports.
+    Reset removes the recorded **viewports** created by the managed placement session.
 
-    It does **not** delete the opening elevation views or the sheets themselves.
+    It does not delete the underlying opening elevation views or the sheets themselves.
 
-------------------------------------------------------------------------
+Use Reset only when you intend to rebuild the managed placement layout.
 
-## Window Placement Settings
+---
 
-During Window placement, Flow can temporarily enable the project:
+## Viewport Type
 
-``` text
-Sheet Outline Show
-```
+Where the Revit viewport type:
 
-Global Parameter.
-
-Where available, placed views use the:
-
-``` text
+```text
 No Title
 ```
 
-viewport type.
+is available, Flow uses it for placed Window views.
 
-------------------------------------------------------------------------
+If the type is unavailable, placement can continue using the viewport state available to Revit rather than creating that type automatically.
+
+---
+
+## Sheet Outline Show
+
+During Window placement, Flow can temporarily enable the Global Parameter:
+
+```text
+Sheet Outline Show
+```
+
+when it exists in the project.
+
+This supports the sheet-placement workflow while the usable area is being defined and views are being arranged.
+
+Flow then turns the sheet outline back off after the placement operation.
+
+This is automatic behaviour; you do not need to toggle the Global Parameter manually for a normal placement run.
+
+---
 
 # Door View Placement
 
-Door placement uses a simpler workflow than Window placement.
+Door placement uses a separate, simpler workflow.
 
-------------------------------------------------------------------------
+It does not use the persisted multi-sheet placement session used for Window views.
+
+---
 
 ## Required Door Sheet
 
-Flow looks for the first sheet named exactly:
+Flow looks for a sheet named exactly:
 
-``` text
+```text
 Interior Opening Schedule
 ```
 
-This is used as the target for Door elevation placement.
+This sheet is used as the Door elevation placement target.
 
-------------------------------------------------------------------------
+If the required sheet cannot be found, the Door placement workflow cannot proceed normally.
 
-## Which Door Views Are Placed?
+---
 
-Flow looks for unplaced section/elevation views whose names end with:
+## Which Door Views Are Included?
 
-``` text
+Flow looks for unplaced Door elevation views whose names end with:
+
+```text
 -D
 ```
 
 For example:
 
-``` text
+```text
 01-D
 02-D
 03-D
 ```
 
-Already placed Door views are excluded.
+Views that are already placed are excluded.
 
-------------------------------------------------------------------------
+Door elevations are type-based, so the placement workflow is working with the generated Door type documentation views rather than every Door instance in the Opening Register.
+
+---
 
 ## Define the Door Placement Area
 
-On the Interior Opening Schedule sheet, pick:
+Flow activates **Interior Opening Schedule** and asks you to pick:
 
-1.  **Top Left**
-2.  **Bottom Right**
+1. **Top Left**
+2. **Bottom Right**
 
-Flow estimates the paper size of the Door elevations and arranges as
-many as possible within the selected region.
+The selected points define the region available for Door elevation placement.
 
-Where available, the **No Title** viewport type is used.
+Flow estimates the paper-space size of the Door elevations and places the views that fit within that region.
 
-------------------------------------------------------------------------
+<!-- SCREENSHOT: Interior Opening Schedule showing the selected Door placement region and resulting Door elevation grid. -->
+
+---
+
+## Door Viewport Type
+
+Where available, placed Door elevations use:
+
+```text
+No Title
+```
+
+as their viewport type.
+
+The Door workflow also uses the project **Sheet Outline Show** Global Parameter during placement when that resource is available, returning it to the off state afterwards.
+
+---
 
 ## Door Placement Limitations
 
-The Door placement workflow does not currently use the same persisted
-multi-sheet session system as Window placement.
+Door placement does not currently use the same persisted multi-sheet session system as Window placement.
 
-It also does not automatically create additional Door schedule sheets.
+In particular, it does not:
 
-Flow places the Door views that fit within the selected area and reports
-the result.
+- create a remembered Door placement session equivalent to Window placement
+- automatically create additional Door schedule sheets
+- provide the same Resume / Reset workflow
 
-The summary can include:
+Flow places the eligible Door views that fit the selected schedule area and reports the resulting placement outcome.
 
--   Placed
--   Skipped
--   Failed
+---
 
-------------------------------------------------------------------------
+## Window and Door Placement Compared
 
-## Window and Door Placement Differences
+| Window Views | Door Views |
+| --- | --- |
+| Uses New `W##` views | Uses `-D` views |
+| Starts from `A401` | Uses `Interior Opening Schedule` |
+| Can continue across A4-series sheets | Uses the target schedule sheet |
+| Can create the next A4-series sheet | Does not automatically create additional Door sheets |
+| Stores placement-session progress | No equivalent persisted Door session |
+| Can resume or reset the recorded session | No equivalent Resume / Reset workflow |
+| Can reuse the previous placement area | Placement area is selected for the Door operation |
 
-  -----------------------------------------------------------------------
-  Window Views                        Door Views
-  ----------------------------------- -----------------------------------
-  Uses `W##` views                    Uses `-D` views
-
-  Starts from A401                    Uses Interior Opening Schedule
-
-  Can continue across A4-series       Uses the selected schedule sheet
-  sheets                              
-
-  Can create additional sheets        Does not automatically create
-                                      additional sheets
-
-  Supports persisted placement        No equivalent persisted session
-  sessions                            
-
-  Can reset a recorded session        No equivalent placement reset
-  -----------------------------------------------------------------------
-
-------------------------------------------------------------------------
+---
 
 ## Recommended Workflow
 
 Before placing opening views:
 
-1.  Generate the required opening elevations.
-2.  Conform the views where required.
-3.  Dimension Window views.
-4.  Confirm the required sheets exist.
-5.  Run **Place Opening Views on Sheet**.
-6.  Review the completed sheet layout.
-7.  Refresh Openings Manager.
+1. Generate the required opening elevations.
+2. Conform existing views where required.
+3. Dimension the standard Window views.
+4. Confirm that **A401** and/or **Interior Opening Schedule** exists for the workflow you need.
+5. Click **Place on Sheet**.
+6. Choose **Window Views** or **Door Views**.
+7. Define or reuse the placement area.
+8. Review the resulting sheet layout.
+9. Continue or resume Window placement until the required views are placed.
 
-------------------------------------------------------------------------
+➡️ [**Generating Opening Views**](generating-opening-views.md)
 
-## If Placement Cannot Continue
+➡️ [**Conforming Opening Views**](conforming-opening-views.md)
 
-For Window placement, check that:
+➡️ [**Dimensioning Window Views**](dimensioning-window-views.md)
 
--   A401 exists
--   the required `W##` views exist
--   the views are not already placed
--   the selected placement area is large enough
+---
 
-For Door placement, check that:
+## If Window Placement Cannot Continue
 
--   a sheet named **Interior Opening Schedule** exists
--   the required `-D` views exist
--   the views are not already placed
--   the selected placement area is large enough
+Check that:
+
+- **A401** exists
+- eligible `W##` views exist
+- the views are not already placed
+- the selected placement area is large enough
+- the project has not been left in an unexpected previous placement state
+
+If a previous Flow placement session exists but should no longer be used, consider **Reset and Start Again**.
+
+---
+
+## If Door Placement Cannot Continue
+
+Check that:
+
+- a sheet named exactly **Interior Opening Schedule** exists
+- eligible `-D` views exist
+- the views are not already placed
+- the selected placement area is large enough
 
 For further checks:
 
 ➡️ [**Openings Manager Troubleshooting**](troubleshooting.md)
 
-------------------------------------------------------------------------
+---
 
 ## Related Help
 
--   [**Opening Views**](opening-views.md)
--   [**Generating Opening Views**](generating-opening-views.md)
--   [**Conforming Opening Views**](conforming-opening-views.md)
--   [**Dimensioning Window Views**](dimensioning-window-views.md)
+- [**Generating Opening Views**](generating-opening-views.md)
+- [**Conforming Opening Views**](conforming-opening-views.md)
+- [**Dimensioning Window Views**](dimensioning-window-views.md)
+- [**Openings Manager Troubleshooting**](troubleshooting.md)

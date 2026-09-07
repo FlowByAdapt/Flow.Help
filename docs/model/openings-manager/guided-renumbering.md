@@ -1,123 +1,132 @@
 # Guided Renumbering
 
-Use **Guided Renumber** when you want to control the order in which windows, doors and curtain walls are numbered.
+Use **Renumber** when you want to control the order in which Windows, Doors and Curtain Walls are numbered.
 
-Rather than automatically correcting existing marks, Flow guides you through the project level by level while you select openings directly from the Revit model.
+Unlike **Standardise**, which repairs invalid or conflicting marks automatically, Renumber is an interactive workflow. Flow works through the project level by level while you pick openings directly in Revit in the order they should be numbered.
 
 ---
 
 ## Opening Sequences
 
-Guided Renumber maintains four independent numbering sequences:
+Renumber maintains four numbering sequences:
 
 | Sequence | Openings |
 | --- | --- |
-| `W##` | New windows and curtain walls |
-| `Wx##` | Existing windows and curtain walls |
-| `D##` | New doors |
-| `Dx##` | Existing doors |
+| `W##` | New Windows and Curtain Walls |
+| `Wx##` | Existing Windows and Curtain Walls |
+| `D##` | New Doors |
+| `Dx##` | Existing Doors |
 
-Curtain walls share the Window sequence.
+Curtain Walls share the Window sequence.
 
-Demolished openings are not included in the Guided Renumber workflow.
+Demolished openings are not accepted by the Renumber workflow.
 
----
-
-## Start Guided Renumber
-
-Run **Guided Renumber** from Openings Manager or the corresponding Flow command.
-
-The start dialog allows you to review the starting number for each sequence:
-
-- New Windows
-- Existing Windows
-- New Doors
-- Existing Doors
-
-The Window sequences also apply to curtain walls.
+➡️ [**Opening Marks**](opening-marks.md)
 
 ---
 
-## Choose the Starting Numbers
+## Start Renumber
 
-Flow can initialise the sequences from the project or from the previous Guided Renumber session.
+From Openings Manager, click **Renumber**.
 
-Depending on the available information, you can:
+Flow identifies the project levels containing openings and orders them from the lowest elevation upwards.
 
-- continue from the previous session
-- continue from the highest existing project marks
-- enter the starting numbers manually
-- reset the sequences to `01`
+Before model selection begins, the start window lets you review the next value for each sequence:
 
-Review the starting values before beginning the selection workflow.
+- W
+- Wx
+- D
+- Dx
 
-!!! tip "Check the starting values"
-
-    If you are continuing a partially numbered project, confirm the W, Wx, D and Dx starting values before starting the selection sequence.
+<!-- SCREENSHOT: Guided Renumber start window showing the four starting counters. -->
 
 ---
 
-## Work Through the Project by Level
+## Starting Numbers
 
-Guided Renumber processes project levels from the lowest elevation upwards.
+Flow loads the saved next counters from a previous successful Renumber session where they are available.
 
-Flow activates an appropriate working floor plan for the current level where one is available.
+Where a saved counter is not available, Flow can derive the next value from the existing project marks.
 
-The Guided Renumber palette shows:
+Review all four starting values before continuing. These values define the beginning of the proposed numbering sequence for the session.
 
-- the current level
-- progress through the project levels
-- the active numbering workflow
+!!! tip "Check all four counters"
+
+    Windows and Curtain Walls share W/Wx, while Doors use D/Dx. A project can therefore be at a different point in each sequence.
+
+---
+
+## Working Plan for Each Level
+
+Renumber processes levels from the lowest elevation upwards.
+
+For each level, Flow looks for a suitable Floor Plan and prefers an opening documentation plan that matches the project's `_Win` naming convention where one is available.
+
+The active working view can therefore change as the workflow advances through the project.
+
+!!! note
+
+    The workflow is level-aware. An opening picked from a different level is rejected rather than being silently added to the current sequence.
 
 ---
 
 ## Select Openings in Numbering Order
 
-Select the openings directly from the Revit model in the order in which they should be numbered.
+Once the Renumber palette is active, pick openings directly in the Revit model.
+
+The order in which they are selected determines the proposed numbering order.
 
 For example:
 
 ```text
-First selected New window  → W01
-Second selected New window → W02
-Selected New curtain wall  → W03
-Third selected New window  → W04
+First New Window selected   → W01
+Second New Window selected  → W02
+New Curtain Wall selected   → W03
+Next New Window selected    → W04
 ```
 
-Doors maintain their own sequence:
+Doors use their own sequence:
 
 ```text
-First selected New door  → D01
-Second selected New door → D02
+First New Door selected   → D01
+Second New Door selected  → D02
 ```
 
-Existing openings similarly use the Wx and Dx sequences.
+Existing Windows and Curtain Walls use Wx, while Existing Doors use Dx.
 
-The order in which you select the openings determines the proposed numbering order.
+Flow displays temporary preview information during the selection process so the proposed sequence can be reviewed before it is written to the model.
 
----
-
-## Selecting the Wrong Opening
-
-Guided Renumber includes checks to protect the active sequence.
-
-Flow prevents or ignores selections that cannot be used in the current workflow, including:
-
-- an opening from another level
-- an opening already selected in the current sequence
-- a demolished opening
-
-This helps keep the numbering session aligned with the current level.
+<!-- SCREENSHOT: Guided Renumber palette beside a `_Win` Floor Plan with several openings selected and temporary proposed numbering visible. -->
 
 ---
 
-## Undo Last
+## What Can Be Selected?
 
-Use **Undo Last** to remove the most recently selected opening from the current Guided Renumber sequence.
+The interactive picker is restricted to opening elements used by the workflow:
 
-Flow then recalculates the proposed marks for the remaining selected openings.
+- Windows
+- Doors
+- Curtain Walls
 
-For example, if you selected:
+Flow also validates the opening after it is picked.
+
+A selection is rejected when, for example:
+
+- the opening is on the wrong level
+- the opening is Demolished
+- it cannot participate in the current numbering workflow
+
+This helps prevent an accidental model pick from corrupting the proposed sequence.
+
+---
+
+## Undo a Selection
+
+Use **Undo Last** when the most recently selected opening should not be part of the current sequence.
+
+Flow removes that selection and recalculates the proposed marks for the remaining openings.
+
+For example, if the current proposed sequence is:
 
 ```text
 W01
@@ -125,62 +134,68 @@ W02
 W03
 ```
 
-and undo the last selection, the current sequence returns to:
+undoing the last selection returns it to:
 
 ```text
 W01
 W02
 ```
 
-You can then continue selecting.
+You can then continue picking openings.
+
+No mark is committed to the model merely because it appears in the preview.
 
 ---
 
-## Finish the Current Level
+## Move Through the Levels
 
-When you have completed the openings on the current level, click:
+Complete the required selections on the current level, then use the Renumber palette to advance through the workflow.
 
-**Finish Level**
+Flow continues through the levels containing openings in bottom-up order and activates a suitable working plan where available.
 
-Flow advances the Guided Renumber workflow to the next available level.
-
-Continue until the required project levels have been reviewed.
+You do not have to select every opening merely to preview a sequence. The important distinction is whether you ultimately **Apply** the proposed numbering.
 
 ---
 
-## Apply Numbering
+## Apply the Numbering
 
-When the required openings have been selected, click:
+The proposed marks are not written to the Revit model while you are simply picking openings.
 
-**Apply Numbering**
+Use **Apply** when you are satisfied with the proposed sequence.
 
-Flow applies the proposed marks to the selected openings.
+Flow then writes the marks and resolves conflicts within the relevant numbering group.
 
-If some project openings have not been included, Flow identifies the incomplete levels and asks whether you want to apply numbering only to the openings selected so far.
+!!! important "Preview first, Apply second"
 
-This allows a partial numbering session to be committed deliberately.
+    Model picking builds the proposed sequence.
 
-!!! warning "Finish Session is not Apply Numbering"
-
-    **Finish Session** exits the Guided Renumber session without applying the proposed numbering.
-
-    Use **Apply Numbering** when you want the selected sequence written back to the Revit model.
+    The opening marks are changed only when the numbering is explicitly applied.
 
 ---
 
 ## Existing Mark Conflicts
 
-If a proposed mark is already being used by another opening in the same numbering group, Flow resolves the conflict before assigning the requested mark.
+A proposed mark may already belong to another opening in the same numbering group.
 
-The conflicting opening is moved to the next available mark in that sequence.
+When numbering is applied, Flow resolves these conflicts so that the requested sequence does not deliberately leave duplicate marks behind.
 
-This avoids deliberately leaving duplicate marks in the project while the new sequence is applied.
+Windows and Curtain Walls are resolved within the shared W/Wx group. Doors are resolved within D/Dx.
 
 ---
 
-## Continue a Later Session
+## Cancelling the Session
 
-After a successful Guided Renumber operation, Flow remembers the next available values for:
+Pressing **Esc** during the interactive picking workflow cancels the Renumber session without applying the proposed marks.
+
+Because numbering is not committed during normal model picking, cancelling before Apply leaves the proposed sequence unapplied.
+
+Use **Apply** only when you are ready for the marks to be written to the project.
+
+---
+
+## Continuing Later
+
+When a Renumber operation successfully applies changes, Flow stores the next values for:
 
 ```text
 W
@@ -189,17 +204,15 @@ D
 Dx
 ```
 
-These values can be offered when the next Guided Renumber session begins.
+Those counters can then be used as the starting point for a later Renumber session.
 
-This makes it possible to number a project progressively without manually remembering the last number used in each sequence.
+The saved counters are updated when numbering changes are actually applied, rather than simply because a preview session was opened.
 
 ---
 
-## Guided Renumber and Curtain Walls
+## Curtain Walls
 
-Curtain walls are numbered as part of the Window sequence.
-
-They do not have a separate counter.
+Curtain Walls participate in the Window numbering sequence and do not have a separate counter.
 
 For example:
 
@@ -209,29 +222,44 @@ W02  Curtain Wall
 W03  Window
 ```
 
-Existing curtain walls similarly use the `Wx##` sequence.
+Existing Curtain Walls similarly use the Wx sequence.
 
 ---
 
-## Guided Renumber and Demolished Openings
+## Demolished Openings
 
-Demolished openings are excluded from Guided Renumber.
+Demolished openings are deliberately excluded from Renumber.
 
-The workflow is designed around openings that can be selected in the active working views used during the numbering session.
+This differs from **Standardise**, which can process Demolished openings using the Existing-style Wx/Dx mark series.
+
+If the project contains Demolished openings, choose the marking workflow with that distinction in mind.
+
+➡️ [**Standardising Openings**](standardising-openings.md)
 
 ---
 
 ## After Renumbering
 
-After applying the numbering:
+After applying the required sequence:
 
-1. Return to Openings Manager.
-2. Refresh the register if required.
-3. Review the updated marks.
-4. Check for remaining non-standard or duplicate-mark issues.
-5. Continue with opening documentation.
+1. Return to the Opening Register.
+2. Review the updated marks and statuses.
+3. Resolve any remaining opening issues.
+4. Continue with opening documentation.
 
-If opening views already exist, use **Standardise** or **Conform Views** where required to ensure the view names remain aligned with the revised opening information.
+If opening views already existed before the marks were changed, **Standardise** can synchronise opening-view names, while **Conform Views** can perform broader view correction.
+
+➡️ [**Conforming Opening Views**](conforming-opening-views.md)
+
+---
+
+## Standardise or Renumber?
+
+Use **Standardise** when valid existing marks should be retained and Flow only needs to repair invalid or conflicting records.
+
+Use **Renumber** when the actual numbering order matters and you want to establish that sequence by picking openings in the model.
+
+The two commands are complementary rather than interchangeable.
 
 ---
 
@@ -240,4 +268,5 @@ If opening views already exist, use **Standardise** or **Conform Views** where r
 - [**Opening Marks**](opening-marks.md)
 - [**Standardising Openings**](standardising-openings.md)
 - [**Reviewing Openings**](reviewing-openings.md)
-- [**Opening Views**](opening-views.md)
+- [**Selecting and Locating Openings**](selecting-and-locating-openings.md)
+- [**Generating Opening Views**](generating-opening-views.md)

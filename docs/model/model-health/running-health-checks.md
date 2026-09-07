@@ -1,10 +1,12 @@
-# Running Model Health Checks
+# Running Health Checks
 
-Use **Model Health** to audit common model-quality conditions within the current Revit project.
+Model Health audits the active Revit project using all currently
+available health checks.
 
-A Model Health audit runs the available checks together and presents the results through the Model Health dashboard.
+The checks run together. Individual checks cannot currently be enabled,
+disabled or run separately.
 
----
+------------------------------------------------------------------------
 
 ## Open Model Health
 
@@ -12,196 +14,238 @@ On the Revit ribbon:
 
 **Flow → Model → Health**
 
-The Model Health window opens for the current project.
+The Model Health window opens and **the audit starts automatically**.
 
----
+There is no need to click **Run Audit** for the initial review.
 
-## Run an Audit
+------------------------------------------------------------------------
 
-Click:
+## Step 1 --- Wait for the Automatic Audit
 
-**Run Audit**
+Flow runs each registered check against the active project and then
+updates the dashboard and results grid.
 
-Flow evaluates the current project using the available Model Health checks.
+The current checks run in the following order:
 
-When the audit has completed, the dashboard and audit results are updated to show the current findings.
+1.  Revit Warnings
+2.  Imported CAD
+3.  In-Place Families
+4.  Unplaced Rooms
+5.  Model Groups
+6.  Duplicate Marks
 
-!!! info "The audit reviews the current project"
+!!! note "Point-in-time results"
 
-	Model Health evaluates the state of the active Revit project when **Run Audit** is used.
+    The dashboard represents the project when the most recent audit was run.
 
-	If the model changes afterwards, run the audit again to update the results.
+    Model Health does not continuously monitor the project while you work.
 
----
+------------------------------------------------------------------------
 
-## Available Health Checks
+## Step 2 --- Review the Dashboard
 
-The current Model Health audit includes the following checks.
-
-### Revit Warnings
-
-Reviews warnings reported by Revit and identifies warning conditions requiring attention.
-
-### Imported CAD
-
-Identifies imported CAD content within the project.
-
-### In-Place Families
-
-Identifies in-place families within the project.
-
-### Unplaced Rooms
-
-Identifies rooms that are not currently placed.
-
-### Model Groups
-
-Identifies model groups within the project.
-
-### Duplicate Marks
-
-Checks supported model categories for duplicate **Mark** values.
-
-Duplicate marks are evaluated within their respective Revit category rather than across unrelated categories.
-
-The currently supported categories include:
-
-* Doors
-* Windows
-* Rooms
-* Mechanical Equipment
-* Plumbing Fixtures
-* Generic Models
-* Specialty Equipment
-* Casework
-* Furniture
-
-!!! note "The audit library is still developing"
-
-	Additional Model Health checks may be introduced as the tool continues to develop.
-
----
-
-## Review the Dashboard
-
-After the audit completes, the summary cards at the top of Model Health provide an overview of the results.
+The summary cards show:
 
 ### Model Health
 
-Displays the overall health score and rating.
+The overall health score and rating.
 
-The card is visually highlighted according to the current model-health rating.
+The score is based on the number and severity of active issues.
+Higher-severity issues have a greater effect.
 
 ### Audit Checks
 
-Shows the total number of checks executed during the audit.
+The total number of checks executed.
 
 ### Passed
 
-Shows how many checks completed without identifying issues.
+The number of checks with no active issues.
 
 ### Needs Attention
 
-Shows how many checks identified one or more issues requiring review.
+The number of checks containing one or more active issues.
 
 ### Issues Found
 
-Shows the total number of issues identified.
+The total number of active issues, together with the number of:
 
-A severity summary is also displayed, showing the number of:
-
-* Critical
-* High
-* Medium
-* Low
+-   Critical
+-   High
+-   Medium
+-   Low
 
 severity issues.
 
----
+<!-- SCREENSHOT: Main results grid with a Failed row selected.
+Include the metric cards and clearly show Check, Category, Severity, Status,
+Issues and Duration, with Review Issues visible. -->
 
-## Understand the Health Score
+------------------------------------------------------------------------
 
-The Model Health score provides a quick indication of the overall audit result.
+## Step 3 --- Review the Audit Results
 
-Issues reduce the score according to their severity, with higher-severity conditions having a greater effect.
+Each audit check appears as a row in the results grid.
 
-The current ratings are:
+The grid shows:
 
-| Score  | Rating    |
-| ------ | --------- |
-| 95–100 | Excellent |
-| 85–94  | Good      |
-| 70–84  | Fair      |
-| 50–69  | Poor      |
-| 0–49   | Critical  |
+-   **Check**
+-   **Category**
+-   **Severity**
+-   **Status**
+-   **Issues**
+-   **Duration**
 
-!!! tip "Use the score to identify the overall condition"
+A check with no active issues is shown as **Passed**.
 
-	The score is most useful as a high-level indicator.
+A check containing one or more active issues is shown as **Failed**.
 
-	Review the individual checks and identified issues to understand what is contributing to the current result.
+Select a Failed row and click **Review Issues** to investigate it. You
+can also double-click a result containing issues to open its Issue
+Details window.
 
----
+See [**Reviewing Issues**](reviewing-issues.md).
 
-## Review the Audit Results
+------------------------------------------------------------------------
 
-Each audit check appears as a row in the results table.
+## What the Current Checks Evaluate
 
-The table shows:
+### Revit Warnings
 
-* **Check**
-* **Category**
-* **Severity**
-* **Status**
-* **Issues**
-* **Duration**
+Reads the warnings currently reported by Revit.
 
-A check with no identified issues is shown as:
+Each Revit warning is reported as a separate **High** severity Model
+Health issue. Where Revit provides affected elements, those elements can
+be reviewed from Model Health.
 
-**Passed**
+### Imported CAD
 
-A check containing one or more issues is shown as:
+Reviews CAD `ImportInstance` content in the project, including both
+imported and linked CAD.
 
-**Failed**
+Instances are grouped by their CAD category/name.
 
-The **Issues** column shows the number of issues identified by that check.
+-   **Imported CAD** is reported at **High** severity.
+-   A group containing only **Linked CAD** instances is reported at
+    **Low** severity so that the ongoing need for the link can be
+    reviewed.
 
-The **Duration** column shows approximately how long the check took to execute.
+!!! note "CAD links are included"
 
----
+    A CAD link appearing in this check does not mean that Flow considers it equivalent to an imported CAD file.
 
-## Review a Check
+    Linked CAD is reported at a lower severity and is included so its continued use can be reviewed.
 
-Select a check containing issues and click:
+### In-Place Families
 
-**Review Issues**
+Identifies family instances belonging to Revit in-place families.
 
-The Issue Details window opens with the individual issues identified by that check.
+Instances are grouped by family, with one **Medium** severity issue for
+each in-place family found.
 
-After an audit, Model Health automatically selects a result containing issues where one is available.
+The check does not automatically determine that an in-place family is
+incorrect. It identifies it for review.
 
-See [**Reviewing Issues**](reviewing-issues.md) for the issue-review workflow.
+### Unplaced Rooms
 
----
+Identifies Room elements whose Revit `Location` is currently null.
+
+Each unplaced room is reported as a separate **Medium** severity issue.
+
+!!! note "What this check does not cover"
+
+    This check is specifically for unplaced rooms. It does not currently audit placed rooms for enclosure, area or other room-quality conditions.
+
+### Model Groups
+
+Identifies model groups currently used in the project.
+
+Instances are grouped by group type, with one **Medium** severity issue
+for each group type found.
+
+The check is intended to prompt review of whether the group is still
+required and is being used consistently. It does not automatically
+determine that a model group is incorrect.
+
+### Duplicate Marks
+
+Identifies duplicate non-blank **Mark** values within supported Revit
+categories.
+
+The currently supported categories are:
+
+-   Doors
+-   Windows
+-   Rooms
+-   Mechanical Equipment
+-   Plumbing Fixtures
+-   Generic Models
+-   Speciality Equipment
+-   Casework
+-   Furniture
+
+Duplicate Marks is reported at **High** severity.
+
+Marks are compared **within the same category**. For example, a Door and
+a Window may have the same Mark without being treated as a duplicate by
+this check.
+
+Blank Marks are ignored.
+
+------------------------------------------------------------------------
+
+## Ignored Issues and the Audit
+
+Issues that have been intentionally ignored are filtered out before the
+active dashboard is presented.
+
+This means ignored issues do not contribute to:
+
+-   the active issue count;
+-   the Passed / Needs Attention result after filtering; or
+-   the displayed Model Health score.
+
+Ignored issues are stored locally for the current Windows user and
+project rather than inside the Revit model.
+
+See [**Reviewing Issues**](reviewing-issues.md) for how to ignore and
+restore issues.
+
+------------------------------------------------------------------------
 
 ## Run the Audit Again
 
-After making changes to the Revit model, click:
+Use **Run Audit** after making changes to the Revit model.
 
-**Run Audit**
+Flow reruns all six checks and replaces the displayed results with a new
+assessment of the current project.
 
-The checks are run again against the current model and the dashboard is updated with the new results.
+You do not need to rerun manually after ignoring issues or after closing
+the **Ignored Issues** window; those workflows automatically trigger a
+new audit.
 
-!!! tip "Re-run after resolving issues"
+!!! tip "Re-run after correcting the model"
 
-	Model Health results represent the model at the time the audit was run.
+    If you fix an issue directly in Revit, use **Run Audit** before relying on the displayed score or issue counts.
 
-	Re-run the audit after making significant corrections before relying on the displayed score or issue counts.
+------------------------------------------------------------------------
 
----
+## Current Limitations
+
+Model Health is currently an audit and review tool.
+
+-   Checks run as a complete set rather than individually.
+-   Results are point-in-time rather than live.
+-   Model Health does not currently auto-fix the conditions reported by
+    these checks.
+-   Some checks intentionally identify conditions for review rather than
+    determining that the condition is always incorrect.
+-   Ignored issues are user-local and are not shared through the Revit
+    project.
+
+------------------------------------------------------------------------
 
 ## Related Help
 
-* [Model Health](index.md)
-* [Reviewing Issues](reviewing-issues.md)
-* [Troubleshooting](troubleshooting.md)
+-   [Model Health](index.md)
+-   [Reviewing Issues](reviewing-issues.md)
+-   [Troubleshooting](troubleshooting.md)

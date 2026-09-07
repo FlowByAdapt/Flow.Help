@@ -2,42 +2,77 @@
 
 Area Envelope provides two workflows for positioning Area Boundary Lines relative to the exterior wall construction.
 
+The important difference is where Flow derives the boundary from each selected wall.
+
 ---
 
 ## Cladding Area
 
-Use **Cladding Area** when the measured area needs to follow the exterior cladding face of the selected perimeter walls.
+Use **Cladding Area** when the measured envelope needs to follow the outside surface of the wall.
 
-Flow derives an exterior cladding-face boundary from each selected wall, trims the resulting lines into a continuous perimeter, and creates the boundary in an Area Plan using the **Area to Cladding** Area Scheme.
+Flow finds a usable planar exterior face for each selected Basic Wall and derives the Area Boundary Line from that exterior face.
+
+The result is created in an existing Area Plan using a matching cladding Area Scheme. The standard scheme name is **Area to Cladding**.
 
 ---
 
 ## Framing Area
 
-Use **Framing Area** when the measured area needs to follow the exterior framing boundary of the selected perimeter walls.
+Use **Framing Area** when the measured envelope needs to follow the exterior boundary of the Revit wall core.
 
-Flow derives the exterior framing position from the selected wall construction, trims the resulting lines into a continuous perimeter, and creates the boundary in an Area Plan using the **Area to Framing** Area Scheme.
+Flow starts from the wall's exterior face and reads the wall's compound structure. It sums the widths of all layers outside the first core layer and offsets the exterior face inward by that distance.
+
+For a correctly configured framed wall, where the Revit core begins at the framing layer, this normally corresponds to the outside face of the framing.
+
+The result is created in an existing Area Plan using a matching framing Area Scheme. The standard scheme name is **Area to Framing**.
+
+!!! important "Framing uses the Revit core boundary"
+
+    Flow does not search for a layer whose material or function is named "framing". The Framing Area position is determined by the wall's compound structure and the location of its first core layer.
 
 ---
 
 ## Choosing the Correct Mode
 
-| Mode | Boundary position | Required Area Scheme |
+| Mode | Boundary position | Standard Area Scheme |
 | --- | --- | --- |
-| **Cladding Area** | Exterior cladding face | **Area to Cladding** |
-| **Framing Area** | Exterior framing boundary | **Area to Framing** |
+| **Cladding Area** | Exterior planar wall face | **Area to Cladding** |
+| **Framing Area** | Exterior boundary of the wall core | **Area to Framing** |
 
 !!! tip "Choose the measurement line"
 
-    Use **Cladding Area** for an envelope measured to the outside cladding surface. Use **Framing Area** when the required measurement relates to the external framing line.
+    Use **Cladding Area** when the required measurement is to the outside wall surface. Use **Framing Area** when the required measurement is to the outside of the wall core or framing line.
+
+<!-- SCREENSHOT: Plan detail of the same exterior wall/corner showing the Cladding Area boundary at the outside face and the Framing Area boundary at the exterior core boundary. -->
 
 ---
 
-## Wall Construction Requirements
+## Wall Compound Structure Matters
 
-The selected walls must provide geometry that Flow can use for the chosen mode. The result depends on the wall orientation, compound structure, layer functions, joins, and the continuity of the selected perimeter.
+The Framing Area result depends on the wall type's compound structure and core boundaries.
 
-Review the generated boundary whenever the model contains unusual wall types, edited profiles, curved walls, complex joins, or discontinuous perimeter conditions.
+For example, if a wall contains exterior cladding, cavity and other non-core layers outside a framed core, Flow offsets inward across those exterior layers to reach the first core layer.
+
+If Flow cannot obtain a usable core definition, the calculated framing inset is zero. In that situation, the Framing Area boundary can coincide with the Cladding Area boundary.
+
+If the two modes produce an unexpected result, check the wall type's compound structure and core boundaries in Revit.
+
+---
+
+## Wall Geometry Requirements
+
+Both modes require supported wall geometry.
+
+Area Envelope currently supports:
+
+* **Basic Walls**;
+* straight wall location lines;
+* usable planar exterior wall faces;
+* one continuous closed perimeter.
+
+Curved walls are not currently supported.
+
+The wall's exterior/interior orientation also matters because the boundary is derived from the exterior side of the wall.
 
 ---
 
@@ -45,7 +80,14 @@ Review the generated boundary whenever the model contains unusual wall types, ed
 
 Flow reuses a matching existing Area Plan. It does not create a new Area Scheme or Area Plan.
 
-When the active view is not suitable, Flow searches for another Area Plan using the required scheme and activates an appropriate view. The active matching Area Plan is preferred, followed by an open matching plan, a named ground-floor plan, or the lowest-level matching plan.
+The standard scheme names are **Area to Cladding** and **Area to Framing**, but Flow also recognises names that clearly identify the corresponding Area and Cladding or Framing purpose, including common **A2C** and **A2F** variants.
+
+When the active view is not already suitable, Flow prefers:
+
+1. a matching Area Plan on the same level as the current plan view;
+2. an already open matching Area Plan;
+3. a matching ground-floor Area Plan;
+4. the lowest-level matching Area Plan.
 
 ---
 

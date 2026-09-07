@@ -1,84 +1,112 @@
 # Keynote Manager Troubleshooting
 
-Use the following checks if Keynote Manager cannot access the expected keynote file, a keynote cannot be found, changes cannot be saved or updated keynote information is not reflected correctly in Revit.
+Use these checks when Keynote Manager cannot access the expected keynote
+file, a keynote cannot be found, changes cannot be saved or updated
+keynote information is not reflected correctly in Revit.
 
----
+------------------------------------------------------------------------
 
 ## The Project Keynote File Does Not Open Automatically
 
-When Keynote Manager opens, it checks the active Revit project for its currently assigned keynote file.
+When Keynote Manager opens, it checks the active Revit project's native
+keynote table for the currently assigned keynote file.
 
 If no file opens:
 
-1. Check that the project has a keynote file assigned in Revit.
-2. Confirm that the assigned `.txt` file still exists.
-3. Confirm that the file location is accessible from the current workstation.
-4. If necessary, use **Open** in Keynote Manager to browse to the required file.
+1.  Check that the project has a keynote file assigned in Revit.
+2.  Confirm that the assigned `.txt` file still exists.
+3.  Confirm that the file location is accessible from the current
+    workstation.
+4.  Use **File → Open...** to browse to the required file if necessary.
 
 !!! info "Opening and assigning are separate"
 
-	Opening a keynote file in Keynote Manager does not automatically make it the current project's Revit keynote file.
+    Opening a keynote file in Keynote Manager does not automatically make it the project's Revit keynote file.
 
-	If the correct file is open but its status shows **Not assigned to this project**, use **Set Project Keynote File**.
+    If the correct file is open but shows **Not assigned to this project**, use **Set as Project Keynote File**.
 
----
+------------------------------------------------------------------------
 
 ## The Wrong Keynote File Is Open
 
-The filename of the currently loaded keynote file is displayed in Keynote Manager.
-
-The project status indicates whether it is:
-
-**Current project keynote file**
-
-or:
-
-**Not assigned to this project**
+Check the loaded filename and project status.
 
 If the wrong file is open:
 
-1. Use **Open** to select the correct keynote file.
-2. Confirm that the expected keynote hierarchy is displayed.
-3. If the file should also be used by Revit, choose **Set Project Keynote File**.
+1.  Use **File → Open...**.
+2.  Select the correct `.txt` file.
+3.  Confirm that the expected hierarchy is displayed.
+4.  If Revit should also use that file, choose **Set as Project Keynote
+    File**.
 
----
+------------------------------------------------------------------------
+
+## New Suggests the Wrong Folder or Filename
+
+Flow uses the Revit **Project Number** when suggesting a new keynote
+filename and project folder.
+
+For example:
+
+``` text
+26123
+```
+
+normally produces:
+
+``` text
+26123_Keynotes.txt
+```
+
+If the project number is missing or Flow cannot resolve the expected
+project folder, it uses its fallback documents location. With no Project
+Number, the fallback filename is:
+
+``` text
+Project_Keynotes.txt
+```
+
+You can change the location and filename in the Save dialog before
+creating the file.
+
+------------------------------------------------------------------------
 
 ## A Recent Keynote File Cannot Be Found
 
-If you select a recent keynote file that has been moved, renamed or deleted, Keynote Manager reports that the file cannot be found.
+A recent-file entry can become invalid if the file has been moved,
+renamed or deleted.
 
-Use **Open** to browse to its new location if the file still exists.
+Use **File → Open...** to browse to its current location.
 
----
+------------------------------------------------------------------------
 
 ## I Can't Find a Keynote
 
-If an expected keynote does not appear:
+Try the following:
 
-1. Press **Esc** to clear the current search.
-2. Check the **Used** and **Unused** filters.
-3. Expand the appropriate keynote category.
-4. Search using part of the keynote code or description.
-5. Confirm that Keynote Manager has the expected keynote file loaded.
+1.  Press **Esc** to clear the current search and selection.
+2.  Expand the appropriate category.
+3.  Search using part of the keynote code or description.
+4.  Confirm that the expected keynote file is loaded.
 
-!!! tip "Check the filters"
+Search checks both the keynote code and description.
 
-	A keynote can be present in the file but hidden from the current view if the Used or Unused filter excludes it.
+------------------------------------------------------------------------
 
----
+## The Usage Count Is Not What I Expected
 
-## Search Does Not Show the Expected Result
+The green usage indicator counts **placed Revit keynote tags only**.
 
-Search checks the keynote **code** and **description**.
+It does not count an element or type simply because its keynote
+parameter contains that code.
 
-If a keynote is not returned:
+For example, a keynote can show no placed-tag usage while still being
+assigned to an element or type.
 
-1. Enter a shorter part of the code or description.
-2. Check the Used and Unused filters.
-3. Press **Esc** and browse the category directly.
-4. Confirm that the keynote exists in the loaded file.
+Usage information is refreshed when Flow loads or refreshes keynote
+information and after a successful Sync.
 
----
+------------------------------------------------------------------------
 
 ## I Can't Add a Keynote
 
@@ -88,258 +116,287 @@ Then choose:
 
 **Add → Add Keynote**
 
-If the keynote cannot be added, check that:
+Check that:
 
-* a valid category has been selected
-* the keynote code is not blank
-* the description is not blank
-* the proposed keynote code does not already exist
+-   a category is selected
+-   the keynote code is not blank
+-   the description is not blank
+-   the proposed keynote code does not already exist
 
-Keynote codes must be unique within the loaded keynote file.
+Keynote codes must be unique within the loaded file.
 
----
+------------------------------------------------------------------------
 
 ## The Suggested Keynote Number Is Not What I Expected
 
-When adding a keynote, Flow looks for the next available numbered code within the selected category.
+Flow looks for the first available numbered code in the selected
+category.
 
 For example:
 
-```text
+``` text
 45-01
 45-02
 45-04
 ```
 
-will suggest:
+suggests:
 
-```text
+``` text
 45-03
 ```
 
-The suggested code can be changed before the keynote is added.
+You can change the suggested code before adding the keynote.
 
----
+------------------------------------------------------------------------
+
+## The Library Opens in the Wrong Category
+
+When the Library opens from Add or Edit, Flow uses the prefix of the
+current keynote code to select a matching Library category where
+possible.
+
+Check the keynote code before opening the Library. You can also change
+the category filter manually inside the Library.
+
+The Library supplies a description; it does not replace the project
+keynote code.
+
+------------------------------------------------------------------------
 
 ## I Can't Multi-select Keynotes
 
-Multiple keynote selection is limited to entries within the same category.
+Multi-selection is limited to keynote entries within the same category.
 
-Hold **Ctrl** while selecting the required keynote entries.
+Hold **Ctrl** while selecting the required entries.
 
-If you select an item from another category, Keynote Manager returns to a single selection rather than maintaining a selection across different categories.
+If you select an item from another category, Flow resets the selection
+rather than maintaining a multi-category selection.
 
----
+------------------------------------------------------------------------
 
 ## Removing a Keynote Did Not Renumber the Category
 
 This is expected.
 
-**Remove** deletes the selected keynote but does not change the codes of the remaining entries.
+**Remove** deletes the selected keynote but leaves the remaining codes
+unchanged.
 
-For example:
+Use **Renumber** separately when the category should be consecutively
+numbered.
 
-```text
-45-01
-45-02
-45-03
-```
+------------------------------------------------------------------------
 
-after removing `45-02` becomes:
+## Clean Did Not Renumber the Category
 
-```text
-45-01
-45-03
-```
+This is expected.
 
-Use **Renumber** separately if the remaining keynotes should be consecutively numbered.
+**File → Maintenance → Clean Selected Category...** removes keynote
+entries with blank descriptions only.
 
----
+It deliberately leaves the numbering of the remaining entries unchanged.
 
-## Cleaning a Category Did Not Renumber It
+Use **Renumber** separately if consecutive numbering is required.
 
-This is also expected.
+------------------------------------------------------------------------
 
-**Clean Category** removes empty keynote entries only.
+## Renumber Is Not Available
 
-It deliberately leaves the numbering of the remaining keynotes unchanged.
+The visible **Renumber** workflow requires a category to be selected.
 
-Use **Renumber** if the category should also be consecutively numbered.
+Select the category itself in the keynote tree, then click **Renumber**.
 
----
+------------------------------------------------------------------------
 
 ## Renumber Reports That the Category Is Already Consecutively Numbered
 
-If the selected category already follows consecutive numbering, Keynote Manager does not make unnecessary changes.
+If the selected category already follows consecutive numbering, Flow
+does not make unnecessary changes.
 
 No further action is required.
 
----
+------------------------------------------------------------------------
 
-## Renumber Finds Empty Keynotes
+## Renumber Finds Blank Keynotes
 
-If empty entries exist in the selected category, Keynote Manager asks how you want to continue.
+If blank-description entries exist in the selected category, Flow asks
+how to continue.
 
 Choose:
 
 **Clean & Renumber**
 
-to remove the empty entries before renumbering,
+to remove the blank entries before renumbering,
 
 or:
 
 **Renumber Only**
 
-to retain the entries and continue with the renumbering operation.
+to retain them and continue with the renumbering operation.
 
----
+Review the Renumber Preview before confirming the changes.
+
+------------------------------------------------------------------------
 
 ## Changes Cannot Be Saved
 
-If **Save** is not available, check whether Keynote Manager currently contains any unsaved changes.
+If **Save** is not available, check whether the loaded keynote
+information actually contains unsaved changes.
 
 If changes exist but the file cannot be written:
 
-1. Confirm that the keynote `.txt` file still exists.
-2. Confirm that its location is accessible.
-3. Confirm that you have permission to modify the file.
-4. Check whether the file has been made read-only or is otherwise unavailable.
+1.  Confirm that the `.txt` location is accessible.
+2.  Confirm that you have permission to modify the file.
+3.  Check whether the file is read-only or otherwise unavailable.
+4.  Use **Save As...** if the information should be written to another
+    location.
 
-You can also use **Save As** to save the keynote information to another location.
-
----
+------------------------------------------------------------------------
 
 ## Refresh Is Not Available
 
 **Refresh** is disabled while Keynote Manager contains unsaved changes.
 
-Either:
+Use **Save** first if you want to keep those changes.
 
-* use **Save** to keep the changes, or
-* discard the changes when leaving the current file.
+Refresh can then reload the file and tell Revit to reload its keynote
+table.
 
-Refresh can then reload the keynote file and request that Revit reload its keynote table.
-
----
+------------------------------------------------------------------------
 
 ## Revit Does Not Show a Newly Added or Edited Keynote
 
-Saving changes updates the keynote `.txt` file.
+Saving and refreshing are separate operations.
 
-If Revit is still showing the previous keynote information:
+1.  **Save** the Keynote Manager changes.
+2.  Click **Refresh**.
+3.  Check the keynote again in Revit.
 
-1. Save the changes in Keynote Manager.
-2. Use **Refresh**.
-3. Allow Flow to request that Revit reload the keynote table.
-4. Check the keynote again.
+**Save** writes the `.txt` file.
 
-!!! note "Save and Refresh perform different tasks"
+**Refresh** reloads the file and tells Revit's native keynote table to
+reload it.
 
-	**Save** writes changes to the keynote file.
+------------------------------------------------------------------------
 
-	**Refresh** reloads the file and requests that Revit reload its keynote table.
+## Revit Still Uses an Old Keynote Code
 
----
+Changing a keynote code does not automatically replace every existing
+reference to the previous code.
 
-## Revit Still Uses an Old Keynote Code After Renumbering
+This can occur after:
 
-Renumbering changes the keynote codes in the keynote file, but existing Revit references may still point to the previous codes.
+-   manually changing a keynote code
+-   moving a keynote to another category
+-   renumbering a category
 
-Use the following workflow:
+Use this workflow:
 
-1. Complete the **Renumber** operation.
-2. Review and confirm the proposed changes.
-3. **Save** the keynote file.
-4. Use **Sync**.
-5. Review the affected project references.
-6. Confirm the synchronisation.
+1.  Complete the keynote code change.
+2.  **Save** the keynote file.
+3.  Click **Sync**.
+4.  Review the Sync Preview.
+5.  Apply the synchronisation.
+6.  Use **Refresh** if Revit also needs to reload the latest keynote
+    table.
 
-Sync can identify affected keynote tags and element or type keynote parameters associated with the recorded old-to-new keynote mapping.
+Sync can check placed keynote tags, instance keynote parameters and type
+keynote parameters against Flow's recorded old-to-new code mapping.
 
-!!! warning "Do not assume renumbering updates the model"
-
-	Changing the keynote file and changing existing Revit references are separate operations.
-
-	Use **Sync** when existing project references need to follow a keynote code that has been changed.
-
----
+------------------------------------------------------------------------
 
 ## Sync Is Not Available
 
-Sync requires a pending set of keynote code changes.
+Sync requires:
 
-These changes are normally created when a category is renumbered and one or more keynote codes actually change.
+-   at least one pending recorded keynote code change
+-   a loaded keynote file
+-   no unsaved Keynote Manager changes
 
-Sync is also unavailable while there are unsaved changes in Keynote Manager.
+If you have just changed or renumbered a keynote code:
 
-If you have just renumbered a category:
+1.  Save the keynote file.
+2.  Check **Sync** again.
 
-1. Review the renumber changes.
-2. Save the keynote file.
-3. Check **Sync** again.
+Editing only a description does not create an old-to-new code mapping.
 
----
+------------------------------------------------------------------------
 
 ## Sync Reports No References Require Updating
 
-This means the Sync scan did not find project references matching the pending old keynote codes.
+The scan did not find Revit references whose current value matches the
+pending old keynote codes.
 
 The affected codes may not currently be used by:
 
-* keynote tags
-* element keynote parameters
-* type keynote parameters
+-   keynote tags
+-   instance keynote parameters
+-   type keynote parameters
 
-No project changes are required in that case.
+No project reference changes are required in that case.
 
----
+------------------------------------------------------------------------
+
+## Some References Were Not Changed by Sync
+
+Before changing a reference, Flow verifies that the element and keynote
+parameter still exist, that the parameter is writable and that its
+current value still matches the old code from the preview.
+
+A reference can therefore be skipped if it has changed since the
+preview, is read-only or is otherwise no longer suitable for the
+proposed update.
+
+Review the affected Revit item directly if a reference does not change
+as expected.
+
+------------------------------------------------------------------------
 
 ## Revit Could Not Reload the Keynote Table
 
-During **Refresh**, Flow reloads the keynote file and also requests that Revit reload its keynote table.
+During **Refresh**, Flow asks Revit's native keynote table to reload.
 
-If Flow reports that the keynote file was reloaded but Revit could not reload the keynote table:
+If the reload fails:
 
-1. Confirm that the correct keynote file is assigned to the project.
-2. Confirm that the `.txt` file exists and is accessible.
-3. Check that the keynote file is valid.
-4. Retry **Refresh**.
+1.  Confirm that the correct keynote file is assigned to the project.
+2.  Confirm that the `.txt` file exists and is accessible.
+3.  Check that the keynote file is valid.
+4.  Retry **Refresh**.
 
-If the problem continues, close and reopen the project and check the project's native Revit keynote settings.
+If the problem continues, check the project's native Revit keynote
+settings.
 
----
+------------------------------------------------------------------------
 
-## I Opened Another File and Lost My Changes
+## I Opened or Closed a File with Unsaved Changes
 
-Keynote Manager checks for unsaved changes before operations that would discard the currently edited information.
+Keynote Manager checks for unsaved changes before operations that would
+discard the current edits.
 
-If prompted with **Unsaved Changes**, choose carefully:
+If prompted, save the changes when they should be retained, discard them
+only when they are no longer required, or cancel to return to Keynote
+Manager.
 
-* **Discard** continues without saving the current changes.
-* **Cancel** returns to Keynote Manager so that you can save them first.
-
-Use **Save** before opening, closing or refreshing a file when the changes should be retained.
-
----
+------------------------------------------------------------------------
 
 ## Reporting a Problem
 
 If the problem continues, record:
 
-* the Revit version
-* the project being used
-* the keynote filename and location
-* whether the file is shown as the current project keynote file
-* what you were trying to do
-* what you expected to happen
-* what happened instead
-* any message displayed by Flow
-* a screenshot of Keynote Manager or the displayed message where useful
+-   the Revit version
+-   the project being used
+-   the keynote filename and location
+-   whether the file is shown as the current project keynote file
+-   what you were trying to do
+-   what you expected to happen
+-   what happened instead
+-   any message displayed by Flow
+-   a screenshot where useful
 
----
+------------------------------------------------------------------------
 
 ## Related Help
 
-* [Keynote Manager](index.md)
-* [Working with Keynotes](working-with-keynotes.md)
-* [Project Keynote Files](project-keynote-files.md)
+-   [Keynote Manager](index.md)
+-   [Working with Keynotes](working-with-keynotes.md)
+-   [Project Keynote Files](project-keynote-files.md)

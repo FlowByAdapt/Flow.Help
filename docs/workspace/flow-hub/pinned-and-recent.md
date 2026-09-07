@@ -1,89 +1,122 @@
 # Pinned and Recent Items
 
-Flow Hub keeps commonly used commands and content easier to access through **Pinned** and **Recent** items.
+Flow Hub keeps commonly used commands easier to access through **Pinned**, **Recent** and **Quick Actions**.
 
-When no search is active, these appear as dedicated sections within the Hub.
+Library content uses related favourite and recent state from **Content Browser**.
+
+---
+
+## When No Search Is Active
+
+With the Search box clear, Flow Hub can organise commands into:
+
+- **⚡ Quick Actions**
+- **📌 Pinned**
+- **🕘 Recent**
+- **≡ Browse**
+
+These sections provide immediate access to useful commands without requiring a search.
 
 ---
 
 ## Pinned Commands
 
-Pin commands that you use regularly to keep them readily available.
+Pin commands you use regularly to keep them readily available.
 
 ### Pin a Command
 
-Locate the required command and select its **pin** control.
+1. Locate the required command.
+2. Select its **pin** control.
 
-The command is added to your pinned items.
+The command is added to **Pinned**.
 
 ### Remove a Pin
 
-Select the pin control again to remove the command from your pinned items.
+Select the pin control again.
 
-Removing a pin does not remove or disable the underlying tool.
+Removing a pin does not remove or disable the underlying Flow or Revit command.
 
 !!! tip "Use pins for regular tools"
 
     Pin commands that form part of your normal Revit workflow.
 
-    This keeps them available without needing to search for them each time.
-
----
-
-## Content Favourites
-
-Library content uses the favourites maintained by the **Content Browser**.
-
-Favourite content is recognised by Flow Hub when content search results are created and can be given higher priority in the results.
-
-This means your preferred library content can remain easier to find across both Flow Hub and Content Browser.
-
 ---
 
 ## Recent Commands
 
-Flow keeps track of commands you have recently run.
+Flow records commands that you run through its command system.
 
-Recent commands appear in the **Recent** section when no search is active and can also influence the ordering of search results.
+Recent commands appear in the **Recent** section when no search is active and can also influence search ranking.
 
-Use this section to quickly return to tools you have been working with.
+!!! note "Recent is automatic"
 
----
+    You do not need to manually add commands to Recent.
 
-## Recent Content
-
-Recently used content is also recognised when Flow builds content search results.
-
-Recent content can receive higher priority, making items you have been working with easier to find again.
+    Running commands through Flow builds this usage information automatically.
 
 ---
 
 ## Quick Actions
 
-The **Quick Actions** section provides immediate access to selected useful actions when no search is active.
+Quick Actions are a small predefined group of useful commands presented before the wider Browse list.
 
-Use Quick Actions for common operations that you may want to access without searching or browsing through the complete command list.
+The current Quick Actions include:
+
+- **Open Command Palette**
+- **Zero Window Sill**
+- **Copy GP Setup**
+- **Generate Views**
+- **Recover Windows**
+
+Quick Actions are configured by Flow rather than manually selected by the user.
 
 ---
 
 ## Browse
 
-The **Browse** section provides access to the wider set of available registered commands when no search is active.
+The **Browse** section contains the wider set of available registered commands that are not already being presented as Quick Actions, Pinned or Recent.
 
-Use Search when you know what you are looking for, or Browse when you want to review the commands available through Flow Hub.
+Use Search when you know what you need, or Browse when you want to review the available command list.
+
+---
+
+## Shared with Command Palette
+
+Command pin and usage state is shared with **Command Palette**.
+
+For example:
+
+1. Pin a command in Flow Hub.
+2. Open Command Palette.
+3. The shared command state is refreshed.
+
+Likewise, commands run through Command Palette can contribute to recent command usage seen by Flow Hub.
+
+You should not normally need to reopen either interface for command-state changes to be recognised.
+
+---
+
+## Content Favourites
+
+Library content uses favourites maintained by **Content Browser** rather than the normal command pin system.
+
+Favourite content can receive higher priority in Hub content search results.
+
+---
+
+## Recent Content
+
+Recent content information can also influence content ranking.
+
+This is different from the Hub's normal **Recent** command section, which is based on command usage.
 
 ---
 
 ## Search Still Works
 
-Pinned and recent items do not limit what is available through Flow Hub.
+Pinned, Recent and Quick Actions do not limit what is available through Flow Hub.
 
-Start typing in the Search box at any time to search the wider set of commands and indexed library content.
-
-See:
-
-- [**Finding and Running Tools**](finding-and-running-tools.md)
-- [**Finding and Loading Content**](finding-and-loading-content.md)
+Start typing in Search at any time to search the wider command set and indexed library content.
 
 ---
 
@@ -92,3 +125,4 @@ See:
 - [**Flow Hub**](index.md)
 - [**Finding and Running Tools**](finding-and-running-tools.md)
 - [**Finding and Loading Content**](finding-and-loading-content.md)
+- [**Command Palette**](../command-palette/index.md)

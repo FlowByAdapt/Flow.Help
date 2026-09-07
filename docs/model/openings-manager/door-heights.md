@@ -1,167 +1,262 @@
 # Door Heights
 
-Use **Door Heights** to review and standardise the height of New doors
-by project level.
+Use **Door Heights** to standardise the heights of New Doors by project level.
 
-Flow creates or reuses appropriately sized door types and then assigns
-the affected door instances to those types.
+Flow creates or reuses appropriately sized Door types, then changes applicable Door instances to those types.
 
-------------------------------------------------------------------------
+---
 
 ## Open Door Heights
 
-Run **Door Heights** from the Openings Manager or the corresponding Flow
-command.
+From Openings Manager, click **Door Heights**.
 
-The Door Height settings window lists the project levels that contain
-doors and provides a target height for each level.
+Flow opens the Door Height settings workflow and identifies project levels that contain Doors.
 
-------------------------------------------------------------------------
+For each populated level, the settings show:
+
+- the level
+- the number of Doors on that level
+- the proposed target height
+
+<!-- SCREENSHOT: Door Heights window showing several project levels and proposed heights. -->
+
+---
 
 ## Proposed Heights
 
-For each populated level, Flow checks the existing door types and looks
-for the most common **Panel Height**.
+For each level containing Doors, Flow reviews the existing Door types and reads their:
 
-Where a usable height can be determined, that value becomes the proposed
-height for the level.
+```text
+Panel Height
+```
 
-If no usable Panel Height can be determined, Flow falls back to:
+The most common usable Panel Height on that level becomes the proposed height.
 
--   **2200 mm** for the first populated level
--   **1980 mm** for subsequent populated levels
+If Flow cannot determine a usable Panel Height, it falls back to:
 
-Review the proposed values before applying the changes.
+- **2200 mm** for the first populated level
+- **1980 mm** for subsequent populated levels
 
-!!! tip "Review before applying"
+Levels are evaluated in elevation order.
 
-    The values shown in the Door Heights window are intended to be reviewed.
+!!! tip "Review the proposed values"
 
-    Adjust a level value where the project requires a different door height.
+    The proposed heights are starting values for the operation.
 
-------------------------------------------------------------------------
+    Check each level and adjust the target height where the project requires something different.
+
+---
 
 ## Apply Door Heights
 
-1.  Open **Door Heights**.
-2.  Review the levels containing doors.
-3.  Check the proposed height for each level.
-4.  Adjust any values that need to change.
-5.  Apply the operation.
-6.  Review the completion result.
+A typical workflow is:
 
-Flow processes the applicable doors and updates them to the required
-type.
+1. Click **Door Heights**.
+2. Review the levels containing Doors.
+3. Check the proposed height for each level.
+4. Adjust any required values.
+5. Apply the operation.
+6. Review the result.
+7. Return to the Opening Register.
 
-------------------------------------------------------------------------
+When Door Heights is launched from Openings Manager, the register is refreshed after the workflow completes.
+
+---
 
 ## New Doors Only
 
-Door Height adjustment is intended for **New** doors.
+Door Height adjustment is intended for New Doors.
 
-Flow skips doors classified as:
+Flow skips Doors classified as:
 
--   Existing
--   Demolished
+- Existing
+- Demolished
 
-This prevents the standard New-door height workflow from changing
-existing or demolished opening documentation.
+This prevents the standard New-Door height workflow from altering Existing or Demolished Door types through those instances.
 
-------------------------------------------------------------------------
+!!! note
 
-## How Door Types Are Updated
+    The initial level counts and proposed-height calculation are based on Doors present on each level.
 
-Flow does not simply change the shared Panel Height of every existing
-door type.
+    Phase eligibility is checked when the height changes are applied.
 
-For each applicable door, it:
+---
 
-1.  reads the current door type's **Panel Width**
-2.  combines that width with the required level height
-3.  builds the required type name
-4.  looks for that type within the same door family
-5.  reuses it if it already exists
-6.  otherwise duplicates the current type and applies the required Panel
-    Height
-7.  assigns the door instance to the resulting type
+## How Flow Changes a Door
 
-The type naming format is:
+Flow does not simply edit the existing Door type's Panel Height in place.
 
-``` text
+For each applicable Door, it:
+
+1. reads the current type's **Panel Width**
+2. combines that width with the target height for the Door's level
+3. creates the required standard type name
+4. searches for that type within the **same Door family**
+5. reuses the type if it already exists
+6. otherwise duplicates the current type
+7. sets the duplicated type's **Panel Height**
+8. changes the Door instance to the resulting type
+
+This avoids changing the height of every Door already using the source type.
+
+---
+
+## Door Type Naming
+
+The required type name is:
+
+```text
 <width>w x <height>h
 ```
 
 For example:
 
-``` text
+```text
 810w x 2200h
 ```
 
-This allows doors of the same width and height to reuse the same family
-type.
+Panel Width and Panel Height are converted to millimetres and rounded to whole millimetres for the type name.
 
-------------------------------------------------------------------------
+A Door with an 810 mm Panel Width and a target height of 2200 mm therefore uses:
 
-## Existing Door Types
+```text
+810w x 2200h
+```
 
-If the required type already exists within the same door family, Flow
-reuses it.
+---
 
-A duplicate type is only created when the required width-and-height type
-cannot already be found.
+## Reusing Existing Types
 
-------------------------------------------------------------------------
+Before creating a new type, Flow searches within the current Door family for an existing type with the required name.
 
-## Only Selected Doors
+The family name and type name must match.
 
-Where the Door Heights workflow is being used with a selected set of
-doors, the settings window can provide an **Only Selected Doors**
-option.
+If the required type already exists, Flow reuses it rather than creating another duplicate.
 
-Use this when the level settings should only be applied to the selected
-door instances rather than every applicable door on those levels.
+If it does not exist, Flow attempts to duplicate the Door's current type and set its Panel Height to the required value.
 
-------------------------------------------------------------------------
+---
 
-## Completion Result
+## Required Door Parameters
 
-The Door Heights result can report information including:
+The workflow depends on the Door type exposing usable parameters named:
 
--   Processed doors
--   Updated doors
--   Created types
--   Reused types
--   Skipped - no width
--   Skipped - no level
--   Skipped - no height setting
--   Skipped - existing or demolished
+```text
+Panel Width
+Panel Height
+```
 
-Review skipped items if the number of updated doors is lower than
-expected.
+**Panel Width** is required to calculate the standard type name.
 
-------------------------------------------------------------------------
+**Panel Height** must be writable when Flow needs to create a new target type.
+
+If these parameters are missing or unsuitable, the affected Door may not be updated.
+
+---
+
+## Opening Register Selection
+
+The current **Door Heights** button in Openings Manager does **not** use the checked or filtered rows as its scope.
+
+It launches the project Door Heights workflow and evaluates the project Doors by level.
+
+!!! important "Checked Doors do not limit the dashboard workflow"
+
+    Checking Door rows in the Opening Register before clicking **Door Heights** does not restrict the operation to those checked Doors.
+
+    The current Openings Manager launch path supplies the project Door set to the Door Heights workflow.
+
+This differs from commands such as **Standardise**, **Generate Views** and **Tag**, which provide explicit register-scope choices.
+
+---
+
+## Selected-Door Capability
+
+The underlying Door Height service supports restricting an operation to a supplied set of Door IDs when a workflow explicitly provides that selection.
+
+However, the current Door Heights launch from the Openings Manager dashboard does not pass the manager's checked-row selection into that mechanism.
+
+For normal Openings Manager use, treat Door Heights as a project-level Door workflow rather than a checked-row command.
+
+---
+
+## What Happens if the Door Already Uses the Target Type?
+
+If a Door already has the required target type, Flow does not need to change that instance again.
+
+Likewise, when the required type exists elsewhere in the same family, Flow can reuse it directly.
+
+This helps avoid unnecessary duplicate Door types.
+
+---
+
+## Failure Protection
+
+Door type creation and assignment are performed through Revit transactions.
+
+When Flow creates a new target type, Revit warnings encountered during that type-creation transaction are suppressed, while errors cause that type creation to roll back.
+
+If a particular Door or type cannot be updated successfully, the workflow can continue processing the remaining Doors rather than requiring the entire project-level operation to succeed as one transaction.
+
+---
+
+## Result Information
+
+The Door Height adjustment service tracks outcomes including:
+
+- Doors processed
+- Doors updated
+- types created
+- existing types reused
+- Doors skipped because no Panel Width was available
+- Doors skipped because no height setting existed for their level
+- Existing or Demolished Doors skipped
+
+A processed Door is not necessarily an updated Door. For example, it may already use the target type or may be skipped by one of the eligibility checks.
+
+---
 
 ## If a Door Is Not Updated
 
 Check that:
 
--   the door is New rather than Existing or Demolished
--   the door family provides a usable **Panel Width**
--   the door type provides a usable **Panel Height**
--   a height has been provided for the door's level
--   the door is included in the selected scope where selection is being
-    used
+- the Door is New rather than Existing or Demolished
+- its type contains a usable **Panel Width**
+- the Door's level has a target height
+- a new type can expose a writable **Panel Height**
+- the required type can be created or found within the same Door family
+- the Door does not already use the required target type
 
 For further checks:
 
 ➡️ [**Openings Manager Troubleshooting**](troubleshooting.md)
 
-------------------------------------------------------------------------
+---
+
+## Recommended Workflow
+
+For a project-wide Door height review:
+
+1. Open the Opening Register and review the Doors.
+2. Click **Door Heights**.
+3. Review the proposed height for every populated level.
+4. Change any level values required by the project.
+5. Apply the operation.
+6. Review the result.
+7. Confirm the refreshed Opening Register.
+8. Continue with Door documentation.
+
+If the resulting Door type information affects existing Door elevations, use **Conform Views** where required.
+
+➡️ [**Conforming Opening Views**](conforming-opening-views.md)
+
+---
 
 ## Related Help
 
--   [**Reviewing Openings**](reviewing-openings.md)
--   [**Selecting and Locating
-    Openings**](selecting-and-locating-openings.md)
--   [**Opening Global Parameters**](opening-global-parameters.md)
--   [**Openings Manager Troubleshooting**](troubleshooting.md)
+- [**Reviewing Openings**](reviewing-openings.md)
+- [**Opening Marks**](opening-marks.md)
+- [**Generating Opening Views**](generating-opening-views.md)
+- [**Conforming Opening Views**](conforming-opening-views.md)
+- [**Opening Global Parameters**](opening-global-parameters.md)
+- [**Openings Manager Troubleshooting**](troubleshooting.md)

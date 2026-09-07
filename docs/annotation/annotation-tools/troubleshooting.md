@@ -4,7 +4,7 @@ Use this page when an **Annotation** tool does not produce the expected result.
 
 Choose the relevant tool below, then work through the checks for the issue you are seeing.
 
-------------------------------------------------------------------------
+---
 
 ## Wall Dimensions
 
@@ -12,64 +12,72 @@ Choose the relevant tool below, then work through the checks for the issue you a
 
 Check that a Revit project is open and that the active view is supported.
 
-The source workflow accepts **Floor Plan** and **Reflected Ceiling Plan** views only. If you are in another view type, switch to a plan view and try again.
+**Wall Dimensions** can be used in:
 
-------------------------------------------------------------------------
+* **Floor Plans**
+* **Reflected Ceiling Plans**
 
-### No Model Lines Were Accepted
+If you are in another view type, switch to a supported plan view and try again.
 
-Wall Dimensions relies on model lines to define the dimensioning path.
+### No Dimension Was Created
 
-Check that:
-
-1.  the selected elements are Revit **Model Lines**;
-2.  the lines are visible in the active view;
-3.  you completed the selection rather than cancelling it;
-4.  the lines pass through or sufficiently close to the walls you want to dimension.
-
-If no valid preselection exists, use the selection workflow offered by Flow.
-
-------------------------------------------------------------------------
-
-### No Dimensions Were Created
-
-Flow needs at least two usable references to create a dimension.
+Flow needs at least two usable wall-core references to create a dimension.
 
 Check whether:
 
--   the selected model line actually crosses the walls;
--   the walls belong to the active plan level;
--   the walls are parallel where a continuous string is expected;
--   the wall construction contains usable core information;
--   the wall geometry allows Revit to create stable dimension references.
+* the dimension path crosses or passes sufficiently close to the required walls;
+* the walls are straight;
+* the walls are perpendicular to the dimension path;
+* the walls belong to the active plan level;
+* the wall construction contains usable core information.
 
-Try a simpler line across two clearly parallel walls to isolate the problem.
-
-------------------------------------------------------------------------
+Try drawing a simple path across two straight, parallel walls to isolate the problem.
 
 ### Some Walls Were Skipped
 
-Wall Dimensions groups compatible parallel walls. Walls that do not match the group direction or do not provide suitable references can be excluded.
+Flow filters the walls discovered along the dimension path before creating the dimension.
 
-If a wall is consistently missed, review its orientation, wall type and location relative to the model line.
+A wall may be excluded if:
 
-------------------------------------------------------------------------
+* it is curved;
+* it is not perpendicular to the dimension path;
+* it is hosted on a different level;
+* its core locations cannot be resolved;
+* suitable supporting references cannot be created.
 
-### A Model Line Disappeared
+For predictable results, draw the path across the walls rather than along them.
 
-The source workflow deletes model lines after successful dimension creation.
+### The Dimension Path Does Not Follow the Expected Direction
 
-If the current native tool retains this behaviour, this is expected. Use **Undo** if you need to restore the operation and review the setup.
+Flow normally assists with constraining the dimension path based on walls in the active plan.
 
-------------------------------------------------------------------------
+If you need a simple horizontal or vertical path, hold **Ctrl** while positioning the path.
 
-### The Result Is Not Where I Expected
+### The Dimension Is Not Where I Expected
 
-The resulting dimension follows the selected model line. Check the position and direction of the model line before running the tool.
+The dimension path determines which walls Flow investigates.
+
+After accepting the path, Flow separately prompts:
+
+> Pick the dimension line location.
+
+This second point controls where the resulting dimension string is placed.
+
+If the dimension is on the wrong side of the walls or too close to the model, use **Undo** and repeat the workflow, choosing a different dimension line location.
+
+### Flow Supporting References
+
+Wall Dimensions creates supporting references at resolved wall-core positions so Revit can maintain the resulting dimension.
+
+Flow manages these references automatically.
+
+When Wall Dimensions starts, it checks for orphaned Flow wall-dimension references and incomplete dimension sets in the active view and removes them where appropriate.
+
+You should not need to create, edit or maintain these references manually.
 
 For more information, return to [Wall Dimensions](wall-dimensions.md).
 
-------------------------------------------------------------------------
+---
 
 ## Grid Dimensions
 
@@ -77,70 +85,80 @@ For more information, return to [Wall Dimensions](wall-dimensions.md).
 
 Check that:
 
--   a Revit project is open;
--   an active view is available;
--   the active view supports linear grid dimensions.
+* a Revit project is open;
+* an active view is available;
+* the active view supports Grid Dimensions.
 
-If the current view is unsupported, switch to a plan, section, elevation or detail view as appropriate.
+Supported views include:
 
-------------------------------------------------------------------------
+* Floor Plans
+* Reflected Ceiling Plans
+* Engineering Plans
+* Area Plans
+* Sections
+* Elevations
+* Detail Views
 
 ### No Dimension Types Are Available
 
-Grid Dimensions requires at least one linear Revit Dimension Type.
+Grid Dimensions uses linear Dimension Types whose names begin with **ADa**.
 
-Open the project dimension settings and confirm that a usable linear Dimension Type exists.
+If no suitable types are available, check that the project contains an appropriate linear Dimension Type using the required naming convention.
 
-------------------------------------------------------------------------
-
-### The Offset Was Rejected
-
-Enter a positive numeric value in millimetres.
-
-The source workflow uses **350 mm** when the entered value is invalid or non-positive.
-
-------------------------------------------------------------------------
+Where **ADa_Blue** is available, Flow prioritises it as the initial type.
 
 ### No Usable Grids Were Found
 
-Flow filters selected elements before dimensioning.
+A grid dimension requires at least two usable grids.
 
 Check that:
 
-1.  the elements are Revit grids;
-2.  at least two grids match the selected orientation;
-3.  the grids are parallel;
-4.  they are not already dimensioned in the active view.
+* the selected elements are Revit Grids;
+* at least two suitable grids remain after filtering;
+* the grids are straight;
+* the grids are not already dimensioned in the active view.
 
-------------------------------------------------------------------------
-
-### Only One Grid Was Accepted
-
-A continuous grid dimension requires at least two usable grids.
-
-Select another grid with the same orientation and try again.
-
-------------------------------------------------------------------------
+If too few usable grids remain, Flow prompts you to make another selection.
 
 ### Some Selected Grids Were Ignored
 
-This normally means a grid:
+Flow automatically filters and groups the selected grids.
 
--   did not match the selected orientation;
--   was already dimensioned in the active view;
--   could not be grouped with the other selected grids.
+A grid may be excluded because:
 
-Run the tool again using a more consistent grid set.
+* it is already dimensioned in the active view;
+* it is curved;
+* it cannot provide a usable linear grid reference.
 
-------------------------------------------------------------------------
+Flow may report grids that were excluded because they are already dimensioned.
 
-### The Dimension Is on the Wrong Side
+### Grids Were Split into Separate Dimensions
 
-Dimension placement is calculated from the selected grid orientation and the configured offset.
+This is expected when the selection contains grids running in different directions.
 
-If the result is not useful for the drawing, review the grid orientation choice and offset, then rerun the workflow.
+Flow automatically groups compatible parallel grids and creates a separate dimension for each usable group.
 
-------------------------------------------------------------------------
+You do not need to separate horizontal, vertical or angled grid sets before selecting them.
+
+### The Dimension Is Not Where I Expected
+
+Grid Dimensions does not use a predefined offset.
+
+Flow asks you to pick the dimension location for each grid group.
+
+Use **Undo** and repeat the workflow if you need to reposition the resulting dimension.
+
+### Escape Ended the Workflow
+
+This is normal.
+
+Pressing **Esc** during grid selection or placement finishes the interactive workflow.
+
+Any dimensions already completed remain in the model.
+
+For more information, return to [Grid Dimensions](grid-dimensions.md).
+
+---
 
 ## Join Dimensions
 
@@ -150,104 +168,91 @@ Join Dimensions requires at least two compatible dimensions.
 
 Check that:
 
--   both elements are Revit dimensions;
--   they run in a compatible direction;
--   their references can form one valid continuous dimension;
--   the active view supports the selected dimensions.
+* the selected elements are linear Revit dimensions;
+* the dimensions belong to the active view;
+* they run in compatible parallel directions;
+* their references can form a valid continuous dimension.
 
 Try joining a simple pair of aligned dimensions first.
-
-------------------------------------------------------------------------
 
 ### A Dimension Has No Usable References
 
 A replacement dimension can only be created where Revit exposes valid references from the source dimensions.
 
-If Flow cannot collect at least two valid references after filtering, no replacement can be created.
-
-------------------------------------------------------------------------
+If Flow cannot collect at least two usable references after filtering, a replacement dimension cannot be created.
 
 ### The Dimensions Run in Different Directions
 
 Perpendicular or otherwise incompatible dimension strings cannot be combined into one linear dimension.
 
-Select only dimensions describing the same dimension direction.
+The first dimension you select establishes the primary dimension direction and baseline.
 
-------------------------------------------------------------------------
+Select additional dimensions that run parallel to it.
 
 ### A Zero-Length Segment Prevented the Join
 
-Duplicate or near-identical references can create a zero-length dimension segment.
+Duplicate or redundant references can produce a zero-length dimension segment.
 
-Flow attempts to remove references that would create invalid zero-length segments. If a valid string still cannot be produced, the join is not completed.
+Flow attempts to remove the reference responsible for the zero-length segment and retries dimension creation.
 
-Review the original dimension references and remove redundant source dimensions or references before trying again.
+This continues until a valid replacement can be created or there are not enough usable references remaining.
 
-------------------------------------------------------------------------
-
-### A Segment Label Was Not Preserved
+### A Below Label Was Not Preserved
 
 Join Dimensions preserves supported **Below** labels by matching their positions to the recreated dimension segments.
 
 A label may not be restored where:
 
--   the corresponding segment no longer exists;
--   references were removed to prevent an invalid segment;
--   the replacement geometry changes the segment position too much.
+* the corresponding segment no longer exists;
+* a reference was removed to prevent an invalid segment;
+* the recreated geometry changes the segment position too much.
 
-Check the recreated dimension and reapply the label with **Dimension Labels** if required.
-
-------------------------------------------------------------------------
+Reapply the label with **Dimension Labels** if required.
 
 ### The Original Dimensions Are Still Present
 
-This usually means the replacement dimension could not be created successfully.
+This normally means a valid replacement dimension was not created.
 
-The intended workflow keeps source dimensions until successful replacement is confirmed.
-
-------------------------------------------------------------------------
+Flow does not delete the source dimensions until the replacement dimension has been successfully created and supported Below labels have been reapplied.
 
 ### Escape Ended the Tool
 
-This is normal. **Esc** finishes the repeated selection workflow.
+This is normal.
 
-Any completed joins should remain in the model.
+**Esc** finishes the repeated dimension-selection workflow. Any completed joins remain in the model.
 
-------------------------------------------------------------------------
+For more information, return to [Join Dimensions](join-dimensions.md).
+
+---
 
 ## Dimension Labels
 
 ### The Tool Does Not Run
 
-The verified source workflow is limited to **Floor Plan** and **Reflected Ceiling Plan** views.
+Dimension Labels can be used in:
+
+* **Floor Plans**
+* **Reflected Ceiling Plans**
 
 Switch to a supported plan view and try again.
 
-------------------------------------------------------------------------
-
 ### The Selected Dimension Has No Segments
 
-Dimension Labels requires a continuous dimension chain containing individual segments.
+Dimension Labels applies a Room Name to an individual segment of a continuous dimension.
 
-If the selected dimension is a single unsegmented dimension, choose a different dimension chain.
-
-------------------------------------------------------------------------
+If the selected dimension is a single unsegmented dimension, choose a continuous dimension chain instead.
 
 ### The Wrong Segment Was Labelled
 
-Flow identifies the segment whose origin is closest to the point you click.
+Flow identifies the dimension segment whose origin is closest to the point you click.
 
-Undo the change if required, run the tool again and click closer to the intended dimension segment.
-
-------------------------------------------------------------------------
+Use **Undo** if required, then repeat the workflow and click closer to the intended segment.
 
 ### The Room Tag Was Not Accepted
 
 Select a Revit **Room Tag**.
 
-Other annotation tags are not valid for the verified room-label workflow.
-
-------------------------------------------------------------------------
+Other annotation tags are not valid for the Room Name workflow.
 
 ### Flow Could Not Find the Room
 
@@ -255,89 +260,88 @@ The selected Room Tag must resolve to a valid Revit Room.
 
 Check that:
 
--   the tag is associated with a room;
--   the room still exists;
--   the tag is not orphaned;
--   the room has a usable **Name** value.
-
-------------------------------------------------------------------------
+* the tag is associated with a Room;
+* the Room still exists;
+* the tag is not orphaned;
+* the Room has a usable **Name**.
 
 ### The Label Is Blank
 
-The workflow writes the Room **Name** to the dimension segment.
+Dimension Labels writes the Room **Name** to the dimension segment's **Below** label.
 
-If the Room Name is blank, the resulting segment label will also be blank.
+Check that the selected Room has a suitable Name value.
 
-------------------------------------------------------------------------
+### An Existing Below Label Was Replaced
+
+This is expected.
+
+Dimension Labels writes the selected Room Name to the segment's **Below** label. Any existing Below text on that segment is replaced.
 
 ### A Label Changed After Joining Dimensions
 
-Join Dimensions attempts to preserve supported segment labels, but a label may not be matched if the recreated dimension has materially different segments.
+Join Dimensions attempts to preserve supported Below labels, but a label may not be matched if the recreated dimension has materially different segments.
 
 Reapply the label with **Dimension Labels** if necessary.
 
-------------------------------------------------------------------------
+For more information, return to [Dimension Labels](dimension-labels.md).
+
+---
 
 ## Auto Tag
 
-### No Tag Types Are Available
+### The Required Tag Family Is Missing
 
-Auto Tag requires a compatible tag family/type to be loaded in the project.
+The current **Auto Tag → Downpipes** workflow uses configured tag families according to the downpipe category.
 
-For the verified downpipe workflow, the source implementation looks for the configured downpipe tag-family naming convention.
+Flow requires:
 
-Load the required tag family and try again.
+* **Plumbing Fixtures:** `ADa_TAG_plum : Tag_plum`
+* **Generic Models:** `ADa_TAG_Multi-Cat-Mark`
 
-------------------------------------------------------------------------
+If the required tag is not available, load the appropriate Flow tag family into the project and try again.
 
-### No Supported Elements Were Found
+### No Downpipes Were Found
 
-Auto Tag searches the active view for supported elements.
+Auto Tag searches the active view for supported downpipe family instances.
 
-For the verified downpipe workflow, the source implementation looks for downpipe family instances in the **Plumbing Fixtures** category using the configured downpipe family naming convention.
+The current workflow recognises downpipes in:
 
-Check that:
+* **Plumbing Fixtures**
+* **Generic Models**
 
--   the required elements exist in the active view;
--   the correct families are being used;
--   the elements are visible to the view.
+Check that the required downpipes exist and are available in the active view.
 
-------------------------------------------------------------------------
+### Some Downpipes Were Not Tagged
 
-### Some Elements Were Not Tagged
+Flow deliberately skips a downpipe if it already has an Independent Tag in the active view.
 
-Auto Tag deliberately skips elements that are already tagged in the active view.
+The existing tag does not need to have been created by Flow.
 
-If an element appears untagged, check for an existing tag that references it but has been moved away from the element.
+If a downpipe appears untagged, check whether an existing tag references it but has been moved elsewhere in the view.
 
-------------------------------------------------------------------------
+A downpipe can also be skipped if Flow cannot determine a usable tag location.
 
 ### A Tag Was Placed in an Unexpected Position
 
-The source workflow places the tag at the element location point where available, otherwise at the centre of the element bounding box.
+Flow places each new tag at the element Location Point where available.
+
+If that is unavailable, it attempts to use the centre of the element's bounding box.
 
 Move individual tags manually after creation where drawing composition requires adjustment.
 
-------------------------------------------------------------------------
-
-### The View Template Changed
-
-The source workflow temporarily detaches the active view template during tag creation and restores it afterwards.
-
-If the view does not appear as expected after the operation, check the active view template and category visibility settings.
-
-------------------------------------------------------------------------
-
 ### No Tags Were Created
 
-Check both sides of the workflow:
+Check that:
 
-1.  a compatible tag type must be available;
-2.  at least one supported untagged element must exist in the active view.
+1. supported downpipes exist in the active view;
+2. the appropriate configured tag family is loaded;
+3. the downpipes do not already have tags in the active view.
 
-Return to [Auto Tag](auto-tag.md) and run the workflow again.
+If all supported downpipes are already tagged, Flow reports that no untagged downpipes were found.
 
-------------------------------------------------------------------------
+For more information, return to [Auto Tag](auto-tag.md).
+
+---
 
 ## Text Tools
 
@@ -345,189 +349,244 @@ Return to [Auto Tag](auto-tag.md) and run the workflow again.
 
 Check that the selected elements are Revit **Text Notes**.
 
-Text in tags, dimensions, schedules, family labels or other annotation types is not part of the verified Text Note workflow.
-
-------------------------------------------------------------------------
+Text contained in tags, dimensions, schedules, family labels or other annotation types is not part of the Text Tools case workflow.
 
 ### Nothing Was Selected
 
-If no valid Text Notes are preselected, select Text Notes when prompted.
+If valid Text Notes are preselected when Text Tools starts, Flow uses those notes.
 
-Press **Esc** only after you have picked all required notes.
+If there are no valid preselected Text Notes, select the required notes when prompted and press **Esc** when the selection is complete.
 
-------------------------------------------------------------------------
+If the current selection contains Text Notes and other element types, Flow uses the valid Text Notes and ignores the other elements.
 
 ### The Text Already Matches the Selected Case
 
-Flow does not rewrite a Text Note when the transformed text would be identical to the current text.
+Flow does not rewrite a Text Note when the transformed text would be identical to its current text.
 
-This means the reported changed count can be lower than the number of selected notes.
+A selected note may therefore remain unchanged even though the operation completed successfully.
 
-------------------------------------------------------------------------
+### Technical Terms Did Not Change
 
-### Technical Abbreviations Did Not Change
+Text Tools deliberately preserves recognised technical terminology where appropriate.
 
-Sentence Case and Title Case intentionally preserve recognised technical terms, all-capital tokens and tokens containing numbers.
+Examples include:
 
-This prevents terms such as **NZBC**, **FFL**, **BIM** and similar documentation abbreviations from being changed incorrectly.
+* **NZBC**
+* **FFL**
+* **BIM**
+* **Revit**
+* **pyRevit**
+* **ADa**
+* **GIB**
+* **DWG**
+* **IFC**
 
-------------------------------------------------------------------------
+Sentence Case and Title Case also preserve applicable tokens containing numbers.
 
-### Bold, Italic or Underline Formatting Disappeared
+This behaviour prevents common technical terms from being changed into inappropriate case formats.
 
-The verified source workflow resets changed Text Notes to plain text.
+!!! note "Not every uppercase word is protected"
 
-Use **Undo** if the formatting needs to be retained.
+	Text Tools does not treat every arbitrary all-capital word as a protected technical term.
 
-------------------------------------------------------------------------
+	Preservation depends on the selected case operation and the terminology recognised by Flow.
+
+### Text Formatting Was Not Preserved
+
+Flow attempts to preserve supported character formatting when changing text case, including:
+
+* Bold
+* Italic
+* Underline
+* Superscript
+* Subscript
+* All Caps
+
+Where the text can be safely rewritten using Revit's formatted-text system, Flow records and reapplies this formatting.
+
+If formatted-text editing fails, Flow may fall back to plain-text assignment. Character formatting may be lost in that situation.
+
+Use **Undo** if the resulting formatting is not acceptable.
 
 ### Some Notes Failed
 
-A Text Note can fail if Revit does not allow its text to be rewritten.
+A Text Note may fail if Revit does not allow its text to be rewritten.
 
-Try the affected note individually. If it still fails, check whether the note or its parameter is read-only or otherwise controlled.
+When failures occur, Flow reports the number of notes changed and the number that failed.
 
-------------------------------------------------------------------------
+Try an affected note individually if you need to isolate the problem.
+
+For more information, return to [Text Tools](text-tools.md).
+
+---
 
 ## Grid Renumber
 
 ### The Starting Value Was Rejected
 
-The verified Grid Renumber source workflow accepts a numeric starting value.
+Grid Renumber supports several sequence formats, including:
 
-Enter a valid number and try again.
+* numeric — `1`, `2`, `3`
+* zero-padded numeric — `01`, `02`, `03`
+* alphabetic — `A`, `B`, `C`
+* lowercase alphabetic — `a`, `b`, `c`
+* prefixed numeric — `G01`, `G02`, `G03`
 
-------------------------------------------------------------------------
+Enter a valid starting sequence and try again.
 
 ### A Selected Element Was Not Renumbered
 
-Grid Renumber accepts Revit grids only.
+Grid Renumber accepts Revit Grids only.
 
-If another element was picked, select the required grid and continue.
+If another element is picked, select the required Grid and continue.
 
-------------------------------------------------------------------------
+The same Grid cannot be processed twice during one renumbering session.
 
 ### The Numbers Are in the Wrong Order
 
-Grid numbers are assigned in selection order.
+Grid numbers are assigned in the order you select the Grids.
 
-Use **Undo** and rerun the workflow, selecting the grids in the required order.
-
-------------------------------------------------------------------------
+Use **Undo** and rerun the workflow, selecting them in the required sequence.
 
 ### An Existing Grid Number Changed Unexpectedly
 
-When a requested number is already in use, the verified source workflow moves the conflicting grid to the next available number.
+When the requested Grid number is already in use, Flow resolves the conflict so the requested sequence can continue.
 
-Review the overall grid sequence after a substantial renumbering operation.
+This can cause the Grid currently using that value to be moved to another available value.
 
-------------------------------------------------------------------------
+Review the overall Grid sequence after a substantial renumbering operation.
 
 ### Temporary Graphics Remained in the View
 
-The source workflow removes its temporary visual marking when the session finishes.
+Grid Renumber uses temporary view overrides to provide visual feedback while you work.
 
-If temporary overrides remain, complete or cancel the workflow and refresh the view. If the issue persists, use **Undo** and report the problem.
+These overrides are restored when the session finishes.
 
-------------------------------------------------------------------------
+If an override appears to remain, finish or cancel the workflow and refresh the view.
 
 ### Escape Ended the Selection
 
-This is expected. **Esc** finishes the interactive grid selection sequence.
+This is expected.
 
-------------------------------------------------------------------------
+**Esc** finishes the interactive Grid selection sequence.
+
+Changes already applied during the session remain and are grouped into the completed Revit operation.
+
+For more information, return to [Grid Renumber](grid-renumber.md).
+
+---
 
 ## Renumber
 
 ### The Target Type Is Not Available
 
-The current native Renumber workflow supports:
+Renumber only displays target types that are available for the current Revit context.
 
--   Rooms
--   Areas
--   MEP Spaces
--   Doors
--   Walls
--   Windows
--   Parking Spaces
--   Levels
--   Grids
+Supported targets include:
 
-Viewport renumbering and Doors by Room are not part of the current connected workflow.
+* Rooms
+* Areas
+* Doors
+* Walls
+* Windows
+* Levels
+* Grids
+* Viewports
 
-------------------------------------------------------------------------
+Not every target is available in every view.
+
+If the required type is missing, open a view appropriate to that element type and start **Renumber** again.
 
 ### The Starting Value Was Not Accepted
 
-Enter a valid starting sequence.
+Renumber supports numeric, alphabetic and combined sequences.
 
-Renumber supports values such as:
+Examples include:
 
--   `1`
--   `01`
--   `D01`
--   `W10`
+* `1`
+* `01`
+* `A`
+* `a`
+* `D01`
+* `W10`
 
 Prefixes and zero-padding are preserved as the sequence increments.
 
-------------------------------------------------------------------------
+Enter a valid starting value and try again.
 
 ### An Element Cannot Be Selected
 
-Renumber filters model selection to the target type chosen at the start of the workflow.
+Renumber filters Revit selection to the target type chosen at the start of the workflow.
 
-For example, if **Doors** is selected as the target, picking a wall does not renumber it.
+For example, if **Walls** is selected, a Door cannot be processed during that session.
 
-Choose the correct target type and select the required elements again.
-
-------------------------------------------------------------------------
+Choose the correct target type and try again.
 
 ### An Existing Value Changed
 
-When the requested value is already in use, Flow resolves the conflict through the shared numbering engine.
+When a requested value is already in use, Flow resolves the conflict through the shared numbering system.
 
 This may cause another element's existing value to move so the requested sequence can be applied.
 
-Review the affected numbering after the operation.
+Review the affected numbering after a substantial renumbering operation.
 
-------------------------------------------------------------------------
+### Doors by Room Is Not Available
+
+The **By Room** option is available when **Doors** is selected as the Renumber target.
+
+Doors by Room requires a plan view.
+
+If the option cannot be used, switch to an appropriate plan view and start Renumber again.
+
+### A Door Could Not Be Numbered by Room
+
+Doors by Room uses the Room associated with the Door in the active phase.
+
+Check that:
+
+* the Door has **New** phase status in the active phase;
+* the Door is associated with the required Room;
+* the Room has a usable **Number**;
+* the active view has a valid phase.
+
+If Flow can identify exactly one associated Room, it uses that Room automatically.
+
+If the Door could relate to more than one Room, Flow asks you to select the required Room.
 
 ### The Annotation Window Disappeared
 
 This is expected.
 
-Flow hides the Annotation and Renumber choice windows before Revit model picking begins so they do not obstruct the Revit canvas.
+Flow hides choice windows while Revit model interaction is required so they do not obstruct the canvas.
 
-The Annotation window is restored when the Renumber workflow finishes.
-
-------------------------------------------------------------------------
+The workflow manages the window state as you move between Flow controls and Revit selection.
 
 ### Escape Finished the Tool
 
 This is normal.
 
-**Esc** ends the interactive selection sequence. Any completed numbering changes remain.
+**Esc** ends the interactive selection sequence.
 
-If no elements were changed before cancellation, no Revit Undo item is created.
-
-------------------------------------------------------------------------
+Any completed numbering changes remain. If nothing was changed during the session, the operation is rolled back rather than creating an unnecessary Revit Undo item.
 
 ### Undo Reverts the Whole Session
 
-A completed Renumber session is grouped into a single Revit Undo operation.
+A completed interactive Renumber session is grouped into a single Revit operation.
 
-Use **Undo** once to reverse the complete session.
+Use **Undo** once to reverse the completed session.
 
-------------------------------------------------------------------------
+For more information, return to [Renumber](renumber.md).
+
+---
 
 ## Related Help
 
--   [Annotation](index.md)
--   [Wall Dimensions](wall-dimensions.md)
--   [Grid Dimensions](grid-dimensions.md)
--   [Join Dimensions](join-dimensions.md)
--   [Dimension Labels](dimension-labels.md)
--   [Auto Tag](auto-tag.md)
--   [Text Tools](text-tools.md)
--   [Grid Renumber](grid-renumber.md)
--   [Renumber](renumber.md)
+* [Annotation](index.md)
+* [Wall Dimensions](wall-dimensions.md)
+* [Grid Dimensions](grid-dimensions.md)
+* [Join Dimensions](join-dimensions.md)
+* [Dimension Labels](dimension-labels.md)
+* [Auto Tag](auto-tag.md)
+* [Text Tools](text-tools.md)
+* [Grid Renumber](grid-renumber.md)
+* [Renumber](renumber.md)

@@ -8,7 +8,7 @@ Use the **Project Patterns** tab to review and manage fill patterns already load
 
 On the Revit ribbon:
 
-**Flow → Model → Patterns**
+**ADAPT → Model → Patterns**
 
 Open the **Project Patterns** tab.
 
@@ -44,35 +44,37 @@ Pattern Manager identifies:
 
 The library comparison can distinguish an exact match from a pattern whose name or geometry differs from the managed library definition.
 
+<!-- SCREENSHOT: Project Patterns tab with one pattern selected and its preview/status panel visible. -->
+
 ---
 
 ## Available Actions
 
 Depending on where the action is presented, select or right-click a project pattern to access:
 
-- **Edit** — open the definition in Pattern Editor and update the existing project pattern;
+- **Edit** — open the definition in Pattern Editor; see the current limitation below;
 - **Duplicate** — open a copy in creation mode using the suffix ` - Copy`;
 - **Export** — save the selected definition as an individual PAT file;
 - **Create Filled Region** — create a filled region using the selected project pattern;
 - **Conform Name** — apply the ADa naming format to the selected pattern; and
-- **Conform Project Pattern Names** — review and apply naming changes across eligible project patterns.
+- **Conform Project Pattern Names...** — review and apply naming changes across eligible project patterns.
+
+<!-- SCREENSHOT: Project-pattern context menu showing Edit, Create Filled Region, Duplicate, Export PAT and both Conform actions. -->
 
 ---
 
 ## Edit a Project Pattern
 
-Editing changes the existing pattern definition in the active project.
+The **Edit** action opens the selected definition in Pattern Editor. However, the current update workflow is not yet complete.
 
 1. Select the project pattern.
 2. Click **Edit**, or use **Edit** from its context menu.
 3. Modify the definition in Pattern Editor.
 4. Click **Save**.
 
-Flow updates the existing project pattern and refreshes the project-pattern list.
+!!! warning "Use Duplicate for production changes"
 
-!!! warning "Review project use before editing"
-
-    A project fill pattern can be referenced by materials, filled-region types and other Revit settings. Editing the pattern changes its appearance everywhere that definition is used.
+    Saving an edited project pattern currently creates a temporary replacement pattern without transferring the original pattern's project references or removing the original. Use **Duplicate** to create a separate definition instead, then deliberately reassign affected materials or filled-region types in Revit.
 
 ---
 

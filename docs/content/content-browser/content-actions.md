@@ -1,92 +1,101 @@
 # Content Actions
 
-Right-click an item in Content Browser to access actions that apply directly to that content.
+Right-click an item in Content Browser to access file, preview, type-catalogue and publishing actions.
 
-The available actions depend on the selected content and its current state.
+Some actions are disabled when their required companion file does not exist. Other actions remain visible for content they cannot process, so check the selected content type before running them.
+
+<!-- SCREENSHOT: Content Browser context menu.
+Show an RFA with both a preview image and matching type catalogue. -->
 
 ---
 
 ## Open Family
 
-Use **Open Family** to open the selected Revit family file in Revit.
+**Open Family** asks Revit to open and activate the selected source file.
 
-1. Right-click the family.
-2. Select **Open Family**.
+If the source cannot be resolved or found, Content Browser reports **Source file not found.**
 
-If the source file cannot be resolved or found, Content Browser reports that the source file is unavailable.
+!!! note "Check the selected file type"
+
+    This action is currently shown for non-family items as well as `.rfa` files. Use it only when opening the selected Revit source file is appropriate.
 
 ---
 
 ## Reload Family
 
-Use **Reload Family** to update an already-loaded family from the current Flow library.
+**Reload Family** updates a loaded `.rfa` family from the current Flow library. The command is enabled when the selected item is shown as loaded and performs additional family validation when run.
 
-This action is available only when the selected item is a Revit family that is already loaded in the active project.
-
-See [**Project Content**](project-content.md#reload-one-family).
+See [**Reload One Family**](project-content.md#reload-one-family).
 
 ---
 
 ## Open Folder
 
-Use **Open Folder** to open the folder containing the selected source content in File Explorer.
-
-1. Right-click the item.
-2. Select **Open Folder**.
+**Open Folder** opens the folder containing the resolved source file in File Explorer.
 
 ---
 
 ## Preview Actions
 
-Depending on the selected item, the context menu provides:
+- **Open Preview Image** — opens the existing PNG using its Windows-associated application.
+- **Generate Preview** — requests preview generation for an `.rfa` family or `.rvt` drafting-view source.
+- **Regenerate Preview** — recreates the preview and refreshes the selected item's preview path when successful.
 
-- **Open Preview Image** — open the existing preview image.
-- **Generate Preview** — create a preview where required.
-- **Regenerate Preview** — recreate the preview for the selected content.
+!!! warning "Templates are not supported"
 
-!!! info "Preview files are separate from the family"
+    Preview generation supports `.rfa` and `.rvt` files. It does not support `.rte` templates, even though the commands may currently remain enabled.
 
-    A missing preview does not necessarily mean that the Revit family itself is missing.
+!!! info "Preview files are separate"
+
+    A missing preview does not necessarily mean that the source Revit content is unavailable.
 
 ---
 
 ## Type Catalogue Actions
 
-For family content, the context menu provides type-catalogue tools.
-
 ### Open Type Catalogue
 
-Opens the `.txt` type catalogue associated with the family.
+Opens the matching `.txt` catalogue using the application associated with text files in Windows.
 
 ### Edit Type Catalogue
 
-Opens the catalogue in the Flow **Type Catalog Manager**.
+Opens the catalogue in Flow **Type Catalog Manager**.
 
 ### Conform Catalogue
 
-Opens and conforms the existing catalogue using the Flow type-catalogue workflow.
-
-If no catalogue exists, Flow reports that no type catalogue was found.
+Runs the catalogue-conformance process before opening Type Catalog Manager. If no changes are needed, Flow reports **No changes required** without opening the manager.
 
 ### Generate Type Catalogue
 
-Requests generation of a type catalogue from the selected family.
+Opens Type Catalog Manager and starts generation from the selected family.
+
+The open, edit and conform actions require a catalogue beside the selected family. **Generate Type Catalogue** is enabled when the Browser does not find that adjacent `.txt` file.
+
+!!! note "Source and cached paths"
+
+    Catalogue actions currently resolve source and cached paths differently. If an expected action is disabled or reports a missing catalogue, clear the cache and confirm that the `.rfa` and `.txt` files share the same base filename.
 
 ---
 
 ## Extract + Publish Drafting Views
 
-Use **Extract + Publish Drafting Views** on an appropriate source item to start the drafting-view extraction workflow.
+Starts the Drafting View Extractor for the selected source file.
 
-This is separate from loading an already-indexed drafting view into the active project.
+The workflow validates its library and template, asks for extraction/overwrite confirmation, extracts drafting views, generates previews and reports the result. It can then open the output folder or start another extraction.
+
+The command is currently visible for all items. Use it only with an appropriate drafting-view source file.
 
 ---
 
 ## Copy Active Path
 
-Use **Copy Active Path** to copy the resolved source-file path to the Windows clipboard.
+Copies the resolved source-file path to the Windows clipboard and reports **Source file path copied.**
 
-This is useful when you need to inspect or reference the actual library file outside Content Browser.
+---
+
+## Getting Help
+
+Hover over **Browser** on the Flow ribbon and press **F1** to open the Content Browser help.
 
 ---
 

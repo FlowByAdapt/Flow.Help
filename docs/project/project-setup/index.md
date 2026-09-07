@@ -1,158 +1,250 @@
 # Project Setup
 
-Project Setup provides a guided workflow for creating new Revit projects
-and reviewing or completing the setup of existing projects.
+**Project Setup** provides a guided workflow for creating a new Revit project or reviewing and completing the setup of an existing project.
 
-It brings project configuration tasks together into one coordinated
-workflow so that office standards can be applied consistently.
+Flow brings the main project setup tasks together in one place, allowing you to establish the **Project Identity**, create a project from an approved template, inspect the current project and work through any setup items that are incomplete or require attention.
 
-------------------------------------------------------------------------
+Project Setup can be opened with or without a Revit project already open.
 
-## Opening Project Setup
+**Ribbon:** **Flow → Project → Setup**
 
-On the Revit ribbon, go to:
+---
+
+## When to Use Project Setup
+
+Use **Project Setup** when:
+
+* starting a new Revit project
+* reviewing the setup of an existing project
+* checking Project Information
+* creating standard project folders
+* enabling worksharing
+* checking or configuring standard worksets
+* preparing an Existing Building model
+
+Project Setup is designed to be used throughout the initial setup process rather than as a single one-click operation.
+
+---
+
+## Opening the Tool
+
+Open:
 
 **Flow → Project → Setup**
 
-Project Setup can be opened with no project document active when you
-want to create a new project. Current-project inspection and
-configuration actions require an active Revit project.
+If Project Setup is already open, Flow returns to the existing window and refreshes its Revit context rather than opening another copy.
 
-------------------------------------------------------------------------
+When an active project is available, Flow positions the Project Setup window relative to the active Revit view.
+
+If the **Project Identity** has not been reviewed, its card is highlighted and displays **Start here**.
+
+<!-- Screenshot recommended:
+Show the complete Project Setup window immediately after opening.
+The Project Identity card should be highlighted with the Start here indicator visible.
+Where practical, include both the New Project and Current Project areas so the overall structure of the tool is clear.
+-->
+
+---
 
 ## Start with Project Identity
 
-The **Project Identity** card is the starting point for Project Setup.
+Project Identity provides the common project information used by several Project Setup workflows.
 
-Enter the shared project details and select **Review Identity** before
-continuing with workflows that depend on this information.
+Enter:
 
-Project Identity includes:
+* **Project Year**
+* **Project Number**
+* **Client**
+* **Location**
 
--   **Project Year**
--   **Project Number**
--   **Client**
--   **Location**
+Then select **Review Identity**.
 
-When the identity still requires review, the card is highlighted and
-displays **Start here**.
+Flow validates the information before allowing it to be used by dependent setup operations.
 
-Once the identity has been reviewed successfully, the highlight is
-removed. If an identity value is changed later, the previous review is
-cleared and the card is highlighted again.
+!!! tip "Start here"
 
-➡️ **[Project Identity →](project-identity.md)**
+	Complete and review the Project Identity before working through the rest of Project Setup.
 
-------------------------------------------------------------------------
+	If any identity value is changed later, Flow clears the previous review and the identity must be reviewed again.
 
-## What do you want to do?
+See [Project Identity](project-identity.md).
 
-### 🆕 Create a New Project
+---
 
-Create a project using a reviewed Project Identity, an approved Flow
-Project Profile and the correct template for the current version of
-Revit.
+## Creating a New Project
 
-[Creating a New Project →](new-projects.md)
+If you are starting a new project:
 
-### 🔍 Review a Current Project
+1. Complete and review the **Project Identity**.
+2. Select the appropriate **Project Profile**.
+3. Check the resolved Revit template.
+4. Select **Create Project**.
+5. Confirm the project creation.
+6. Flow creates and activates the new Revit project.
+7. Select **Inspect Project** to review the remaining setup.
 
-Inspect an active Revit project and identify setup areas that are
-complete, ready, not yet inspected or require attention.
+Creating the Revit project is deliberately separate from the remaining setup operations.
 
-[Reviewing a Current Project →](current-projects.md)
+Flow does not automatically create project folders, update all Project Information, enable worksharing or configure standard worksets simply because the project has been created.
 
-!!! info "Inspection is read-only"
+See [Creating a New Project](new-projects.md).
 
-    Project inspection reports the current setup state.
+---
 
-    Changes are only made when you deliberately choose the relevant setup action.
+## Reviewing a Current Project
 
-------------------------------------------------------------------------
+With a Revit project active, select **Inspect Project**.
 
-## Setup Statuses
+Flow inspects the main project setup areas and displays the results in the **Setup Overview**.
 
-  -----------------------------------------------------------------------
-  Status                              Meaning
-  ----------------------------------- -----------------------------------
-  **Complete**                        The inspected setup area currently
-                                      satisfies the expected state.
+The overview includes:
 
-  **Ready**                           The area has been inspected and an
-                                      available setup action can complete
-                                      it.
+* Project Information
+* Project Folders
+* Worksharing
+* Worksets
+* Existing Building
 
-  **Attention Required**              The inspection found something that
-                                      should be reviewed.
+Each area displays its current status and a summary of what Flow found.
 
-  **Not Inspected**                   The area has not yet been
-                                      inspected.
+<!-- Screenshot recommended:
+Show Project Setup immediately after Inspect Project has completed.
+Use a project that produces a useful mixture of Complete, Ready and Attention Required states so the Setup Overview is easy to understand.
+-->
 
-  **Not Applicable**                  The area does not apply in the
-                                      current context.
+See [Reviewing a Current Project](current-projects.md).
 
-  **Failed**                          The inspection could not be
-                                      completed successfully.
-  -----------------------------------------------------------------------
+---
 
-------------------------------------------------------------------------
+## Understanding Setup Statuses
 
-## Setup Areas
+Project Setup uses status indicators to show the current state of each setup area.
 
-  -----------------------------------------------------------------------
-  Setup area                          What it controls
-  ----------------------------------- -----------------------------------
-  **Project Identity**                Shared project year, number, client
-                                      and location used by other setup
-                                      workflows
+| Status | Meaning |
+| --- | --- |
+| **Complete** | The inspected setup currently meets the required condition. |
+| **Ready** | The area is ready for the next setup action. |
+| **Attention Required** | Flow found something that requires review or action. |
+| **Not Inspected** | The area has not yet been inspected. |
+| **Not Applicable** | The area does not currently require an action. |
 
-  **Templates / Profiles**            Resolves the approved starting
-                                      configuration for a new project
+The overall **Setup Overview** combines these results to help identify what should be done next.
 
-  **Project Information**             Reviews and updates project
-                                      metadata stored in the active Revit
-                                      project
+---
 
-  **Project Folders**                 Checks and provisions configured
-                                      project folder locations
+## Continue Setup
 
-  **Worksharing**                     Checks whether the active project
-                                      is workshared and can enable
-                                      worksharing when required
+Where an appropriate next action can be determined, **Continue Setup** provides a shortcut to that action.
 
-  **Worksets**                        Checks and creates the required
-                                      office-standard worksets
+Depending on the current project state, this can lead to actions such as:
 
-  **Existing Building**               Reviews cleanup targets and
-                                      Existing Building phasing
-  -----------------------------------------------------------------------
+* inspecting the project
+* reviewing Project Information
+* enabling worksharing
+* configuring worksets
+* inspecting project folders
+* creating project folders
 
-### Detailed Help
+**Continue Setup** does not automatically perform every remaining setup operation.
 
--   [Project Identity →](project-identity.md)
--   [Creating a New Project →](new-projects.md)
--   [Reviewing a Current Project →](current-projects.md)
--   [Project Information →](project-information.md)
--   [Project Folders →](project-folders.md)
--   [Worksharing →](worksharing.md)
--   [Worksets →](worksets.md)
--   [Existing Building →](existing-building.md)
+Operations that change the project or create project resources remain explicit actions and may require confirmation.
 
-------------------------------------------------------------------------
+---
 
-## Refreshing Project Setup
+## Refresh and Inspect Project
 
-Use **Refresh** when the active Revit context or associated project
-resources have changed outside Project Setup.
+**Refresh** and **Inspect Project** perform different functions.
 
-Individual workflows may also re-inspect their own state after an action
-is completed.
+### Refresh
 
-------------------------------------------------------------------------
+Use **Refresh** when the active Revit context or available Project Profile/template information may have changed.
 
-## Need Help?
+Refresh updates Project Setup to the current Revit context.
 
-See [Project Setup Troubleshooting →](troubleshooting.md).
+It does not perform a new inspection of the project's setup.
 
-Press **F1** while hovering over **Setup** on the Flow ribbon to return
-directly to this page.
+### Inspect Project
+
+Use **Inspect Project** when you want Flow to assess the active project's current setup.
+
+The inspection results are then displayed in the Current Project area and Setup Overview.
+
+!!! info "After changing the project"
+
+	Many Project Setup actions automatically perform the appropriate follow-up inspection.
+
+	If the project has been changed outside the workflow and you want to reassess its setup, use **Inspect Project**.
+
+---
+
+## Automatic Follow-Up Checks
+
+Project Setup automatically refreshes relevant inspection results after several successful operations.
+
+For example:
+
+* enabling worksharing is followed by another project inspection
+* configuring worksets is followed by another project inspection
+* selecting an unresolved model role is followed by another project inspection
+* creating project folders is followed by folder reinspection
+* applying Existing Building phasing is followed by phasing reinspection and an automatic Cleanup refresh
+* Existing Building cleanup is followed by cleanup reinspection
+
+These checks allow the displayed status to reflect the resulting project state without requiring unnecessary repeated actions.
+
+---
+
+## Changes Are Deliberate
+
+Opening or inspecting Project Setup does not automatically modify the Revit project.
+
+Actions that make significant changes are started explicitly and, where appropriate, require confirmation.
+
+These include:
+
+* creating a new project
+* creating project folders
+* removing an incomplete project folder
+* enabling worksharing
+* configuring worksets
+* applying Existing Building phasing
+* cleaning up Existing Building content
+
+This allows Project Setup to be used safely as an inspection tool before any changes are made.
+
+---
+
+## Recommended Workflow
+
+For most projects:
+
+1. Open **Project Setup**.
+2. Complete the **Project Identity**.
+3. Select **Review Identity**.
+4. Create a new project, or activate the existing project.
+5. Select **Inspect Project**.
+6. Review the **Setup Overview**.
+7. Review and update **Project Information** where required.
+8. Inspect and create **Project Folders** where required.
+9. Enable **Worksharing** where required.
+10. Configure **Worksets**.
+11. Complete **Existing Building** preparation where applicable.
+12. Review the resulting Setup Overview.
+
+Not every project requires every stage.
+
+Flow reports the current project state rather than forcing setup operations that are not applicable.
+
+---
+
+## Related Help
+
+* [Project Identity](project-identity.md)
+* [Creating a New Project](new-projects.md)
+* [Reviewing a Current Project](current-projects.md)
+* [Project Information](project-information.md)
+* [Project Folders](project-folders.md)
+* [Worksharing](worksharing.md)
+* [Worksets](worksets.md)
+* [Existing Building](existing-building.md)
+* [Project Setup Troubleshooting](troubleshooting.md)

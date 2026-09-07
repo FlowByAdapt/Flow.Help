@@ -2,7 +2,7 @@
 
 Flow Hub provides quick access to common **Workspace** and **Visibility Manager** functions.
 
-These controls allow you to restore a saved workspace, recover windows and operate selected visibility controls without leaving the Hub.
+These controls allow you to restore a saved workspace, open the main Workspace tool, recover windows and operate selected visibility controls without leaving the Hub.
 
 ---
 
@@ -10,13 +10,14 @@ These controls allow you to restore a saved workspace, recover windows and opera
 
 The **Layout** selector displays your available saved workspace layouts.
 
-To restore a workspace:
+To restore one:
 
-1. Select the required workspace from the **Layout** list.
-2. Click **Restore**.
-3. Flow restores the selected Revit workspace layout.
+1. Review the layout currently selected.
+2. Choose another saved layout if required.
+3. Click **Restore**.
+4. Flow submits the workspace restoration through Revit's external-event workflow.
 
-The selected workspace must already have been saved using the Flow Workspace tools.
+The layout must already have been saved using the Flow Workspace tools.
 
 See [**Restoring a Workspace**](../workspace/restoring-a-workspace.md).
 
@@ -24,15 +25,29 @@ See [**Restoring a Workspace**](../workspace/restoring-a-workspace.md).
 
 ## Suggested Workspace
 
-When available workspace layouts are loaded, Flow attempts to select a layout that matches the current monitor arrangement.
+When saved layouts are loaded, Flow tries to select a layout that matches the current monitor arrangement.
 
-If more than one matching layout is available, the most recently created matching layout is preferred.
+If more than one saved layout matches, Flow prefers the most recently created matching layout.
 
-If no matching layout is found, the first available saved layout is selected.
+If no monitor match is found, the first available saved layout is selected.
 
 !!! info "Check the selected layout"
 
-    The Layout list provides a convenient starting selection, but you can choose another saved workspace before selecting **Restore**.
+    The suggested layout is only a starting selection.
+
+    You can choose another saved layout before clicking **Restore**.
+
+---
+
+## Restore Already Pending
+
+Only one workspace restore request can be pending at a time.
+
+If another restore is already waiting to run, Flow shows:
+
+**Workspace Restore Pending**
+
+Wait until the current restore has completed before requesting another.
 
 ---
 
@@ -42,11 +57,11 @@ Select:
 
 **Manage**
 
-to open the main Flow Workspace interface.
+to open the full Flow Workspace interface.
 
-Use the full Workspace tools when you need to manage saved layouts rather than simply restoring one from the Hub.
+Use the main Workspace tool when you need to create, manage or review saved layouts rather than simply restoring one from the Hub.
 
-See [**Workspace**](../workspace/index.md)
+See [**Workspace**](../workspace/index.md).
 
 ---
 
@@ -56,15 +71,15 @@ Select:
 
 **Recover**
 
-when a Revit or Flow window has opened outside the visible desktop.
+when Revit or Flow windows have opened outside the visible desktop.
 
-Flow attempts to bring affected windows back onto the available screen area.
+Flow captures the current application window state and attempts to move affected windows back onto the available desktop area.
 
 This can be useful after:
 
 - changing monitor configurations;
 - disconnecting a laptop from external monitors;
-- moving between different workstations; or
+- moving between workstations; or
 - opening a window that was previously positioned on a monitor that is no longer connected.
 
 See [**Recovering Windows**](../workspace/recovering-windows.md).
@@ -73,11 +88,11 @@ See [**Recovering Windows**](../workspace/recovering-windows.md).
 
 ## Visibility Manager Shortcuts
 
-Flow Hub can display up to **three** of your preferred Visibility Manager controls.
+Flow Hub can display up to **three** preferred Visibility Manager controls.
 
-These are live controls, allowing frequently used visibility settings to be switched directly from the Hub without opening the full Visibility Manager.
+Only Visibility Manager controls specifically configured as eligible Hub shortcuts can be selected.
 
-The current state of each shortcut is refreshed from Revit so the Hub reflects whether the corresponding visibility setting is currently on or off.
+The shortcuts are live controls. Flow requests their current state from Revit and updates the Hub to reflect whether each setting is currently on or off.
 
 ---
 
@@ -87,42 +102,55 @@ Select:
 
 **Configure**
 
-to choose which Visibility Manager controls appear in Flow Hub.
+to choose which eligible Visibility Manager controls appear in Flow Hub.
 
 1. Select **Configure**.
-2. Review the Visibility Manager controls available as Hub shortcuts.
+2. Review the available shortcut options.
 3. Select up to **three** controls.
 4. Click **Save**.
 
-The selected controls are then displayed in the Hub.
+The Hub updates when the settings are saved.
 
-!!! info "Maximum of three"
+<!-- SCREENSHOT: Hub Shortcut Settings window.
+Show the list of eligible controls, the “X of 3 shortcuts selected” message, Save and Cancel. -->
 
-    Flow Hub is intentionally limited to three Visibility Manager shortcuts so the Workspace area remains compact.
+### Three-Shortcut Limit
 
-    When three controls are selected, additional controls cannot be selected until one of the existing selections is cleared.
+The settings window actively enforces the three-shortcut limit.
+
+Once three controls are selected:
+
+- the selected controls remain enabled so they can be deselected;
+- unselected controls become disabled; and
+- another control cannot be selected until one of the existing three is cleared.
 
 ---
 
 ## Default Visibility Shortcuts
 
-A new configuration initially includes three predefined Visibility Manager shortcuts.
+If no saved shortcut settings are available, Flow starts with three predefined shortcut selections corresponding to:
 
-These can be changed at any time using **Configure**.
+- **3D Doors**
+- **Colour Tabs**
+- **NFC**
 
-!!! tip "Choose controls you use throughout the day"
+These defaults can be changed at any time using **Configure**.
 
-    The Hub shortcuts are most useful for Visibility Manager controls that you regularly switch while working.
+---
 
-    Less frequently used visibility controls remain available through the full Visibility Manager.
+## Saving Shortcut Settings
+
+Shortcut settings are stored as user configuration.
+
+Saving the settings raises a shared change notification, allowing the Hub shortcut list to refresh without needing to reopen Revit.
 
 ---
 
 ## Open Visibility Manager
 
-Use the full **Visibility Manager** when you need access to controls beyond the three shortcuts displayed in Flow Hub.
+Use the full **Visibility Manager** when you need access to controls beyond the three shortcuts shown in Flow Hub.
 
-The Hub shortcuts are intended as quick access to your preferred controls rather than a replacement for the full Visibility Manager.
+The Hub shortcuts are intended for frequently used controls rather than replacing the full Visibility Manager.
 
 ---
 
@@ -130,7 +158,7 @@ The Hub shortcuts are intended as quick access to your preferred controls rather
 
 Flow Hub itself is a Revit dockable panel.
 
-Its position can be included when saving a Flow workspace, allowing the Hub to return to its preferred position when that workspace is restored.
+Its position can be included when saving a Flow workspace, allowing the Hub to return to its preferred location when that workspace is restored.
 
 See [**Saving a Workspace**](../workspace/saving-a-workspace.md).
 
@@ -141,5 +169,6 @@ See [**Saving a Workspace**](../workspace/saving-a-workspace.md).
 - [**Flow Hub**](index.md)
 - [**Workspace**](../workspace/index.md)
 - [**Saving a Workspace**](../workspace/saving-a-workspace.md)
+- [**Restoring a Workspace**](../workspace/restoring-a-workspace.md)
 - [**Recovering Windows**](../workspace/recovering-windows.md)
 - [**Visibility Manager**](../visibility-manager/index.md)

@@ -2,121 +2,112 @@
 
 Use **Conform Catalogue** to clean up common structural problems within an existing type catalogue.
 
-Conform makes corrections that Flow can apply safely and identifies remaining problems that require review.
+Conform applies corrections that Flow can make safely and identifies remaining problems that require a user decision.
 
 ---
 
 ## Before Conforming
 
-Open the required catalogue in **Type Catalog Manager**.
+Open the required catalogue in **Type Catalogue Manager** and review the current validation results.
 
-Review the current validation results before running Conform so you understand the existing catalogue condition.
+Conform can write changes back to the catalogue, so use it as an intentional clean-up operation rather than as a read-only check.
 
 ---
 
 ## Conform the Catalogue
 
-From Type Catalog Manager:
+From Type Catalogue Manager:
 
-1. Open the **Tools** controls.
+1. Open the **Tools** menu.
 2. Choose **Conform Catalogue**.
-3. Allow Flow to inspect and clean up the catalogue.
+3. Allow Flow to inspect the catalogue.
 4. Review the **Conform Complete** result.
 5. Review any remaining warnings or problem rows.
+6. Review the refreshed **Validation** panel.
 
-Where Conform makes changes, the updated catalogue is written back to the current file.
+Where Conform makes changes, the updated catalogue is written to the current file and a backup is created before the existing file is replaced.
 
-Existing catalogue parameter definitions, including their Revit data type and unit information, are preserved during the Conform process.
+Existing Revit data type and unit information contained in catalogue parameter headers is preserved.
 
 ---
 
 ## What Conform Can Fix
 
-Depending on the catalogue contents, Conform can:
+Depending on the catalogue contents, Conform can safely correct structural conditions including:
 
-* rename an unnamed first column to **Type Name**;
-* remove duplicate catalogue columns;
-* add missing value cells required by the defined columns;
-* remove orphaned values that no longer correspond to a catalogue column;
-* trim whitespace from column names;
-* remove completely empty catalogue rows.
+* an unnamed first catalogue column that should represent **Type Name**;
+* duplicate catalogue columns;
+* missing row cells required by the catalogue header;
+* values that no longer correspond to a valid catalogue column;
+* unintended whitespace in column names;
+* completely empty catalogue rows.
 
-The result identifies the corrections made.
+The Conform result identifies the corrections applied.
 
-!!! info "Catalogue definitions are preserved"
+!!! info "Conform protects catalogue definitions"
 
-    Conform cleans up the catalogue structure without removing the Revit data type and unit information contained in existing parameter headers.
+    Structural clean-up preserves the Revit data type and unit information stored in existing parameter headers.
 
 ---
 
-## Problems That Are Not Automatically Fixed
+## Problems That Require Manual Review
 
-Some problems require a decision about the intended catalogue data.
-
-Conform identifies these rather than guessing how they should be corrected.
-
-This includes:
+Some conditions cannot be corrected safely without knowing the intended catalogue data.
 
 ### Blank Type Names
 
-A row without a Type Name is identified as a problem row.
+A row without a Type Name is identified for review.
 
-Enter the intended Type Name manually.
+Enter the intended Type Name manually or remove the row if it should not exist.
 
 ### Duplicate Type Names
 
-If the same Type Name is used more than once, Conform identifies the duplicate and reports where that name was first used.
+If the same Type Name is used more than once, Flow identifies the duplicates.
 
 Rename or remove the appropriate row manually.
 
 !!! warning "Conform does not invent catalogue data"
 
-	Flow only applies corrections that can be made safely from the existing catalogue structure.
+    Flow applies only corrections that can be derived safely from the existing catalogue structure.
 
-	It does not create missing Type Names or decide how duplicate types should be renamed.
+    It does not invent missing Type Names, decide which duplicate type should remain, or replace catalogue parameters with different family parameters.
 
 ---
 
 ## Review the Conform Result
 
-After the operation, the result can contain:
+The result separates the outcome into information such as:
 
 **Fixed**
-Structural corrections applied to the catalogue.
+
+Structural corrections that were applied automatically.
 
 **Warnings**
-Problems that require review.
+
+Conditions that still require review.
 
 **Problem Rows**
+
 Rows requiring user attention.
 
-If nothing needs to be changed, Flow reports:
+If no structural changes or unresolved problems are found, Flow reports:
 
 **No changes required.**
+
+Warnings and problem rows are still shown where attention is required even when no automatic correction was necessary.
+
+<!-- SCREENSHOT: Conform result.
+Use a catalogue with at least one automatically correctable structural issue
+and one user-decision issue such as a duplicate Type Name.
+Show the result and the highlighted problem row. -->
 
 ---
 
 ## Review Highlighted Rows
 
-Where Conform identifies problem rows, Type Catalog Manager highlights the affected rows and moves to the first identified problem.
+Where Conform identifies problem rows, Type Catalogue Manager navigates to the affected catalogue data.
 
-Review those rows and make the required corrections.
-
----
-
-## Validation After Conforming
-
-Type Catalog Manager validates the catalogue again after the Conform operation.
-
-Review the **Validation** panel for any remaining issues.
-
-See [**Validation and Inspection**](validation-and-inspection.md).
-
-!!! tip "Use Conform before manual clean-up"
-
-	If a catalogue contains several structural problems, run **Conform Catalogue** first.
-
-	Flow can resolve the safe structural corrections, leaving you to concentrate on issues that actually require a decision.
+Correct the remaining issues manually, then review the **Validation** panel again.
 
 ---
 
@@ -124,15 +115,35 @@ See [**Validation and Inspection**](validation-and-inspection.md).
 
 Type catalogues can also be conformed from **Content Browser**.
 
-For a selected family with an associated type catalogue, use the catalogue conform action.
+For a selected family with an associated catalogue:
 
-If no associated `.txt` catalogue is found, Flow reports that no type catalogue is available for the family.
+1. choose the catalogue conform action;
+2. Flow resolves the associated `.txt` file;
+3. Flow runs the conform process;
+4. the Manager opens when review or user action is required.
+
+If no catalogue is associated with the family, Flow reports that no type catalogue was found.
+
+---
+
+## When Not to Use Conform
+
+Conform is not a family-to-catalogue synchronisation tool.
+
+It does not:
+
+* rebuild a catalogue from the family;
+* add family parameters that are missing from the catalogue;
+* determine that a catalogue parameter should be renamed to a different family parameter;
+* confirm that catalogue values create the intended family geometry.
+
+If the catalogue needs to be rebuilt from the family, use [**Generating Catalogues**](generating-catalogues.md).
 
 ---
 
 ## Related Help
 
-* [**Type Catalog Manager**](index.md)
+* [**Type Catalogue Manager**](index.md)
 * [**Opening and Reviewing Catalogues**](opening-and-reviewing.md)
 * [**Editing Catalogues**](editing-catalogues.md)
 * [**Validation and Inspection**](validation-and-inspection.md)

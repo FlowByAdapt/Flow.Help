@@ -1,18 +1,24 @@
 # Validation and Inspection
 
-Type Catalog Manager automatically checks catalogue structure and values to help identify common problems.
+Type Catalogue Manager automatically checks catalogue structure and values to help identify common problems.
 
 Validation reports problems without changing the catalogue.
 
 ---
 
+## When Validation Runs
+
+Validation runs automatically when a catalogue is opened or generated and is refreshed as catalogue data is changed through the Manager.
+
+You do not need to run a separate validation command.
+
+The **Validation** panel always represents the current catalogue state shown in the Manager.
+
+---
+
 ## Review Validation Results
 
-Open the required catalogue in **Type Catalog Manager**.
-
-The **Validation** panel displays the issues identified in the catalogue.
-
-Each issue includes:
+Each validation issue includes:
 
 * a severity;
 * a description of the problem;
@@ -27,7 +33,9 @@ If no problems are found, the Validation panel reports:
 
 ## Validation Errors
 
-Type Catalog Manager reports an **Error** when it identifies problems including:
+An **Error** identifies a problem that should be corrected before relying on the catalogue.
+
+Typical errors include:
 
 ### Empty Column Headers
 
@@ -37,6 +45,8 @@ A catalogue column does not have a valid header.
 
 The same column header occurs more than once.
 
+Duplicate headers make the intended catalogue structure ambiguous and should be corrected.
+
 ### Duplicate Type Names
 
 Two or more catalogue rows use the same **Type Name**.
@@ -45,18 +55,21 @@ Each affected duplicate Type Name is identified.
 
 !!! warning "Errors require attention"
 
-	Errors indicate structural or identification problems that should be resolved before relying on the catalogue.
+    Errors indicate structural or type-identification problems that should be resolved before the catalogue is treated as complete.
 
 ---
 
 ## Validation Warnings
 
-Type Catalog Manager reports a **Warning** where a catalogue row:
+A **Warning** identifies a condition that requires review but may not always be incorrect.
 
-* does not contain a value for an expected column; or
-* contains an empty value in a catalogue column.
+Typical warnings include:
 
-An empty value may be intentional in some catalogues, so review the affected row before deciding whether a change is required.
+* a row that does not contain a value for an expected column;
+* an empty value in a catalogue column;
+* other incomplete row data that requires user review.
+
+An empty value can be intentional in some catalogue structures, so review the affected row before deciding whether it needs to be changed.
 
 ---
 
@@ -64,11 +77,15 @@ An empty value may be intentional in some catalogues, so review the affected row
 
 Select an item in the **Validation** panel.
 
-Where the issue relates to a particular row, Type Catalog Manager selects and scrolls to that row.
+Where the issue relates to a particular row, Type Catalogue Manager selects and scrolls to that row.
 
 Where a column is also identified, Flow navigates to the affected cell.
 
-This allows validation results to be reviewed directly against the catalogue data.
+This allows validation results to be checked directly against the catalogue data.
+
+<!-- SCREENSHOT: Validation navigation.
+Show a selected Validation item, the corresponding selected grid cell/row,
+and the row information in the Inspector. -->
 
 ---
 
@@ -81,39 +98,54 @@ The Inspector shows:
 1. validation issues associated with the selected row, where present; and
 2. the values contained in each catalogue column for that row.
 
-Use the Inspector when you need to review a type without moving across a wide catalogue grid.
+Use the Inspector when reviewing a wide catalogue or when several issues affect the same type.
 
 ---
 
-## Validation After Editing
+## Correct an Issue
 
-Validation is refreshed when row operations are performed and during other catalogue-management workflows.
+The appropriate correction depends on the problem.
 
-After making corrections, review the Validation panel again to confirm whether the identified issue remains.
+For example:
+
+* give duplicate types unique Type Names;
+* enter a missing value where one is required;
+* correct an invalid or duplicate header;
+* remove a row that should not exist.
+
+For catalogue-structure issues that Flow can resolve safely, use **Conform Catalogue**.
+
+See [**Conforming Catalogues**](conforming-catalogues.md).
 
 ---
 
 ## Validation and Conform Are Different
 
-**Validation** identifies problems.
+**Validation** identifies problems and does not change the catalogue.
 
-**Conform Catalogue** can automatically correct selected structural problems that can be resolved safely.
+**Conform Catalogue** can change the catalogue by applying safe structural corrections.
 
-It does not automatically resolve problems that require a user decision, such as choosing a unique Type Name.
+Conform does not guess values where a user decision is required. For example, it will not invent a missing Type Name or decide how duplicate types should be renamed.
 
-See [**Conforming Catalogues**](conforming-catalogues.md).
+---
 
-!!! info "Review warnings in context"
+## What Validation Does Not Check
 
-	Not every warning necessarily means the catalogue is unusable.
+Validation checks the catalogue itself. It is not a full comparison between the catalogue and the source Revit family.
 
-	Validation highlights conditions that should be reviewed so you can decide whether the value is intentionally blank or requires correction.
+It does not confirm that:
+
+* every catalogue parameter exists in the family;
+* every eligible family parameter has been included;
+* catalogue values create the intended geometry when loaded into Revit.
+
+Where family compatibility is important, test the finished catalogue with the intended family.
 
 ---
 
 ## Related Help
 
-* [**Type Catalog Manager**](index.md)
+* [**Type Catalogue Manager**](index.md)
 * [**Opening and Reviewing Catalogues**](opening-and-reviewing.md)
 * [**Editing Catalogues**](editing-catalogues.md)
 * [**Conforming Catalogues**](conforming-catalogues.md)

@@ -10,13 +10,15 @@ Use it to load approved patterns from the shared library, review patterns alread
 
 On the Revit ribbon:
 
-**Flow → Model → Patterns**
+**ADAPT → Model → Patterns**
 
 Pattern Manager contains three main areas:
 
-- **Pattern Library** — browse and load patterns stored in the shared PAT library.
+- **Library** — browse and load patterns stored in the shared PAT library.
 - **Project Patterns** — review, preview and manage patterns already loaded into the active project.
 - **Tools** — create patterns from a blank definition or selected geometry, and run filled-region utilities.
+
+<!-- SCREENSHOT: Pattern Manager showing the Library, Project Patterns and Tools tabs. Capture immediately after opening the tool. -->
 
 ---
 
@@ -36,7 +38,7 @@ Search and filter project patterns, review their type and library-match status, 
 
 ### Create or Edit a Pattern
 
-Create a blank pattern, duplicate an existing project pattern, or edit its grid and segment definitions.
+Create a blank pattern or duplicate an existing project pattern, then edit its grid and segment definitions.
 
 ➡️ [**Creating and Editing Patterns**](creating-and-editing-patterns.md)
 

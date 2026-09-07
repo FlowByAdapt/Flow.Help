@@ -1,91 +1,64 @@
-# Reviewing Risk Faces
+# Reviewing Risk Results
 
-Use Risk Matrix and the Revit Risk Views to review the Risk Faces and
-model information created by the current workflow.
+After processing the building faces, review the Risk Views and model
+information before relying on the Risk Matrix documentation.
 
-The current version does not yet provide a completed per-face E2
-scoring/results grid.
-
-------------------------------------------------------------------------
-
-## Review the Risk Views
-
-Use **Previous View** and **Next View** in Risk Matrix to move through
-views whose names begin with:
-
-**RISK-**
-
-Review each elevation and check that the building envelope has been
-divided into the intended Risk Faces.
+The current review is a check of **Risk Face mapping and assigned
+information**. Automated completed E2 scoring is not yet part of this
+interface.
 
 ------------------------------------------------------------------------
 
-## Check Face Numbers
+## Review Every Risk View
 
-Each processed face is identified as:
+Use **Previous View** and **Next View** to work through the available
+**RISK-** views.
 
-**Face 1**, **Face 2**, **Face 3** and so on.
+For each view, confirm:
 
-A Risk Face can contain several Revit walls where the walls form one
-coplanar and continuous building face.
+-   all required exterior building faces have been processed;
+-   Risk Face boundaries make sense;
+-   face numbering follows the intended sequence;
+-   colours are consistent with the face numbers;
+-   Risk Face labels are present where expected; and
+-   exposed wall ends are graphically coordinated where required.
 
-Check that:
-
--   walls that should form one face share the same number;
--   genuine breaks or changes of plane have separate numbers;
--   the numbering sequence is sensible; and
--   previously processed faces have not been unintentionally reassigned.
-
-------------------------------------------------------------------------
-
-## Check Face Colours
-
-Each Risk Face is given a distinct colour in the Risk View.
-
-Use the colours to quickly identify which wall segments belong to the
-same Risk Face.
-
-!!! note "Colours identify faces, not risk scores"
-
-    Risk Face colours are graphical identifiers for the face number.
-
-    They do not indicate low, medium or high E2 risk and should not be interpreted as a completed risk result.
+<!-- SCREENSHOT: Completed Risk View showing several Risk Faces, tags and wall-end graphics. -->
 
 ------------------------------------------------------------------------
 
-## Check Risk Face Tags
+## Review Face Grouping
 
-Risk Matrix places the tag:
+A Risk Face may contain multiple Revit walls.
 
-**ADa_TAG_Wall_Risk : Risk Face label**
+Check vertically split or segmented walls carefully to confirm that
+walls forming one continuous building face have been grouped together
+and that genuine changes of plane have not been combined incorrectly.
 
-on a representative wall for each processed Risk Face where the tag can
-be created.
-
-Check that each required face has a clear label and that duplicate or
-obsolete labels have not remained after editing.
+If a face needs to be rebuilt, use the selected-face reset rather than
+manually editing Risk Face parameters.
 
 ------------------------------------------------------------------------
 
-## Check the Assigned Information
+## Review Risk Values
 
-Processed walls receive the Risk Matrix values that were active when
-they were processed.
-
-Where required, review the wall parameters and confirm that the expected
-information has been applied.
+Where required, inspect the wall parameters and confirm the expected
+values have been applied.
 
 Pay particular attention where different building faces require
 different values for:
 
--   Number of Storeys;
--   Roof / Wall;
--   Eave Width;
--   Envelope; or
--   Deck.
+-   **Number of Storeys**
+-   **Roof / Wall**
+-   **Eave Width**
+-   **Envelope**
+-   **Deck**
 
 Wind Zone is sourced from the project-wide **Project Information → Wind
 Zone** value.
+
+Already processed walls are protected from having these stored values
+overwritten merely because they are selected again.
 
 ------------------------------------------------------------------------
 
@@ -95,57 +68,72 @@ Open the **Cladding** tab and review the project-wide configuration.
 
 ### Project Cladding Legend
 
-Shows the coordinated **Cladding 1–4** descriptions for the project. Unused
-slots are shown as **N/A**.
+Confirm that the **Cladding 1--4** descriptions represent the intended
+project claddings. Unused slots should show **N/A**.
 
 ### Wall Types to Include
 
-Check that the exterior wall types required by the Risk Matrix workflow are
-included and that wall types which should not participate are excluded.
+Confirm that required exterior wall types are included and irrelevant
+types are excluded.
 
-Review the cladding description and assigned group for each included wall type.
-Wall types sharing the same description should normally share the same cladding
-group.
+Review the description and assigned group for each included type. Wall
+types sharing the same cladding description should normally share the
+same cladding group.
 
 ### Wall Type Cladding Mapping
 
-Review the resulting relationship between Revit wall types and the coordinated
-project cladding descriptions. This mapping is used automatically when Risk
-Faces are processed.
+Check the resulting relationship between Revit wall types and
+coordinated project cladding descriptions.
 
 ### Project Cladding Health
 
-Review **Project Cladding Health** for configuration that still requires
-attention. Resolve unexpected descriptions or group assignments before relying
-on the coordinated cladding information in project documentation.
+Resolve unexpected descriptions or group assignments before relying on
+the cladding information in project documentation.
 
-The current implementation supports a maximum of **four unique coordinated
+The current workflow supports a maximum of **four unique coordinated
 cladding descriptions**.
 
 !!! info "Cladding setup is persistent"
 
     Included wall types, edited descriptions and group selections are stored with the Revit project and restored when Risk Matrix is reopened.
 
+------------------------------------------------------------------------
+
 ## Correcting a Face
 
-Use the appropriate correction workflow rather than rebuilding the
-entire Risk Matrix where possible.
+Use the correction workflow that matches the problem.
 
 **Copy Face**\
-Use when a wall should inherit an existing Risk Face assignment and Risk
-Matrix/cladding data.
+Use when one or more walls should genuinely inherit an existing Risk
+Face assignment and its Risk Matrix/cladding data.
 
 **Match Wall End**\
-Use when only the displayed Risk Face colour needs to continue onto
-another wall.
+Use when only the displayed Risk Face graphics need to continue onto an
+exposed wall end.
 
-**Reset selected face**\
-Use the face-reset workflow when an existing Risk Face needs to be
-cleared and recreated. Remaining faces are renumbered to close the gap.
+**Reset Selected Face**\
+Use when one Risk Face needs to be cleared and recreated. The
+project-wide cladding setup is preserved.
 
 **Reset Risk Matrix**\
-Use only when the project-wide Risk Matrix information needs to be
-cleared.
+Use only when the complete project Risk Matrix information needs to be
+cleared. A full reset also clears the saved cladding setup.
+
+------------------------------------------------------------------------
+
+## Reprocessing a Reset Face
+
+When a previously reset face is selected again, Flow may recognise its
+former number.
+
+If the **Risk Face Number** dialog appears, decide whether to:
+
+-   use **Next Available**;
+-   **Restore Original**; or
+-   **Choose Number...**
+
+Restoring or inserting a number can shift later Risk Faces to maintain a
+coordinated sequence.
 
 ------------------------------------------------------------------------
 
@@ -155,19 +143,19 @@ Automated E2 face scoring is not currently part of this Risk Matrix
 interface.
 
 The present review workflow verifies the Risk Face geometry, numbering,
-tags, colours, project values and cladding coordination that support the
-assessment documentation.
+tags, colours, assigned project values and cladding coordination that
+support the assessment documentation.
 
 !!! info "Future scoring workflow"
 
-    A later Risk Matrix development stage is intended to provide face-specific suggested values, user confirmation and calculated risk results.
+    A later development stage is intended to provide face-specific suggestions, architect confirmation and calculated risk results.
 
 ------------------------------------------------------------------------
 
 ## Related Help
 
--   [Risk Matrix](index.md)
--   [Identifying Risk Faces](identifying-risk-faces.md)
--   [Assigning Risk Information](assigning-risk-information.md)
--   [Risk Documentation](risk-documentation.md)
--   [Troubleshooting](troubleshooting.md)
+-   [**Risk Matrix**](index.md)
+-   [**Identifying Risk Faces**](identifying-risk-faces.md)
+-   [**Assigning Risk Information**](assigning-risk-information.md)
+-   [**Risk Documentation**](risk-documentation.md)
+-   [**Troubleshooting**](troubleshooting.md)

@@ -1,78 +1,120 @@
 # Recovering Windows
 
-Use **Recover Windows** when a Revit or Flow window has opened outside the visible desktop.
+Use Workspace recovery when a Revit or Flow window has opened outside the visible desktop.
 
-This can happen after:
+This commonly happens after changing monitor arrangements or disconnecting a display that was previously being used.
 
-- Disconnecting a monitor
-- Changing monitor arrangements
-- Moving between office, home and laptop setups
-- Changing display settings
-
-!!! tip "No saved workspace required"
-
-    Recover Windows does not require a workspace to have been saved previously.
-
-    Flow detects supported windows that are outside the visible desktop and
-    brings them back onto screen.
+Recovery does **not** require a saved workspace.
 
 ---
 
-## Recover Off-Screen Windows
+## When to Use Recovery
 
-The quickest way to recover off-screen windows is from **Flow Hub**.
+Use recovery when:
 
-1. Open **Flow Hub**.
-2. Find the **Workspace** section.
-3. Click **Recover Windows**.
-4. Flow detects off-screen windows and returns them to the visible desktop.
+- a window is open but cannot be seen;
+- a window opens on a monitor that is no longer connected;
+- the monitor arrangement has changed;
+- a floating Revit or Flow window is outside the current desktop; or
+- you need to bring one or more off-screen windows back into view.
+
+Recovery is different from **Restore Workspace**.
+
+A workspace restore tries to recreate a saved arrangement.
+
+Recovery simply brings inaccessible windows back onto the current visible desktop.
 
 ---
 
-## Recover a Specific Window
+## Recover a Selected Window
 
-Workspace also allows an individual window to be recovered when you do not want to recover every off-screen window.
+Use selected-window recovery when you know which window is missing.
 
 1. Open **Flow → Workspace → Workspace**.
-2. Find the window that needs to be recovered.
-3. Select the window.
-4. Click **Recover**.
+2. Select the required window in the Workspace window list.
+3. Select **Recover**.
+4. Flow checks whether the window can be moved.
+5. If it is off-screen, Flow brings it back onto the visible desktop.
 
-The selected window is moved back onto the visible desktop.
+<!-- SCREENSHOT: Workspace individual-window recovery.
+Show a window selected in the Workspace window list with Recover and Recover All visible. -->
+
+If the selected window is already visible, Flow reports that it is already on-screen rather than moving it unnecessarily.
 
 ---
 
 ## Recover All Windows
 
-If several windows are off-screen, use **Recover All** to return all detected off-screen windows to the visible desktop.
+Use **Recover All** when you are not sure which window is missing or several windows may be off-screen.
 
-!!! note "Nothing to recover?"
+1. Open **Flow → Workspace → Workspace**.
+2. Select **Recover All**.
+3. Flow inspects the current supported windows.
+4. Off-screen windows are moved back onto the visible desktop.
 
-    If all supported windows are already within the visible desktop, Recover
-    Windows may have nothing to move.
+If no off-screen windows are found, Flow reports:
+
+**No off-screen windows were found.**
 
 ---
 
-## Restore or Recover?
+## Recover from Flow Hub
 
-**Recover Windows** only deals with windows that are outside the visible desktop.
+Flow Hub also provides:
 
-It does not recreate a saved workspace arrangement.
+**Workspace → Recover**
 
-!!! info "Want your saved layout back?"
+The Hub recovery action uses the shared all-window recovery workflow.
 
-    Use **Restore Workspace** when you want to return Revit and Flow to a
-    deliberately saved working arrangement.
+Use the full Workspace window when you want to inspect the available windows or recover a specific selected window.
 
-    Use **Recover Windows** when you simply need to bring a lost or off-screen
-    window back into view.
+See [**Flow Hub Workspace Controls**](../flow-hub/workspace-controls.md).
 
-[Restoring a Workspace →](restoring-a-workspace.md)
+---
+
+## Recovery Does Not Restore a Layout
+
+Recovery does not:
+
+- select a saved workspace;
+- require matching monitor topology;
+- reopen a complete saved arrangement; or
+- return every window to previously saved coordinates.
+
+Its purpose is simply to make off-screen windows accessible again.
+
+If you want to recreate a known saved arrangement, use [**Restoring a Workspace**](restoring-a-workspace.md).
+
+---
+
+## A Selected Window Cannot Be Recovered
+
+If Flow cannot move the selected window:
+
+1. refresh or reopen the Workspace window;
+2. confirm that the window still exists;
+3. try **Recover All**;
+4. complete any modal Revit dialog that may currently be active; and
+5. restart Revit if the native window is no longer responding correctly.
+
+---
+
+## After Changing Monitor Arrangements
+
+If you have intentionally changed your normal monitor setup:
+
+1. use **Recover All** to bring inaccessible windows onto the current desktop;
+2. arrange the windows for the new setup; and
+3. save a new workspace for that monitor arrangement.
+
+This provides a clean layout to restore the next time you use the same setup.
 
 ---
 
 ## Related Help
 
-- [Workspace](index.md)
-- [Restoring a Workspace](restoring-a-workspace.md)
-- [Saving a Workspace](saving-a-workspace.md)
+- [**Workspace**](index.md)
+- [**Saving a Workspace**](saving-a-workspace.md)
+- [**Restoring a Workspace**](restoring-a-workspace.md)
+- [**Managing Saved Workspaces**](managing-saved-workspaces.md)
+- [**Flow Hub**](../flow-hub/index.md)

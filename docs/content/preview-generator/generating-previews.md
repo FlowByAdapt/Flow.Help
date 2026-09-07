@@ -2,7 +2,7 @@
 
 Use **Preview Generator** to create consistent preview images for supported Revit content.
 
-Preview Generator processes a selected content folder, creates missing preview images and stores each generated PNG alongside its source file.
+Preview Generator searches a selected folder, creates missing previews and saves each generated PNG beside its source Revit file.
 
 ---
 
@@ -22,37 +22,54 @@ Select the folder containing the Revit content you want to process.
 
 Preview Generator searches:
 
-* The selected folder.
-* All subfolders within the selected folder.
+- The selected folder.
+- Every subfolder beneath the selected folder.
 
-Supported content includes:
+Supported files are:
 
-* Revit family files (`.rfa`).
-* Extracted drafting-view container files (`.rvt`).
+- Revit family files (`.rfa`).
+- Revit project files (`.rvt`) containing drafting views.
 
-Select the folder and confirm the selection to begin processing.
+Other file types are ignored.
+
+Select the required folder and confirm the selection to begin processing.
 
 !!! tip "Process a complete content library"
 
-	You can select a folder containing multiple content folders.
+    You can select a folder containing multiple content categories.
 
-	Preview Generator searches through the complete folder structure and automatically finds supported content.
+    Preview Generator searches the complete folder structure and automatically
+    finds supported Revit files.
 
 ---
 
 ## Existing Preview Images
 
-Before processing each file, Preview Generator checks whether a corresponding PNG preview already exists.
+Before processing each supported file, Preview Generator checks whether a corresponding PNG already exists.
 
-If a preview already exists, the file is **skipped**.
+The expected PNG must:
 
-This allows you to run Preview Generator against an existing content library to create missing previews without regenerating previews that are already present.
+- Be located beside the source Revit file.
+- Use the same base filename as the source file.
+
+For example:
+
+```text
+ADa_Window.rfa
+ADa_Window.png
+```
+
+If the corresponding PNG exists, the Revit file is **skipped** without being opened.
+
+Flow checks only whether the expected PNG filename exists. It does not check the age or contents of the existing image.
 
 !!! info "Existing previews are preserved"
 
-	Preview Generator does not replace existing preview images during normal batch processing.
+    Preview Generator does not replace existing preview images during normal
+    folder processing.
 
-	To regenerate a preview, remove the existing PNG before running Preview Generator again.
+    To regenerate a preview, move, rename or remove the existing PNG before
+    running Preview Generator again.
 
 ---
 
@@ -62,39 +79,58 @@ Preview generation starts automatically after the content folder is selected.
 
 A progress window shows:
 
-* The content currently being processed.
-* Overall batch progress.
-* Progress for the current item.
+- The file currently being processed.
+- Overall batch progress.
+- Progress for the current file.
+- A control for cancelling the batch.
 
 Preview Generator processes each supported file in turn.
-
-You can cancel the batch from the progress window if required.
 
 ---
 
 ## Family Previews
 
-For Revit family files (`.rfa`), Preview Generator opens the family and automatically prepares a standardised 3D preview.
+For a Revit family file (`.rfa`), Flow:
 
-Flow manages the preview configuration, visibility and framing automatically before exporting the image.
+1. Opens the family document.
+2. Reads the applicable preview profile.
+3. Creates or prepares the preview view.
+4. Configures preview visibility.
+5. Frames the family content.
+6. Exports the preview as a PNG.
+7. Closes the family without saving it.
 
 No preview settings need to be configured manually.
 
 !!! info "The source family is not saved"
 
-	Preview Generator may temporarily configure the family document to create a consistent preview.
+    Flow may temporarily change the family document to prepare a consistent
+    preview.
 
-	The family is closed without saving these changes after the preview has been generated.
+    The family is closed without saving those changes after the image has
+    been generated.
+
+If a file with an `.rfa` extension is not a valid Revit family document, the preview is reported as failed.
 
 ---
 
 ## Drafting View Previews
 
-Extracted drafting-view container files (`.rvt`) are processed differently from families.
+Revit project files (`.rvt`) are processed as drafting-view content containers.
 
-Preview Generator locates the drafting view within the container and exports it as the preview image.
+Flow opens the file and finds its first non-template drafting view in alphabetical order. That view is then exported as the preview image.
 
-If the RVT file does not contain a suitable drafting view, that file cannot produce a drafting-view preview and is reported as failed.
+If the RVT does not contain a non-template drafting view, it cannot produce a drafting-view preview and is reported as failed.
+
+!!! note "Use one drafting view per content container"
+
+    Extracted drafting-view files are intended to contain one reusable
+    drafting view.
+
+    If an RVT contains several drafting views, Preview Generator uses the
+    first non-template drafting view in alphabetical order.
+
+Use [Drafting View Extractor](../index.md) to create suitable drafting-view content files.
 
 ---
 
@@ -102,7 +138,7 @@ If the RVT file does not contain a suitable drafting view, that file cannot prod
 
 Each generated preview is saved as a PNG in the same folder as its source Revit file.
 
-The preview uses the same base filename as the source content.
+The PNG uses the same base filename as the source content.
 
 For example:
 
@@ -111,42 +147,71 @@ ADa_Window.rfa
 ADa_Window.png
 ```
 
-and:
+For drafting-view content:
 
 ```text
 4202_WBD__Beam Penetration.rvt
 4202_WBD__Beam Penetration.png
 ```
 
-This naming allows other Flow tools, including **Content Browser**, to associate the preview automatically with its Revit content.
+This naming convention allows other Flow tools, including **Content Browser**, to associate the preview with its Revit content automatically.
 
 ---
 
-## Processing Results
+## Review the Results
 
-Preview Generator continues processing the remaining content if an individual file cannot generate a preview.
+When processing finishes, Flow displays:
 
-When processing finishes, Flow displays a summary showing:
+- **Processed** — the total number of supported items found in the batch, including skipped items.
+- **Succeeded** — previews generated successfully.
+- **Skipped** — items for which the expected PNG already existed.
+- **Failed** — items that could not generate a preview.
+- **Cancelled** — whether the batch was cancelled.
 
-* **Processed**
-* **Succeeded**
-* **Skipped**
-* **Failed**
-* **Cancelled**
+If no supported content is found, the summary displays zero for each count.
 
-A failed item therefore does not normally prevent other content in the selected folder from being processed.
+Preview Generator records failures separately and continues processing the remaining content wherever possible.
 
-!!! tip "Skipped files are usually expected"
+!!! note "The summary displays counts"
 
-	A skipped file normally means that its preview PNG already exists.
+    The completion message reports the number of failed items but does not
+    list their filenames or individual error messages.
 
-	If you expected the preview to be regenerated, remove the existing PNG and run Preview Generator again.
+    If a file fails, try processing a smaller folder or opening the source
+    file manually to identify the affected content.
+
+---
+
+## Cancel Preview Generation
+
+Select the cancel control in the progress window if you need to stop the batch.
+
+Cancellation is checked before the next file is processed. The current operation may therefore need to finish before the batch stops.
+
+Previews generated before cancellation remain available.
+
+The completion summary displays:
+
+```text
+Cancelled: True
+```
+
+---
+
+## Expected Result
+
+After a successful run:
+
+- Each newly processed source file has a same-named PNG beside it.
+- Existing preview PNGs remain unchanged.
+- Source Revit files remain unsaved and unchanged by the preview workflow.
+- Failed files do not normally prevent other files from being processed.
 
 ---
 
 ## Related Help
 
-* [Preview Generator](index.md)
-* [Troubleshooting](troubleshooting.md)
-* [Content Browser](../content-browser/index.md)
-* [**Drafting View Extractor**](../index.md)
+- [Preview Generator](index.md)
+- [Troubleshooting](troubleshooting.md)
+- [Content Browser](../content-browser/index.md)
+- [Drafting View Extractor](../index.md)

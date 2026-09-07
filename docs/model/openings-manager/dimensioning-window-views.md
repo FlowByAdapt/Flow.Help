@@ -1,176 +1,200 @@
 # Dimensioning Window Views
 
-Use **Dimension Window Views** to create or regenerate the standard
-dimensions on component window elevations.
+Use **Dimension Window Views** to create or regenerate the standard dimensions on component Window elevations.
 
-The command can process the active window view or all recognised window
-views.
+The command can process the active Window view or batch-process recognised New Window views.
 
-------------------------------------------------------------------------
+Curtain Wall elevations are not dimensioned by this workflow.
+
+---
 
 ## Choose the Scope
 
-Run **Dimension Window Views** and choose:
+From Openings Manager, click **Dimension Window Views**.
 
--   **Active Window View**
--   **All Window Views**
+Choose:
 
-Use **Active Window View** when working on one elevation.
+- **Active Window View**
+- **All Window Views**
 
-Use **All Window Views** to batch-process the recognised window
-elevations.
+Use **Active Window View** when working on one Window elevation.
 
-------------------------------------------------------------------------
+Use **All Window Views** to process the recognised Window elevations throughout the project.
 
-## Which Views Are Processed?
+!!! note "Register checkboxes are not used"
 
-For batch dimensioning, Flow looks for section views using the standard
-New window naming pattern:
+    Dimension Window Views does not use the Checked / Filtered / All scope from the Opening Register.
 
-``` text
+    Its scope is based on the active view or the recognised Window elevation views.
+
+<!-- SCREENSHOT: Dimension Window Views chooser showing Active Window View and All Window Views. -->
+
+---
+
+## All Window Views
+
+For the batch operation, Flow looks for Revit section views whose names match the standard New Window convention:
+
+```text
 W##
 ```
 
 For example:
 
-``` text
+```text
 W01
 W02
 W03
 ```
 
-Existing `Wx##` views are not included in the batch operation.
+Existing Window views using:
 
-------------------------------------------------------------------------
+```text
+Wx##
+```
+
+are not included in the batch scan.
+
+This means **All Window Views** is specifically aimed at the standard New component Window elevation set.
+
+---
+
+## Active Window View
+
+Use **Active Window View** when you only want to regenerate the dimensions on the elevation currently open in Revit.
+
+Flow attempts to resolve a Window family instance from that view before dimensioning it.
+
+If no suitable Window can be found, the view is not dimensioned.
+
+---
 
 ## Curtain Wall Views
 
-Curtain wall elevations also use `W##` marks, so they may be encountered
-during the batch scan.
+New Curtain Wall elevations can also use W## names because Curtain Walls share the Window opening-mark sequence.
 
-Flow checks whether the view contains a genuine Revit Window family
-instance.
+They can therefore be encountered during the **All Window Views** scan.
 
-If no Window family instance can be resolved, the view is skipped and
-can be reported as:
+Flow then checks the view for a genuine Revit Window family instance.
 
-``` text
+If no Window instance can be resolved, the view is skipped.
+
+A batch result can identify this as:
+
+```text
 No window found (likely curtain wall view)
 ```
 
-This is an expected skip rather than a failed curtain wall dimensioning
-operation.
-
-!!! info "Curtain walls are not dimensioned by this command"
+!!! info "Curtain Walls are intentionally skipped"
 
     Dimension Window Views is designed for component Window families.
 
-    Curtain wall elevations can share the same W-style view naming convention, but they are not dimensioned by this workflow.
+    A W## Curtain Wall elevation appearing in the batch scan is an expected candidate, but it is not dimensioned by this command.
 
-------------------------------------------------------------------------
+---
 
-## Required Family References
+## How Flow Finds Dimension References
 
-To create the complete standard dimension set, Flow looks for named
-references in the Window family:
+The dimensioning workflow resolves Revit references from the Window family geometry.
 
--   **Left**
--   **Right**
--   **Sill**
--   **Head**
--   **FFL**
+It looks for the references required to establish the standard Window dimension strings rather than placing dimensions from arbitrary points in the elevation.
 
-These references allow Flow to build the required dimension strings
-consistently.
+The exact result therefore depends on the Window family exposing suitable references that Flow can resolve.
 
-------------------------------------------------------------------------
+If the required references cannot be found, Flow cannot reliably create the standard dimension set for that view.
 
-## Dimensions Created
+---
 
-When the required references are available, Flow creates:
+## Standard Dimensions
 
--   Width
--   Height
--   Sill
--   Overall Height
+For a successfully resolved component Window elevation, Flow creates the standard Window documentation dimensions supported by the available references.
 
-If a usable **FFL** reference is not available, Flow can still create
-the Width and Height dimensions.
+These include the opening's principal horizontal and vertical dimensions and the level-related dimensioning required by the Flow Window elevation standard.
 
-------------------------------------------------------------------------
+<!-- SCREENSHOT: Completed W## component Window elevation showing the standard regenerated dimension set. -->
 
-## Existing Dimensions
+---
 
-Before creating the standard dimensions, Flow removes the existing
-dimensions from the opening view.
+## Existing Dimensions Are Regenerated
 
-The command therefore acts as a **regenerate dimensions** operation
-rather than simply adding another set of dimensions.
+Dimension Window Views is a **regeneration** workflow, not an append workflow.
 
-!!! warning "Existing dimensions are replaced"
+For a Window elevation that is successfully processed, the existing dimensions in that view are removed and the Flow standard dimensions are created again.
 
-    Dimension Window Views removes the existing dimensions in the processed window elevation before creating the Flow standard dimensions.
+!!! warning "Review manually customised dimensions first"
 
-    Review manually customised dimensions before running the command.
+    Existing dimensions in a successfully processed Window elevation are replaced.
 
-------------------------------------------------------------------------
+    If a view contains manually customised dimensioning that must be retained, review it before running Dimension Window Views.
 
-## Missing References
+This behaviour is useful when the Window geometry or documentation setup has changed and the complete standard dimension set needs to be rebuilt.
 
-If the Window family does not provide the required Left/Right or
-Sill/Head references, Flow cannot create the standard dimension set.
+---
 
-If a requested dimension fails during creation, the operation for that
-view is rolled back rather than leaving a partially regenerated
-dimension set.
+## If Dimensioning Cannot Be Completed
 
-------------------------------------------------------------------------
+Flow does not deliberately leave a successfully processed view with a random partial set of new dimensions.
+
+If the required Window or dimension references cannot be resolved, the view can be skipped or reported as failed depending on where the operation could not continue.
+
+Typical causes include:
+
+- the view is actually a Curtain Wall elevation
+- no component Window can be resolved in the view
+- the Window family does not expose the references needed by the dimensioning workflow
+- the view does not meet the expected Window elevation conditions
+
+---
 
 ## Batch Results
 
-When processing all window views, the completion summary can report:
+When **All Window Views** is used, Flow summarises the batch outcome.
 
--   Views Checked
--   Dimensioned
--   Skipped
--   Failed
+The result distinguishes successfully dimensioned views from views that were skipped or failed.
 
-Skipped curtain wall candidates and genuine dimensioning failures are
-reported separately where applicable.
+This is useful because a W## batch can legitimately contain Curtain Wall views that should be skipped rather than treated as dimensioning failures.
 
-------------------------------------------------------------------------
+Review the result before moving on to sheet placement.
+
+---
 
 ## Recommended Workflow
 
-For a new set of window elevations:
+For a new Window documentation set:
 
-1.  Standardise the opening marks.
-2.  Generate the opening views.
-3.  Conform the views if required.
-4.  Run **Dimension Window Views**.
-5.  Review the resulting dimensions.
-6.  Place the views on the opening sheets.
+1. Resolve the opening marks.
+2. Generate the Window elevations.
+3. Conform existing elevations where required.
+4. Run **Dimension Window Views**.
+5. Review the regenerated dimensions.
+6. Place the opening views on sheets.
 
-------------------------------------------------------------------------
+➡️ [**Generating Opening Views**](generating-opening-views.md)
+
+➡️ [**Conforming Opening Views**](conforming-opening-views.md)
+
+➡️ [**Placing Views on Sheets**](placing-views-on-sheets.md)
+
+---
 
 ## If a Window View Is Skipped
 
 Check that:
 
--   the view follows the expected `W##` naming convention
--   the view represents a component Window rather than a curtain wall
--   the Window family provides the required named references
--   the opening can be resolved from the current view
+- the view represents a component Revit Window rather than a Curtain Wall
+- a suitable Window family instance can be resolved in the elevation
+- the Window family exposes the references required by the dimensioning workflow
+- for **All Window Views**, the view uses the expected `W##` naming convention
 
-For further checks:
+If the view already exists but its broader setup is incorrect, run **Conform Views** before retrying dimensioning.
 
 ➡️ [**Openings Manager Troubleshooting**](troubleshooting.md)
 
-------------------------------------------------------------------------
+---
 
 ## Related Help
 
--   [**Opening Views**](opening-views.md)
--   [**Generating Opening Views**](generating-opening-views.md)
--   [**Conforming Opening Views**](conforming-opening-views.md)
--   [**Placing Opening Views on Sheets**](placing-views-on-sheets.md)
+- [**Generating Opening Views**](generating-opening-views.md)
+- [**Conforming Opening Views**](conforming-opening-views.md)
+- [**Placing Views on Sheets**](placing-views-on-sheets.md)
+- [**Openings Manager Troubleshooting**](troubleshooting.md)

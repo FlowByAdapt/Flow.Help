@@ -6,7 +6,7 @@ Use Content Browser to find approved Revit content by searching the indexed libr
 
 ## Open Content Browser
 
-Open:
+On the Revit ribbon:
 
 **Flow → Content → Browser**
 
@@ -16,132 +16,127 @@ Open:
 
 Search filters the displayed content as you type.
 
-1. Open **Content Browser**.
-2. Click in the **Search** field.
-3. Enter a recognisable part of the content name or description.
-4. Review the matching items.
-5. Select an item to review its preview and information.
+1. Click in **Search content...**.
+2. Enter a recognisable part of the content name, category, kind, type or indexed path.
+3. Review the matching items.
+4. Select an item to inspect its preview and information.
 
-You do not need to enter the complete family name.
+You do not need to enter the complete family name. Results beginning with the search text are ranked first.
 
-!!! tip "Start with the recognisable part"
+When a search is entered while the initial **Architecture | Windows** category is selected, Content Browser changes the category to **All Categories** automatically.
 
-    A short, distinctive part of the content name is usually enough. Add more text if the search returns too many results.
+!!! tip "Start with a distinctive term"
 
-When a search is entered while the default **Architecture | Windows** category is selected, Content Browser automatically changes the category to **All Categories** so the search is not unnecessarily restricted.
+    A short, recognisable part of the content name is usually enough. Add more text if too many results remain.
 
 ---
 
 ## Filter by Category
-
-Use the category list when you know the general type of content required.
 
 1. Open the **Category** list.
 2. Select the required category.
 3. Review the filtered content.
 4. Select **All Categories** to remove the category restriction.
 
-Categories are generated from the indexed Flow content library and may include grouped labels such as:
-
-**Architecture | Windows**
-
-The available categories depend on the content in the current library.
+Categories are generated from the content that passes the current indexing and classification rules. Grouped labels can appear as **Primary Category | Browser Category**, for example **Architecture | Windows**.
 
 ---
 
 ## Filter by Project Status
 
-The **Project Status** filter compares indexed family content with the active Revit project.
-
-Available filters are:
+The **Project Status** filter compares indexed family names with families in the active Revit document.
 
 | Filter | Shows |
 | --- | --- |
 | **All** | All content matching the other active filters |
-| **Loaded** | Families already loaded into the active project |
-| **Not Loaded** | Families not currently loaded into the active project |
-| **In Use** | Loaded families with one or more placed instances |
-| **Unused** | Loaded families with no placed instances |
+| **Loaded** | Families with one or more loaded types |
+| **Not Loaded** | Families not detected in the active document |
+| **In Use** | Loaded families with one or more detected family instances |
+| **Unused** | Loaded families with no detected family instances |
 
-!!! info "Project status relates to the active project"
+!!! info "Status follows the active document"
 
-    If you change the active Revit project, the loaded and usage status may be different.
+    If you change the active Revit document, its loaded and usage status may differ. Status matching is based on the family name.
 
 ---
 
 ## Show Favourites
 
-Use favourites for content you return to regularly.
-
-To mark an item as a favourite:
-
-1. Select the required content.
+1. Select the required item.
 2. Click **Favourite**.
+3. Turn on **Favourites** to restrict the list to saved favourites.
 
-You can also use the star shown with favourite content to recognise it in the results.
+A star identifies favourite content. Click **Favourite** again to remove the selected item from favourites.
 
-Turn on **Favourites** to restrict the results to favourite items.
-
-To remove an item from favourites, select it and click **Favourite** again.
+Favourites are saved for the current Windows user and are not stored in the Revit project.
 
 ---
 
 ## Show Recent Content
 
-Content Browser records recently loaded content.
+Turn on **Recent** to restrict the list to content recorded as recently loaded. Recent items are also labelled in the content list.
 
-Turn on **Recent** to restrict the results to recent items.
+Flow stores up to 20 recent items for the current Windows user.
 
-Recent content is also identified in the content list.
+!!! note "Recent content and batch loading"
 
-The recent list keeps the most recent items rather than becoming an unlimited history.
+    A batch or queued load may not mark every successfully loaded item as recent. Use project status to confirm what is loaded.
 
 ---
 
 ## Combine Filters
 
-Search and filters can be used together.
+Search and filters work together. You can, for example:
 
-For example, you can:
+- show only loaded window families;
+- search within favourites;
+- show unused content within a category; or
+- turn on both **Favourites** and **Recent** to show items belonging to either group.
 
-- show only **Loaded** window families;
-- search within **Favourites**;
-- show **Unused** content within a selected category;
-- combine **Favourites** and **Recent** to show items belonging to either group.
+If nothing appears, remove one filter at a time to identify the restriction excluding the item.
 
-If no content appears, remove one filter at a time to identify which restriction is excluding the item.
+<!-- SCREENSHOT: Combined filters.
+Show search, category, project status and Favourites or Recent applied to a realistic result list. -->
 
 ---
 
 ## Review Selected Content
 
-Select an item to review the information shown in the Browser.
-
-Depending on the content, this can include:
+Depending on the item, the Browser can show:
 
 - preview image;
-- display name;
-- source file name;
-- source location;
-- content type;
-- family kind;
+- display and source filename;
+- shortened source location;
+- content type and family kind;
 - project status;
-- source and resolved content paths;
-- load readiness;
-- local mirror/cache information;
-- type-catalogue availability and validation information.
+- source, resolved and active load paths;
+- load readiness and validation;
+- local mirror availability; and
+- type-catalogue paths, source and validation.
 
-!!! info "Preview availability"
+!!! info "A preview is optional"
 
-    A preview image is shown where one is available. A missing preview does not necessarily mean that the source content is unavailable.
+    A missing preview does not necessarily mean that the source content is unavailable.
+
+---
+
+## Content Still Does Not Appear
+
+Use **Rebuild Index** after library content changes. If the file still does not appear, it may be in an excluded folder, use an unsupported classification or fail the current naming rules.
+
+See [**Troubleshooting**](troubleshooting.md#recently-added-library-content-is-missing).
 
 ---
 
 ## Next Step
 
-Once you have found the required content, continue to [**Loading Content**](loading-content.md).
+Continue to [**Loading Content**](loading-content.md), or see [**Content Actions**](content-actions.md) for the selected item's right-click menu.
 
-For the actions available when you right-click an item, see [**Content Actions**](content-actions.md).
+---
+
+## Getting Help
+
+Hover over **Browser** on the Flow ribbon and press **F1** to open the Content Browser help.
 
 ---
 

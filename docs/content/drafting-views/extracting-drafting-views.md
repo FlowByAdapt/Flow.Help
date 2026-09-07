@@ -1,8 +1,6 @@
 # Extracting Drafting Views
 
-Use **Drafting View Extractor** to process drafting views contained within one or more Revit library files.
-
-Flow reviews the selected files, identifies their drafting views and shows what will be created, updated or skipped before extraction begins.
+Use **Drafting View Extractor** to create or update individually managed library files from drafting views in one or more source RVT containers.
 
 ---
 
@@ -16,152 +14,142 @@ On the Revit ribbon:
 
 ## Select the Source Files
 
-Start by selecting the Revit files containing the drafting views you want to extract.
-
 1. Open **Drafting View Extractor**.
 2. Select one or more source `.rvt` files.
 3. Click **Open**.
-4. Allow Flow to review the selected files.
+4. Allow Flow to scan the selected files.
 
-Multiple source files can be processed in the same extraction run.
+The picker also offers **All files**, but the extraction workflow is intended for Revit project files inside the current version-specific Flow library.
 
-!!! info "Drafting views are found automatically"
+Flow opens each selected source during scanning and collects its non-template drafting views automatically. Other view types and drafting-view templates are ignored.
 
-	Flow finds the drafting views within each selected source file.
-
-	Drafting view templates are ignored and do not form part of the extraction.
+<!-- SCREENSHOT: Source selection.
+Show multiple RVT container files selected in the file picker. -->
 
 ---
 
 ## Review the Drafting Views
 
-Before making any changes, Flow shows a preview of the drafting views found across the selected files.
+Flow reports the total number of drafting views found and lists up to the first 50 in the confirmation dialogue.
 
-Each drafting view is given one of the following statuses:
+| Status | What will happen in normal mode |
+| --- | --- |
+| **[MISSING]** | No extracted RVT exists, so it will be created |
+| **[EXISTS - OLD]** | The existing RVT is more than seven days old and will be replaced |
+| **[EXISTS - RECENT]** | The existing RVT is seven days old or less and will be skipped |
 
-| Status                | What will happen                                                                   |
-| --------------------- | ---------------------------------------------------------------------------------- |
-| **[MISSING]**         | The extracted drafting-view file does not exist and will be created.               |
-| **[EXISTS - OLD]**    | An existing extracted file is more than seven days old and will be updated.        |
-| **[EXISTS - RECENT]** | An existing extracted file is seven days old or less and will normally be skipped. |
+The preview includes non-template drafting views even when they are empty. An empty view can appear in the list but fail later because it contains no drawable elements.
 
-!!! tip "Use the normal extraction for routine updates"
-
-	**Extract Missing / Old Only** creates missing content and updates older
-	content while leaving recently extracted files unchanged.
-
-	This is the recommended option for normal library maintenance.
+<!-- SCREENSHOT: Extraction confirmation.
+Show Missing, Old and Recent entries together with all three action buttons. -->
 
 ---
 
 ## Choose the Extraction Mode
 
-After reviewing the preview, choose how Flow should proceed.
-
 ### Extract Missing / Old Only
 
-Select **Extract Missing / Old Only** for the normal extraction workflow.
-
-Flow will:
-
-* Create missing drafting-view files.
-* Update existing drafting-view files that are more than seven days old.
-* Skip recently created or updated drafting-view files.
+Use this for routine library maintenance. Flow creates missing output, replaces output older than seven days and skips recent RVTs.
 
 ### Force Extract All
 
-Select **Force Extract All** when every drafting view from the selected source files needs to be regenerated.
+Use this when every output RVT should be regenerated regardless of age.
 
-!!! note "Force Extract All ignores the recent-file check"
+!!! note "Existing previews are not forced"
 
-	Existing extracted files are regenerated even when they were created or
-	updated within the last seven days.
-
-	Use this when you specifically need to refresh all of the selected content.
+    **Force Extract All** forces RVT replacement, but the automatic preview stage still skips an existing PNG. Remove or separately regenerate a stale preview when required.
 
 ### Cancel
 
-Select **Cancel** to leave the extraction without processing the drafting views.
+Select **Cancel** to close the confirmation without extracting content.
 
 ---
 
-## Extraction
+## Extraction Stage
 
-Once extraction begins, Flow processes the drafting views automatically.
+Flow reopens each source file and processes its drafting views alphabetically.
 
-For each drafting view, Flow:
+For each view, Flow attempts to:
 
-1. Creates an individual Revit file using the configured drafting-view template.
-2. Copies the drafting-view content into the new file.
-3. Retains the drafting view's name, scale and detail level.
-4. Removes unused content from the extracted file.
-5. Saves the resulting RVT into the Flow content library.
+1. determine its mirrored `_draftingviews` output path;
+2. create a new project from the configured drafting-view template;
+3. create a drafting view using the source name, scale and detail level;
+4. copy the source view's drawable elements;
+5. retain destination types when duplicate type names are encountered;
+6. repeatedly purge unused elements;
+7. replace any existing output selected for update; and
+8. save the individual RVT.
 
-The progress window shows the source file and drafting view currently being processed.
+The progress window shows both the current source file and drafting view.
 
-!!! info "Each drafting view becomes reusable content"
+!!! warning "Verify generated RVTs"
 
-	Each extracted drafting view is saved as its own Revit file rather than
-	remaining dependent on the original source file.
+    The current implementation's final drafting-view cleanup is under review. Open and check generated RVTs before treating them as published library content.
 
 ---
 
-## Preview Images
+## Preview-Generation Stage
 
-After the drafting-view files have been processed, Flow automatically starts the second stage of the workflow:
+After extraction, Flow passes successful output paths into preview generation.
 
-**Generating preview images...**
+For each supported output file:
 
-Preview images are generated for the successfully extracted drafting-view files.
+- a missing PNG is generated alongside the RVT;
+- an existing PNG is reported as skipped; and
+- a preview error is recorded separately from the RVT extraction result.
 
-!!! info "Preview generation is automatic"
+The drafting-view preview is exported at 2200 pixels from the alphabetically first non-template drafting view found in the output RVT.
 
-	You do not need to run Preview Generator separately after a normal
-	Drafting View Extractor run.
+---
 
-	Flow passes the successfully extracted files directly into the preview
-	generation workflow.
+## Cancelling Progress
+
+You can cancel from the progress window. Files already created remain in place.
+
+Cancellation is normally checked between source files, drafting views and preview files. The current implementation may still continue into preview generation when cancellation occurs during the final or only source file, so review the displayed progress and results before closing.
 
 ---
 
 ## Review the Results
 
-When processing is complete, Flow displays an extraction summary including:
+The completion dialogue displays:
 
-* **Files processed**
-* **Views found**
-* **Created / Updated**
-* **Skipped**
-* **Failed**
-* **Purged elements**
-* Preview images **Generated**
-* Preview images **Skipped**
-* Preview images **Failed**
+- **Files processed**
+- **Views found**
+- **Created / Updated**
+- **Skipped**
+- **Failed**
+- **Purged elements**
+- preview **Generated**
+- preview **Skipped**
+- preview **Failed**
 
-If individual drafting views could not be extracted, the first errors are also shown in the completion summary.
+Up to the first five per-view extraction errors are included.
+
+!!! note "Review totals with care"
+
+    The current Created/Updated total can omit successful outputs that purged zero elements. A source-level failure may also be shown earlier without appearing in the final Failed count.
 
 ---
 
 ## What Next?
 
-After reviewing the results, choose one of the available actions.
+- **Extract Another File** — reopen the source picker and begin another run.
+- **Open Output Folder** — open the first available extracted-content folder.
+- **Close** — finish the workflow.
 
-### Extract Another File
+**Open Output Folder** requires at least one result containing a valid output path.
 
-Select **Extract Another File** to choose another source file or group of files and start another extraction.
+---
 
-### Open Output Folder
+## Getting Help
 
-Select **Open Output Folder** to open the extracted-content location in File Explorer.
-
-### Close
-
-Select **Close** when the extraction workflow is complete.
+Hover over **Drafting** on the Flow ribbon and press **F1** to open Drafting View Extractor help.
 
 ---
 
 ## Related Help
 
-* [Drafting View Extractor](index.md)
-* [Managing Extracted Views](managing-extracted-views.md)
-* [Troubleshooting](troubleshooting.md)
+- [**Drafting View Extractor**](index.md)
+- [**Managing Extracted Views**](managing-extracted-views.md)
+- [**Troubleshooting**](troubleshooting.md)

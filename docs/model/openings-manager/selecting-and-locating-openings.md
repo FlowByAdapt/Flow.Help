@@ -2,129 +2,198 @@
 
 The Openings Manager register is connected to the active Revit model.
 
-Use the selection and navigation controls to move between the register and the model without having to locate each opening manually.
+Use the selection and navigation controls to move between the register and Revit, build a working selection and inspect openings before running a command.
 
 ---
 
-## Select an Opening from the Register
+## Register Rows and Checkboxes
 
-Select a row in the Openings Manager register.
+There are two different types of selection in the Opening Register.
 
-The corresponding Revit element is selected in the model.
+### Highlight a Row
 
-This provides a quick way to identify the physical opening represented by a register row.
+Click a row in the register to make it the current opening.
+
+The corresponding Revit element is selected immediately.
+
+Use this when reviewing individual openings or when you want to identify which model element a register row represents.
+
+### Check an Opening
+
+Use the checkbox at the left of a row to add that opening to the Manager's **working selection**.
+
+Checked openings are used by scoped commands such as:
+
+- **Standardise**
+- **Generate Views**
+- **Tag**
+
+!!! important "A highlighted row is not the same as a checked opening"
+
+    Highlighting a row identifies the current opening and selects it in Revit.
+
+    Checking a row adds it to the working selection used by applicable Openings Manager commands.
+
+<!-- SCREENSHOT: Opening Register showing one highlighted row and several checked rows. Keep the Selection toolbar and filters visible. -->
 
 ---
 
 ## Zoom to an Opening
 
-Double-click an opening in the register to locate it in Revit.
+Double-click a register row to locate that opening in Revit.
 
-Flow zooms to the corresponding element so that it can be reviewed in context.
+Flow uses the opening's Element ID to focus the corresponding element in the active Revit context.
 
-!!! tip "Use double-click when reviewing issues"
-
-    If an opening shows an unexpected mark, Global Parameter status or other issue, double-click the row to inspect the element directly in the model.
+This is useful when an opening has an unexpected mark, Global Parameter status or other issue and you want to inspect it directly in the model.
 
 ---
 
 ## Select Openings from the Model
 
-Use **Select from Model** when it is easier to identify the required openings graphically in Revit.
+Use **Select from Model** when the openings are easier to identify graphically than in the register.
 
 1. Click **Select from Model**.
-2. Select the required openings in Revit.
-3. Finish the Revit selection.
-4. Return to Openings Manager.
+2. Flow switches Revit to **3D-01-Work Main**.
+3. Pick the required elements in Revit.
+4. Finish the Revit selection.
+5. Matching openings are checked in the Opening Register.
 
-The selected openings are identified in the register.
+Flow briefly highlights the matching register rows so they are easy to identify.
 
-Flow temporarily highlights model-picked records so they are easier to locate.
+!!! note "Required 3D view"
+
+    The project must contain a view named exactly **3D-01-Work Main** for **Select from Model** to start.
+
+    Flow does not automatically return to the view that was active before the selection workflow.
+
+Only elements represented by the Opening Register become checked openings. If an unrelated model element is picked, it does not become an Opening Manager record.
+
+<!-- SCREENSHOT: Revit 3D-01-Work Main with model selection active or just completed, alongside the Manager showing the corresponding checked/highlighted rows. -->
 
 ---
 
 ## Select Filtered Openings
 
-Use the register filters to isolate the required openings, then use **Select Filtered** to select that group.
+Use **Select Filtered** to check every opening currently displayed by the register filters.
 
 For example:
 
 1. Set **Category** to Windows.
 2. Set the required **Level**.
-3. Set **Phase** to New.
+3. Set **Phase** as required.
 4. Apply any additional search or status filters.
 5. Click **Select Filtered**.
 
-This is useful when a command needs to be applied to a defined group rather than the whole project.
+The visible filtered records become the working selection.
+
+This is useful when you want to process a defined group rather than selecting openings individually.
+
+!!! important "Set filters before checking openings"
+
+    Changing **Category**, **Level**, **Phase** or **GP Status** clears the current checked selection.
+
+    Apply the required filters first, then check individual openings or use **Select Filtered**.
 
 ---
 
-## Clear the Current Selection
+## Focus an Opening
 
-Use **Clear** to remove the current Openings Manager selection.
+Use **Focus** to locate one opening in Revit.
 
-This is useful before building a new selection or changing the working scope.
+Flow uses:
+
+1. the currently highlighted register row, or
+2. the first checked opening if no row is highlighted.
+
+**Focus does not frame all checked openings at once.**
+
+Use it when you have identified an opening in the register and want to inspect that individual element in the model.
 
 ---
 
-## Focus the Current Selection
+## Clear the Register State
 
-Use **Focus** to locate the current selected opening or openings in Revit.
+Use **Clear** when you want to reset the current register filtering/selection state before building a new working set.
 
-Focus is useful when you have built the selection from the register and want to inspect those elements in the model before running another command.
+After clearing, review the register before running a scoped command to make sure the intended openings are checked or visible.
 
 ---
 
-## Checked Openings and Command Scope
+## Checked, Filtered or All?
 
-Several Openings Manager commands allow you to choose which openings the command should affect.
+Several commands ask which part of the Opening Register should be processed.
 
-Depending on the current register state, the available scope can include:
+Depending on the current register state, the scope chooser can offer:
 
-- checked openings
-- filtered openings
-- all openings
+- **Checked** — openings explicitly checked in the register
+- **Filtered** — openings currently passing the register filters
+- **All** — all openings in the register
 
-This allows you to build a working set in the register before running the command.
+The exact scope options are command-specific.
 
-!!! info "Scope is command-specific"
+### Commands that use register scope
 
-    Not every Openings Manager tool uses the same scope options.
+The main scoped workflows are:
 
-    Some workflows, such as Guided Renumber, use their own interactive Revit selection process instead.
+- **Standardise**
+- **Generate Views**
+- **Tag**
+
+### Commands with their own selection workflow
+
+Some commands do not use the checked register rows:
+
+- **Renumber** — openings are picked interactively in Revit
+- **Door Heights** — uses its own project-door workflow
+- **Curtain Wall Views** — curtain walls are picked interactively in Revit
+- **Conform Views** — works on the active opening view or all opening views
+- **Dimension Window Views** — works on the active Window view or all standard Window views
+- **Place on Sheet** — uses the Window or Door placement workflow
+
+!!! tip "Check the scope before applying changes"
+
+    The Opening Register is useful for reviewing the project, but a checked selection only affects commands that explicitly use register scope.
 
 ---
 
 ## Mixed Opening Categories
 
-Some commands can work with windows, doors and curtain walls together.
+Some commands can process Windows, Doors and Curtain Walls together. Others require one category.
 
-Others require a particular category.
+**Tag**, for example, requires the selected scope to contain a single opening category because Windows, Doors and Curtain Walls use different Revit tag categories and types.
 
-For example, tagging uses category-specific Revit tag types. A mixed Window/Door/Curtain Wall selection cannot be tagged as one operation.
+If a tagging scope contains mixed opening categories, Flow stops the operation and asks you to select only one category.
 
-If required, filter or select one opening category before running the command.
+Filter or check one category before running **Tag**.
 
 ---
 
-## Selection Does Not Change the Model
+## Selection and Model Changes
 
-Selecting, filtering or focusing openings does not modify the opening itself.
+Normal register navigation does not change the opening itself.
 
-Changes are only made when you run a command such as:
+Activities such as:
 
-- Standardise
-- Door Heights
-- Tag
-- Generate Views
-- a Global Parameter operation
+- searching
+- filtering
+- highlighting a row
+- checking rows
+- selecting from the model
+- focusing an opening
 
-This makes the register safe to use for reviewing and organising the project before applying changes.
+are used to review, locate or define scope.
+
+Model changes occur only when you run a modifying workflow such as **Standardise**, **Tag**, **Generate Views** or another Openings Manager operation that explicitly changes project data.
+
+!!! note
+
+    **Refresh** is an exception to a simple "navigation versus command" distinction. Refresh rebuilds the register, but it also applies the **Zero Window Sill Height** Global Parameter rule before the audit is rerun.
 
 ---
 
 ## Related Help
 
+- [**Openings Manager**](index.md)
 - [**Reviewing Openings**](reviewing-openings.md)
 - [**Standardising Openings**](standardising-openings.md)
 - [**Guided Renumbering**](guided-renumbering.md)

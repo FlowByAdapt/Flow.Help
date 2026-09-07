@@ -1,8 +1,8 @@
 # Flow Hub
 
-The **Flow Hub** provides a central location for finding and launching Flow tools, native Revit commands and library content while you work in Revit.
+The **Flow Hub** is Flow's persistent dockable workspace for finding and running Flow tools, native Revit commands and indexed library content.
 
-It can remain docked in the Revit interface and also provides quick access to pinned and recent items, saved workspace layouts and selected Visibility Manager controls.
+It also provides quick access to pinned and recent commands, saved workspace layouts, window recovery and up to three preferred Visibility Manager controls.
 
 ---
 
@@ -12,82 +12,135 @@ On the Revit ribbon:
 
 **Flow → Workspace → Hub**
 
-The Flow Hub opens as a dockable Revit panel.
+Flow Hub opens as a dockable Revit panel.
 
-You can dock it alongside other Revit panels, such as **Properties** or the **Project Browser**, or leave it floating.
+You can keep it docked alongside panels such as **Properties** or the **Project Browser**, or leave it floating.
+
+<!-- SCREENSHOT: Flow Hub immediately after opening.
+Show the complete docked Hub with Search, Quick Actions, Pinned, Recent, Browse and the Workspace area visible. -->
 
 ---
 
-## What do you want to do?
+## What You See When It Opens
 
-### 🔍 Find and Run a Tool
+When the Search box is clear, Flow Hub organises available commands into:
 
-Search for Flow tools and native Revit commands, then launch the required command directly from the Hub.
+- **⚡ Quick Actions**
+- **📌 Pinned**
+- **🕘 Recent**
+- **≡ Browse**
+
+The first available result is selected automatically.
+
+Flow Hub also provides a **Workspace** area for restoring layouts, recovering windows and using selected Visibility Manager shortcuts.
+
+---
+
+## First-Time Workflow
+
+A typical Flow Hub workflow is:
+
+1. Open **Flow → Workspace → Hub**.
+2. Browse **Quick Actions**, **Pinned**, **Recent** or **Browse**, or start typing in **Search**.
+3. Review the matching command and content results.
+4. Select the required result.
+5. Press **Enter**, double-click the result or select **Run Selected**.
+6. Complete any additional Flow, Revit or content workflow that appears.
+
+Search results update automatically as you type.
+
+!!! tip "You do not need the exact name"
+
+    Flow searches command names and additional searchable information such as aliases, keywords, descriptions and categories.
+
+    Start with the word or phrase you associate with the task and refine the search if required.
+
+---
+
+## Quick Actions
+
+Flow Hub includes a small set of predefined **Quick Actions** for common workflows.
+
+The current Quick Actions include:
+
+- **Open Command Palette**
+- **Zero Window Sill**
+- **Copy GP Setup**
+- **Generate Views**
+- **Recover Windows**
+
+These appear when no search is active, provided the corresponding action is available in the current Revit context.
+
+---
+
+## Find and Run Tools
+
+Flow Hub can search registered **Flow tools** and supported **native Revit commands**.
 
 ➡️ [**Finding and Running Tools**](finding-and-running-tools.md)
 
 ---
 
-### 📚 Find and Load Content
+## Find and Load Content
 
-Search the indexed Revit content library for families, catalogue families and drafting/detail content.
+When a search is active, Flow Hub can also search the indexed Revit content library.
 
-Content can be loaded into the active project or opened in the Content Browser for further review.
+Depending on the result, content can be opened in Content Browser, loaded into the project, revealed in Explorer or opened from its source file.
 
 ➡️ [**Finding and Loading Content**](finding-and-loading-content.md)
 
 ---
 
-### 📌 Access Pinned and Recent Items
+## Pinned and Recent Items
 
-Keep frequently used commands readily available and quickly return to commands or content you have recently used.
+Pin commands you use regularly and return quickly to commands you have recently run.
+
+Command pin and recent state is shared with **Command Palette**.
 
 ➡️ [**Pinned and Recent Items**](pinned-and-recent.md)
 
 ---
 
-### 🖥️ Access Workspace Controls
+## Workspace Controls
 
-Restore saved workspace layouts, recover windows and control up to three preferred Visibility Manager settings directly from the Hub.
+The Hub Workspace area provides quick access to:
+
+- saved workspace layouts;
+- **Restore**;
+- **Manage**;
+- **Recover**;
+- up to three preferred Visibility Manager shortcuts; and
+- shortcut configuration.
 
 ➡️ [**Workspace Controls**](workspace-controls.md)
 
 ---
 
-### 🛠️ Having Problems?
+## What Flow Does Automatically
 
-Find help if a command or content item cannot be found, a workspace cannot be restored, or a Hub control is not behaving as expected.
+While you use Flow Hub, Flow automatically:
 
-➡️ [**Troubleshooting**](troubleshooting.md)
-
----
-
-## When No Search Is Active
-
-When the Search box is clear, Flow Hub provides quick access to your available commands through:
-
-- **Quick Actions**
-- **Pinned**
-- **Recent**
-- **Browse**
-
-Use these sections to access commonly used commands without needing to search for them.
-
-!!! tip "Search when you know what you need"
-
-    Start typing when you know roughly what you are looking for.
-
-    Flow Hub searches more than just Flow command names, so you can also use it to find native Revit commands and indexed library content.
+- updates search results as you type;
+- removes actions that are not available in the current Flow context;
+- selects the first available result;
+- ranks commands using match quality and command usage;
+- records commands that you run;
+- shares command pin and usage state with Command Palette;
+- uses Content Browser favourite and recent information when ranking library content;
+- refreshes Workspace and visibility state when shared command state changes; and
+- suggests a saved workspace that best matches the current monitor arrangement.
 
 ---
 
 ## Flow Hub or Command Palette?
 
-Both **Flow Hub** and **Command Palette** provide quick access to commands.
+Both interfaces use Flow's shared command infrastructure.
 
-Use **Flow Hub** when you want a persistent docked interface with search, pinned and recent items, content access and workspace controls.
+!!! tip "Which should I use?"
 
-Use **Command Palette** when you want a floating, search-focused command launcher that can be opened when required.
+    Use **Flow Hub** when you want a persistent docked interface with search, commands, content and workspace controls available throughout the Revit session.
+
+    Use **Command Palette** when you want a compact floating launcher that can be opened only when required.
 
 See [**Command Palette**](../command-palette/index.md).
 
@@ -97,7 +150,7 @@ See [**Command Palette**](../command-palette/index.md).
 
 Flow Hub is a Revit dockable panel and can be positioned to suit your normal working environment.
 
-Its position can also be included when using Flow **Workspace** tools to save and restore workspace layouts.
+Its position can also be included in saved Flow workspace layouts.
 
 See [**Workspace**](../index.md).
 
@@ -115,4 +168,5 @@ Hover over **Hub** on the Flow ribbon and press **F1** to return directly to thi
 - [**Finding and Loading Content**](finding-and-loading-content.md)
 - [**Pinned and Recent Items**](pinned-and-recent.md)
 - [**Workspace Controls**](workspace-controls.md)
+- [**Troubleshooting**](troubleshooting.md)
 - [**Command Palette**](../command-palette/index.md)

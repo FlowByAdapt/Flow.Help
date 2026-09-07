@@ -1,16 +1,16 @@
 # Assigning Risk Information
 
-Use **Project Risk Values** in Risk Matrix to define the information
-written to walls when Risk Faces are processed.
+Use **Project Risk Values** and the **Cladding** tab to define the
+information written to walls when Risk Faces are processed.
 
-The current tool assigns these values during **Pick Walls**. It does not
-yet provide the planned per-face scoring and confirmation grid.
+The current tool assigns this information during **Pick Walls**. It does
+not yet provide the planned per-face scoring and confirmation grid.
 
 ------------------------------------------------------------------------
 
 ## Project Risk Values
 
-The Risk Matrix tab currently provides:
+Risk Matrix uses six E2 Risk Matrix factors:
 
 -   **Wind Zone**
 -   **Number of Storeys**
@@ -19,24 +19,21 @@ The Risk Matrix tab currently provides:
 -   **Envelope**
 -   **Deck**
 
-Review these values before clicking **Pick Walls**.
-
-The selected values are applied to the walls processed in that
-operation.
+Wind Zone is project-wide and read from Revit Project Information. The
+remaining five values are selected in Risk Matrix for the walls being
+processed.
 
 ------------------------------------------------------------------------
 
 ## Wind Zone
 
-**Wind Zone** is different from the other Project Risk Values.
-
-It is read from:
+Wind Zone is read from:
 
 **Revit Project Information → Wind Zone**
 
-Risk Matrix does not provide a separate editable Wind Zone selector.
+It is not independently editable in Risk Matrix.
 
-For a standard E2 Risk Matrix workflow, the recognised values are:
+Recognised standard values are:
 
 -   **Low**
 -   **Medium**
@@ -44,57 +41,37 @@ For a standard E2 Risk Matrix workflow, the recognised values are:
 -   **Very High**
 -   **Extra High**
 
-A valid value is shown as the current project Wind Zone.
-
-Use **Refresh** beside the Wind Zone if Project Information has been
-changed while Risk Matrix is already open.
+Use **Refresh** beside Wind Zone if Project Information has changed
+while Risk Matrix is already open.
 
 !!! info "One project source of truth"
 
-    Wind Zone is maintained as project information and consumed by Risk Matrix.
+    Risk Matrix consumes the persistent Project Information value rather than maintaining a separate Wind Zone selection.
 
-    This avoids maintaining a separate Wind Zone value inside each workflow.
+### Wind Zone Is Not Set
 
-------------------------------------------------------------------------
+If the project Wind Zone cannot be resolved, Risk Matrix shows an
+unresolved state and **Pick Walls** is blocked.
 
-## Wind Zone Is Not Set
+Set the required value in Revit Project Information, return to Risk
+Matrix, and click **Refresh**.
 
-If Project Information does not contain a Wind Zone, Risk Matrix
-displays:
+### SED
 
-**Not Set**
+If Wind Zone is **SED**, Risk Matrix identifies the project as requiring
+**Specific Engineering Design** and blocks the standard E2 Risk Matrix
+processing workflow.
 
-and warns that the project Wind Zone has not been set.
+!!! warning "SED is not another standard Risk Matrix value"
 
-Risk Face processing is blocked until a recognised Wind Zone is
-available.
-
-Set the value in Revit Project Information, then use **Refresh** in Risk
-Matrix.
-
-------------------------------------------------------------------------
-
-## SED
-
-If the project Wind Zone is:
-
-**SED**
-
-Risk Matrix identifies the project as requiring **Specific Engineering
-Design**.
-
-The standard E2 Risk Matrix workflow is treated as not applicable and
-Risk Face processing is blocked.
-
-!!! warning "SED is not another E2 Risk Matrix score"
-
-    SED indicates that the project is outside the standard Wind Zone route used by this Risk Matrix workflow.
+    SED indicates that the project is outside the standard Wind Zone route used by this workflow.
 
 ------------------------------------------------------------------------
 
 ## Other Project Risk Values
 
-Select the required values for:
+Before each **Pick Walls** operation, select the values applicable to
+the walls you are about to process.
 
 ### Number of Storeys
 
@@ -116,41 +93,39 @@ Choose the applicable envelope-complexity category.
 
 Choose the applicable deck category.
 
-Use the guidance button beside a value when you need to review the
-corresponding Risk Matrix guidance.
+Use the guidance button beside a value when you need to review its Risk
+Matrix guidance.
+
+!!! note "Review before processing"
+
+    The current selections are applied during wall processing. Check them before selecting each set of walls that requires a different assessment condition.
 
 ------------------------------------------------------------------------
 
 ## When Values Are Applied
 
-The values currently shown in **Project Risk Values** are used when you
-click:
+When you click **Pick Walls**, Risk Matrix takes a snapshot of the
+current settings.
 
-**Pick Walls**
+Those values are written to newly processed walls when the selection is
+completed and the wall groups are processed.
 
-Risk Matrix writes the corresponding Risk Matrix parameters to the
-processed walls while assigning their Risk Face information.
-
-This means you can change the applicable selections before processing
-another group of walls.
-
-!!! note "Review the selections before processing"
-
-    The current Risk Matrix values are applied during wall processing.
-
-    Check the values before selecting each set of walls that requires a different assessment condition.
+Already processed walls are protected from having their existing risk
+values silently replaced if they are selected again.
 
 ------------------------------------------------------------------------
 
 ## Cladding Information
 
-Cladding information is managed on the **Cladding** tab and acts as the
-project-wide configuration used when Risk Faces are processed.
+Cladding information is managed on the **Cladding** tab and is
+project-wide.
 
-Risk Matrix discovers applicable exterior wall types and uses the configured
-cladding rules to suggest a cladding description for each recognised type.
-Review this setup before processing Risk Faces, particularly when first setting
-up a project.
+Risk Matrix discovers applicable exterior wall types and uses the
+configured cladding rules to suggest a cladding description. Review this
+setup when first preparing the project and whenever the exterior
+wall-type strategy changes.
+
+<!-- SCREENSHOT: Complete Cladding tab with realistic wall types and several cladding groups. -->
 
 ### Project Cladding Legend
 
@@ -161,34 +136,33 @@ The project legend contains up to four coordinated cladding groups:
 -   **Cladding 3**
 -   **Cladding 4**
 
-Wall types with the same cladding description are automatically grouped into
-the same cladding group. Unused project slots are shown as **N/A**.
+Unused slots are shown as **N/A**.
 
 ### Wall Types to Include
 
-Use **Wall Types to Include** to review the exterior wall types discovered in
-the project.
+Use **Wall Types to Include** to review the discovered exterior wall
+types.
 
 For each wall type you can:
 
 -   include or exclude it from the project cladding configuration;
 -   review or edit its cladding description; and
--   review or change its **Cladding 1–4** group.
+-   review or change its **Cladding 1--4** group.
 
-A wall type that does not belong in the Risk Matrix workflow can be excluded
-without changing its Revit wall type name.
+An excluded wall type is omitted from the cladding assignment passed
+into Risk Face processing.
 
 ### Automatic and Manual Grouping
 
-When two included wall types use the same cladding description, Risk Matrix
-coordinates them into the same cladding group automatically.
+Wall types with the same cladding description are coordinated into the
+same project cladding group.
 
-If a description is changed to match another existing description, the wall
-type is moved to that existing group. A new unique description is assigned to
-the next available group where possible.
+If a description is changed to match an existing description, the wall
+type can use that existing group. New unique descriptions use an
+available group where possible.
 
-Groups can also be changed manually. Risk Matrix prevents a group already used
-for one cladding description from being assigned to a different description.
+Groups can also be adjusted manually. The setup prevents one group from
+representing conflicting cladding descriptions.
 
 !!! warning "Maximum four cladding groups"
 
@@ -196,46 +170,46 @@ for one cladding description from being assigned to a different description.
 
 ### Wall Type Cladding Mapping
 
-Use **Wall Type Cladding Mapping** to review the resulting relationship between
-Revit wall types and the coordinated project cladding descriptions.
+Use **Wall Type Cladding Mapping** to review the resulting relationship
+between Revit wall types and project cladding descriptions.
 
-The mapping is used automatically when **Pick Walls** processes Risk Faces.
-You do not need to select a cladding value separately for each face.
+The mapping is used automatically during **Pick Walls**. You do not
+select a cladding value separately for each Risk Face.
 
 ### Project Cladding Health
 
-Use **Project Cladding Health** to check the current cladding configuration and
-identify setup that still requires attention before relying on the coordinated
-project information.
+Use **Project Cladding Health** to identify configuration that still
+requires attention before relying on the coordinated cladding
+information.
 
 ### Saving the Project Cladding Setup
 
-The cladding configuration is stored in the Revit project. Changes to included
-wall types, descriptions and cladding groups are restored when Risk Matrix is
-reopened and remain available after closing and reopening Revit.
+Changes to included wall types, descriptions and cladding groups are
+stored in the Revit project and restored when Risk Matrix is reopened.
 
 !!! info "Project-wide configuration"
 
     Cladding setup belongs to the project rather than to an individual Risk View or Risk Face.
 
+A full **Reset Risk Matrix** clears this saved cladding configuration. A
+selected-face reset does not.
+
+------------------------------------------------------------------------
+
 ## Automated Risk Scoring
 
-The current version does **not** calculate and present the completed E2
-risk score for each Risk Face.
+The current version does **not** calculate and present a completed E2
+score for each Risk Face.
 
 Automated face-specific suggestion, confirmation and scoring is planned
-as a later Risk Matrix development stage.
-
-The current workflow focuses on creating the coordinated Risk Faces and
-storing the information required to support that future assessment
-workflow.
+as a later development stage.
 
 ------------------------------------------------------------------------
 
 ## Related Help
 
--   [Risk Matrix](index.md)
--   [Identifying Risk Faces](identifying-risk-faces.md)
--   [Reviewing Risk Results](reviewing-risk-results.md)
--   [Risk Documentation](risk-documentation.md)
--   [Troubleshooting](troubleshooting.md)
+-   [**Risk Matrix**](index.md)
+-   [**Identifying Risk Faces**](identifying-risk-faces.md)
+-   [**Reviewing Risk Results**](reviewing-risk-results.md)
+-   [**Risk Documentation**](risk-documentation.md)
+-   [**Troubleshooting**](troubleshooting.md)

@@ -1,83 +1,145 @@
 # Saving a Workspace
 
-Save a workspace when you have arranged your Revit and Flow windows the way you want them for a particular working environment.
+Save a workspace when you want to return later to the current arrangement of supported Revit and Flow windows.
 
-For example, you might create separate workspaces for:
+Each saved workspace also records the monitor configuration it was created for.
 
-- Office
-- Home
-- Laptop only
-- Different multi-monitor arrangements
+---
 
-!!! tip "Create a workspace for each setup"
+## Before You Save
 
-    If you regularly work with different monitor arrangements, save a separate
-    workspace for each one.
+Arrange your Revit environment the way you want it.
 
-    For example: **Office - Dual Monitor**, **Home**, and **Laptop**.
+For example:
+
+1. Position Revit on the required monitor.
+2. Arrange supported floating Revit and Flow windows.
+3. Show or hide registered Flow dockable panes as required.
+4. Position the Flow Hub and other supported dockables.
+5. Check that the overall arrangement is the one you want to return to.
+
+Then open:
+
+**Flow → Workspace → Workspace**
 
 ---
 
 ## Save the Current Workspace
 
-1. Arrange your Revit and Flow windows as required.
-2. Open **Flow → Workspace → Workspace**.
-3. Click **Save Workspace**.
-4. Enter a descriptive name for the workspace.
-5. Confirm the name.
+1. Select **Save Workspace**.
+2. Enter a meaningful workspace name.
+3. Confirm the save.
+4. Flow captures the current supported window and monitor arrangement.
+5. The new workspace is added to the Saved Workspaces list.
 
-The current workspace arrangement is captured and added to **Saved Workspaces**.
-
-!!! tip "Use descriptive names"
-
-    Use names that identify the working environment, such as
-    **Office - Dual Monitor**, **Home** or **Laptop**.
-
-    This makes it easier to select the correct layout when restoring a workspace.
+<!-- SCREENSHOT: Saved Workspaces area.
+Show several sensibly named layouts such as Office Dual Monitor, Home and Laptop. -->
 
 ---
 
-## What is Saved?
+## Naming Workspaces
 
-A saved workspace records the monitor configuration and supported window positions associated with the current working environment.
+Use names that describe the environment rather than the task.
 
-It also records the state of supported Flow dockable panes.
+Good examples include:
 
-!!! info "Workspace remembers your monitor setup"
-
-    Flow records the monitor arrangement that was active when the workspace
-    was saved.
-
-    This allows Flow to check that the appropriate monitor configuration is
-    available before attempting to restore the layout.
-
----
-
-## Different Monitor Configurations
-
-A workspace is associated with the monitor arrangement that was active when it was saved.
-
-If you regularly move between different working environments, create a separate workspace for each monitor configuration.
-
-For example:
-
-- **Office - Dual Monitor**
-- **Home - Single Monitor**
+- **Office Dual Monitor**
+- **Office Single Monitor**
+- **Home**
 - **Laptop**
 
-!!! note "Changing a layout?"
+This makes it easier to select an appropriate layout later.
 
-    You do not need to create another saved workspace simply because you have
-    changed the arrangement of an existing setup.
+### Duplicate Names
 
-    Update the existing workspace if you want its saved arrangement to reflect
-    your new window positions.
+Workspace names must be unique regardless of capitalisation.
 
-See [Managing Saved Workspaces →](managing-saved-workspaces.md).
+If you try to save a name that already exists, Flow does not overwrite it automatically.
+
+Select the existing workspace and use **Update** if you want to replace its saved arrangement.
 
 ---
 
-## Next Steps
+## What Flow Saves
 
-- [Restore a Workspace →](restoring-a-workspace.md)
-- [Manage Saved Workspaces →](managing-saved-workspaces.md)
+A saved workspace records the current monitor topology and supported window arrangement.
+
+This includes information such as:
+
+- monitor positions and sizes;
+- which monitor is the primary display;
+- supported window positions and sizes;
+- recognised Flow window identity where available; and
+- registered Flow dockable-pane shown/hidden state.
+
+Flow also captures information relating to the Revit **Properties** and **Project Browser** panes for the workspace model.
+
+!!! info "Not every native window is a workspace candidate"
+
+    Workspace is designed around supported Revit and Flow working windows.
+
+    It does not attempt to save every temporary dialog, message or operating-system window that happens to be open.
+
+---
+
+## Workspace Window Exclusion
+
+The **Flow Workspace** window itself is deliberately excluded from the saved window arrangement.
+
+This prevents the management window from becoming part of the workspace it is being used to create.
+
+---
+
+## Monitor Configuration
+
+The saved monitor topology includes more than the number of connected displays.
+
+For restoration, Flow compares:
+
+- monitor count;
+- monitor position;
+- monitor width and height; and
+- which monitor is the primary display.
+
+A workspace saved for one physical desktop arrangement therefore may not restore after the monitors have been rearranged, even if the same number of displays is still connected.
+
+!!! tip "Save layouts for the environments you actually use"
+
+    If you regularly work with substantially different monitor arrangements, save a workspace for each arrangement.
+
+---
+
+## Saved Workspaces Are User-Specific
+
+Saved layouts belong to the current Windows user's Flow configuration.
+
+They are not saved inside the Revit project.
+
+The workspace library is stored under the user's Flow application data.
+
+---
+
+## Change an Existing Workspace
+
+Do not create a new workspace merely because the window positions have changed.
+
+If you want to replace an existing saved layout with the current arrangement, use **Update**.
+
+See [**Managing Saved Workspaces**](managing-saved-workspaces.md).
+
+---
+
+## Next Step
+
+When you want to return to the saved arrangement, see:
+
+➡️ [**Restoring a Workspace**](restoring-a-workspace.md)
+
+---
+
+## Related Help
+
+- [**Workspace**](index.md)
+- [**Restoring a Workspace**](restoring-a-workspace.md)
+- [**Managing Saved Workspaces**](managing-saved-workspaces.md)
+- [**Recovering Windows**](recovering-windows.md)

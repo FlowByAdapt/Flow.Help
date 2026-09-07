@@ -1,33 +1,41 @@
 # Finding and Running Tools
 
-Flow Hub provides a single search interface for finding both **Flow tools** and **native Revit commands**.
-
-Search results update as you type and are ranked to help commonly used and relevant commands appear first.
+Flow Hub provides a single search interface for finding **Flow tools** and supported **native Revit commands**.
 
 ---
 
-## Search for a Tool or Command
+## Find a Tool or Command
 
-Click in the **Search** box at the top of Flow Hub and start typing what you are looking for.
+1. Click in the **Search** box.
+2. Start typing what you are looking for.
+3. Review the matching results.
+4. Select the required result.
+5. Press **Enter**, double-click it or select **Run Selected**.
+
+Search results update automatically as you type.
+
+Flow automatically selects the first available result so keyboard-based workflows can continue without needing to reselect an item.
+
+---
+
+## Search
 
 You do not need to enter the complete command name.
 
-For example, you can search using:
+Flow can match search text against information including:
 
-- a command name;
+- command name;
 - part of a command name;
-- a recognised alias;
-- a keyword;
-- a command description; or
-- a command category.
-
-Flow searches the available registered actions and displays matching results.
+- alias;
+- keyword;
+- description; and
+- category.
 
 !!! tip "Search by what you remember"
 
-    You do not need to know the exact Flow or Revit command name.
+    Start with the most recognisable word associated with the task.
 
-    Start with the most recognisable word and refine the search if required.
+    Continue typing only if you need to narrow the results.
 
 ---
 
@@ -35,61 +43,73 @@ Flow searches the available registered actions and displays matching results.
 
 Registered Flow tools are included in Hub search.
 
-Search for the tool or workflow you need and select the appropriate result.
+Running a Flow result launches the same underlying Flow workflow available elsewhere in the Flow interface.
 
-Running the result launches the same Flow functionality that is available elsewhere in the Flow interface.
+Some Flow actions are context-sensitive and may not appear when their required Revit context is unavailable.
 
 ---
 
 ## Native Revit Commands
 
-Flow Hub can also find and launch native Revit commands.
+Flow Hub can also search most Revit commands that Revit exposes for programmatic launching.
 
-Most commands that Revit makes available for programmatic launching are included in the Hub.
+The following commands are deliberately excluded:
 
-Potentially destructive or inappropriate commands, such as **Delete**, **Exit Revit**, clipboard operations and project save commands, are deliberately excluded.
+- **Exit Revit**
+- **Close**
+- **Delete**
+- **Cut to Clipboard**
+- **Copy to Clipboard**
+- **Paste from Clipboard**
+- **Save**
+- **Save As Project**
+- **Save As Template**
 
 !!! info "Revit command availability"
 
-    Native Revit commands shown in Flow Hub are commands that Revit exposes for programmatic launching.
+    A Revit command appearing in Flow Hub does not mean it can run in every Revit situation.
 
-    The exact commands available can therefore depend on Revit and the current Revit context.
+    Before Flow posts the command, Revit's current command availability is checked.
+
+    Availability can depend on the active document, view, selection or current Revit state.
 
 ---
 
 ## Search Results
 
-When a search is active, Flow Hub separates command results from library content results.
+When a search is active, Flow Hub separates results into:
 
-Command results can include different types of Flow actions, including Flow tools and native Revit commands.
+- **Commands**
+- **Content**
 
-Content results are shown separately.
+Command results can include Flow tools and native Revit commands.
 
-See [**Finding and Loading Content**](finding-and-loading-content.md) for information about library content.
+Content results are covered separately in [**Finding and Loading Content**](finding-and-loading-content.md).
+
+<!-- SCREENSHOT: Active Flow Hub search.
+Show a useful search term with both Commands and Content headings visible if possible. -->
 
 ---
 
 ## How Results Are Ranked
 
-Flow Hub considers more than a simple text match when ordering command results.
+Flow Hub considers more than a simple text match.
 
-Matches against command names, aliases and keywords are prioritised, while descriptions and categories can also contribute to a match.
+Command ranking can take into account:
 
-Commands you use frequently or have used recently can also receive higher priority.
+- match strength;
+- aliases and keywords;
+- descriptions and categories;
+- frequency of previous use; and
+- recency of previous use.
 
-This means the ordering of results may adapt to the way you use Flow.
-
-!!! info "Results may change over time"
-
-    Frequently and recently used commands can be ranked more highly.
-
-    As a result, two matching commands may not always appear in the same order as your usage changes.
+This means result ordering can adapt as you use Flow.
 
 ---
 
 ## Run a Command
 
-There are several ways to run a selected command.
+You can run the selected result in several ways.
 
 ### Run Selected
 
@@ -99,34 +119,34 @@ Select the required result and click:
 
 ### Double-click
 
-Double-click a command result to run it immediately.
+Double-click a result.
 
 ### Keyboard
 
-Select the required command and press:
+Select the required result and press:
 
 **Enter**
 
-The selected Flow or Revit command is then launched.
+After a command is handed to its normal Flow or Revit workflow, Flow records its usage and refreshes shared command state.
 
 ---
 
-## Navigate with the Keyboard
-
-Flow Hub supports keyboard navigation for quickly searching and launching commands.
+## Keyboard Navigation
 
 | Key | Action |
 |---|---|
-| **↓** | Move to the next result |
-| **↑** | Move to the previous result |
+| **↓** | Move to the next selectable result |
+| **↑** | Move to the previous selectable result |
 | **Enter** | Run the selected result |
 | **Esc** | Clear the current search |
 
-If the search is already clear, **Esc** returns focus to the Search box.
+Section headings are skipped when moving through the results.
 
-!!! tip "Quick keyboard workflow"
+If the Search box is already clear, **Esc** returns focus to Search.
 
-    Enter a search, use **↑** or **↓** to select the required result, then press **Enter** to run it.
+!!! tip "Fast keyboard workflow"
+
+    Type a search, use **↑** or **↓** to select the required result, then press **Enter**.
 
 ---
 
@@ -138,7 +158,12 @@ Press:
 
 to clear an active search.
 
-Clearing the search returns Flow Hub to its normal view containing **Quick Actions**, **Pinned**, **Recent** and **Browse**.
+Flow Hub then returns to its normal no-search view containing:
+
+- **Quick Actions**
+- **Pinned**
+- **Recent**
+- **Browse**
 
 ---
 
@@ -147,11 +172,12 @@ Clearing the search returns Flow Hub to its normal view containing **Quick Actio
 Try:
 
 1. Shortening the current search.
-2. Searching using another recognisable word.
+2. Searching with another recognisable word.
 3. Clearing the search and trying again.
-4. Checking whether the command is available from the Flow or Revit interface.
+4. Checking whether the tool is available from the Flow or Revit interface.
+5. Confirming that the required Revit context is available.
 
-See [**Troubleshooting**](troubleshooting.md) if the command still cannot be found.
+See [**Troubleshooting**](troubleshooting.md) if the result still cannot be found or run.
 
 ---
 

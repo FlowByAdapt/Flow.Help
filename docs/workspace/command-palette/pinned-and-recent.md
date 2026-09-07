@@ -2,7 +2,22 @@
 
 Command Palette keeps commonly used commands easier to access through **Pinned** and **Recent** command state.
 
-These preferences are shared with Flow Hub.
+Command pin and usage information is shared with **Flow Hub**, while library content uses its related **Content Browser** favourite and recent state.
+
+---
+
+## Pinned and Recent When Command Palette Opens
+
+You do not need to search to access commands you use regularly.
+
+When the Search box is empty, Command Palette can organise commands into:
+
+* **Quick Actions**
+* **Pinned**
+* **Recent**
+* **Browse**
+
+This provides immediate access to useful commands before you start a search.
 
 ---
 
@@ -19,25 +34,31 @@ The command is added to your pinned commands.
 
 ### Unpin a Command
 
-Select the pin control again to remove the command from your pinned commands.
+Select the pin control again to remove it.
 
 !!! info "Pinning does not change the command"
 
-    Pinning only changes how the command is presented in Flow's command interfaces.
+	Pinning only changes how the command is presented in Flow's command interfaces.
 
-    It does not enable, disable or otherwise modify the underlying Flow or Revit command.
+	It does not enable, disable or otherwise modify the underlying Flow or Revit command.
 
 ---
 
 ## Recent Commands
 
-Flow records commands that you run through its command interfaces.
+Flow automatically records commands that you successfully run through its command interface.
 
-Use **Recent** in Command Palette to focus the results on recently used commands.
+Recently used commands can then be presented in the **Recent** section when Command Palette is opened without a search.
 
-This is useful when you want to return to a command you have been using without searching for it again.
+You can also use the **Recent** filter to focus the current results on recently used commands.
 
 Select **Recent** again to turn the filter off.
+
+!!! note "Recent is automatic"
+
+	You do not need to manually add a command to Recent.
+
+	Running commands through Flow builds the usage history automatically.
 
 ---
 
@@ -49,31 +70,63 @@ Use **Recent** when you want to return to commands you have been using lately.
 
 !!! tip "A simple way to think about it"
 
-    **Pinned** = commands you regularly want close at hand.
+```
+**Pinned** = commands you regularly want close at hand.
 
-    **Recent** = commands you have been using lately.
+**Recent** = commands you have been using lately.
+```
 
 ---
 
 ## Shared with Flow Hub
 
-Pinned and recent command state is shared with **Flow Hub**.
+Pinned command state and command usage are shared with **Flow Hub**.
 
-A command pinned through Command Palette can therefore also appear in the Hub's pinned commands.
+For example:
 
-Likewise, recently used commands can be reflected in both command interfaces.
+1. Pin a command in Command Palette.
+2. Open or return to Flow Hub.
+3. The shared command state is refreshed automatically.
+
+Likewise, running a command through Command Palette contributes to the command usage information available to Flow Hub.
+
+You should not normally need to close and reopen either interface to synchronise this state.
 
 See [**Pinned and Recent Items in Flow Hub**](../flow-hub/pinned-and-recent.md).
 
 ---
 
-## Content Favourites
+## Content Favourites and Recent Content
 
-Library content is handled slightly differently from command pins.
+Library content is handled differently from Flow and Revit commands.
 
-Content favourites and recent content are maintained through the **Content Browser** state and are used when Flow ranks content search results.
+Content favourites and recent content are maintained through **Content Browser** state rather than the normal command pin and usage system.
 
-For more information, see [**Finding and Loading Content**](../flow-hub/finding-and-loading-content.md).
+Flow can use this information when ranking matching content in Command Palette searches.
+
+This means content you regularly use or have marked as a favourite can receive greater priority when it matches your search.
+
+!!! info "Commands and content use different state"
+
+	**Flow and Revit commands** use Command Palette / Flow Hub pin and usage state.
+
+	**Library content** uses Content Browser favourite and recent content state.
+
+---
+
+## Using the Recent Filter
+
+The **Recent** filter applies to command usage.
+
+It should not be treated as a replacement for the recent-content functionality available through Content Browser.
+
+If a command you expect to see disappears:
+
+1. Check whether **Recent** is active.
+2. Turn the filter off.
+3. Search again.
+
+The **Flow** and **Recent** filters can also be combined when you specifically want recently used Flow commands.
 
 ---
 
@@ -81,7 +134,7 @@ For more information, see [**Finding and Loading Content**](../flow-hub/finding-
 
 Pinned and recent commands do not limit what is available through Command Palette.
 
-Clear the **Recent** filter and use Search whenever you need to find another Flow or Revit command.
+Turn off **Recent** and use Search whenever you need to find another Flow or Revit command.
 
 See [**Finding and Running Commands**](finding-and-running-commands.md).
 
@@ -89,7 +142,7 @@ See [**Finding and Running Commands**](finding-and-running-commands.md).
 
 ## Related Help
 
-- [**Command Palette**](index.md)
-- [**Finding and Running Commands**](finding-and-running-commands.md)
-- [**Flow Hub**](../flow-hub/index.md)
-- [**Pinned and Recent Items in Flow Hub**](../flow-hub/pinned-and-recent.md)
+* [**Command Palette**](index.md)
+* [**Finding and Running Commands**](finding-and-running-commands.md)
+* [**Flow Hub**](../flow-hub/index.md)
+* [**Pinned and Recent Items in Flow Hub**](../flow-hub/pinned-and-recent.md)

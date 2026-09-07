@@ -1,168 +1,226 @@
 # Reviewing Model Health Issues
 
-Model Health groups identified issues by audit check so that they can be reviewed without working through the model manually.
+Use **Review Issues** to move from an audit result to the individual
+conditions identified by that check.
 
-Where an issue relates to Revit elements, Model Health can help select the affected elements in the project.
+Model Health can then help locate affected Revit elements, or allow an
+accepted condition to be ignored.
 
----
+------------------------------------------------------------------------
 
-## Select a Health Check
+## Step 1 --- Select a Check Requiring Attention
 
-After running an audit, review the results table in the main Model Health window.
-
-Select a check with:
+In the main Model Health results grid, select a check showing:
 
 **Status → Failed**
 
-and an **Issues** count greater than zero.
+with an **Issues** count greater than zero.
 
-After an audit, Model Health automatically selects a result containing issues where one is available.
-
----
-
-## Open the Issue Details
-
-With the required check selected, click:
+Click:
 
 **Review Issues**
 
-The Issue Details window opens and displays the issues identified by that check.
+You can also double-click a result containing issues.
 
-!!! tip "Review Issues requires an identified issue"
+The **Issue Details** window opens for that check.
 
-	**Review Issues** is available when the selected audit check contains one or more issues.
+------------------------------------------------------------------------
 
-	If the selected check has passed, select a check containing issues instead.
+## Step 2 --- Review the Issue Details
 
----
+Each issue row provides information about the condition identified by
+the audit, including its title, suggested action and affected-element
+count.
 
-## Review the Issues
+Depending on the check, one result may contain a single issue or several
+separate issues.
 
-The Issue Details window provides more information about the conditions identified by the selected audit check.
+<!-- SCREENSHOT: Issue Details window with several issue rows.
+Show the checkboxes, issue information, affected-element count,
+per-row Select Elements controls and Ignore Selected.
+Caption should explain that Select Elements is per issue while
+checkboxes are used for Ignore Selected. -->
 
-Depending on the issue, the available information can include:
+------------------------------------------------------------------------
 
-* the issue description;
-* the number of affected Revit elements;
-* the issue severity; and
-* a suggested action for reviewing or correcting the condition.
+## Step 3 --- Investigate an Issue in Revit
 
-Some checks can return several separate issues.
+To investigate one issue, click **Select Elements** on that issue's row.
 
-For example, a check may identify different groups of affected elements that need to be reviewed independently.
+**You do not need to tick the issue checkbox before using Select
+Elements.**
 
----
+Flow closes the Issue Details window and requests Revit to locate the
+affected elements.
 
-## Select Issues
+Where possible, Flow then:
 
-Select the issue or issues that you want to investigate.
+1.  activates the preferred review view;
+2.  removes any existing Temporary Hide/Isolate state in that target
+    view;
+3.  temporarily isolates the affected elements;
+4.  selects them; and
+5.  zooms to them.
 
-Where an issue is associated with Revit elements, the selected issue can then be used to select the corresponding elements in the project.
+This makes the elements identified by the audit easier to inspect in
+context.
 
-!!! info "Not every issue is the same"
+!!! important "Checkboxes have a different purpose"
 
-	Different audit checks identify different types of model conditions.
+    The checkboxes in Issue Details are used by **Ignore Selected**.
 
-	The number of affected elements and the appropriate corrective action therefore depend on the check being reviewed.
+    They are not required for **Select Elements**, which acts on the individual issue row.
 
----
+------------------------------------------------------------------------
 
-## Select Affected Elements
+## Preferred Review Views
 
-For an issue associated with Revit elements, use the available selection control to select the affected elements in Revit.
+For most affected elements, Model Health looks for the 3D view:
 
-This allows the elements identified by the audit to be inspected using the normal Revit tools.
+**3D-01-Work Main**
 
-Model Health identifies the elements requiring attention but does not automatically correct the underlying model condition.
+If the issue contains a Revit Property Line, Model Health instead looks
+for:
 
-!!! tip "Review the model before changing it"
+**SITE-01-Site Plan**
 
-	Selecting affected elements provides a direct route from the audit result back to the Revit model.
+If that exact site-plan view does not exist, Flow looks for a
+non-template plan view with `site` in its name.
 
-	Review the surrounding model context before deciding how the issue should be resolved.
+If the preferred review view cannot be found, Flow remains in the
+current active view and continues the selection/isolation workflow
+there.
 
----
+!!! note "Temporary Hide/Isolate"
 
-## Resolve an Issue
+    Model Health uses Revit's Temporary Hide/Isolate mode to focus on the affected elements.
 
-Use the issue description and suggested action as guidance when reviewing the identified condition.
+    If the target view already has a Temporary Hide/Isolate state, Model Health clears that state before applying its own temporary isolation.
 
-Make the required correction using the appropriate Revit tools.
+------------------------------------------------------------------------
+
+## Step 4 --- Correct the Condition
+
+Review the selected elements and use the appropriate Revit tools to make
+any required correction.
 
 Examples may include:
 
-* resolving a Revit warning;
-* removing or replacing imported CAD;
-* reviewing an in-place family;
-* placing or removing an unplaced room;
-* reviewing model-group usage; or
-* assigning unique Mark values.
+-   resolving a Revit warning;
+-   replacing imported CAD with a CAD link where practical;
+-   reviewing an in-place family;
+-   placing or deleting an unplaced room;
+-   reviewing model-group usage; or
+-   assigning unique Mark values.
 
-Model Health is currently primarily an **audit and review tool**. Corrective changes remain under the user's control.
+Model Health does **not** currently auto-fix these conditions.
 
----
+After making changes, return to Model Health and click **Run Audit** to
+update the results.
 
-## Ignore an Issue
+------------------------------------------------------------------------
 
-Some identified conditions may be intentional or accepted for the current project.
+## Ignore an Accepted Issue
 
-Where appropriate, an issue can be ignored so that it can be managed separately from issues still requiring attention.
+Some reported conditions may be intentional and acceptable for a
+particular project.
 
-Use the available issue controls to ignore the selected issue.
+To ignore one or more issues:
 
-!!! warning "Ignore only accepted conditions"
+1.  Open **Review Issues**.
+2.  Tick the checkbox beside each issue you want to ignore.
+3.  Click **Ignore Selected**.
 
-	Ignoring an issue does not correct the underlying Revit model condition.
+Flow stores the selected issues in the ignored list and **automatically
+reruns the audit**.
 
-	Use it for conditions that have been reviewed and intentionally accepted rather than simply to remove unwanted audit results.
+The ignored issues are then removed from the active results and no
+longer contribute to the displayed Model Health score.
 
----
+!!! warning "Ignored does not mean resolved"
 
-## Review Ignored Issues
+    Ignoring an issue does not modify the Revit model.
+
+    Use Ignore only when the condition has been reviewed and intentionally accepted.
+
+### Where ignored issues are stored
+
+Ignored issues are stored locally for the current Windows user and
+project.
+
+They are **not written into the Revit model** and are not automatically
+shared with another user opening the same project.
+
+------------------------------------------------------------------------
+
+## Review or Restore Ignored Issues
 
 From the main Model Health window, click:
 
 **Ignored Issues**
 
-The Ignored Issues window allows previously ignored Model Health issues to be reviewed.
+The Ignored Issues window shows the stored ignored conditions, including
+their title, category and ignored date.
 
-Ignored items can be restored when they should once again be included in the active review workflow.
+<!-- SCREENSHOT: Ignored Issues window with multiple items.
+Show checkboxes, Title, Category, Ignored Date, Restore Selected and Restore All. -->
 
----
+To return specific issues to the active audit:
 
-## Restore the Revit View
+1.  Tick the required ignored issues.
+2.  Click **Restore Selected**.
 
-Model Health may temporarily change the Revit view or selection while affected elements are being investigated.
+To restore every ignored issue, use:
 
-Use:
+**Restore All**
+
+When the Ignored Issues window closes, Model Health automatically runs
+the audit again.
+
+Restored conditions will reappear only if the current model still
+satisfies the relevant check.
+
+------------------------------------------------------------------------
+
+## Restore the Review View
+
+While reviewing affected elements, Model Health temporarily isolates
+them in Revit.
+
+Click:
 
 **Restore View**
 
-from the main Model Health window to return to the previously stored view state where available.
+to remove the Temporary Hide/Isolate state from the currently active
+Revit view.
 
----
+Closing the Model Health window also requests the same removal
+automatically.
 
-## Check the Model Again
+!!! note "What Restore View does not restore"
 
-After correcting model issues, return to Model Health and click:
+    **Restore View** removes temporary isolation only.
 
-**Run Audit**
+    It does not switch back to a previously active view, restore a previous zoom position, restore the previous Revit selection or recreate a Temporary Hide/Isolate state that existed before Model Health review.
 
-Flow evaluates the current model again and updates:
+------------------------------------------------------------------------
 
-* the health score;
-* passed checks;
-* checks requiring attention;
-* total issue count;
-* severity counts; and
-* individual audit results.
+## Typical Review Workflow
 
-The new audit results can then be used to confirm whether the correction resolved the identified condition.
+A typical issue-review cycle is:
 
----
+**Failed Check → Review Issues → Select Elements → Review/Fix in Revit →
+Run Audit**
+
+For an accepted condition:
+
+**Failed Check → Review Issues → Tick Issue → Ignore Selected →
+Automatic Re-audit**
+
+------------------------------------------------------------------------
 
 ## Related Help
 
-* [Model Health](index.md)
-* [Running Health Checks](running-health-checks.md)
-* [Troubleshooting](troubleshooting.md)
+-   [Model Health](index.md)
+-   [Running Health Checks](running-health-checks.md)
+-   [Troubleshooting](troubleshooting.md)

@@ -32,6 +32,22 @@ Flow creates a filled-region type using the selected pattern where required, cre
 
 The boundary must form valid closed loops suitable for a Revit filled region.
 
+### Draw Boundary
+
+Pick at least three points. Revit snapping is available for endpoints, intersections, midpoints and nearest points. Press **Esc** after the final point and Flow closes the last segment back to the first point automatically.
+
+This mode creates straight boundary segments and one closed loop. Temporary detail-line previews are removed after the region is created.
+
+### Use Linework
+
+Select detail or model CurveElements that form one or more closed loops, then click **Finish**. Flow orders and reverses connected curves where necessary.
+
+!!! warning "Selected source linework is removed"
+
+    After the filled region is created successfully, Flow deletes the selected source CurveElements. Copy important linework first if it must remain in the view.
+
+Flow reuses a filled-region type whose foreground pattern matches the selected project pattern. If none exists, it creates or updates a type named `Flow - [pattern name]`. At least one filled-region type must already exist in the project for Flow to duplicate when a new type is required.
+
 ---
 
 ## Merge Filled Regions
@@ -45,9 +61,13 @@ Use **Merge Filled Regions** to combine multiple filled regions into one region.
 
 Flow combines the boundaries, creates the merged region using the sampled type, removes the original selected regions and selects the resulting region.
 
+<!-- SCREENSHOT: Before-and-after Revit views showing several source regions and the single merged result. -->
+
 !!! note "The sample controls the result type"
 
     The regions being merged do not all need to use the same type. The separately sampled filled region determines the type used by the merged result.
+
+All selected and sampled regions must belong to the active view. The sample may also be one of the regions selected for merging.
 
 ---
 
@@ -58,12 +78,19 @@ Use **Cut Filled Region** to subtract one or more filled regions from a base reg
 1. Open the **Tools** tab.
 2. Select **Cut Filled Region**.
 3. Select the base filled region.
-4. Select one or more cutter filled regions and finish the selection.
-5. Complete the workflow when prompted.
+4. Choose **Delete Cutters** or **Keep Cutters**.
+5. Select one or more cutter filled regions and click **Finish**.
 
-Flow recreates the base boundary with the cutter areas removed. The cutter regions are deleted when the selected workflow option requires it, and the resulting base region is selected.
+Flow creates a replacement region using the base region's type, removes the original base region and selects the result.
+
+- **Keep Cutters** retains the selected cutter regions.
+- **Delete Cutters** removes every selected cutter region after a successful cut, including any selected cutter that did not overlap the base.
+
+Cutters that do not overlap the base are ignored during the subtraction. At least one selected cutter must remove part of the base region.
 
 The cutter geometry must produce a valid Revit filled-region boundary when subtracted from the base.
+
+<!-- SCREENSHOT: Before-and-after Revit views showing the base, cutters and completed cut result. -->
 
 ---
 
@@ -81,7 +108,7 @@ See [**Generating Patterns from Geometry**](generating-patterns-from-geometry.md
 
 ## Cancel an Operation
 
-Press **Esc** during a Revit selection or boundary capture to cancel. Pattern Manager reappears without applying the operation.
+Press **Esc** during a Revit selection to cancel. When drawing a boundary, **Esc** before the first point cancels; after points have been placed it finishes point capture and Flow attempts to close the loop. Pattern Manager then reappears.
 
 ---
 

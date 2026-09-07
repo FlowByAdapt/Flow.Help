@@ -1,95 +1,187 @@
 # Project Information
 
-Project Information allows supported project metadata stored in the
-active Revit project to be inspected, reviewed and updated as part of
-Project Setup.
+**Project Information** reviews the configured project information fields in the active Revit project and allows required values to be prepared and written from Project Setup.
 
-It is distinct from **Project Identity**, which contains shared values
-used by Project Setup workflows.
+Flow separates the inspection of the existing Revit values from the changes you choose to apply.
 
-------------------------------------------------------------------------
+The shared **Project Identity** can also provide proposed values for corresponding project information fields.
+
+**Ribbon:** **Flow → Project → Setup**
+
+---
+
+## When to Use Project Information
+
+Use **Project Information** when:
+
+* setting up a newly created Revit project
+* reviewing an existing project's information
+* checking whether required project information fields have been completed
+* applying project information based on the reviewed Project Identity
+* correcting incomplete or inconsistent project information
+
+---
+
+## Before You Start
+
+Open or activate the Revit project you want to review.
+
+Where possible, complete and review the **Project Identity** first.
+
+This gives Flow the shared project information that can be used when preparing corresponding Project Information values.
+
+!!! info "Project Identity is separate"
+
+	Reviewing Project Identity does not automatically overwrite Revit Project Information.
+
+	Project Information changes remain part of this separate review and update workflow.
+
+---
 
 ## Opening Project Information
+
+### 1. Inspect the Project
 
 Open:
 
 **Flow → Project → Setup**
 
-Inspect the current project, then open the **Project Information**
-review.
+Select **Inspect Project**.
 
-------------------------------------------------------------------------
+Flow inspects the Project Information stored in the active Revit project and updates its status in the Setup Overview.
 
-## Inspection
+### 2. Open the Review
 
-Project Setup reads supported Project Information parameters and reports
-their current state.
+Select **Review / Update** in the Project Information area.
 
-Inspection does not overwrite existing values.
+Flow opens the Project Information review window.
 
-!!! info "Inspection does not change Project Information"
+<!-- Screenshot recommended:
+Show the Project Information review window after it has been opened.
+Include a useful mixture of existing values and proposed values so the relationship between the two is clear.
+-->
 
-    Changes are only written when you deliberately apply the proposed edits.
+---
 
-------------------------------------------------------------------------
+## Reviewing Project Information
 
-## Reviewing and Editing Values
+The review separates the value currently stored in Revit from the value proposed for the project.
 
-The review presents current values and allows proposed values to be
-entered before anything is written back to Revit.
+Review each field before applying changes.
 
-Supported information is grouped into configured sections, including
-project, internal-team, external-team and site-information fields.
+Where Project Identity provides corresponding information, Flow can use that shared information when preparing the proposed setup.
 
-!!! tip "Review before applying"
+This allows the Project Identity to remain the common starting point without automatically changing the Revit project.
 
-    Check proposed values carefully before applying them.
-
-------------------------------------------------------------------------
-
-## Parameter Checks
-
-Project Setup can identify a supported field where the required
-parameter:
-
--   exists and can be edited;
--   is missing; or
--   is read-only or otherwise unavailable for modification.
-
-!!! warning "Parameter unavailable?"
-
-    Do not create an ad-hoc replacement parameter merely to clear the status. Review or report the configuration problem.
-
-------------------------------------------------------------------------
+---
 
 ## Applying Changes
 
-Apply the reviewed changes when you are satisfied with the proposed
-values.
+### 1. Review the Current Values
 
-Re-inspect the project when required to confirm the resulting Project
-Information state.
+Check the values currently stored in the Revit project.
 
-------------------------------------------------------------------------
+### 2. Review the Proposed Values
 
-## Project Identity Is Different
+Check the values Flow proposes for the project.
 
-Project Identity contains **Project Year**, **Project Number**,
-**Client** and **Location** and is used by workflows such as folder
-planning and new-project creation.
+Adjust the proposed information where required.
 
-Project Information represents supported information stored in the
-active Revit model.
+### 3. Apply the Changes
 
-➡️ **[Project Identity →](project-identity.md)**
+When the proposed values are correct, use the available update action to write them to the Revit project.
 
-------------------------------------------------------------------------
+Flow performs the write as an explicit operation.
+
+---
+
+## Expected Result
+
+After the required Project Information changes have been successfully applied:
+
+* the selected Project Information values are written to the active Revit project
+* the project contains the reviewed setup information
+* the Project Information status can reflect the updated state when reinspected
+
+The Project Identity remains available as shared Project Setup information.
+
+---
+
+## Read-Only Fields
+
+Some Revit parameters may exist but cannot be modified in the current project context.
+
+Flow identifies whether a configured Project Information field is available and whether it can be written.
+
+A read-only field cannot be changed by the Project Information update workflow.
+
+!!! info "Flow does not force read-only values"
+
+	If Revit reports a parameter as read-only, Flow does not attempt to bypass that restriction.
+
+---
+
+## Missing Fields
+
+A configured Project Information field may not exist in the active project.
+
+Flow can identify that condition during inspection rather than assuming every expected field is available.
+
+If a required field is missing, review the project configuration or template before attempting to complete the Project Information setup.
+
+---
+
+## Project Identity and Proposed Values
+
+The reviewed Project Identity provides common project information including:
+
+* Project Year
+* Project Number
+* Client
+* Location
+
+Where these values correspond with the configured Project Information setup, Flow can use them when preparing the review.
+
+!!! important "Review before writing"
+
+	Project Identity values are not automatically pushed into Revit simply because the identity has been reviewed.
+
+	Review the proposed Project Information values before applying them.
+
+---
+
+## If Project Information Requires Attention
+
+Open **Review / Update** and check:
+
+* fields with missing values
+* proposed values that differ from the current Revit values
+* fields that are unavailable
+* fields reported as read-only
+
+Correct or apply the values that can be updated.
+
+If the issue is caused by a missing or incorrectly configured project parameter, that underlying project configuration may need to be corrected separately.
+
+---
+
+## If Changes Cannot Be Applied
+
+A Project Information change may be unavailable if:
+
+* the parameter does not exist
+* Revit reports the parameter as read-only
+* the project is not in a state where the value can be written
+* the requested update cannot be completed by Revit
+
+Flow reports the result rather than treating an unsuccessful write as complete.
+
+---
 
 ## Related Help
 
--   [Project Setup](index.md)
--   [Project Identity](project-identity.md)
--   [Creating a New Project](new-projects.md)
--   [Reviewing a Current Project](current-projects.md)
--   [Project Folders](project-folders.md)
--   [Troubleshooting](troubleshooting.md)
+* [Project Setup](index.md)
+* [Project Identity](project-identity.md)
+* [Reviewing a Current Project](current-projects.md)
+* [Creating a New Project](new-projects.md)
+* [Project Setup Troubleshooting](troubleshooting.md)

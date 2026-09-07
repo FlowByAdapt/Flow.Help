@@ -1,6 +1,6 @@
 # Browsing the Pattern Library
 
-Use the **Pattern Library** tab to find approved PAT content, review its definition and load it into the active Revit project.
+Use the **Library** tab to find approved PAT content, review its definition and load it into the active Revit project.
 
 ---
 
@@ -8,11 +8,13 @@ Use the **Pattern Library** tab to find approved PAT content, review its definit
 
 On the Revit ribbon:
 
-**Flow → Model → Patterns**
+**ADAPT → Model → Patterns**
 
-Open the **Pattern Library** tab.
+Open the **Library** tab.
 
 When Pattern Manager opens, Flow scans the configured hatch-pattern library and all of its subfolders for `.pat` files. The summary cards show the number of PAT files, parsed patterns, pattern folders and reading warnings.
+
+<!-- SCREENSHOT: Library tab showing the search box, folder filter, pattern cards, selected-pattern details and library metric cards. -->
 
 ---
 
@@ -31,8 +33,10 @@ The folder path shown on each pattern helps identify where the source PAT defini
 
 Enter text in the library search box. Search matches:
 
-- pattern names; and
-- pattern descriptions.
+- pattern names;
+- descriptions;
+- categories; and
+- relative library folder paths.
 
 Search and folder filtering work together. Clear the search or return the folder filter to **All Folders** if an expected pattern is not visible.
 
@@ -51,8 +55,7 @@ Depending on the PAT definition, Pattern Manager can show:
 - name and description;
 - model or drafting target;
 - millimetre or inch units;
-- source folder and PAT file information;
-- grid definitions; and
+- source folder and PAT file information; and
 - parsing or validation warnings.
 
 The preview is a graphical aid. Dense dot patterns, very large repeats or unusual dash definitions may be simplified by the preview even when the resulting Revit pattern is valid.
@@ -73,7 +76,7 @@ Flow rescans the library, rebuilds the folder list and updates the summary metri
 2. Review its target, units and preview.
 3. Click **Load**.
 
-Flow applies the standard project naming format and adds the pattern to the current Revit project.
+Flow applies the standard project naming format and loads the pattern into the current Revit project.
 
 If a pattern with the same standardised name and target already exists, Flow uses that existing project pattern rather than creating a second duplicate.
 
@@ -90,10 +93,10 @@ A warning does not necessarily mean the whole library is unavailable. Flow conti
 Warnings can identify issues such as:
 
 - an unreadable PAT file;
-- an unsupported or missing target declaration;
-- missing or unknown units;
-- malformed numeric grid data; or
-- a pattern with no usable grid definitions.
+- a missing target declaration; or
+- malformed or incomplete numeric grid data.
+
+An unknown units declaration or a definition with no grid lines is not currently added to the warning count. These conditions can still prevent the pattern from being loaded or exported successfully.
 
 Open or correct the affected PAT file, then click **Refresh**.
 

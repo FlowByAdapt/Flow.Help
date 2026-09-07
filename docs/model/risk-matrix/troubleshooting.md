@@ -1,33 +1,30 @@
 # Risk Matrix Troubleshooting
 
-Use the following checks if Risk Matrix cannot process the expected
-walls or the Risk Face information is not behaving as expected.
+Use these checks if Risk Matrix cannot process the expected walls or the
+Risk Face information is not behaving as expected.
 
 ------------------------------------------------------------------------
 
 ## Risk Matrix Does Not Open on the Expected View
 
-Risk Matrix recognises Risk Views whose names begin with:
-
-**RISK-**
-
-The default Risk View is:
+Risk Matrix attempts to activate:
 
 **RISK-01-Elevation**
 
-If the active view is not already a Risk View, confirm that the default
-Risk View exists in the project.
+Risk Views must begin with:
 
-Use **Previous View** and **Next View** to move between the available
-Risk Views.
+**RISK-**
+
+Confirm that the default view exists. Use **Previous View** and **Next
+View** to move through the available Risk Views.
 
 ------------------------------------------------------------------------
 
-## Pick Walls Will Not Continue
+## Pick Walls Will Not Start
 
 Check the project **Wind Zone** first.
 
-Risk Matrix requires a recognised Wind Zone from:
+Risk Matrix requires a recognised value from:
 
 **Revit Project Information → Wind Zone**
 
@@ -39,21 +36,18 @@ Accepted standard values are:
 -   Very High
 -   Extra High
 
-If the value was changed while Risk Matrix was already open, click
-**Refresh** beside Wind Zone.
+If the value changed while Risk Matrix was open, click **Refresh**.
 
 ------------------------------------------------------------------------
 
-## Wind Zone Shows Not Set
+## Wind Zone Is Not Set or Unrecognised
 
-The project Wind Zone is blank or could not be resolved.
+Risk Face processing remains blocked while Wind Zone cannot be resolved.
 
 1.  Open Revit **Project Information**.
-2.  Set **Wind Zone** to the required project value.
+2.  Set **Wind Zone** to the required recognised value.
 3.  Return to Risk Matrix.
 4.  Click **Refresh**.
-
-Risk Face processing remains blocked while Wind Zone is unresolved.
 
 ------------------------------------------------------------------------
 
@@ -64,50 +58,112 @@ Risk Face processing remains blocked while Wind Zone is unresolved.
 Risk Matrix intentionally blocks the standard E2 Risk Matrix processing
 workflow when the project Wind Zone is SED.
 
-This is not an error in the tool.
+This is expected behaviour rather than a processing error.
 
 ------------------------------------------------------------------------
 
-## A Wall Cannot Be Processed
+## A Wall Cannot Be Selected
 
-Confirm that the wall is an exterior wall type expected by Risk Matrix.
+Risk Matrix uses an eligibility filter during **Pick Walls**.
 
-The current workflow identifies exterior wall types using the prefix:
+Confirm that the wall type begins with:
 
 **ADa_E\_**
 
-Also check that the wall has valid geometry that can be interpreted in
-the current Risk View.
+Also confirm that you are selecting a wall element rather than another
+model category.
+
+------------------------------------------------------------------------
+
+## I Pressed Esc During Pick Walls
+
+This is the normal way to finish the selection.
+
+During **Pick Walls**, walls are selected one at a time. Pressing
+**Esc** ends the selection loop and processes the walls already
+selected.
+
+If no eligible walls were selected, there is nothing to process.
+
+------------------------------------------------------------------------
+
+## The Temporary Blue Highlight Disappeared
+
+The pale-blue override is temporary selection feedback only.
+
+It is applied while you are choosing walls and is not the final Risk
+Face colour. After processing, Risk Matrix applies the coordinated Risk
+Face graphics.
 
 ------------------------------------------------------------------------
 
 ## Walls Are Grouped into the Wrong Face
 
-Risk Matrix groups selected walls when they are approximately coplanar
-and spatially continuous in the current Risk View.
+Risk Matrix groups walls according to their geometry in the active Risk
+View.
 
-If two walls are unexpectedly grouped together, check:
+Check whether the walls are:
 
--   whether they are effectively on the same plane;
--   whether their projected extents touch or overlap; and
--   whether the model geometry contains only a very small gap.
+-   approximately coplanar;
+-   close in plane; and
+-   spatially continuous when projected into the view.
 
-If walls that should form one face are separated by a genuine model gap,
-they may be treated as separate Risk Faces.
+Small geometric differences can affect grouping. A genuine break or
+change of plane should normally produce a separate Risk Face.
 
 ------------------------------------------------------------------------
 
 ## Face Numbers Are Unexpected
 
-Risk Matrix retains an existing face number where the selected group
-already contains processed Risk Face information.
+For new groups, selection order influences processing order. Risk Matrix
+uses the earliest selected wall in each group when ordering the groups.
 
-When a face is removed, the remaining face numbers can be compacted to
-close the gap.
+Where practical, select building faces in the numbering order you want.
 
-If a face has been assigned incorrectly, use the individual face-reset
-or **Copy Face** workflow rather than manually editing the face number
-where possible.
+Already processed walls retain their existing Risk Face information.
+
+If the walls were previously reset, Flow may display **Next Available**,
+**Restore Original** or **Choose Number...** before processing them
+again.
+
+------------------------------------------------------------------------
+
+## A Previously Processed Wall Kept Its Old Values
+
+This is intentional.
+
+Already processed walls are protected from having their stored Risk
+Matrix values overwritten when they are selected again. They can still
+be updated for presentation in the active view.
+
+If the wall genuinely needs a different Risk Face assignment, use the
+appropriate **Copy Face** or reset workflow.
+
+------------------------------------------------------------------------
+
+## Copy Face Does Not Start
+
+The first selection must be a processed **ADa_E\_** wall with a valid
+Risk Face assignment.
+
+After selecting the source, select target walls one at a time and press
+**Esc** when finished.
+
+Selecting no target walls cancels the operation.
+
+------------------------------------------------------------------------
+
+## Match Wall End Does Not Work
+
+The workflow requires two different kinds of selection:
+
+1.  a processed source **wall**; then
+2.  the exposed target **wall face**.
+
+Match Wall End cannot be used in a view template.
+
+Remember that it changes view graphics only. If the target wall
+genuinely belongs to the source Risk Face, use **Copy Face** instead.
 
 ------------------------------------------------------------------------
 
@@ -115,17 +171,11 @@ where possible.
 
 Risk Face colours are based on the face number.
 
-If the face number is correct but a wall needs to display another face
-colour only for graphical continuity, use:
+If the face assignment is correct but an exposed wall end needs
+graphical continuity, use **Match Wall End**.
 
-**Match Wall End**
-
-If the wall genuinely belongs to another Risk Face, use:
-
-**Copy Face**
-
-Do not use **Match Wall End** to correct model data because it changes
-only the view graphics.
+If the wall genuinely belongs to another Risk Face, use **Copy Face** or
+reset and reprocess the face.
 
 ------------------------------------------------------------------------
 
@@ -135,173 +185,75 @@ Risk Matrix uses:
 
 **ADa_TAG_Wall_Risk : Risk Face label**
 
-Check that this family and type are available in the project.
+Check that this family/type is available in the project.
 
-A tag may also fail to appear if:
-
--   the view is a template;
--   a representative wall cannot be determined;
--   a suitable tag position cannot be determined; or
--   Revit cannot create the tag in the current view.
-
-Risk Matrix avoids creating a duplicate Risk Matrix tag when one already
-exists for the face in that view.
+A tag can also fail where Revit cannot determine or create a suitable
+tag in the current view.
 
 ------------------------------------------------------------------------
 
-## Copy Face Does Not Work
+## Cladding Mapping Is Unexpected
 
-The source wall must already belong to a valid Risk Face.
+Open the **Cladding** tab and check:
 
-**Copy Face** copies:
+-   whether the wall type is included;
+-   its cladding description;
+-   its selected **Cladding 1--4** group;
+-   the resulting **Wall Type Cladding Mapping**; and
+-   **Project Cladding Health**.
 
--   the Risk Face assignment;
--   Risk Matrix parameter values;
--   cladding information; and
--   the corresponding face graphics.
-
-A target already belonging to the same face is skipped.
-
-If the operation removes the last wall from another face, the remaining
-face numbering is compacted.
+Wall types sharing the same description should normally use the same
+group.
 
 ------------------------------------------------------------------------
 
-## Match Wall End Does Not Change the Face Number
+## More Than Four Cladding Descriptions Are Required
 
-This is expected.
+The current workflow supports a maximum of four coordinated project
+cladding descriptions.
 
-**Match Wall End** is a graphics-only tool. It applies the source Risk
-Face colour to the target wall in the current view.
-
-It does not change:
-
--   Risk Face Name;
--   Risk Matrix parameters;
--   cladding information; or
--   Risk Face tags.
-
-Use **Copy Face** when the target wall should actually belong to the
-same Risk Face.
+Reduce or coordinate the project descriptions so the required included
+wall types can be represented by **Cladding 1--4**.
 
 ------------------------------------------------------------------------
 
-## Cladding Information Is Unexpected
+## Cladding Changes Were Lost
 
-Open the **Cladding** tab and review the project configuration before changing
-wall parameters manually.
+The cladding setup is saved into the Revit project through the Risk
+Matrix workflow and should be restored when the tool is reopened.
 
-### A Wall Type Is Missing
+A full **Reset Risk Matrix** deliberately clears the saved cladding
+configuration.
 
-Risk Matrix discovers exterior wall types using the configured wall-type rules.
-Confirm that the wall type is an applicable exterior type and follows the
-project naming/configuration expected by Risk Matrix.
-
-### A Wall Type Should Not Participate
-
-Use **Wall Types to Include** and clear **Include** for a discovered wall type
-that should not participate in the project cladding configuration.
-
-### Two Wall Types Should Use the Same Cladding Group
-
-Confirm that their cladding descriptions match. Wall types with the same
-description are automatically coordinated into the same cladding group.
-
-### A Cladding Group Cannot Be Selected
-
-A project cladding group cannot contain different cladding descriptions. If the
-selected group is already assigned to another description, Risk Matrix rejects
-the change and retains the previous valid group.
-
-Either use the matching existing description or select an available group.
-
-### Cladding Changes Do Not Appear After Reopening Risk Matrix
-
-The project cladding configuration is stored in the Revit model and should be
-restored when Risk Matrix or Revit is reopened.
-
-If the expected setup is not restored, check that the model was saved after the
-changes were made.
-
-### Maximum Number of Cladding Groups
-
-The current workflow supports a maximum of **four unique coordinated cladding
-descriptions**. Unused project slots are shown as **N/A**.
-
-If more than four unique descriptions are required, review the project cladding
-configuration before continuing.
-
-## Risk Face Graphics Are Missing
-
-Risk Matrix requires a Revit solid fill pattern to apply the Risk Face
-surface colour.
-
-Also check that:
-
--   the current view supports element overrides;
--   the view is not a template; and
--   the affected wall has been processed as a Risk Face.
-
-Remember that the overrides are view-specific.
+A selected-face reset does not.
 
 ------------------------------------------------------------------------
 
-## Reset Risk Matrix Removed More Than Expected
+## I Reset the Wrong Face Number
 
-**Reset Risk Matrix** is intentionally a project-wide reset.
+When a selected face is reset, Risk Matrix can retain reset history on
+its former walls.
 
-It clears Risk Matrix information from exterior walls, clears associated
-Risk Matrix project parameters, removes Risk Face graphical overrides
-from Risk Views, removes Risk Matrix tags and clears the Risk Face
-numbering state. It also clears the saved project cladding configuration.
-
-After the full reset, the Cladding tab is rebuilt from the automatic wall-type
-discovery and default mappings. Custom exclusions, edited descriptions and
-manual group selections therefore return to the discovered defaults.
-
-For a local correction, use the individual face-reset workflow instead. A
-selected-face reset preserves the project cladding configuration.
-
-!!! warning "Use the full reset carefully"
-
-    **Reset Risk Matrix** is intended for clearing the Risk Matrix workflow across the project, not for correcting a single wall.
+If those walls are subsequently processed together, the **Risk Face
+Number** dialog may allow you to **Restore Original** or **Choose
+Number...**.
 
 ------------------------------------------------------------------------
 
-## I Cannot Find a Final Risk Score
+## I Only Need to Correct One Face
 
-The current version of Risk Matrix does not yet calculate and present
-the completed E2 score for each Risk Face.
+Do not use a full project reset.
 
-The current workflow prepares the Risk Faces, model parameters, cladding
-coordination, colours and tags used by the assessment/documentation
-process.
-
-Automated per-face scoring and confirmation are planned for future
-development.
-
-------------------------------------------------------------------------
-
-## Reporting a Problem
-
-If the problem continues, record:
-
--   the Revit version;
--   the active Risk View;
--   the affected Risk Face or wall;
--   the Project Information Wind Zone;
--   the Project Risk Values selected in Risk Matrix;
--   what you expected to happen;
--   what happened instead;
--   any message displayed by Flow; and
--   a screenshot of Risk Matrix and the affected Risk View where useful.
+Use the selected-face reset so the chosen Risk Face can be cleared and
+rebuilt while other processed faces and the project cladding
+configuration remain intact.
 
 ------------------------------------------------------------------------
 
 ## Related Help
 
--   [Risk Matrix](index.md)
--   [Identifying Risk Faces](identifying-risk-faces.md)
--   [Assigning Risk Information](assigning-risk-information.md)
--   [Reviewing Risk Results](reviewing-risk-results.md)
--   [Risk Documentation](risk-documentation.md)
+-   [**Risk Matrix**](index.md)
+-   [**Identifying Risk Faces**](identifying-risk-faces.md)
+-   [**Assigning Risk Information**](assigning-risk-information.md)
+-   [**Reviewing Risk Results**](reviewing-risk-results.md)
+-   [**Risk Documentation**](risk-documentation.md)

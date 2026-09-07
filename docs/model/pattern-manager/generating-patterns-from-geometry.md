@@ -33,7 +33,7 @@ For linework, draw or identify one complete rectangular repeat of the pattern. T
 
 ## Start From Geometry
 
-1. Open **Flow → Model → Patterns**.
+1. Open **ADAPT → Model → Patterns**.
 2. Open the **Tools** tab.
 3. Select **From Geometry**.
 
@@ -65,6 +65,8 @@ The two points must create a tile with non-zero width and height.
 
 The tile establishes the repeat dimensions used when Flow compiles the selected line families into Revit pattern grids.
 
+<!-- SCREENSHOT: Revit view showing one complete repeat of selected pattern linework and the two opposite tile corners. -->
+
 !!! note "The tile controls repetition"
 
     Pick equivalent opposite corners of one complete repeat. An incorrect tile can produce unexpected spacing, shifting or discontinuities even when the selected linework itself looks correct.
@@ -81,7 +83,7 @@ If usable grids are generated, Pattern Editor opens with:
 - **Millimetres** as the initial units; and
 - the compiled grid and segment definitions.
 
-These are starting values. Rename the pattern and change its target, units or grid properties where required.
+Rename the pattern and review the generated target, units and grid properties. **Type** and **Units** are displayed for reference but cannot be changed in the current editor.
 
 Review the preview and any available analysis information. For detailed control, edit individual grid angles, offsets, origins, shifts and segment sequences before saving.
 
@@ -90,8 +92,8 @@ Review the preview and any available analysis information. For detailed control,
 ## Create the Project Pattern
 
 1. Enter a unique pattern name.
-2. Confirm **Model** or **Drafting**.
-3. Review the units and generated grids.
+2. Confirm that the displayed **Type** and **Units** are suitable.
+3. Review the generated grids.
 4. Click **Save**.
 
 Flow validates the definition and loads it into the active Revit project.

@@ -25,7 +25,7 @@ Pattern Manager scans all subfolders, so PAT files do not need to be stored dire
 4. Review the library warning count and messages.
 5. Confirm that the definition has a recognised target and at least one usable grid.
 
-Search matches the pattern name and description, while the folder filter includes the selected folder and its descendants.
+Search matches the pattern name, description, category and relative folder path, while the folder filter includes the selected folder and its descendants.
 
 ---
 
@@ -36,12 +36,13 @@ Review the reported filename, line number and pattern name where available.
 Common causes include:
 
 - invalid numeric grid data;
-- missing or unsupported units;
 - no model or drafting target declaration;
 - a pattern header without a name; or
-- no usable grids in the definition.
+- a grid line containing fewer than five values.
 
 Correct the PAT file and click **Refresh**. Other valid patterns can remain available even when one file or definition produces warnings.
+
+Unknown units and definitions with no grid lines do not currently add a library warning. Check the displayed Units value and source PAT content if loading or exporting fails without a warning.
 
 ---
 
@@ -77,18 +78,17 @@ Pattern Editor stays open after validation fails so the definition can be correc
 
 ---
 
-## An Edited Project Pattern Cannot Be Updated
+## Editing Creates a Temporary Update Pattern
 
-Flow must find the existing project pattern by its name and target before it can replace the definition.
+The current **Edit** implementation prepares a pattern whose name ends in `__FlowUpdate`, but does not yet transfer project references, remove the original pattern or complete the replacement.
 
-The update can fail when:
+Until that workflow is completed:
 
-- the original pattern no longer exists;
-- its model or drafting target has changed unexpectedly;
-- a temporary Flow update name already exists; or
-- Revit rejects the resulting grid definition.
+- use **Duplicate** to create a separate pattern;
+- reassign materials or filled-region types deliberately in Revit; and
+- do not repeatedly run **Edit** if a temporary update pattern already exists.
 
-Review the message shown by Flow and check the current project-pattern list before retrying.
+Changing only the Name in Edit mode may also leave **Save** disabled. Use **Conform Name** for an ADa prefix correction.
 
 ---
 
@@ -162,6 +162,8 @@ Confirm that:
 - the cutter geometry overlaps the intended base area; and
 - the subtraction produces valid closed boundary loops.
 
+Choose **Delete Cutters** or **Keep Cutters** before selecting the cutters. If **Delete Cutters** is used and the cut succeeds, every selected cutter is deleted—even a selected cutter that did not overlap the base.
+
 ---
 
 ## Create Filled Region Fails
@@ -174,6 +176,10 @@ Confirm that:
 - the active view supports filled regions.
 
 If existing linework is unsuitable, retry using **Draw Boundary**.
+
+When using **Use Linework**, the selected source CurveElements are deleted after successful region creation. Copy linework first if it must remain. When using **Draw Boundary**, press **Esc** after placing at least three points so Flow can close the final segment automatically.
+
+If creation fails after boundary capture, a temporary preview line or a newly prepared `Flow - [pattern name]` filled-region type may remain. Remove it manually after confirming it is not required.
 
 ---
 

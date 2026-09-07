@@ -31,17 +31,17 @@ The parser recognises:
 - optional descriptions; and
 - PAT grid lines containing angles, origins, offsets, shifts and dash data.
 
-Patterns with missing targets, no grid definitions or malformed grid data are reported through library warnings.
+Missing targets and malformed grid data are reported through library warnings. A definition with no grid lines can still appear in the catalogue but cannot be loaded or exported successfully.
 
-!!! note "PAT definitions need Flow metadata"
+!!! note "PAT definitions need usable metadata"
 
-    A usable definition needs recognised units, a model or drafting target and at least one valid grid. Correct the source PAT file if Flow reports unknown or incomplete information.
+    A pattern must have recognised units, a model or drafting target and at least one valid grid before it can be loaded or exported successfully. Unknown units are not currently shown as a library warning, so check the displayed Units value if an operation fails.
 
 ---
 
 ## Export a Library Pattern
 
-1. Open the **Pattern Library** tab.
+1. Open the **Library** tab.
 2. Select the required pattern.
 3. Click **Export**.
 4. Choose the filename and destination.
@@ -54,7 +54,7 @@ Flow exports only the selected pattern, even when its source PAT file contains s
 
 1. Open **Project Patterns**.
 2. Select or right-click the required pattern.
-3. Choose **Export**.
+3. Choose **Export PAT**.
 4. Choose the filename and destination.
 
 The default filename uses the selected pattern name with a `.pat` extension. Flow removes a leading `*` before creating the filename.

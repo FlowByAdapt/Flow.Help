@@ -1,18 +1,14 @@
 # Managing Extracted Drafting Views
 
-Drafting View Extractor converts drafting views held within Revit library files into individually managed Revit files.
-
-The extracted files are stored within the Flow content library so that reusable drafting content can be maintained separately from the source files in which it was created.
+Drafting View Extractor stores individually managed RVTs within the version-specific Flow content library.
 
 ---
 
-## How Extracted Views Are Stored
+## Output Folder Structure
 
-Flow stores extracted drafting views within a `_draftingviews` folder in the corresponding area of the Revit content library.
+The source file must be inside the configured library. Flow inserts `_draftingviews` after the source path's first folder beneath the library root and retains the remaining source folders.
 
-The source library structure is retained beneath this location so that extracted content remains associated with the area of the library from which it originated.
-
-For example, a source file stored within a library structure such as:
+For example:
 
 ```text
 Library
@@ -21,7 +17,7 @@ Library
         └── Container.rvt
 ```
 
-will have its extracted drafting-view content organised beneath:
+produces output beneath:
 
 ```text
 Library
@@ -31,121 +27,101 @@ Library
             └── Extracted drafting-view files
 ```
 
-!!! info "The library structure is maintained automatically"
+The required output folders are created automatically.
 
-    You do not need to choose an output folder for each extraction.
+!!! note "Sources outside the library"
 
-    Flow determines the appropriate `_draftingviews` location from the
-    location of the selected source file.
+    Flow cannot calculate the mirrored output location when a source is outside the configured library root.
 
 ---
 
 ## Extracted File Names
 
-Each drafting view is saved as an individual `.rvt` file.
+Each output RVT uses:
 
-The filename is built from:
-
-**Source Container Name + Drafting View Name**
+```text
+ContainerName_Drafting View Name.rvt
+```
 
 For example:
 
 ```text
-ContainerName_Drafting View Name.rvt
+Typical Details_Foundation Junction.rvt
+Typical Details_Foundation Junction.png
 ```
 
-Characters that cannot be used in Windows filenames are replaced automatically.
+Invalid Windows filename characters are changed to underscores, repeated underscores are collapsed and spaces are retained.
 
-Associated preview images use the same base filename:
+The matching PNG uses the same base filename and is stored beside the RVT.
+
+---
+
+## Missing, Old and Recent Output
+
+Normal extraction uses the output RVT's last-write time:
+
+- **Missing** — create the RVT.
+- **More than seven days old** — replace the RVT.
+- **Seven days old or less** — skip the RVT.
+
+Use **Extract Missing / Old Only** for normal maintenance.
+
+---
+
+## Force an Immediate RVT Update
+
+Choose **Force Extract All** to replace extracted RVTs regardless of age.
+
+The existing RVT is deleted before the replacement is saved. If creation or saving fails after deletion, the previous output may no longer be available.
+
+!!! warning "The preview may remain unchanged"
+
+    Forced extraction does not currently overwrite an existing PNG. Delete or regenerate a stale preview separately when the source content has changed.
+
+---
+
+## Purged Content
+
+Before saving, Flow repeatedly asks Revit for unused elements and deletes them until none remain. The completion summary reports the accumulated number of unused element IDs processed.
+
+This produces a reduced reusable-content file rather than a full copy of the original container.
+
+---
+
+## Revit Versions and Template
+
+Flow resolves the library for the running Revit version and uses:
 
 ```text
-ContainerName_Drafting View Name.rvt
-ContainerName_Drafting View Name.png
+C:\ProgramData\Autodesk\RVT {version}\Templates\English\DefaultMetric.rte
 ```
 
-This allows the extracted Revit content and its preview image to remain associated within the library.
+The required library and template must both be accessible before extraction can begin.
 
 ---
 
-## Keeping Extracted Views Current
+## Verify Published Content
 
-Drafting View Extractor checks whether an extracted file already exists before recreating it.
+Until the current final-view cleanup behaviour has been corrected and tested, open generated RVTs and confirm that:
 
-Existing files are classified according to when they were last updated.
+- the expected drafting view exists;
+- its drawable content is present;
+- its name, scale and detail level are correct; and
+- the accompanying PNG represents that view.
 
-### Missing
-
-If no extracted file exists, Flow creates it.
-
-### Older Than Seven Days
-
-If the existing extracted file is more than seven days old, the normal extraction workflow updates it.
-
-### Seven Days Old or Less
-
-If the existing file was created or updated within the last seven days, the normal extraction workflow skips it.
-
-!!! tip "Use Extract Missing / Old Only for routine maintenance"
-
-    The normal extraction mode avoids unnecessarily rebuilding content that
-    has already been extracted recently.
+<!-- SCREENSHOT: Output verification.
+Show an extracted RVT open in Revit beside its matching PNG and source drafting view. -->
 
 ---
 
-## Regenerating Existing Content
+## Getting Help
 
-If recently extracted content needs to be rebuilt, run the extractor again and select:
-
-**Force Extract All**
-
-This regenerates the extracted drafting-view files regardless of their age.
-
-!!! note "Force extraction replaces existing output"
-
-    **Force Extract All** bypasses the seven-day recent-file check.
-
-    Use it when the source content has changed and the extracted version
-    needs to be refreshed immediately.
-
----
-
-## Source Files and the Content Library
-
-Source RVT files must be located within the configured Revit content library.
-
-Flow uses the source file's position within the library to determine where its extracted drafting views belong.
-
-!!! note "Source files must be inside the library"
-
-    If a source file is outside the configured library root, Flow cannot
-    determine the corresponding `_draftingviews` location.
-
-    Use library source files when creating centrally managed drafting content.
-
----
-
-## Revit Versions
-
-Flow automatically uses the content library associated with the current Revit version.
-
-The drafting-view template used during extraction is also resolved for the current Revit version.
-
-This keeps extracted drafting content associated with the appropriate Revit library.
-
----
-
-## Preview Images
-
-Preview images are generated automatically after successful drafting-view extraction.
-
-The preview uses the same base filename as its corresponding extracted RVT and is stored alongside the reusable content.
-
-There is normally no need to run Preview Generator separately after extracting drafting views.
+Hover over **Drafting** on the Flow ribbon and press **F1** to open Drafting View Extractor help.
 
 ---
 
 ## Related Help
 
-* [Drafting View Extractor](index.md)
-* [Extracting Drafting Views](extracting-drafting-views.md)
-* [Troubleshooting](troubleshooting.md)
+- [**Drafting View Extractor**](index.md)
+- [**Extracting Drafting Views**](extracting-drafting-views.md)
+- [**Troubleshooting**](troubleshooting.md)

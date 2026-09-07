@@ -1,61 +1,52 @@
 # Project Content
 
-Content Browser can compare library families with the active Revit project and provides tools for reloading existing project families from the current Flow library.
+Content Browser compares indexed families with the active Revit project and provides tools for reloading existing project families from the current library.
 
 ---
 
 ## Review Project Status
 
-Use the **Project Status** filter to review how library families relate to the active project.
-
 | Status | Meaning |
 | --- | --- |
-| **Loaded** | The family is loaded in the active project |
-| **Not Loaded** | The family is not loaded in the active project |
-| **In Use** | At least one instance of the family is placed |
-| **Unused** | The family is loaded but has no placed instances |
+| **Loaded** | At least one type of the family is loaded |
+| **Not Loaded** | The family name was not detected in the active project |
+| **In Use** | At least one family instance was detected |
+| **Unused** | Types are loaded but no family instances were detected |
 
-These filters can be combined with search, category, favourites and recent-content filters.
+Status matching uses the family name and ignores capitalisation. Combine project status with search, category, favourites and recent-content filters as required.
 
 ---
 
 ## Reload One Family
 
-Use **Reload Family** when you want to update one already-loaded project family from the Flow library.
+Use **Reload Family** to update one loaded project family from the current Flow library.
 
-1. Find the required family in Content Browser.
-2. Confirm that it shows as loaded in the project.
-3. Right-click the family.
-4. Select **Reload Family**.
-5. Review the reload result.
+1. Find the family and confirm that it shows as loaded.
+2. Right-click it.
+3. Select **Reload Family**.
+4. Review the result message.
 
-**Reload Family** is only available for Revit family content that is already loaded into the active project.
-
-Flow finds the family in the current Revit-version library using the family name and reloads it into the project.
+Flow matches the Revit family name against `.rfa` filenames below the current version-specific library root.
 
 !!! warning "Family parameter values are overwritten"
 
-    Reloading uses the library family as the source and allows existing family parameter values to be overwritten.
+    Reloading accepts the library family and allows existing family parameter values to be overwritten. The incoming source is also used for shared families.
 
-    Use the reload action when the project family should be brought back into line with the current library version.
-
-If the matching family cannot be found in the library, the reload result reports it as **Not found**.
+If no matching file exists, the result reports **Not found**. If duplicate filenames exist in different library folders, Flow uses the first matching path it finds.
 
 ---
 
 ## Reload Project Families
 
-Use **Reload Project Families** when several categories of loaded project families should be refreshed from the Flow library.
+Use **Reload Project Families** to refresh loaded families across selected categories.
 
 1. Open **Tools**.
 2. Select **Reload Project Families**.
-3. Select the family categories to check.
+3. Select one or more categories.
 4. Click **Continue**.
-5. Flow compares the loaded project families in those categories with the current library.
-6. Families found in the library are reloaded.
-7. Review the completion summary.
+5. Review the completion message.
 
-The category picker includes:
+Available categories are:
 
 - Annotation Symbols
 - Casework
@@ -71,34 +62,41 @@ The category picker includes:
 
 **Doors**, **Generic Models** and **Windows** are selected by default.
 
-!!! info "Only matching loaded families are reloaded"
+Flow finds loaded project families in those categories, matches their names against the library and reloads the matches independently. An error affecting one family does not prevent later matches from being attempted.
 
-    Flow first identifies families already loaded in the active project for the selected categories.
-
-    It then matches those family names against `.rfa` files in the current Flow library. Project families that do not have a matching library family are reported rather than reloaded.
+<!-- SCREENSHOT: Reload Families picker.
+Show the complete category list with Doors, Generic Models and Windows selected. -->
 
 ---
 
 ## Reload Results
 
-The reload result reports:
+The final result reports:
 
 - families updated;
-- families not found in the library;
+- matching families not found during execution; and
 - errors encountered while reloading.
 
-For a category-based reload, Flow can also report how many project families were found in the library and which family names were missing.
+If no selected project family matches the library, Flow reports **No matching loaded families were found.**
+
+!!! note "Current missing-family reporting"
+
+    When some families match and others are absent from the library, the final message may omit the names excluded during discovery. An absent name in the completion message does not prove that every selected project family had a library match.
 
 ---
 
-## No Matching Families Are Found
+## If No Matching Families Are Found
 
-If **Reload Project Families** reports that no matching loaded families were found:
+1. Confirm that the correct project is active.
+2. Confirm that the expected families are loaded.
+3. Check the selected family categories.
+4. Confirm that matching `.rfa` filenames exist in the current Revit-version library.
 
-1. Confirm that the correct Revit project is active.
-2. Confirm that the expected families are actually loaded.
-3. Check that the relevant family categories were selected.
-4. Confirm that the families are part of the current Flow content library.
+---
+
+## Getting Help
+
+Hover over **Browser** on the Flow ribbon and press **F1** to open the Content Browser help.
 
 ---
 

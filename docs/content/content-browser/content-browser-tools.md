@@ -1,204 +1,212 @@
 # Content Browser Tools
 
-Use the **Tools** menu in Content Browser to access additional utilities for project content, sheets, drafting views, family files and library maintenance.
-
-These tools provide supporting workflows that sit alongside the main Content Browser searching and loading functions.
+Use the **Tools** menu for sheet, view, project, family-file and library-maintenance utilities that sit alongside the main browsing and loading workflows.
 
 ---
 
 ## Open Content Browser Tools
 
-Open:
+On the Revit ribbon:
 
 **Flow → Content → Browser**
 
-Then open the **Tools** menu to view the available utilities.
+Then open **Tools**.
+
+<!-- SCREENSHOT: Tools menu.
+Show the complete menu without clipped items. -->
 
 ---
 
 ## Sheet & Drafting View Utilities
 
-Use **Sheet & Drafting View Utilities** for the integrated sheet and drafting-view operations available through Content Browser.
+This window contains six operations:
 
-Select **Sheet & Drafting View Utilities** from the **Tools** menu to open the workflow.
+- **Renumber A-Series** — renumber all non-placeholder A0–A5 sheets within each series.
+- **Renumber P-Series** — renumber all non-placeholder sheets beginning with P.
+- **Convert P → R** — replace the P prefix on all matching sheets.
+- **Convert R → P** — replace the R prefix on all matching sheets.
+- **Rename Drafting Views** — apply sheet/detail prefixes to eligible drafting views.
+- **Renumber Viewports** — renumber drafting-view viewports by pick order on the active sheet.
+
+### A-Series and P-Series Numbering
+
+Flow uses the existing numeric order, including letter suffixes, to establish the new sequence. Numbers reserved by sheets outside the operation are skipped.
+
+The first sheet whose name contains `!INFO` receives the zero number for its series, such as `A00`, `A10` or `P00`. Remaining sheets begin at `A001`, `A101` or `P001` as applicable.
+
+### Rename Drafting Views
+
+Only drafting views whose drafting-view type name begins with a number are renamed. Placed views receive `{sheet number}-{detail number}-`; unplaced views receive `x-`. Recognised existing prefixes are removed before the new prefix is applied.
+
+### Renumber Viewports
+
+Open the required sheet first, then select **Renumber Viewports**. Pick drafting-view viewports in the desired order, starting at 1, and press **Esc** when finished. Picked viewports are temporarily shown in halftone and their original overrides are restored afterward.
 
 ---
 
 ## Auto Adjust Crop Regions
 
-Use **Auto Adjust Crop Regions** to automatically adjust crop regions for selected eligible project views.
+Use this tool to resize eligible plans, sections, elevations and detail views around selected model categories.
 
-1. Open **Tools**.
-2. Select **Auto Adjust Crop Regions**.
-3. Review the available project views.
-4. Select the views to process.
-5. Run the adjustment.
+1. Select **Auto Adjust Crop Regions**.
+2. Choose one or more candidate views.
+3. Select **Adjust Crops**.
+4. Review the per-view result.
 
-The selection window groups available views by view type, including:
+Flow uses walls, floors, roofs, stairs, structural framing, generic models, section markers and elevation markers to calculate the extents. It applies a fixed 300 mm margin.
 
-* Plans
-* Sections
-* Elevations
-* Details
+The operation activates and displays the crop region and disables annotation crop. If a custom crop shape prevents the rectangular result, Flow can remove that custom shape and try again.
 
-!!! info "Views are collected for selection"
+Views with no target elements or an extent exceeding 47,000 mm are skipped. Candidate views are also restricted by Flow view-naming rules.
 
-	Flow collects the eligible project views and presents them for selection before making the crop-region adjustments.
+!!! warning "Crop settings can change"
 
-	This allows you to choose which views are processed.
+    Review selected views before running the tool. Annotation crop and custom crop shapes may be changed as part of the adjustment.
 
 ---
 
 ## Transfer Project Standards
 
-Use **Transfer Project Standards** to start the Flow workflow for transferring selected project standards.
+1. Select **Transfer Project Standards**.
+2. Choose one `.rte` source template.
+3. Select the standards to transfer.
+4. Select **Transfer** and review the result for each standard.
 
-1. Open **Tools**.
-2. Select **Transfer Project Standards**.
-3. Continue through the Transfer Project Standards workflow.
+Available standards are Dimension Styles, Fill Patterns, Fill Region Types, Filters, Global Parameters, Line Patterns, Print Settings, Project Parameters, Text Types and View Templates.
+
+Some categories copy only names missing from the project. When duplicate type names occur, Flow retains the destination project's existing type. Each selected standard is attempted independently.
 
 ---
 
 ## Reload Project Families
 
-Use **Reload Project Families** to compare loaded project families in selected categories against the current Flow library and reload matching families.
+Select family categories and reload matching loaded families from the current library.
 
-1. Open **Tools**.
-2. Select **Reload Project Families**.
-3. Choose the family categories to review.
-4. Continue through the reload workflow.
-
-For more information, see [**Project Content**](project-content.md#reload-project-families).
-
-!!! info "Families are matched against the Flow library"
-
-	Flow checks the selected project-family categories against the current library so that matching library families can be identified for reloading.
+See [**Reload Project Families**](project-content.md#reload-project-families).
 
 ---
 
 ## Purge Selected Unused Types
 
-Use **Purge Selected Unused Types** to select and remove unused project types through the Flow purge workflow.
+This is a category-based purge, not an individual type picker.
 
-1. Open **Tools**.
-2. Select **Purge Selected Unused Types**.
-3. Review the available unused types.
-4. Select the types you want to purge.
-5. Continue with the purge operation.
+1. Select **Purge Selected Unused Types**.
+2. Review the available categories: **Windows**, **Doors** and **Basic Walls**.
+3. Clear any category that should not be processed.
+4. Select **Purge**.
+5. Review the deleted-type and dependent-element totals.
 
-!!! warning "Review the selection before purging"
+All three categories are selected by default.
 
-	Purging removes the selected unused types from the project.
+!!! warning "Dependent elements can be deleted"
 
-	Check the selected types before completing the operation.
+    Flow deletes all elements Revit reports as unused in the selected categories. Revit may also delete dependent elements. Review the categories before continuing.
 
 ---
 
 ## Sheet Copier
 
-Use **Sheet Copier** to select sheets from a source Revit file and copy them through the Flow workflow.
+Use **Sheet Copier** to copy selected sheets from another Revit project.
 
-1. Open **Tools**.
-2. Select **Sheet Copier**.
-3. Select the required source Revit file.
-4. Review the available sheets.
-5. Select the sheets to copy.
-6. Continue through the Sheet Copier workflow.
+1. Choose a source `.rvt` file and click **Load Sheets**.
+2. Search and select the required non-placeholder sheets.
+3. Click **Copy Selected**.
+4. Review the copied and failed sheet numbers.
+
+The last source path is remembered for the current Windows user. Flow copies the title block, eligible sheet-owned elements, schedules and legends. Existing destination types are retained.
+
+If an incoming sheet number already exists, Flow may move a continuous sequence of existing destination sheet numbers upward to create space. Otherwise, it selects the next available number.
+
+!!! note "Viewport limitation"
+
+    Ordinary model and drafting-view viewports are not copied. Legend viewports are copied or matched and placed on the new sheet.
 
 ---
 
 ## Family File Cleanup
 
-Use **Family File Cleanup** to process Revit family files through the Flow cleanup workflow.
+Use this utility to create audited, compact copies of selected `.rfa` files.
 
-1. Open **Tools**.
-2. Select **Family File Cleanup**.
-3. Select the family files to process.
-4. Start the cleanup operation.
+1. Choose a source folder and output folder.
+2. Click **Scan Families**.
+3. Review the recursively discovered files; all are initially selected.
+4. Click **Clean Families**.
+5. Review progress and the processed/failed result.
 
-Flow displays progress while the selected files are being processed.
+The source files are not changed. Existing files with the same name in the output folder are overwritten.
 
-!!! info "Progress is shown during processing"
+!!! warning "Folder structure is not currently preserved"
 
-	Flow displays the progress of the cleanup operation while the selected family files are processed.
+    Cleaned files are written directly into the selected output folder. Families from different source folders that share a filename can overwrite one another.
+
+Cancelling progress stops before the next file; output files already created remain in place.
 
 ---
 
 ## Clean Revit Backups
 
-Use **Clean Revit Backups** to remove unwanted Revit backup files.
+1. Choose a folder to scan.
+2. Optionally include matching preview PNGs and filenames containing `-adaltpc`.
+3. Click **Scan**.
+4. Review and select the recursively discovered files.
+5. Click **Delete Selected** and confirm the deletion.
 
-1. Open **Tools**.
-2. Select **Clean Revit Backups**.
-3. Choose the location or files to process.
-4. Review the available cleanup options.
-5. Run the cleanup.
+Revit backup files are always included. Matching uses a numeric suffix before `.rfa`, `.rvt` or `.rte`; it is not limited to four digits.
 
-!!! warning "Check the cleanup options"
+Preview matching looks for `.png` filenames containing `3D Vie` or `3D View`. The `-adaltpc` match is case-insensitive.
 
-	Review the selected location and cleanup options before starting.
+!!! danger "Deletion is permanent"
 
-	Backup files removed by the cleanup operation should only be deleted when they are no longer required.
+    The operation uses direct file deletion rather than moving files to the Recycle Bin. Confirm that the selected files are no longer required.
 
 ---
 
 ## Copy Folder Structure
 
-Use **Copy Folder Structure** to reproduce an existing folder hierarchy at another location without copying the files contained within it.
+Use this tool to reproduce a folder hierarchy without copying files.
 
-1. Open **Tools**.
-2. Select **Copy Folder Structure**.
-3. Select the source folder structure.
-4. Select the destination.
-5. Run the copy operation.
+1. Choose the source folder.
+2. Choose an existing destination folder.
+3. Enter the new root-folder name.
+4. Click **Copy**.
 
-!!! tip "Use this when only the folders are required"
+Invalid filename characters are replaced with underscores. A blank name becomes `Copied_Structure`.
 
-	Use **Copy Folder Structure** when you need to reproduce an existing folder arrangement without copying the content stored inside those folders.
+If the named destination already exists, Flow adds any missing subfolders to it. Existing folders and files are left in place.
 
----
+!!! warning "Keep the destination outside the source"
 
-## Rebuild the Content Index
-
-**Rebuild Index** is available from the main Content Browser window rather than the **Tools** menu.
-
-Use it when the Flow content library has changed but the expected content is not appearing in Content Browser.
-
-Select **Rebuild Index** to rescan the current Flow library and rebuild the Content Browser index.
-
-!!! note "Rebuild only when required"
-
-	You do not normally need to rebuild the index each time Content Browser is opened.
-
-	Use **Rebuild Index** when there is a genuine difference between the current library and the content being shown in Content Browser.
+    Do not select a destination inside the source hierarchy. The current workflow does not block that arrangement.
 
 ---
 
-## Clear the Content Cache
+## Rebuild Index
 
-**Clear Cache** is also available from the main Content Browser window.
+**Rebuild Index** is on the main Browser window. It rescans the current library, writes a new `content_index.json` and reloads the Browser.
 
-Use it when locally cached content appears stale or inconsistent with the current Flow library.
+Use it after library content or classification changes. Write access to the library location is required.
 
-Select **Clear Cache** to remove the local Content Browser cache and recreate the cache location.
+---
 
-Content Browser resolves the required content again as it is subsequently selected or loaded.
+## Clear Cache
 
-!!! info "The library itself is not removed"
+**Clear Cache** removes the local version-specific content mirror and recreates its empty folder. Source library files are not deleted.
 
-	Clearing the local Content Browser cache does not remove content from the Flow library.
+Use it when a cached family, catalogue or preview is stale. Content is copied into the cache again when subsequently selected.
 
-	It removes the local cached content so that Content Browser can resolve the required library content again.
+---
+
+## Getting Help
+
+Hover over **Browser** on the Flow ribbon and press **F1** to open the Content Browser help.
 
 ---
 
 ## Related Help
 
-* [**Content Browser**](index.md)
-* [**Browsing and Searching**](browsing-and-searching.md)
-* [**Loading Content**](loading-content.md)
-* [**Project Content**](project-content.md)
-* [**Content Actions**](content-actions.md)
-* [**Troubleshooting**](troubleshooting.md)
-
----
+- [**Content Browser**](index.md)
+- [**Browsing and Searching**](browsing-and-searching.md)
+- [**Loading Content**](loading-content.md)
+- [**Project Content**](project-content.md)
+- [**Content Actions**](content-actions.md)
+- [**Troubleshooting**](troubleshooting.md)

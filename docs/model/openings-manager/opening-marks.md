@@ -1,14 +1,14 @@
 # Opening Marks
 
-Flow uses a consistent marking system for windows, doors and curtain walls.
+Flow uses a consistent marking system for Windows, Doors and Curtain Walls.
 
-These marks are used throughout the Openings Manager workflows, including opening views, guided renumbering and documentation checks.
+Opening marks are used throughout Openings Manager for auditing, standardisation, guided renumbering and opening-view naming. Establishing reliable marks early helps keep the later documentation workflows consistent.
 
 ---
 
 ## Standard Opening Marks
 
-Flow recognises four primary mark sequences:
+Flow uses four primary mark sequences:
 
 | Opening | New | Existing |
 | --- | --- | --- |
@@ -16,7 +16,7 @@ Flow recognises four primary mark sequences:
 | Curtain Wall | `W##` | `Wx##` |
 | Door | `D##` | `Dx##` |
 
-Examples include:
+Typical marks are:
 
 ```text
 W01
@@ -27,21 +27,21 @@ D02
 Dx01
 ```
 
-Windows and curtain walls share the same `W` / `Wx` numbering sequence.
+Windows and Curtain Walls share the **W / Wx** numbering group.
 
-Doors use their own `D` / `Dx` sequence.
+Doors use the separate **D / Dx** numbering group.
 
 ---
 
 ## New Openings
 
-New windows and curtain walls use:
+New Windows and Curtain Walls use:
 
 ```text
 W##
 ```
 
-New doors use:
+New Doors use:
 
 ```text
 D##
@@ -59,17 +59,19 @@ D02
 D03
 ```
 
+The standard sequence uses two digits, so the initial marks run `W01`, `W02`, `W03` rather than `W1`, `W2`, `W3`.
+
 ---
 
 ## Existing Openings
 
-Existing windows and curtain walls use:
+Existing Windows and Curtain Walls use:
 
 ```text
 Wx##
 ```
 
-Existing doors use:
+Existing Doors use:
 
 ```text
 Dx##
@@ -85,15 +87,15 @@ Dx01
 Dx02
 ```
 
-The `x` distinguishes Existing openings from the New opening sequence.
+The `x` distinguishes the Existing sequence from the New sequence.
 
 ---
 
-## Curtain Wall Marks
+## Curtain Walls Share the Window Sequence
 
-Curtain walls participate in the Window numbering sequence.
+Curtain Walls do not have a separate mark series.
 
-For example, a project could contain:
+A project might therefore contain:
 
 ```text
 W01  Window
@@ -102,39 +104,81 @@ W03  Curtain Wall
 W04  Window
 ```
 
-Flow does not maintain a separate curtain wall numbering sequence.
+Flow checks Windows and Curtain Walls together when looking for mark conflicts.
+
+This means a Window and a Curtain Wall cannot both use `W03` without creating a duplicate within the shared numbering group.
 
 ---
 
-## Duplicate Marks
+## Duplicate and Conflicting Marks
 
-The Openings Manager audit checks for duplicate marks.
+The Opening Register audits opening marks for conflicts.
 
-Windows and curtain walls are checked together because they share the same mark sequence.
+Windows and Curtain Walls are checked together because they share the W/Wx group. Doors are checked within the D/Dx group.
 
-Doors are checked within the Door sequence.
-
-Duplicate or inconsistent marks can be identified through the Openings Manager register.
+When Flow finds a duplicate or otherwise invalid mark, the opening can be reported as requiring attention in the register.
 
 ➡️ [**Reviewing Openings**](reviewing-openings.md)
+
+<!-- SCREENSHOT: Opening Register showing a clear duplicate or non-standard mark example. -->
 
 ---
 
 ## Non-standard Marks
 
-An opening may be identified as non-standard when its mark does not follow the expected Flow format for its category and phase.
+A mark can be non-standard when it does not match the format expected for the opening category and phase, or when it conflicts with another opening in the same numbering group.
 
-Use **Standardise** when you want Flow to correct non-standard marks automatically.
+For example, a New Window is expected to use the `W##` convention, while an Existing Window is expected to use `Wx##`.
+
+Use **Standardise** when Flow should resolve invalid or conflicting marks automatically.
 
 ➡️ [**Standardising Openings**](standardising-openings.md)
 
 ---
 
-## Renumber Openings in a Specific Order
+## Demolished Openings
 
-Use **Guided Renumber** when the required numbering order matters.
+Demolished openings remain part of the Opening Register, but the marking workflows do not all treat them in the same way.
 
-Rather than automatically correcting the existing marks, Guided Renumber lets you select openings from the Revit model in the order in which they should be numbered.
+### Standardise
+
+When **Standardise** processes a Demolished opening, it uses the Existing-style mark series:
+
+- Window / Curtain Wall → `Wx##`
+- Door → `Dx##`
+
+### Renumber
+
+The interactive **Renumber** workflow does **not** accept Demolished openings.
+
+!!! important "Choose the workflow deliberately"
+
+    If the project contains Demolished openings, do not assume Standardise and Renumber will treat them identically.
+
+---
+
+## Standardise or Renumber?
+
+The two commands solve different marking problems.
+
+### Use Standardise when
+
+- marks need to comply with the Flow format
+- duplicate or conflicting marks need to be resolved
+- valid unique marks should be retained where possible
+- you do not need to manually control the complete numbering order
+- related opening-view names should be synchronised
+
+Standardise does **not** simply renumber every opening from the beginning. Valid unique marks are preserved where possible, while openings requiring correction are assigned an available number.
+
+### Use Renumber when
+
+- the numbering order matters
+- you want to select openings directly in the Revit model
+- you want to establish a deliberate W/Wx/D/Dx sequence
+- you want to work through the project level by level
+
+Renumber is an interactive workflow. The order in which openings are selected determines the proposed numbering sequence.
 
 ➡️ [**Guided Renumbering**](guided-renumbering.md)
 
@@ -144,40 +188,54 @@ Rather than automatically correcting the existing marks, Guided Renumber lets yo
 
 Opening marks are also used by the opening-view workflows.
 
-Window and curtain wall elevation names are based on their opening marks.
+For Windows and Curtain Walls, the opening mark provides the basis for the elevation view name.
 
-Door documentation uses a separate type-based view naming system.
+Door elevation documentation is type-based and uses the Door type's **Type Mark** with the `-D` view suffix.
 
-Because of this, opening marks should normally be resolved before generating opening views.
+Because marks and view names are related, opening marks should normally be resolved before generating opening views.
 
-!!! tip "Resolve marks before documentation"
+!!! tip "Resolve marks before generating views"
 
-    Standardise or renumber the project openings before generating opening views.
+    Standardise or deliberately renumber the openings before starting the view-generation workflow.
 
-    This reduces the need to rename or reconform views later.
+    **Generate Views** also checks its selected scope for non-standard openings and will stop to offer Standardise when required.
+
+➡️ [**Generating Opening Views**](generating-opening-views.md)
 
 ---
 
-## Which Tool Should I Use?
+## Standardise Also Synchronises View Names
 
-Use **Standardise** when:
+Standardising opening marks includes a view-name synchronisation step.
 
-- marks need to be brought into the standard Flow format
-- you do not need to manually control the complete numbering sequence
-- opening view names also need to be synchronised
+This means Standardise can update existing opening-view names so they remain aligned with the current opening marks.
 
-Use **Guided Renumber** when:
+This is one reason to use Standardise rather than manually editing a collection of marks when opening documentation already exists.
 
-- the numbering order matters
-- you want to select openings directly from the model
-- you are working through the project level by level
-- you want to establish a deliberate W/Wx/D/Dx sequence
+For broader correction of existing opening views, use **Conform Views**.
+
+➡️ [**Conforming Opening Views**](conforming-opening-views.md)
+
+---
+
+## Recommended Marking Workflow
+
+For a project being prepared for opening documentation:
+
+1. Review the Opening Register for unexpected or duplicate marks.
+2. Decide whether the existing numbering order should be preserved.
+3. Use **Standardise** if the main requirement is compliance and conflict resolution.
+4. Use **Renumber** if a deliberate model-selection order is required.
+5. Review the register again before generating opening views.
+
+This keeps the marking decision separate from the later documentation workflow.
 
 ---
 
 ## Related Help
 
 - [**Reviewing Openings**](reviewing-openings.md)
+- [**Selecting and Locating Openings**](selecting-and-locating-openings.md)
 - [**Standardising Openings**](standardising-openings.md)
 - [**Guided Renumbering**](guided-renumbering.md)
-- [**Opening Views**](opening-views.md)
+- [**Generating Opening Views**](generating-opening-views.md)

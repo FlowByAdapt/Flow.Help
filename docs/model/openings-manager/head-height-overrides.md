@@ -1,156 +1,127 @@
 # Window Head Height Overrides
 
-Use Window Head Height Overrides when one or more windows need a head
-height that differs from the normal project standard.
+Use **Window Head Height Overrides** when one or more Windows need a head height that differs from the normal project standard.
 
-Flow manages these exceptions using dedicated Global Parameter
-associations rather than disconnecting the window from the project
-control system.
+Flow keeps these exceptions within the Global Parameter system rather than treating them as uncontrolled manual changes.
 
-------------------------------------------------------------------------
+---
 
-## Standard Head Height Associations
+## Standard Head Height Parameters
 
-The normal Window head-height Global Parameters are:
+The documented standard Window head-height Global Parameters are:
 
-  Window     Standard Global Parameter
-  ---------- ---------------------------
-  New        `Window Head Height`
-  Existing   `X-Window Head Height`
+| Window | Standard Global Parameter |
+| --- | --- |
+| New | `Window Head Height` |
+| Existing | `X-Window Head Height` |
 
-Overrides allow selected windows to use a separate controlled value
-while the remaining windows continue to follow the standard project
-parameter.
+An override allows selected Windows to use a separate controlled Global Parameter while the remaining Windows continue to follow the normal project value.
 
-------------------------------------------------------------------------
+The Opening Register provides a **Head Height GP** column so these associations can be reviewed.
 
-## Individual Override
+➡️ [**Opening Global Parameters**](opening-global-parameters.md)
 
-Use an individual override when a single window needs its own
-head-height control.
+---
 
-Flow:
+## Individual Overrides
 
-1.  checks the Window's current standard association
-2.  repairs the standard association first if it is missing
-3.  creates or finds the required override Global Parameter
-4.  copies the current standard value into the override
-5.  associates the selected Window with the override
+Use an individual override when one Window needs its own head-height control.
 
-Because the current standard value is copied into the new override,
-creating the override does not by itself change the Window's head
-height.
+The documented workflow:
 
-You can then adjust the override value independently.
+1. checks the Window's current standard association
+2. repairs the standard association first if required
+3. creates or finds the required override Global Parameter
+4. copies the current standard value into the override
+5. associates the selected Window with that override
 
-!!! tip "Create the override before changing the value"
+Because the current standard value is copied first, creating the override does not itself need to move the Window.
 
-    The override begins with the current standard head-height value.
+You can then change the override value independently.
 
-    This separates the Window from the standard control without immediately moving the opening.
+!!! tip "Create the override before changing its value"
 
-------------------------------------------------------------------------
+    The override starts from the current standard head-height value.
 
-## Shared Override
+    This separates the Window from the project-wide control without immediately changing its head height.
 
-Use a shared override when several windows need to use the same
-alternative head height.
+---
 
-The shared override workflow allows you to provide an override suffix.
+## Shared Overrides
 
-Flow uses that suffix to create a shared Global Parameter name in the
-form:
+Use a shared override when several Windows need to follow the same alternative head height.
 
-``` text
+The documented shared-override workflow uses a suffix to create a Global Parameter in the form:
+
+```text
 X-Window Head Height_<suffix>
 ```
 
-The selected windows can then be associated with the same override
-parameter.
+For example:
 
-The initial override value is copied from the source standard Global
-Parameter.
+```text
+X-Window Head Height_Lower
+```
 
-!!! info "Shared overrides"
+The selected Windows can then share that same alternative parameter.
 
-    The current shared-override workflow is based on the Existing Window head-height standard.
+The initial override value is copied from the source standard Global Parameter.
 
-    It provides a controlled way for multiple Existing windows to share one alternative head-height value.
+!!! info "Existing Window workflow"
 
-------------------------------------------------------------------------
+    The documented shared-override workflow is based on the Existing Window head-height standard.
 
-## Assign an Existing Head Height Global Parameter
+    It allows a controlled group of Existing Windows to share one alternative value.
 
-You can also assign selected windows to an existing head-height Global
-Parameter.
+---
 
-Flow provides the available recognised head-height parameters, including
-the standard parameter and compatible override parameters.
+## Assign an Existing Head Height Parameter
 
-If a Window already uses the selected Global Parameter, Flow leaves that
-association in place.
+A selected Window can also be assigned to an existing recognised head-height Global Parameter.
 
-If it uses another Global Parameter, Flow can replace that association
-with the selected head-height parameter.
+The documented workflow provides compatible head-height parameters, including the standard parameter and recognised override parameters.
 
-------------------------------------------------------------------------
+If the Window already uses the selected Global Parameter, that association can remain unchanged.
+
+If it uses another compatible association, the selected head-height parameter can replace it.
+
+---
 
 ## Remove an Individual Override
 
-Use **Remove Override** when a Window should return to the standard
-head-height control.
+Use **Remove Override** when an individually overridden Window should return to the normal head-height control.
 
-Flow restores the Window to:
+The documented removal workflow restores the Window to:
 
-``` text
+```text
 Window Head Height
 ```
 
-If the standard Global Parameter is missing, Flow can create it.
+If that standard Global Parameter is missing, the workflow can create it.
 
-If the Window has no current Global Parameter association, the operation
-can repair the missing standard association.
+If the Window currently has no Global Parameter association, the operation can also repair the missing standard association.
 
-------------------------------------------------------------------------
+---
 
-## Recognised Overrides
+## Recognised Individual Overrides
 
-Flow only removes an association as an individual Flow head-height
-override when it follows the recognised override naming pattern:
+The documented individual removal workflow only treats associations following this naming pattern as Flow head-height overrides:
 
-``` text
+```text
 Window Head Height_...
 ```
 
-An arbitrary Global Parameter is not treated as a Flow override.
+An unrelated Global Parameter is not automatically treated as a removable Flow override.
 
-This protects unrelated project Global Parameter associations from being
-removed accidentally.
+This helps protect other project associations from being removed accidentally.
 
-------------------------------------------------------------------------
-
-## When to Use an Override
-
-Use a head-height override when:
-
--   one Window needs a different head height from the project standard
--   a controlled group of Existing windows needs to share an alternative
-    head height
--   an existing recognised head-height Global Parameter should be
-    assigned to selected windows
-
-Do not use an override where the project-wide standard itself should
-change.
-
-In that case, update the appropriate standard Global Parameter instead.
-
-------------------------------------------------------------------------
+---
 
 ## Standard vs Override
 
-A typical setup might be:
+A typical individual New Window setup might be:
 
-``` text
+```text
 Window Head Height
     ├── W01
     ├── W02
@@ -160,12 +131,11 @@ Window Head Height_W03
     └── W03
 ```
 
-The standard parameter continues to control the normal windows while W03
-has its own controlled exception.
+The normal project parameter continues to control W01, W02 and W04, while W03 has its own controlled exception.
 
-For a shared Existing-window exception:
+A shared Existing Window exception might be:
 
-``` text
+```text
 X-Window Head Height
     ├── Wx01
     └── Wx02
@@ -175,43 +145,67 @@ X-Window Head Height_Lower
     └── Wx04
 ```
 
-------------------------------------------------------------------------
+Wx03 and Wx04 can then be adjusted together without changing the standard Existing Window head height.
 
-## After Changing Overrides
+---
 
-After creating, assigning or removing a head-height override:
+## When to Use an Override
 
-1.  review the affected Window in Revit
-2.  confirm that the required Global Parameter association is in place
-3.  adjust the override value if required
-4.  refresh Openings Manager
-5.  review the updated Global Parameter status
+Use an override when:
 
-------------------------------------------------------------------------
+- one Window needs a different head height from the project standard
+- a controlled group of Existing Windows needs to share an alternative head height
+- a Window needs to be assigned to an existing recognised head-height Global Parameter
+
+Do not create an override when the project-wide standard itself is wrong.
+
+In that case, change the appropriate standard Global Parameter instead.
+
+---
+
+## After Changing an Override
+
+After creating, assigning or removing an override:
+
+1. review the affected Window in Revit
+2. confirm the required Global Parameter association
+3. adjust the override value where required
+4. return to Openings Manager
+5. use **Refresh** where the register needs to be rebuilt
+6. review the **Head Height GP** status
+
+!!! note "Refresh also applies the zero-sill rule"
+
+    In the current Openings Manager implementation, **Refresh** is not read-only.
+
+    It applies the `Sill Height` → `Zero Window Sill Height` Window rule before rebuilding the register.
+
+This zero-sill operation is separate from the head-height override itself.
+
+---
 
 ## If an Override Cannot Be Removed
 
-Check that the Window is actually associated with a recognised Flow
-override.
+Check that the Window is actually associated with a recognised Flow individual override.
 
-The individual override removal workflow expects the current Global
-Parameter to follow:
+The documented removal workflow expects the current Global Parameter to follow:
 
-``` text
+```text
 Window Head Height_...
 ```
 
-If the Window uses an unrelated Global Parameter, Flow does not treat
-that association as a removable Flow override.
+If the Window uses an unrelated Global Parameter, Flow does not treat that association as a removable individual Flow override.
 
-For further checks:
+For wider association review, use **Parameters Manager**.
+
+➡️ [**Opening Global Parameters**](opening-global-parameters.md)
 
 ➡️ [**Openings Manager Troubleshooting**](troubleshooting.md)
 
-------------------------------------------------------------------------
+---
 
 ## Related Help
 
--   [**Opening Global Parameters**](opening-global-parameters.md)
--   [**Reviewing Openings**](reviewing-openings.md)
--   [**Openings Manager Troubleshooting**](troubleshooting.md)
+- [**Opening Global Parameters**](opening-global-parameters.md)
+- [**Reviewing Openings**](reviewing-openings.md)
+- [**Openings Manager Troubleshooting**](troubleshooting.md)

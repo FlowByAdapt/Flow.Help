@@ -1,253 +1,291 @@
 # Project Keynote Files
 
-Use **Keynote Manager** to open, create and maintain Revit keynote files and control which keynote file is associated with the current Revit project.
+Use **Keynote Manager** to create, open and maintain Revit keynote text
+files and control which keynote file is associated with the active Revit
+project.
 
----
-
-## Open Keynote Manager
-
-On the Revit ribbon:
-
-**Flow → Model → Keynotes**
-
----
+------------------------------------------------------------------------
 
 ## Current Project Keynote File
 
-When Keynote Manager opens, it checks the active Revit project for its currently assigned keynote file.
+When Keynote Manager opens, Flow checks the active Revit project's
+native keynote table for its assigned external keynote file.
 
-If a project keynote file is assigned and available, Keynote Manager automatically opens it.
+If the referenced `.txt` file exists and is accessible, Flow opens it
+automatically.
 
-The loaded filename is displayed in Keynote Manager together with its project status.
+The panel displays the loaded filename together with its project status,
+including whether it is the:
 
-A loaded file can be identified as either:
-
-```text
+``` text
 Current project keynote file
 ```
 
-or:
+or is:
 
-```text
+``` text
 Not assigned to this project
 ```
 
-!!! info "Keynote Manager follows the Revit project"
+!!! info "The referenced file must be available"
 
-	When an existing project already has a keynote file assigned through Revit, Keynote Manager uses that file rather than requiring it to be selected manually.
+    If Revit references a keynote file that cannot be resolved or does not exist at the expected location, Flow cannot automatically open that file.
 
----
+------------------------------------------------------------------------
+
+## Create a New Project Keynote File
+
+Use **File → New...** when the project needs a new keynote file.
+
+Flow uses the Revit **Project Number** to suggest an appropriate
+filename and project location.
+
+For example, a project with Project Number:
+
+``` text
+26123
+```
+
+is offered:
+
+``` text
+26123_Keynotes.txt
+```
+
+Flow looks for the matching project folder and uses its **Keynotes**
+folder when one exists. If no Keynotes folder exists, it uses the
+project folder. If the project cannot be resolved, Flow falls back to
+its configured documents location.
+
+If no Project Number is available, the suggested filename is:
+
+``` text
+Project_Keynotes.txt
+```
+
+To create the file:
+
+1.  Open **File**.
+2.  Choose **New...**.
+3.  Review the suggested location and filename.
+4.  Change either if required.
+5.  Save the file.
+
+Flow creates the initial hierarchy from its deployed office-standard
+keynote catalogue and writes it as a standard Revit-compatible `.txt`
+keynote file.
+
+The new file then opens in Keynote Manager.
+
+<!-- SCREENSHOT: New keynote Save dialog.
+Capture a real project showing the project-aware Keynotes folder and project-number filename. -->
+
+!!! info "New does not create a blank file"
+
+    The office-standard keynote structure is supplied automatically. Users work with the resulting Revit `.txt` file; the underlying Flow catalogue does not need to be selected manually.
+
+------------------------------------------------------------------------
 
 ## Open a Keynote File
 
 To work with another existing keynote file:
 
-1. Open the **File** menu.
-2. Choose **Open**.
-3. Browse to the required `.txt` keynote file.
-4. Open the file.
+1.  Open **File**.
+2.  Choose **Open...**.
+3.  Browse to the required `.txt` file.
+4.  Open it.
 
-The selected file becomes the file currently displayed in Keynote Manager.
+Opening a file in Keynote Manager does **not** automatically assign it
+to the Revit project.
 
-Opening a keynote file does not automatically assign it to the Revit project.
+------------------------------------------------------------------------
 
----
+## Open a Recent File
 
-## Open a Recent Keynote File
+Use **File → Open Recent** to reopen a recently used keynote file.
 
-Keynote Manager maintains a list of recently opened keynote files.
+If the recent file has been moved, renamed or deleted, Flow reports that
+it cannot be found. Use **Open...** to browse to its current location.
 
-Use the recent-files list to reopen a previously used file without browsing to it again.
+------------------------------------------------------------------------
 
-If a recent file has subsequently been moved, renamed or deleted, Keynote Manager reports that the file cannot be found.
+## Set as Project Keynote File
 
----
+Use **File → Set as Project Keynote File** when the loaded file should
+become the keynote source for the active Revit project.
 
-## Create a New Project Keynote File
+Opening a file and assigning it to Revit are deliberately separate
+actions. This allows you to inspect or edit another keynote file without
+immediately changing the project's keynote source.
 
-Use **New** to create a new Revit keynote file.
+After assignment, check that the status shows:
 
-To create a file:
-
-1. Open the **File** menu.
-2. Choose **New**.
-3. Select the required location.
-4. Enter the filename.
-5. Save the file.
-
-The default filename is:
-
-```text
-Project_Keynotes.txt
-```
-
-Flow creates the new `.txt` file from the configured Flow keynote template and opens the resulting file in Keynote Manager.
-
-!!! info "New files use the Flow keynote template"
-
-	Creating a new keynote file does not start with an empty text document. Flow creates the project keynote file from its configured keynote template so that the standard keynote structure is available from the beginning.
-
----
-
-## Assign a Keynote File to the Current Project
-
-Opening a keynote file in Keynote Manager and assigning it to Revit are separate operations.
-
-If the loaded file is not currently assigned to the project, use **Set Project Keynote File**.
-
-Flow then requests that Revit use the loaded `.txt` file as the project's keynote file.
-
-The status in Keynote Manager updates to:
-
-```text
+``` text
 Current project keynote file
 ```
 
-!!! info "Use this when changing project keynote files"
+------------------------------------------------------------------------
 
-	Opening another keynote file allows you to review or edit it without immediately changing the Revit project.
+## Save
 
-	Use **Set Project Keynote File** only when the loaded file should become the keynote source for the current project.
+Use **Save** to write unsaved Keynote Manager changes to the currently
+loaded `.txt` file.
 
----
+Saving updates the file on disk. It does not by itself perform the
+separate **Refresh** or **Sync** operations.
 
-## Save Changes
-
-Use **Save** to write changes made in Keynote Manager back to the currently loaded keynote file.
-
-Save is available when the loaded keynote information contains unsaved changes.
-
-The status area indicates when unsaved changes are present.
-
-!!! note "Saving and refreshing are separate operations"
-
-	**Save** writes the changed keynote information to the `.txt` file.
-
-	Use **Refresh** when Revit also needs to reload the keynote table from that file.
-
----
+------------------------------------------------------------------------
 
 ## Save As
 
-Use **Save As** to write the currently loaded keynote information to another `.txt` file.
+Use **File → Save As...** to write the current keynote hierarchy to
+another `.txt` file.
 
-To create a copy:
+The newly saved file becomes the file currently loaded in Keynote
+Manager.
 
-1. Open the **File** menu.
-2. Choose **Save As**.
-3. Select the destination.
-4. Enter the required filename.
-5. Save the file.
+It is not automatically assigned as the Revit project's keynote file.
+Use **Set as Project Keynote File** if that is also required.
 
-The newly saved file becomes the file currently loaded in Keynote Manager.
+------------------------------------------------------------------------
 
-Saving a file under another name does not by itself make that file the current project's Revit keynote file.
+## Save, Refresh and Sync
 
-Use **Set Project Keynote File** if the new file should also be assigned to the project.
+These commands perform different jobs:
 
----
+  -----------------------------------------------------------------------
+  Command                 What it does            Use it when
+  ----------------------- ----------------------- -----------------------
+  **Save**                Writes Keynote Manager  You have added, edited,
+                          changes to the `.txt`   removed, cleaned or
+                          file.                   renumbered keynote
+                                                  information.
 
-## Show the Keynote File in Explorer
+  **Refresh**             Reloads the current     The file changed
+                          file and tells Revit to externally or Revit
+                          reload its native       needs to read the
+                          keynote table.          latest saved keynote
+                                                  information.
 
-Use **Show in Explorer** to locate the currently loaded keynote file in Windows Explorer.
+  **Sync**                Updates existing Revit  A keynote code has
+                          references that still   changed and existing
+                          use recorded old        project references need
+                          keynote codes.          to follow the new code.
+  -----------------------------------------------------------------------
 
-Flow opens the containing folder and selects the keynote file.
+!!! important "Changing a description does not normally require Sync"
 
-This can be useful when you need to copy, inspect or locate the physical `.txt` file.
+    Sync is concerned with recorded **code changes**. Editing only a keynote description does not create an old-to-new code mapping.
 
----
-
-## Close the Current Keynote File
-
-Use **Close** to unload the currently displayed keynote file from Keynote Manager.
-
-Closing the file does not remove or change the keynote file assigned to the Revit project.
-
-If unsaved changes exist, Keynote Manager asks whether they should be discarded before closing.
-
----
+------------------------------------------------------------------------
 
 ## Refresh Keynotes
 
-Use **Refresh** when the keynote file needs to be reloaded.
+Use **Refresh** when Keynote Manager and Revit need to reload the
+current keynote information.
 
 Refresh:
 
-1. Reloads the current `.txt` file into Keynote Manager.
-2. Requests that Revit reload its keynote table.
-3. Refreshes keynote usage information after the reload succeeds.
+1.  reloads the current `.txt` file into Keynote Manager
+2.  tells Revit to reload its native keynote table
+3.  refreshes placed-keynote-tag usage information after a successful
+    reload
 
-Refresh is only available when there are no unsaved changes in Keynote Manager.
+Refresh is unavailable while Keynote Manager contains unsaved changes.
 
-!!! tip "Use Refresh after changing the keynote file"
+If you have unsaved work, save it before refreshing.
 
-	If the keynote file has been changed externally, or saved changes are not yet reflected by Revit, use **Refresh** to reload the current keynote information.
-
----
+------------------------------------------------------------------------
 
 ## Synchronise Changed Keynote References
 
-Changing a keynote code in the keynote file does not necessarily change existing references to the previous code in the Revit project.
+Changing a keynote code in the file does not automatically update every
+existing Revit reference that uses the previous code.
 
-When Keynote Manager has recorded keynote renumbering changes, **Sync** can review affected project references and update them to the new keynote codes.
+Flow records relevant old-to-new code changes created while editing or
+renumbering keynotes. After those changes have been saved, **Sync** can
+scan the active Revit project for matching references.
 
-For example:
+Sync checks:
 
-```text
-Old keynote     New keynote
-
-45-03        →  45-02
-45-07        →  45-03
-```
+-   placed keynote tags
+-   instance keynote parameters
+-   type keynote parameters
 
 ### Preview the Changes
 
-Before modifying the project, Sync scans for affected keynote references and displays a preview.
+Click **Sync** to build a preview.
 
-The scan checks relevant:
+The preview identifies references whose current code matches one of the
+recorded old codes and shows the proposed replacement.
 
-* keynote tags
-* element keynote parameters
-* type keynote parameters
+Review the preview before applying it.
 
-Review the proposed changes before continuing.
+<!-- SCREENSHOT: Sync Preview.
+Show a mixture of affected references where practical, with old and new codes visible. -->
 
 ### Apply the Changes
 
-If the preview is correct, confirm the synchronisation.
+When you confirm the preview, Flow updates writable matching references
+inside the active Revit project.
 
-Flow updates the affected references using the old-to-new keynote mapping recorded during the renumbering operation.
+Before changing each reference, Flow checks that:
 
-After a successful synchronisation, the pending Sync changes are cleared and keynote usage information is refreshed.
+-   the referenced Revit element still exists
+-   the relevant keynote parameter exists
+-   the parameter is not read-only
+-   the current value still matches the old code shown in the preview
 
-!!! warning "Review the Sync preview"
+This prevents Flow from blindly replacing a value that has changed since
+the preview was created.
 
-	Synchronisation modifies references in the active Revit project.
+After a successful Sync, the pending code-change mapping is cleared and
+placed-keynote-tag usage is refreshed.
 
-	Review the proposed changes before applying them.
+!!! warning "Sync modifies the Revit project"
 
----
+    Review the Sync Preview before applying the changes.
 
-## Recommended Renumbering Workflow
+------------------------------------------------------------------------
 
-When reorganising keynote numbering, use the following sequence:
+## Recommended Code-Change Workflow
 
-1. Open the required project keynote file.
-2. Select the category that needs reorganising.
-3. Use **Renumber**.
-4. Review and confirm the proposed keynote changes.
-5. **Save** the keynote file.
-6. Use **Sync** to find references using the previous keynote codes.
-7. Review the Sync preview.
-8. Apply the synchronisation.
-9. Use **Refresh** if required to reload the keynote table in Revit.
+When a keynote code changes:
 
-This keeps the keynote file and existing Revit references coordinated when keynote codes are changed.
+1.  Make the edit or complete the category **Renumber** operation.
+2.  Review any renumber preview.
+3.  **Save** the keynote file.
+4.  Click **Sync**.
+5.  Review the Sync Preview.
+6.  Apply the synchronisation.
+7.  Use **Refresh** when Revit also needs to reload the latest keynote
+    table.
 
----
+This keeps the keynote file and existing Revit references coordinated.
+
+------------------------------------------------------------------------
+
+## Show in Explorer
+
+Use **File → Show in Explorer** to open the containing folder and select
+the currently loaded keynote file.
+
+------------------------------------------------------------------------
+
+## Close the Current File
+
+Use **File → Close** to unload the currently displayed keynote file from
+Keynote Manager.
+
+Closing the file does not remove or change the keynote file already
+assigned to the Revit project.
+
+If unsaved changes exist, Flow prompts before discarding them.
+
+------------------------------------------------------------------------
 
 ## Related Help
 
-* [Keynote Manager](index.md)
-* [Working with Keynotes](working-with-keynotes.md)
-* [Troubleshooting](troubleshooting.md)
+-   [Keynote Manager](index.md)
+-   [Working with Keynotes](working-with-keynotes.md)
+-   [Troubleshooting](troubleshooting.md)

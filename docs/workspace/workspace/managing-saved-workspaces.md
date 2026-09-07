@@ -1,63 +1,110 @@
 # Managing Saved Workspaces
 
-Existing workspace layouts can be updated, renamed or deleted from Workspace.
+Use the Workspace management controls to update, rename or delete existing saved layouts.
+
+Open:
+
+**Flow → Workspace → Workspace**
+
+Then select the required workspace from the Saved Workspaces list.
 
 ---
 
 ## Update a Workspace
 
-Use **Update** when you want to replace the arrangement stored in an existing workspace.
+Use **Update** when you want an existing workspace name to represent the arrangement you are using now.
 
-1. Arrange your Revit and Flow windows as required.
-2. Open **Flow → Workspace → Workspace**.
-3. Select the workspace you want to update.
-4. Click **Update**.
-5. Confirm that you want to replace the saved arrangement.
+1. Arrange the current Revit and Flow environment as required.
+2. Select the saved workspace you want to replace.
+3. Select **Update**.
+4. Confirm the update.
+5. Flow captures the current workspace again.
+6. The selected saved layout is replaced while retaining its name.
 
-The selected workspace is updated using the current working environment.
+!!! warning "Update replaces the saved arrangement"
 
-!!! tip "Updating an existing setup?"
+    Update performs a new workspace capture.
 
-    Use **Update** rather than creating another workspace when you simply want
-    to revise an existing layout.
+    It can replace the saved:
 
-    This keeps your saved workspace list clear and avoids creating multiple
-    layouts for the same working environment.
+    - monitor topology;
+    - supported window positions and sizes; and
+    - registered Flow pane state.
+
+    It is not limited to updating one moved window.
+
+Use **Update** only when the current environment is the arrangement you want stored under that workspace name.
 
 ---
 
 ## Rename a Workspace
 
-1. Select the required workspace.
-2. Click **Rename**.
+Use **Rename** when the saved arrangement is correct but its name should change.
+
+1. Select the workspace.
+2. Select **Rename**.
 3. Enter the new name.
 4. Confirm the change.
 
-!!! info "Renaming does not change the layout"
+Renaming changes the stored workspace name without recapturing the current Revit environment.
 
-    Renaming a workspace only changes its name.
+The saved monitor and window arrangement is retained.
 
-    The saved monitor configuration and window arrangement remain unchanged.
+### Duplicate Names
+
+Workspace names must remain unique regardless of capitalisation.
+
+Flow rejects a new name when another saved workspace already uses it.
 
 ---
 
 ## Delete a Workspace
 
-1. Select the workspace you no longer require.
-2. Click **Delete**.
-3. Confirm the deletion.
+Use **Delete** when a saved layout is no longer required.
 
-!!! warning "Deleting a workspace"
+1. Select the workspace.
+2. Select **Delete**.
+3. Review the confirmation.
+4. Confirm the deletion.
 
-    Deleting a saved workspace removes that layout from Workspace.
+The selected workspace is removed from the saved workspace library.
 
-    Delete a workspace only when the saved layout is no longer required.
+!!! warning "Delete removes the saved layout"
+
+    Deleting a workspace does not move or close the windows currently open in Revit.
+
+    It removes the saved arrangement so it can no longer be restored.
+
+---
+
+## Save or Update?
+
+Use **Save Workspace** when:
+
+- the arrangement is new; or
+- you want to keep the existing saved workspace and create another one.
+
+Use **Update** when:
+
+- the selected saved workspace should be replaced by the current arrangement.
+
+If you try to save a workspace using an existing name, Flow directs you to use **Update** rather than silently overwriting it.
+
+---
+
+## Changing Monitor Setups
+
+Because Update performs a complete new capture, it can also change the monitor topology associated with the workspace.
+
+For example, if a workspace was originally saved for a dual-monitor office setup and you update it while using a single-monitor laptop setup, the workspace will then represent the newly captured monitor arrangement.
+
+In many cases, keeping separately named workspaces for genuinely different environments is clearer.
 
 ---
 
 ## Related Help
 
-- [Workspace](index.md)
-- [Saving a Workspace](saving-a-workspace.md)
-- [Restoring a Workspace](restoring-a-workspace.md)
-- [Recovering Windows](recovering-windows.md)
+- [**Workspace**](index.md)
+- [**Saving a Workspace**](saving-a-workspace.md)
+- [**Restoring a Workspace**](restoring-a-workspace.md)
+- [**Recovering Windows**](recovering-windows.md)

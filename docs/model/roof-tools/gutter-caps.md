@@ -1,118 +1,130 @@
 # Gutter Caps
 
-**Gutter Caps** creates a small solid cap at a selected end of a Revit
-gutter.
+Gutter Caps creates a small solid cap at a selected end of a Revit gutter.
 
-The workflow is intended for closing open gutter ends quickly while
-matching the shape of the gutter profile, without requiring a separate
-end-cap family for every gutter type.
+The cap is created directly from the gutter-end geometry, avoiding the need to create and manage a separate cap family.
 
----
+!!! note "Current documentation status"
 
-## Opening the Tool
+	This page describes the established Gutter Caps pyRevit workflow that is being migrated into the native Flow Roof Tools implementation. Behaviour may be refined as the native implementation develops.
 
-Open:
+## Open Gutter Caps
 
-**Flow → \[VERIFY PANEL NAME\] → Roof Tools → Gutter Caps**
+Go to:
 
----
+**Flow → Model → Roof → Gutter Caps**
 
 ## Before You Start
 
-The command operates on a Revit **Gutter** element.
+Gutter Caps operates on Revit **Gutter** elements.
 
-You can either select one gutter before starting the command or select
-the gutter when prompted.
+You can either:
 
----
+* preselect a single gutter before starting the tool; or
+* select the gutter when prompted.
 
-## Adding Gutter Caps
+If exactly one valid gutter is preselected, Flow uses it automatically.
 
-1. Open **Flow → \[VERIFY PANEL NAME\] → Roof Tools**.
-2. Choose **Gutter Caps**.
-3. Select the Revit gutter if one was not already selected.
-4. Click near the gutter end that you want to cap.
-5. Continue clicking near other ends of the same gutter as required.
-6. Press **Esc** when you have finished placing caps.
-7. Review the created caps.
+## Create Gutter Caps
 
-The picked point identifies which end of the gutter should be capped.
-You do not need to pick the end face precisely; pick close to the
-required gutter end.
+1. Go to **Flow → Model → Roof**.
+2. Select **Gutter Caps**.
+3. Select the required gutter if one was not already preselected.
+4. Click near the end of the gutter that you want to cap.
+5. Flow determines the nearest suitable gutter end and creates the cap.
+6. Continue clicking near other ends of the **same gutter** if additional caps are required.
+7. Press **Esc** when finished.
+8. Review the completed caps.
 
-!!! info "What Flow does automatically"
+<!-- SCREENSHOT: Close-up of a gutter showing where the user should click near the required end. -->
 
-    Flow identifies the gutter end nearest the picked point and builds the cap from the end profile.
+You do not need to select the exact end face. Pick close to the physical end of the gutter and the tool determines the nearest suitable end geometry.
 
-    The cap extends a short distance beyond the gutter end with a small overlap to avoid a visible seam.
+## What Flow Does Automatically
 
----
+For each selected gutter end, the established workflow:
 
-## Gutter Profile
+* identifies the suitable end face nearest the picked point;
+* derives the cap profile from the gutter-end geometry;
+* reconstructs and closes the required profile;
+* creates a short solid cap with a small overlap into the gutter;
+* applies the gutter category where possible;
+* uses Generic Models as a fallback where required;
+* applies a matching material where available; and
+* checks for an existing generated cap before creating another one.
 
-The cap is generated from the geometry of the selected gutter end.
+The original Revit gutter is not modified.
 
-The established workflow rebuilds the outside envelope of the end
-profile and closes the open gutter mouth with an orthogonal corner where
-required. This is intended to avoid an unwanted diagonal closure across
-an open gutter profile.
+## Existing Gutter Caps
 
----
+Before creating a cap, Flow checks for an existing generated Gutter Cap near the selected gutter end.
 
-## Existing Caps
+If an existing cap is detected, that end is skipped rather than creating a duplicate cap.
 
-Before creating a cap, the established workflow checks for an existing
-generated Gutter Cap near the selected end.
-
-If a cap already exists at that location, the duplicate is skipped
-rather than creating another cap in the same place.
-
-!!! tip "Re-running the tool"
-
-    This duplicate check makes it possible to return to a gutter and add a missing cap without intentionally stacking another generated cap over an existing one.
-
----
+This allows the workflow to be rerun without intentionally stacking multiple generated caps at the same end.
 
 ## What Flow Creates
 
-The established workflow creates the gutter cap as a small solid
-**DirectShape** element.
+Each cap is created as a small solid **DirectShape** element.
 
-Where available, the gutter category material is applied to the
-generated cap so that its appearance follows the gutter more closely.
+Where possible, Flow uses the Gutter category for the generated DirectShape. Generic Models provides a fallback where the Gutter category cannot be used.
 
-The generated cap is a separate element. The original Revit gutter is
-not reshaped or shortened by the operation.
+Where available, the gutter material is also applied to the generated cap.
 
-!!! note "Generated geometry"
+The cap remains a separate Revit element from the source gutter.
 
-    Because the cap is generated geometry rather than part of the original Revit gutter, review it if the gutter type or profile is subsequently changed.
+<!-- SCREENSHOT: Completed gutter cap in a 3D view, clearly showing the cap as a separate solid at the end of the gutter. -->
 
----
+## Profile Creation
 
-## Finishing the Workflow
+The cap profile is derived from the geometry at the selected gutter end.
 
-Press **Esc** when you have finished selecting gutter ends.
+Where required, Flow reconstructs the outside envelope of the profile and closes the open part of the gutter section to form a solid cap.
 
-The established workflow then selects the newly created caps and brings
-them into view, making it easier to review the result.
+This allows the cap to follow the gutter geometry without requiring a separate purpose-made family.
 
----
+Complex or unusual gutter profiles should be checked visually after creation.
+
+## Creating More Than One Cap
+
+After creating the first cap, the command remains active for the selected gutter.
+
+Continue clicking near additional ends of that gutter as required.
+
+Press **Esc** when all required ends have been processed.
+
+To work on a different gutter, finish the current operation and run Gutter Caps again.
+
+## Finishing the Command
+
+Press **Esc** when you have finished placing caps on the selected gutter.
+
+The established workflow selects the newly created cap elements and brings them into view, making it easier to review the result.
+
+A completion summary reports the number of caps created, the number skipped because a cap already existed, and the number where a material was assigned.
 
 ## Checking the Result
 
-After placing caps, check that:
+After creating the caps, check that:
 
-- each intended gutter end is closed;
-- the cap follows the expected gutter profile;
-- the cap projects in the correct direction from the gutter end;
-- the material appearance is appropriate; and
-- no cap has been placed at an unintended end.
+* the required gutter ends have been capped;
+* the cap follows the expected gutter profile;
+* the cap overlaps the gutter cleanly;
+* duplicate caps have not been created; and
+* the resulting geometry is suitable in the required model and documentation views.
 
----
+## Limitations
+
+The established Gutter Caps workflow:
+
+* operates on Revit Gutter elements;
+* processes one selected gutter at a time;
+* requires the user to identify the required ends by picking nearby;
+* creates separate DirectShape elements rather than modifying the source gutter; and
+* may require visual checking for complex or unusual gutter profiles.
 
 ## Related Help
 
-- [Roof Tools](index.md)
-- [Roof Outline](roof-outline.md)
-- [Roof Tools Troubleshooting](troubleshooting.md)
+* [Roof Tools](index.md)
+* [Roof Outline](roof-outline.md)
+* [Roof Tools Troubleshooting](troubleshooting.md)

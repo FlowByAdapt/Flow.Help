@@ -1,24 +1,28 @@
 # Reviewing Openings
 
-The Openings Manager register provides an overview of windows, doors and curtain walls in the current Revit project.
+The **Opening Register** gives you a project-wide overview of Windows, Doors and Curtain Walls discovered by Openings Manager.
 
-Use the register to identify openings that require attention before running the marking, Global Parameter or documentation workflows.
+Use it to review opening marks, phases, Global Parameter status and other opening issues before running the marking, parameter or documentation workflows.
 
 ---
 
-## Open the Register
+## Open the Opening Register
 
-Open:
+On the Revit ribbon:
 
-**Flow → Openings → Manager**
+**ADAPT → Model → Openings**
 
-Flow scans the current project and displays the discovered openings.
+When Openings Manager first opens, Flow scans the current Revit project and discovers:
 
-The register includes:
+- Windows
+- Doors
+- Curtain Walls
 
-- windows
-- doors
-- curtain walls
+The results are displayed in the **Opening Register**.
+
+The counters at the top of the Manager show the number of **Windows**, **Doors**, **Curtain Walls** and **Total** openings found.
+
+<!-- SCREENSHOT: Full Opening Register showing the four counters, filters and a useful mixture of Windows, Doors and Curtain Walls. -->
 
 ---
 
@@ -26,138 +30,166 @@ The register includes:
 
 Each row represents an opening discovered in the project.
 
-Depending on the opening type and current project state, the register can show information including:
+The visible register columns include:
 
-- opening mark
-- category
-- family and type
-- level
-- phase
-- Global Parameter status
-- opening view
-- sheet placement
-- issue or status information
+- **Category**
+- **Mark**
+- **Type**
+- **Level**
+- **Phase**
+- **GP**
+- **Head Height GP**
+- **Status**
 
-Use this information to identify openings that are incomplete or inconsistent with the Flow opening standards.
+The checkbox at the left of each row is used to build a working selection for commands that support register scope.
+
+Clicking the row itself selects that opening in Revit.
+
+➡️ [**Selecting and Locating Openings**](selecting-and-locating-openings.md)
+
+---
+
+## Understand Opening Status
+
+The **Status** column summarises issues found during the opening audit.
+
+Flow checks more than whether an opening exists. Depending on the opening and its current project state, the audit can consider:
+
+- mark format
+- duplicate or conflicting marks
+- expected Global Parameter associations
+- opening-view naming consistency
+- Window head-height override status
+
+An opening can therefore require attention even when its mark appears correct.
+
+For example, a Window whose opening view no longer matches its mark can be reported as non-standard until the opening and view are brought back into alignment.
+
+!!! tip "Use the register as a QA check"
+
+    Review unexpected statuses before generating or updating opening documentation. This helps distinguish a marking issue from a parameter or view-related issue.
 
 ---
 
 ## Search the Register
 
-Use the **Search** box to find openings using information already displayed or associated with the opening.
+Use **Search** to narrow the register using opening information.
 
-Search can match information including:
-
-- mark
-- family
-- type
-- level
-- category
-- opening view
-- sheet
-- issue information
+Searching is particularly useful when you know the mark, type or other identifying information for the opening you want to review.
 
 The register updates as the search changes.
 
 !!! tip "Search by mark"
 
-    If you already know the opening you want to review, searching for its mark is usually the quickest way to isolate it.
+    If you already know the opening mark, entering it in **Search** is usually the quickest way to isolate the record.
 
 ---
 
 ## Filter by Category
 
-Use the **Category** filter to narrow the register to a particular type of opening.
-
-This is useful when you want to work only with:
+Use **Category** to review:
 
 - Windows
 - Doors
 - Curtain Walls
 
+Category filtering is useful before building a working selection or running a category-specific workflow such as tagging.
+
 ---
 
 ## Filter by Level
 
-Use the **Level** filter to review openings associated with a particular project level.
+Use **Level** to isolate openings associated with a particular project level.
 
-This can be useful when checking or documenting one storey at a time.
+This is useful when reviewing or documenting the project one storey at a time.
 
 ---
 
 ## Filter by Phase
 
-Use the **Phase** filter to review openings according to their project status.
+Use **Phase** to isolate openings by their project phase.
 
-Flow distinguishes:
+The register distinguishes opening phase states including:
 
 - New
 - Existing
 - Demolished
 
-Phase is important because several opening workflows behave differently for New and Existing openings.
+Phase affects several downstream workflows and marking conventions.
 
-For example, standard marks use different prefixes:
+For standard opening marks:
 
 | Phase | Window / Curtain Wall | Door |
 | --- | --- | --- |
 | New | `W##` | `D##` |
 | Existing | `Wx##` | `Dx##` |
 
+!!! note "Demolished openings"
+
+    Demolished openings remain visible for review.
+
+    Some modifying workflows treat or exclude Demolished openings differently. For example, Guided Renumber does not accept Demolished openings.
+
+➡️ [**Opening Marks**](opening-marks.md)
+
+➡️ [**Guided Renumbering**](guided-renumbering.md)
+
 ---
 
 ## Filter by Global Parameter Status
 
-Use the **GP Status** filter to review the state of opening-related Global Parameter associations.
+Use **GP Status** to review the state of opening-related Global Parameter associations.
 
-The register can distinguish statuses such as:
+The available filter choices include:
 
-- Complete
-- Missing
-- Not Configured
-- Not Required
+- **Complete**
+- **Missing**
+- **Not Configured**
+- **Not Required**
 
-Use this filter to isolate openings that may require Global Parameter setup or review.
+The register can also display an **Override** state for applicable Window Global Parameter conditions, although Override is not currently a separate GP Status filter choice.
+
+Use the GP information together with **Head Height GP** when investigating Window parameter setup.
 
 ➡️ [**Opening Global Parameters**](opening-global-parameters.md)
 
+➡️ [**Head Height Overrides**](head-height-overrides.md)
+
 ---
 
-## Show Non-standard Openings
+## Tag Type
 
-Use the **Non-standard only** option to reduce the register to openings that Flow has identified as requiring attention.
+The **Tag Type** control is used by the opening-tagging workflow.
 
-This is particularly useful before:
+Available tag types depend on the opening category being worked with:
 
-- standardising marks
-- generating opening views
-- completing opening documentation
+- Window Tags for Windows
+- Door Tags for Doors
+- Wall Tags for Curtain Walls
 
-➡️ [**Standardising Openings**](standardising-openings.md)
+A tagging scope must contain only one opening category.
+
+➡️ [**Tagging Openings**](tagging-openings.md)
 
 ---
 
 ## Combine Search and Filters
 
-Search and filters can be used together.
+Search and filters can be combined to work through a large register in smaller groups.
 
-For example, you can narrow the register to:
+For example, you might review:
 
 **Windows → Ground Floor → New → Missing GP**
 
-and then search for a particular mark or family.
+and then use Search to isolate a particular opening or type.
 
-This makes it easier to work through a large project in smaller groups.
+Once the required records are visible, use **Select Filtered** if you want all of those filtered records to become the checked working selection.
 
----
+!!! important "Changing filters clears checked selections"
 
-## Select Filtered Openings
+    Changing **Category**, **Level**, **Phase** or **GP Status** clears the current checked selection.
 
-Use **Select Filtered** when you want the currently filtered register results to become the working selection.
-
-This is useful before running a tool against a particular group of openings.
-
-The available scope options depend on the command being run, but many Openings Manager tools can work with the checked or filtered register results.
+    Set the required filters first, then check individual rows or use **Select Filtered**.
 
 ➡️ [**Selecting and Locating Openings**](selecting-and-locating-openings.md)
 
@@ -165,49 +197,65 @@ The available scope options depend on the command being run, but many Openings M
 
 ## Refresh the Register
 
-Use **Refresh** after making changes to the project.
+Use **Refresh** when the project has changed and you want Openings Manager to rebuild its current audit.
 
-Refresh performs a new opening discovery and audit so that the register reflects the current state of the Revit model.
+This is useful after:
 
-This is useful after operations such as:
+- editing openings directly in Revit
+- changing opening types or parameters
+- changing Global Parameter associations
+- creating or updating opening views
+- completing another opening workflow
 
-- standardising marks
-- changing opening parameters
-- creating or conforming views
-- modifying Global Parameter associations
-- changing opening types
+If changes are made directly in Revit while Openings Manager remains open, the register does not automatically represent every external change until it is refreshed.
 
-!!! info "Refresh after external changes"
+!!! warning "Refresh is not read-only"
 
-    If you change openings directly in Revit while Openings Manager remains open, the register may still show the previous audited state.
+    **Refresh can modify the Revit model.**
 
-    Use **Refresh** to run the audit again.
+    Before Flow reruns opening discovery and rebuilds the register, it applies the **Zero Window Sill Height** rule.
+
+    This ensures Window **Sill Height** is associated with the **Zero Window Sill Height** Global Parameter where required.
+
+Use Refresh as an opening maintenance operation rather than treating it as a purely visual reload.
 
 ---
 
-## What Flow Checks
+## What the Initial Scan Does
 
-The Openings Manager audit checks more than whether an element exists.
+Opening Openings Manager performs discovery and audit so that the current project state can be displayed.
 
-Depending on the opening, Flow can evaluate:
+The initial scan itself should be distinguished from **Refresh**:
 
-- mark format
-- duplicate marks
-- expected Global Parameter associations
-- opening view availability
-- consistency between the opening mark and its view name
-- window head-height override status
+- **Opening the Manager** discovers and audits the openings.
+- **Refresh** applies the Zero Window Sill Height rule and then reruns the discovery/audit.
 
-These checks provide the status information shown in the register. :contentReference[oaicite:1]{index=1} :contentReference[oaicite:2]{index=2}
+This distinction is important when reviewing a project for the first time.
+
+---
+
+## What to Review First
+
+For a project that has not previously been processed through Openings Manager, start by checking:
+
+1. **Counts** — do the Window, Door and Curtain Wall totals look reasonable?
+2. **Category and Level** — are openings being classified where you expect?
+3. **Phase** — are New, Existing and Demolished openings correctly phased?
+4. **Mark** — look for unexpected, duplicate or non-standard marks.
+5. **GP / Head Height GP** — identify parameter setup requiring attention.
+6. **Status** — investigate records Flow has identified as inconsistent.
+
+Once the register looks understood, move on to standardisation or the relevant opening workflow rather than correcting everything blindly.
+
+<!-- SCREENSHOT: Register filtered to a useful QA example, such as New Windows with a mixture of clean and attention-required statuses. -->
 
 ---
 
 ## Next Steps
 
-After reviewing the register:
-
-- [**Select and Locate Openings**](selecting-and-locating-openings.md)
-- [**Standardise Openings**](standardising-openings.md)
+- [**Openings Manager**](index.md)
+- [**Selecting and Locating Openings**](selecting-and-locating-openings.md)
+- [**Opening Marks**](opening-marks.md)
+- [**Standardising Openings**](standardising-openings.md)
 - [**Guided Renumbering**](guided-renumbering.md)
 - [**Opening Global Parameters**](opening-global-parameters.md)
-- [**Opening Views**](opening-views.md)

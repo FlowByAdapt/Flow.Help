@@ -1,13 +1,12 @@
 # Active View Controls
 
-The active-view controls in Visibility Manager provide quick access to
-working and visibility settings for the Revit view you are currently
-using.
+The active-view controls in Visibility Manager provide quick access to working and visibility settings for the Revit view you are currently using.
 
-They are organised under **Working Aids**, **Datum Graphics** and **View
-Controls**.
+They are organised under **Working Aids**, **Datum Graphics** and **View Controls**.
 
-------------------------------------------------------------------------
+Some controls deliberately operate through the active view's assigned view template when one is present.
+
+---
 
 ## Open Active View Controls
 
@@ -19,109 +18,165 @@ The active-view controls are:
 
 ### Working Aids
 
--   **Reference Planes**
--   **Room Layout Mode**
+- **Reference Planes**
+- **Room Layout Mode**
 
 ### Datum Graphics
 
--   **Grid Bubbles**
+- **Grid Bubbles**
 
 ### View Controls
 
--   **Section Box**
+- **Section Box**
 
 !!! info "The active view determines the context"
 
-    Check that the required Revit view is active before changing an active-view control.
+    Open the Revit view you want to work with before changing an active-view control.
 
-------------------------------------------------------------------------
+    If you change views while Visibility Manager is open, use **Refresh** when you want to immediately confirm the states for the new view.
+
+---
 
 ## Reference Planes
 
-Use **Reference Planes** to show or hide reference planes in the active
-view.
+Use **Reference Planes** to show or hide reference planes.
 
-Where the active view has an assigned view template, the control is
-designed to prefer the view template so the visibility setting remains
-consistent with the template-controlled view.
+If the active view has an assigned view template, Flow deliberately applies the Reference Plane category visibility setting to that template.
 
-!!! note "View templates can affect the result"
+If no view template is assigned, Flow applies the setting directly to the active view.
 
-    Reference Plane visibility may be controlled through the active view's assigned view template rather than only the individual view.
+!!! warning "A view template can affect multiple views"
 
-------------------------------------------------------------------------
+    When Reference Plane visibility is changed through an assigned view template, the result is not limited to the individual active view.
+
+    Other views using the same template can also be affected by the template-controlled setting.
+
+If the Reference Plane category cannot be controlled in the target view or template, the control is shown as unavailable.
+
+---
 
 ## Room Layout Mode
 
 Use **Room Layout Mode** when working with room layouts.
 
-Enabling the mode shows room separation lines and coordinates the
-related floor visibility required for the room-layout workflow.
+This is a coordinated working mode rather than a simple visibility switch, so it uses **Enable** and **Disable**.
 
-Disabling the mode returns the coordinated visibility state.
+### With an Assigned View Template
 
-Because this is a working mode rather than a simple visibility switch,
-the control uses **Enable** and **Disable** rather than Show and Hide.
+When the active view has an assigned view template, Flow operates through that template.
 
-------------------------------------------------------------------------
+**Enable**:
+
+- shows **Room Separation Lines**; and
+- hides **Floors**.
+
+**Disable**:
+
+- hides **Room Separation Lines**; and
+- shows **Floors**.
+
+This provides a coordinated room-layout presentation through the template.
+
+### Without an Assigned View Template
+
+If the active view does not have an assigned view template, Room Layout Mode changes **Room Separation Line visibility only**.
+
+Floor visibility is not changed in this case.
+
+!!! info "The displayed mode follows Room Separation Lines"
+
+    Visibility Manager reads the Room Layout Mode state from whether Room Separation Lines are currently visible in the target view or template.
+
+---
 
 ## Grid Bubbles
 
 Use **Grid Bubbles** to show or hide grid bubbles in the active view.
 
-The control works with both vertical and horizontal grids and manages
-the position of the displayed grid bubbles when they are shown.
+The control works on grid elements found in that view.
 
-!!! tip "Use this for view-specific grid presentation"
+### Show Grid Bubbles
 
-    Grid Bubble changes apply to the active view rather than changing grid presentation throughout the project.
+When grid bubbles are shown, Flow first clears the bubbles from both ends and then applies a consistent presentation:
 
-------------------------------------------------------------------------
+- **vertical grids** display the **top** bubble;
+- **horizontal grids** display the **left** bubble.
+
+For grids that are not horizontal or vertical, Flow uses the endpoint with the higher vertical position.
+
+### Hide Grid Bubbles
+
+When grid bubbles are hidden, Flow hides the bubble at **both ends** of each grid in the active view.
+
+<!-- SCREENSHOT: Revit plan after Show Grid Bubbles.
+Show vertical grids labelled at the top and horizontal grids labelled at the left. -->
+
+!!! note "Show also standardises presentation"
+
+    **Show** does not simply restore whichever bubble ends were previously visible.
+
+    It deliberately applies Flow's top/left grid-bubble arrangement.
+
+If no grids are found in the active view, the control is unavailable.
+
+---
 
 ## Section Box
 
-Use **Section Box** to show or hide the section box boundary in the
-active 3D view.
+Use **Section Box** to show or hide the section box boundary in the active 3D view.
 
-This changes the visibility of the section box element without removing
-the section box itself.
+The control changes the visibility of the section box element without removing the section box itself.
 
-!!! info "Section Box requires an applicable 3D view"
+### Show a Hidden Section Box
 
-    The control is intended for an active 3D view containing a section box that can be shown or hidden.
+Flow can locate a controllable section box even when its boundary is currently hidden in the active 3D view.
 
-------------------------------------------------------------------------
+Selecting **Show** can therefore restore a previously hidden section-box boundary.
+
+### Requirements
+
+Section Box requires:
+
+- an active **3D view**; and
+- a section box element that can be controlled in that view.
+
+If these conditions are not met, the control is shown as unavailable.
+
+!!! info "The section box is not deleted"
+
+    **Hide** hides the section-box element in the active 3D view.
+
+    It does not remove the section box from the view.
+
+---
 
 ## Change an Active View Control
 
-1.  Open the Revit view you want to work with.
-2.  Locate the required control in Visibility Manager.
-3.  Review its current state and description.
-4.  Select the switch.
-5.  Visibility Manager applies the change and refreshes the displayed
-    state.
+1. Open the Revit view you want to work with.
+2. Locate the required control in Visibility Manager.
+3. Review its current state and description.
+4. Select the switch.
+5. Flow applies the change.
+6. Visibility Manager refreshes the displayed states.
 
-If you change to another Revit view while Visibility Manager is open,
-use **Refresh** if you need to immediately confirm the controls for the
-new view.
-
-------------------------------------------------------------------------
+---
 
 ## Project or Active View?
 
-Use **Project Graphics** when you want to change the project-wide Flow
-graphics settings for **3D Doors**, **Draft Graphics** or **NFC
-Graphics**.
+Use **Project Graphics** when you want to change the project-wide Flow graphics settings for:
 
-Use the active-view controls when the setting relates specifically to
-the view you are currently working in.
+- **3D Doors**
+- **Draft Graphics**
+- **NFC Graphics**
+
+Use the active-view controls when the setting relates to the view you are currently working in or its assigned view template.
 
 See [**Project Controls**](project-controls.md).
 
-------------------------------------------------------------------------
+---
 
 ## Related Help
 
--   [**Visibility Manager**](index.md)
--   [**Project Controls**](project-controls.md)
--   [**Troubleshooting**](troubleshooting.md)
+- [**Visibility Manager**](index.md)
+- [**Project Controls**](project-controls.md)
+- [**Troubleshooting**](troubleshooting.md)

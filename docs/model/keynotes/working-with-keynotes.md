@@ -1,178 +1,235 @@
 # Working with Keynotes
 
-Use **Keynote Manager** to browse, search and maintain the keynote information available in the currently loaded keynote file.
+Use **Keynote Manager** to browse, search and maintain the keynote
+information in the currently loaded keynote file.
 
----
-
-## Open Keynote Manager
-
-On the Revit ribbon:
-
-**Flow → Model → Keynotes**
-
----
+------------------------------------------------------------------------
 
 ## Browse the Keynote Hierarchy
 
-Keynote Manager displays the keynote file as a hierarchy of **categories** and **keynotes**.
+Keynote Manager displays the file as a hierarchy of **categories** and
+**keynotes**.
 
-Expand a category to view the keynote entries contained within it.
+Expand a category to view its keynote entries. Expanding a top-level
+category collapses the other top-level categories to keep the tree
+manageable.
 
-Selecting a keynote allows you to edit or remove that entry. Selecting a category allows you to add keynotes to it and use category-level maintenance tools such as **Clean** and **Renumber**.
+Selecting a keynote allows you to edit or remove it. Selecting a
+category allows you to add entries and use category-level tools such as
+**Clean Selected Category** and **Renumber**.
 
-!!! info "Categories and keynotes"
+Long descriptions can be viewed from the item tooltip when the visible
+text is truncated.
 
-	Categories form the top level of the keynote hierarchy. Individual keynote entries are displayed beneath their parent category.
-
----
+------------------------------------------------------------------------
 
 ## Search for a Keynote
 
-Use the **Search** box to find keynote entries without manually browsing the complete hierarchy.
+Use **Search key or description...** to find keynote entries without
+browsing the complete hierarchy.
 
 Search matches both:
 
-* keynote codes
-* keynote descriptions
+-   keynote codes
+-   keynote descriptions
 
-As you type, Keynote Manager filters the displayed information to matching results.
+As you type, Flow displays matching results and selects the first
+result.
 
-Press **Esc** to clear the current search.
+Press **Esc** to clear the search and current selection.
 
-!!! tip "You do not need the complete keynote"
+!!! tip "Use part of the code or description"
 
-	Search using any recognisable part of the keynote code or description. For example, searching for `insulation` can be used to locate keynote descriptions containing that term.
+    You do not need to enter the complete keynote. For example, search for `insulation` to find descriptions containing that term.
 
----
+------------------------------------------------------------------------
 
 ## Review Keynote Usage
 
-Keynote Manager can identify keynote entries currently referenced by the Revit project.
+A green indicator identifies a keynote code that is currently used by
+one or more placed Revit keynote tags.
 
-Use the **Used** and **Unused** filters to control which keynote entries are displayed.
+The number beside the keynote is the number of placed keynote tags using
+that code.
 
-This can be useful when reviewing a large project keynote file or identifying entries that are not currently referenced by the model.
+Usage is based on **placed keynote tags only**. It does not count
+elements or types that merely have a keynote parameter assigned.
 
-The usage information is refreshed from the current Revit project.
+Usage information is refreshed when Flow loads or refreshes keynote
+information and after a successful Sync.
 
-!!! info "Usage does not remove keynotes"
+<!-- SCREENSHOT: Expanded category showing green usage indicators and counts.
+Capture after opening a project with several placed keynote tags. -->
 
-	The Used and Unused controls only filter what is displayed in Keynote Manager. They do not modify the keynote file.
-
----
+------------------------------------------------------------------------
 
 ## Add a Keynote
 
 To add a keynote:
 
-1. Select the category that should contain the new keynote.
-2. Click **Add**.
-3. Choose **Add Keynote**.
-4. Review the suggested keynote code.
-5. Enter the keynote description.
-6. Click **Add**.
+1.  Select the category that should contain it.
+2.  Click **Add**.
+3.  Choose **Add Keynote**.
+4.  Review the suggested keynote code.
+5.  Enter a description, or use **Library** to choose an approved
+    description.
+6.  Click **Add**.
+7.  Save the keynote file when you are ready to write the change to
+    disk.
 
-Keynote Manager suggests the next available numbered keynote within the selected category.
+Flow looks for the first available numbered code in the selected
+category.
 
-For example, if the category already contains:
+For example:
 
-```text
+``` text
 45-01
 45-02
-45-03
+45-04
 ```
 
-the suggested code will be:
+suggests:
 
-```text
-45-04
+``` text
+45-03
 ```
 
 You can change the suggested code before adding the keynote.
 
-Keynote codes must be unique within the loaded keynote file.
+The code and description cannot be blank, and the keynote code must be
+unique within the loaded file.
 
----
+<!-- SCREENSHOT: Add Keynote window.
+Show the suggested key, Description field and Library button. -->
+
+------------------------------------------------------------------------
+
+## Use the Keynote Library
+
+The **Library** provides approved keynote descriptions that can be
+inserted while adding or editing a keynote.
+
+When the Library opens, Flow uses the current keynote prefix to select
+the corresponding category where possible.
+
+You can:
+
+-   search approved descriptions
+-   filter by category
+-   select an option and choose **Use Selected**
+-   double-click an option to use it
+
+The selected Library entry fills the **Description** field. It does not
+replace the project keynote code.
+
+This allows the project file to keep its own numbering while reusing
+approved wording.
+
+------------------------------------------------------------------------
 
 ## Add a Category
 
-To create a new category:
+To create a category:
 
-1. Click **Add**.
-2. Choose **Add Category**.
-3. Enter the category key.
-4. Enter the category description.
-5. Click **Add**.
+1.  Click **Add**.
+2.  Choose **Add Category**.
+3.  Enter the category key.
+4.  Enter the category description.
+5.  Click **Add**.
+6.  Save the keynote file.
 
-The new category is inserted into the keynote hierarchy according to its key.
+Both fields are required.
 
-A category key must not duplicate an existing key in the keynote file.
+The category key must not duplicate an existing key in the loaded
+keynote file.
 
----
+------------------------------------------------------------------------
 
 ## Edit a Keynote
 
-Double-click a keynote, or select it and use the available edit control, to open the keynote editor.
+Double-click a keynote, or select it and click **Edit**.
 
-You can update the keynote description and, where supported by the selected keynote operation, move the keynote to another valid position in the hierarchy.
+You can change:
 
-Apply the change to return to Keynote Manager.
+-   the keynote code
+-   the keynote description
 
-Changes remain unsaved until the keynote file is saved.
+You can also use **Library** to replace the description with approved
+wording.
 
-!!! warning "Changing keynote codes can affect project references"
+Changes remain unsaved until you use **Save**.
 
-	If a keynote code is changed, existing Revit elements or keynote tags may still reference the previous code.
+### Move a Keynote to Another Category
 
-	Use the keynote synchronisation workflow after saving when references need to be updated. See [**Project Keynote Files**](project-keynote-files.md).
+Changing the category prefix of a keynote can move it to another
+existing category.
 
----
+When Flow recognises the entered prefix as another category, the Edit
+window displays the proposed destination category and suggested keynote
+code.
+
+Flow allocates an available code in the destination category rather than
+blindly retaining a conflicting number.
+
+<!-- SCREENSHOT: Edit Keynote window.
+Show a changed category prefix with the destination category and suggested key preview visible. -->
+
+!!! warning "Changing a code can affect Revit references"
+
+    Changing a keynote code, including moving it to another category, can leave existing Revit references using the previous code.
+
+    Save the keynote file and use **Sync** when those references need to follow the new code.
+
+------------------------------------------------------------------------
 
 ## Remove a Keynote
 
-Select the required keynote and choose **Remove**.
+Select the required keynote and click **Remove**.
 
-Keynote Manager asks for confirmation before removing the entry.
+Flow asks for confirmation before removing the entry.
 
-Removing a keynote changes the keynote file but does not automatically renumber the remaining entries.
+Removing a keynote does not automatically renumber the remaining
+entries.
 
-!!! warning "Check project usage before removing keynotes"
+!!! warning "Usage count covers placed tags only"
 
-	A keynote may already be referenced by elements or keynote tags in the Revit project. Review its usage before removing it.
+    A zero usage count means there are no placed keynote tags using that code. It does not prove that no element or type keynote parameter uses the code.
 
----
+------------------------------------------------------------------------
 
 ## Remove Multiple Keynotes
 
-Multiple keynote entries within the same category can be selected using **Ctrl**.
+You can select multiple keynote entries within the same category.
 
-To remove several entries:
+1.  Hold **Ctrl**.
+2.  Select the required keynotes.
+3.  Click **Remove**.
+4.  Confirm the removal.
 
-1. Hold **Ctrl**.
-2. Select the required keynotes.
-3. Choose **Remove**.
-4. Confirm the removal.
+If you Ctrl-select an item from another category, Flow resets the
+selection rather than creating a multi-category selection.
 
-Multi-selection is limited to keynote entries within the same category.
-
----
+------------------------------------------------------------------------
 
 ## Clean a Category
 
-Categories can contain empty keynote entries.
+**Clean Selected Category** removes keynote entries with blank
+descriptions.
 
-To remove them:
+To clean a category:
 
-1. Select the category.
-2. Choose **Clean Category**.
-3. Review the number of empty entries found.
-4. Confirm the removal.
+1.  Select the category.
+2.  Open **File → Maintenance**.
+3.  Choose **Clean Selected Category...**.
+4.  Review the number of blank entries found.
+5.  Confirm the operation.
+6.  Save the keynote file.
 
-Cleaning removes the empty keynote entries without changing the numbering of the remaining keynotes.
+Cleaning deliberately leaves the remaining numbering unchanged.
 
 For example:
 
-```text
+``` text
 45-01    Window
 45-02
 45-03    Exterior door
@@ -180,22 +237,23 @@ For example:
 
 becomes:
 
-```text
+``` text
 45-01    Window
 45-03    Exterior door
 ```
 
-The remaining keynote is **not** automatically changed from `45-03` to `45-02`.
+Use **Renumber** separately if you also want consecutive numbering.
 
----
+------------------------------------------------------------------------
 
 ## Renumber a Category
 
-Use **Renumber** to reorganise the keynote codes within a selected category into consecutive numbering.
+Use **Renumber** to reorganise the keynote codes in the selected
+category into consecutive numbering.
 
 For example:
 
-```text
+``` text
 45-01
 45-03
 45-07
@@ -203,59 +261,64 @@ For example:
 
 can become:
 
-```text
+``` text
 45-01
 45-02
 45-03
 ```
 
-To renumber a category:
+To renumber:
 
-1. Select the category, or a keynote within that category.
-2. Choose **Renumber**.
-3. If empty keynote entries exist, choose whether to **Clean & Renumber** or **Renumber Only**.
-4. Review the proposed changes in the renumber preview.
-5. Confirm the changes.
-6. Save the keynote file.
+1.  Select the category.
+2.  Click **Renumber**.
+3.  If blank keynote entries exist, choose **Clean & Renumber** or
+    **Renumber Only**.
+4.  Review the proposed changes in the Renumber Preview.
+5.  Confirm the changes.
+6.  Save the keynote file.
+7.  Use **Sync** if existing Revit references need to follow the changed
+    codes.
 
-Keynote Manager records the relationship between the old and new codes so that affected Revit references can subsequently be synchronised.
+<!-- SCREENSHOT: Renumber Preview.
+Show several old-to-new keynote code changes before confirmation. -->
 
-!!! warning "Save before synchronising"
+Flow records the old-to-new code changes created by the renumber
+operation so they can be reviewed by Sync.
 
-	Renumbering changes the keynote information in Keynote Manager first.
+!!! warning "Save before Sync"
 
-	Save the keynote file before using **Sync** to update affected references in the Revit project.
+    Sync is unavailable while Keynote Manager contains unsaved changes.
 
----
+------------------------------------------------------------------------
 
 ## Save Your Changes
 
-Changes made through Keynote Manager are not automatically written to the keynote file.
+Changes made in Keynote Manager are not automatically written to disk.
 
-Use **Save** to write the changes to the current file.
+Use **Save** to write them to the currently loaded keynote `.txt` file.
 
-The Keynote Manager status indicates when there are unsaved changes.
+Use **Save As...** when the current keynote information should be
+written to another file.
 
-You can also use **Save As** when the keynote information should be written to a different file.
+If an operation would discard unsaved work, Keynote Manager prompts you
+before continuing.
 
-!!! warning "Unsaved changes"
-
-	If you attempt to open, refresh or close the current keynote file while unsaved changes exist, Keynote Manager asks whether those changes should be discarded.
-
----
+------------------------------------------------------------------------
 
 ## Refresh After External Changes
 
-If the keynote text file has been changed outside Keynote Manager, use **Refresh** to reload it.
-
-Refresh also requests that Revit reload its keynote table so that the current keynote information is available to the project.
+Use **Refresh** when the keynote file has changed outside Keynote
+Manager or when Revit needs to reload the current keynote table.
 
 Refresh is unavailable while Keynote Manager contains unsaved changes.
 
----
+See [**Project Keynote Files**](project-keynote-files.md) for the
+difference between Save, Refresh and Sync.
+
+------------------------------------------------------------------------
 
 ## Related Help
 
-* [Keynote Manager](index.md)
-* [Project Keynote Files](project-keynote-files.md)
-* [Troubleshooting](troubleshooting.md)
+-   [Keynote Manager](index.md)
+-   [Project Keynote Files](project-keynote-files.md)
+-   [Troubleshooting](troubleshooting.md)

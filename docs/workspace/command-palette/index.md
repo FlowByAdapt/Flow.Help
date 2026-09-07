@@ -1,8 +1,8 @@
 # Command Palette
 
-The **Command Palette** provides a fast way to find and launch Flow tools, native Revit commands and searchable library content without navigating through multiple parts of Revit.
+The **Command Palette** provides a fast way to find and launch Flow tools, native Revit commands and searchable library content from a floating window.
 
-Open the palette, start typing what you are looking for, then select the required result.
+You can browse commonly used commands immediately or start typing to search across the wider Flow command system.
 
 ---
 
@@ -12,65 +12,137 @@ On the Revit ribbon:
 
 **Flow → Workspace → Command**
 
-The Command Palette opens as a floating window ready for you to search.
+Command Palette opens as a floating window with the **Search** box ready for input.
+
+If Command Palette is already open, selecting **Command** again returns you to the existing window rather than opening another copy.
+
+<!-- SCREENSHOT: Command Palette immediately after opening.
+Show the complete floating window with Search, Quick Actions, Pinned, Recent and Browse visible. -->
 
 ---
 
-## What do you want to do?
+## What You See When It Opens
 
-### 🔍 Find and Run a Command
+You do not need to search before using Command Palette.
 
-Search for Flow tools and native Revit commands, navigate the results and launch the required command.
+With the Search box empty, commands are organised into sections to make commonly used actions easier to reach.
 
-➡️ [**Finding and Running Commands**](finding-and-running-commands.md)
+### Quick Actions
+
+Provides convenient access to selected commonly used actions.
+
+### Pinned
+
+Shows commands you have pinned for regular use.
+
+### Recent
+
+Shows commands you have used recently through Flow's command system.
+
+### Browse
+
+Provides access to the wider available command list.
+
+Flow automatically selects the first available result so that you can immediately navigate or run commands using the keyboard.
 
 ---
 
-### 📌 Access Pinned and Recent Commands
+## First-Time Workflow
 
-Pin commands you use regularly or focus the results on commands you have recently used.
+A typical Command Palette workflow is:
 
-➡️ [**Pinned and Recent Commands**](pinned-and-recent.md)
+1. Open **Flow → Workspace → Command**.
+2. Start typing a recognisable part of the command or content you want to find.
+3. Review the matching results.
+4. Use the mouse or **↑ / ↓** keys to select a result.
+5. Press **Enter**, double-click the result or select **Run**.
+6. Complete any additional choices required by the selected command or content item.
 
----
+Search results update automatically as you type.
 
-### 🛠️ Having Problems?
+!!! tip "You do not need the exact name"
 
-Find help if a command or search result cannot be found or does not run as expected.
+	Flow searches command names and supporting search information such as aliases, keywords, descriptions and categories.
 
-➡️ [**Troubleshooting**](troubleshooting.md)
+	Start with the word or phrase you associate with the task and refine the search if required.
 
 ---
 
 ## What Can Command Palette Find?
 
-Command Palette uses Flow's shared search system.
+Depending on your search and current Revit context, results can include:
 
-Depending on the search, results can include:
+* **Flow tools and commands**
+* **Native Revit commands**
+* **Indexed library content**
 
-- **Flow tools and commands**
-- **Native Revit commands**
-- **Indexed library content**
+Commands and content are presented separately when a search is active.
 
-Flow searches more than the displayed command name, allowing aliases, keywords, descriptions and categories to help find relevant results.
+<!-- SCREENSHOT: Search returning a mixture of Flow, Revit and content results.
+Choose a search term that clearly demonstrates the different result types. -->
 
-!!! tip "Search by what you remember"
+---
 
-    You do not need to know the exact command or content name.
+## Running Commands
 
-    Start typing the most recognisable part of what you are looking for and refine the search if required.
+For a Flow or Revit command:
+
+1. Select the required result.
+2. Press **Enter**, double-click it or select **Run**.
+
+Flow commands launch through their normal Flow workflow.
+
+Native Revit commands are passed back to Revit and can only run when Revit makes that command available in the current context.
+
+See [**Finding and Running Commands**](finding-and-running-commands.md) for the complete search and execution workflow.
+
+---
+
+## Working with Library Content
+
+Library content becomes available in Command Palette results when a search is active.
+
+Running a content result provides additional choices rather than immediately loading the item.
+
+Depending on the content, these can include:
+
+* **Open in Content Browser**
+* **Load into Project**
+* **Reveal in Explorer**
+* **Open Source File**
+* **Cancel**
+
+The available choices depend on the selected content type.
+
+For larger or more detailed content workflows, use **Content Browser**.
+
+---
+
+## What Flow Does Automatically
+
+While you use Command Palette, Flow automatically:
+
+* updates search results as you type;
+* selects an available result for keyboard navigation;
+* removes commands that are not available in the current Flow context;
+* considers previous command usage when ranking results;
+* records commands you run for **Recent** behaviour;
+* keeps command pin and recent state synchronised with **Flow Hub**; and
+* uses Content Browser favourite and recent information when ranking library content.
+
+This means Command Palette can become quicker to use as your normal command history develops.
 
 ---
 
 ## Command Palette or Flow Hub?
 
-Both **Command Palette** and **Flow Hub** use Flow's command and search infrastructure, but they support different ways of working.
+Both **Command Palette** and **Flow Hub** use Flow's shared command and search infrastructure, but support different ways of working.
 
 !!! tip "Which should I use?"
 
-    Use **Command Palette** when you want a floating, search-focused interface that can be opened when required.
+	Use **Command Palette** when you want a compact floating interface that can be opened when required.
 
-    Use **Flow Hub** when you want search, pinned and recent items, content access and workspace controls to remain available in a docked Revit panel.
+	Use **Flow Hub** when you want search, pinned and recent items, content access and workspace controls to remain available in a docked Revit panel.
 
 See [**Flow Hub**](../flow-hub/index.md).
 
@@ -84,8 +156,8 @@ Hover over **Command** on the Flow ribbon and press **F1** to return directly to
 
 ## Related Help
 
-- [**Workspace Panel**](../workspace/index.md)
-- [**Finding and Running Commands**](finding-and-running-commands.md)
-- [**Pinned and Recent Commands**](pinned-and-recent.md)
-- [**Troubleshooting**](troubleshooting.md)
-- [**Flow Hub**](../flow-hub/index.md)
+* [**Workspace Panel**](../workspace/index.md)
+* [**Finding and Running Commands**](finding-and-running-commands.md)
+* [**Pinned and Recent Commands**](pinned-and-recent.md)
+* [**Troubleshooting**](troubleshooting.md)
+* [**Flow Hub**](../flow-hub/index.md)

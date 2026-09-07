@@ -1,197 +1,257 @@
 # Model Health Troubleshooting
 
-Use the following checks if Model Health cannot complete an audit, expected results are unavailable or an affected element cannot be reviewed as expected.
+Use the following checks if Model Health does not complete an audit, an
+action appears to do nothing or the displayed results do not match what
+you expect.
 
----
+------------------------------------------------------------------------
 
-## Run Audit Does Not Complete
+## Model Health Does Not Complete the Initial Audit
 
-If **Run Audit** does not complete:
+The complete audit runs automatically when Model Health opens.
 
-1. Confirm that the required Revit project is open.
-2. Confirm that the project remains available and responsive.
-3. Review any message displayed by Flow.
-4. Close and reopen Model Health if necessary.
-5. Run the audit again.
+If the window does not complete its initial audit:
 
-If the problem consistently occurs on the same project, record the project and Revit version when reporting the problem.
+1.  Confirm that an active Revit project is open.
+2.  Allow the current Revit operation to finish.
+3.  Close and reopen Model Health.
+4.  If the problem repeats, note which project and Revit version are
+    affected.
 
----
+The current audit runs all registered checks as a single sequence. A
+problem encountered while executing a check may prevent the complete
+audit from finishing.
+
+------------------------------------------------------------------------
 
 ## A Check Shows Passed When I Expected Issues
 
-A check shown as **Passed** means that the current audit did not identify an issue for that check.
+A **Passed** result means that the current active audit did not identify
+an issue for that check.
 
 First:
 
-1. Confirm that the expected condition still exists in the model.
-2. Click **Run Audit** to make sure the displayed results are current.
-3. Review what the particular audit check evaluates.
+1.  Confirm that the expected condition still exists.
+2.  Click **Run Audit** to refresh the results.
+3.  Check what that particular audit actually evaluates.
 
-Some checks intentionally review a defined set of model conditions rather than every possible variation.
+Some checks intentionally have a narrow scope.
 
-!!! note "Duplicate Marks uses supported categories"
+For example:
 
-	The Duplicate Marks check reviews duplicate Mark values within supported Revit categories.
+-   **Unplaced Rooms** checks rooms with no placement location; it does
+    not currently check placed rooms for enclosure or area.
+-   **Duplicate Marks** checks supported categories only and compares
+    Marks within the same category.
+-   **Model Groups** reports group types that exist; it does not apply a
+    separate rule to decide whether each group is incorrectly used.
 
-	The same Mark value used by elements belonging to different categories is not treated as a duplicate by this check.
+------------------------------------------------------------------------
 
----
+## Review Issues Does Nothing
 
-## Review Issues Is Not Available
+**Review Issues** requires a selected result containing one or more
+active issues.
 
-**Review Issues** requires a selected audit result containing one or more issues.
+Check that:
 
-If the command is not available:
+1.  the selected result shows **Failed**; and
+2.  its **Issues** value is greater than zero.
 
-1. Review the **Status** and **Issues** columns.
-2. Select a check showing **Failed**.
-3. Confirm that its **Issues** value is greater than zero.
-4. Click **Review Issues** again.
+You can also double-click a result containing issues to open its Issue
+Details window.
 
-After an audit, Model Health normally selects a result containing issues automatically.
+------------------------------------------------------------------------
 
----
+## Select Elements Does Nothing
 
-## No Issues Are Shown
+**Select Elements** works on the individual issue row.
 
-If an audit check shows:
+You do **not** need to tick the issue checkbox first.
 
-**Passed**
+If nothing appears to happen:
 
-and:
+1.  confirm that the issue reports affected elements;
+2.  confirm that those elements still exist in the project;
+3.  return to Model Health and click **Run Audit** if the model has
+    changed; and
+4.  reopen **Review Issues** and try again.
 
-**Issues → 0**
+If Revit does not accept the external selection request, Flow displays a
+**Flow Model Health** message containing the Revit request status.
 
-the check completed without identifying the condition it is designed to detect.
+------------------------------------------------------------------------
 
-This is different from a check containing identified issues, which is shown as **Failed**.
+## The Elements Are Selected but I Cannot See Them as Expected
 
----
+Model Health normally tries to review affected elements in:
 
-## I Cannot Select an Affected Element
+**3D-01-Work Main**
 
-If an issue is shown but the expected element cannot be selected:
+For issues containing a Property Line, it instead looks for:
 
-1. Confirm that the element still exists in the project.
-2. Close the issue review.
-3. Click **Run Audit** again.
-4. Reopen **Review Issues**.
-5. Select the issue again.
+**SITE-01-Site Plan**
 
-The model may have changed since the previous audit was run.
+or, if that exact view is unavailable, another non-template plan view
+with `site` in its name.
 
----
+If the preferred review view cannot be found, Flow remains in the
+current active view.
 
-## The Element Is Selected but I Cannot See It
+Visibility can therefore still be affected by the current view and
+normal Revit visibility conditions.
 
-A selected element may not be visible in the current Revit view.
+------------------------------------------------------------------------
 
-This can occur because of normal Revit visibility conditions such as:
+## My Existing Temporary Hide/Isolate State Disappeared
 
-* the active view;
-* view range;
-* category visibility;
-* view templates;
-* temporary hide/isolate;
-* phase settings; or
-* other view-specific visibility controls.
+Model Health uses Revit Temporary Hide/Isolate to focus on affected
+elements.
 
-Use the normal Revit tools to inspect the selected element where required.
+Before applying its own isolation, it clears any existing Temporary
+Hide/Isolate state in the target review view.
 
----
+If you had already created a temporary isolation state in that view, it
+is not preserved by the Model Health review workflow.
 
-## My Results Are Out of Date
+------------------------------------------------------------------------
 
-Model Health results represent the state of the project when the audit was last run.
+## Ignore Selected Does Nothing
 
-If the model has changed:
+**Ignore Selected** uses the issue checkboxes.
 
-1. Return to the main Model Health window.
-2. Click **Run Audit**.
-3. Wait for the audit to complete.
-4. Review the updated dashboard and results.
+Before clicking it:
 
-!!! info "Re-run after changing the model"
+1.  tick at least one issue in the Issue Details window; and
+2.  click **Ignore Selected**.
 
-	Model Health does not treat an earlier audit as a live representation of every subsequent model change.
+If no issue is ticked, the command intentionally makes no change.
 
-	Run the audit again when you need an updated assessment.
+------------------------------------------------------------------------
 
----
+## An Issue Disappeared After I Ignored It
 
-## My Health Score Did Not Change
+This is expected.
 
-The health score is calculated from the issues identified by the current audit.
+Ignored issues are filtered out of the active audit results and do not
+contribute to the displayed Model Health score.
 
-If you have corrected an issue but the score has not changed:
+Open **Ignored Issues** from the main Model Health window to review or
+restore them.
 
-1. Confirm that the model change has been completed.
-2. Click **Run Audit** again.
-3. Check whether the relevant audit result has changed.
-4. Review the updated issue and severity counts.
+!!! note "Ignored issues are user-local"
 
-The score will only reflect conditions identified by the latest audit.
+    Ignored issues are stored locally for the current Windows user and project.
 
----
+    Another user opening the same Revit project will not automatically inherit your ignored list.
 
-## An Ignored Issue Is Missing
+------------------------------------------------------------------------
 
-Issues that have been intentionally ignored are managed separately from the active issue-review workflow.
+## Restore Selected Does Nothing
 
-From the main Model Health window, click:
+In the **Ignored Issues** window, tick at least one ignored item before
+clicking **Restore Selected**.
 
-**Ignored Issues**
+Alternatively, use **Restore All** to restore every ignored issue.
 
-Review the ignored items and restore an issue if it should return to the active review workflow.
+When the Ignored Issues window closes, Model Health automatically runs
+the audit again.
 
-!!! warning "Ignored does not mean resolved"
+A restored issue will only reappear if the underlying model condition
+still exists.
 
-	Ignoring an issue does not modify the Revit model or correct the underlying condition.
+------------------------------------------------------------------------
 
-	It records that the issue has been intentionally excluded from the current active review.
+## My Health Score Changed After Ignoring an Issue
 
----
+This is expected.
 
-## Restore View Does Not Return Me Where Expected
+Ignored issues are excluded before the active Model Health score is
+calculated.
 
-**Restore View** is intended to return to the Revit view state stored during the Model Health review workflow.
+Ignoring an issue can therefore increase the displayed score even though
+the underlying Revit model condition has not changed.
 
-If the expected view cannot be restored:
+Use Ignore only for conditions that have been reviewed and intentionally
+accepted.
 
-1. Confirm that the original view still exists.
-2. Check whether the document or view state has changed since the issue was reviewed.
-3. Return to the required view manually if necessary.
+------------------------------------------------------------------------
 
----
+## My Health Score Did Not Change After Fixing the Model
 
-## Duplicate Marks Takes Longer Than Other Checks
+Model Health results are point-in-time.
 
-The Duplicate Marks check may take longer than some simpler audit checks because it reviews eligible model elements and compares their Mark values within supported categories.
+After correcting a model condition:
 
-A longer duration does not necessarily indicate a problem.
+1.  return to Model Health;
+2.  click **Run Audit**; and
+3.  review the updated dashboard and result grid.
 
-The **Duration** column is provided primarily as information about audit execution.
+The displayed score does not continuously recalculate while you edit the
+model.
 
----
+------------------------------------------------------------------------
+
+## Restore View Does Not Return Me to My Previous View
+
+This is expected with the current implementation.
+
+**Restore View** removes Temporary Hide/Isolate from the currently
+active Revit view.
+
+It does not:
+
+-   reactivate the view that was open before issue review;
+-   restore the previous zoom position;
+-   restore the previous Revit selection; or
+-   recreate a previous Temporary Hide/Isolate state.
+
+Closing Model Health also requests removal of temporary isolation from
+the currently active view.
+
+------------------------------------------------------------------------
+
+## Results Are Out of Date
+
+If the model has changed since the last audit:
+
+1.  return to Model Health;
+2.  click **Run Audit**; and
+3.  wait for the refreshed results.
+
+You do not need to manually rerun after **Ignore Selected** or after
+closing **Ignored Issues**, because those workflows trigger a new audit
+automatically.
+
+------------------------------------------------------------------------
+
+## A Check Takes Longer Than Expected
+
+The **Duration** column shows how long each audit check took to execute.
+
+Different checks inspect different quantities of Revit data, so their
+execution times may vary with project size and content.
+
+A longer duration does not by itself mean that the check has failed.
+
+------------------------------------------------------------------------
 
 ## Reporting a Problem
 
-If the problem continues, record:
+If a problem continues, record:
 
-* the Revit version;
-* the health check involved;
-* what you expected to happen;
-* what happened instead;
-* any error message displayed by Flow; and
-* a screenshot of Model Health or the relevant issue details where useful.
+-   the Revit version;
+-   the project involved;
+-   the audit check involved;
+-   what you expected to happen;
+-   what happened instead;
+-   any message displayed by Flow; and
+-   a screenshot where useful.
 
-Because Model Health is still being developed, examples from real projects are particularly useful for identifying checks or workflows that need refinement.
-
----
+------------------------------------------------------------------------
 
 ## Related Help
 
-* [Model Health](index.md)
-* [Running Health Checks](running-health-checks.md)
-* [Reviewing Issues](reviewing-issues.md)
+-   [Model Health](index.md)
+-   [Running Health Checks](running-health-checks.md)
+-   [Reviewing Issues](reviewing-issues.md)

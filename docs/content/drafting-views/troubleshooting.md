@@ -1,187 +1,140 @@
 # Drafting View Extractor Troubleshooting
 
-Use the following checks if Drafting View Extractor cannot process a source file, expected content is not extracted or the extraction cannot be completed.
+Use these checks when a source cannot be scanned, expected output is missing or extraction does not complete as expected.
 
 ---
 
 ## Library Root Not Found
 
-If Flow displays:
-
-**Library Root Not Found**
-
-the expected content library for the current Revit version could not be found.
-
-Check that:
-
-1. The Flow content library is available from the workstation.
-2. The library location is accessible.
-3. The library for the current Revit version is present.
-
-Once the library is available, run **Drafting View Extractor** again.
-
-!!! note "Flow uses a version-specific library"
-
-	Drafting View Extractor automatically resolves the content library for
-	the current Revit version.
+Flow resolves the library for the running Revit version. Confirm that the path shown in **Library Root Not Found** exists and is accessible from the workstation.
 
 ---
 
 ## Template Not Found
 
-If Flow displays:
-
-**Template Not Found**
-
-the Revit template required to create the individual drafting-view files could not be found.
-
-The message displays the template path Flow expected to use.
-
-Check that the standard Revit templates for the current Revit version are installed and accessible, then run the extraction again.
+Flow expects Autodesk's English `DefaultMetric.rte` for the running Revit version. Confirm that the path shown in **Template Not Found** exists.
 
 ---
 
-## A Source File Cannot Be Processed
+## A Source Cannot Be Scanned
 
-If one of the selected source files cannot be processed:
+Before displaying the confirmation, Flow opens every selected file to discover its drafting views. One invalid, inaccessible or unsupported file can interrupt this initial scan.
 
-1. Confirm that the file is a Revit `.rvt` file.
-2. Confirm that the file is accessible from the current workstation.
-3. Confirm that the file is located within the configured Flow content library.
-4. Review the error displayed by Flow.
-5. Correct the reported issue where possible and run the extraction again.
-
-Flow continues processing the batch where possible if an individual source file fails.
+1. Confirm that each selection is an accessible `.rvt`.
+2. Remove uncertain files and retry them individually.
+3. Confirm that files are not already locked in a way that prevents background opening.
 
 ---
 
-## An Expected Drafting View Is Missing
+## Source File Is Outside the Library
 
-If a view you expect to extract does not appear in the extraction preview:
+Mirrored extraction requires every source to be inside the configured version-specific library.
 
-1. Open the source RVT and confirm that the expected view exists.
-2. Confirm that the view is a Revit **Drafting View**.
-3. Confirm that it is not a view template.
-4. Run **Drafting View Extractor** again and review the preview.
+If Flow reports that the source is not inside the library root, move or select the correct centrally managed source before trying again.
 
-!!! info "Drafting view templates are ignored"
+---
 
-	Flow processes non-template Revit Drafting Views from the selected source
-	files.
+## An Expected View Is Missing from the Preview
 
-	Other view types and drafting-view templates are not included in the
-	extraction.
+Confirm that the source contains a non-template Revit drafting view. Other view types and view templates are ignored.
+
+The dialogue lists only the first 50 views. Compare the reported total with the visible list before assuming that a later view was not discovered.
 
 ---
 
 ## No Drafting Views Are Found
 
-If Flow reports that no drafting views were found:
-
-1. Confirm that the correct source RVT file was selected.
-2. Open the source file and confirm that it contains Drafting Views.
-3. Confirm that the required views are not view templates.
-4. Try the extraction again.
-
-If another known source file containing drafting views works normally, the issue is likely specific to the original source file.
+1. Confirm that the correct source was selected.
+2. Open it and verify that it contains non-template drafting views.
+3. Retry the source by itself.
 
 ---
 
-## A Drafting View Was Skipped
+## A Recent View Was Skipped
 
-A skipped drafting view does not necessarily indicate a problem.
+Normal extraction skips an existing output RVT whose last-write time is seven days old or less.
 
-During **Extract Missing / Old Only**, Flow skips an existing extracted file when it was updated within the last seven days.
-
-The extraction preview identifies these views as:
-
-**[EXISTS - RECENT]**
-
-!!! tip "Need to rebuild it anyway?"
-
-	Run the extraction again and select **Force Extract All** if recently
-	extracted content needs to be regenerated.
+Use **Force Extract All** when the RVT must be replaced immediately.
 
 ---
 
-## A Drafting View Fails to Extract
+## An Empty Drafting View Failed
 
-An individual drafting view can fail even when other views in the same source file are processed successfully.
+Empty views appear during discovery but fail during extraction with **No drawable elements found**.
 
-At completion, check the **Failed** count and review any errors shown in the extraction summary.
-
-A drafting view must contain drawable content for Flow to create the extracted file.
-
-!!! note "Empty drafting views cannot be extracted"
-
-	If a drafting view contains no drawable elements, Flow cannot create
-	reusable drafting content from it.
-
-	Check the source view before trying the extraction again.
+Add the required drawable content to the source view or exclude that container from the run.
 
 ---
 
-## Preview Generation Fails
+## The Extracted RVT Is Empty or Contains the Wrong View
 
-Drafting-view extraction and preview generation are separate stages of the same workflow.
+Open the output RVT and inspect its non-template drafting views.
 
-The completion summary reports preview images as:
-
-* **Generated**
-* **Skipped**
-* **Failed**
-
-If the RVT extraction succeeded but preview generation failed, the extracted Revit content may still have been created successfully.
-
-Review the preview results separately from the extraction results when diagnosing the problem.
+The current final-view cleanup behaviour is under review because the view receiving the copied elements can be deleted before saving. Do not publish an unverified output file.
 
 ---
 
-## Extraction Is Cancelled
+## A Preview Was Skipped
 
-The extraction progress can be cancelled while Flow is processing the selected files.
+The automatic preview stage skips any output whose matching PNG already exists. This includes RVTs regenerated with **Force Extract All**.
 
-If cancelled, Flow stops the batch workflow rather than continuing into normal completion processing.
-
-Run **Drafting View Extractor** again when you are ready to continue.
+Delete or regenerate the existing PNG when it no longer represents the extracted RVT.
 
 ---
 
-## Some Files Were Created but Others Failed
+## Preview Generation Failed
 
-Drafting View Extractor processes source files and drafting views individually.
+RVT extraction and PNG generation are separate stages. A successful extracted RVT can remain available even when its preview fails.
 
-Where possible, a failure affecting one item does not prevent other items from being processed.
+Confirm that the output contains a non-template drafting view and review the preview error separately.
 
-When the run completes, review:
+---
 
-* **Files processed**
-* **Views found**
-* **Created / Updated**
-* **Skipped**
-* **Failed**
+## Extraction Was Cancelled
 
-The completion summary also displays the first extraction errors where available.
+Files already created remain in place. Run the extractor again to continue; recent outputs may then be skipped by the seven-day rule.
+
+Cancellation during the final or only source file may still allow preview generation and completion processing to begin. Review the progress and output rather than assuming no further work occurred.
+
+---
+
+## Some Items Succeeded and Others Failed
+
+Per-view failures normally do not prevent later views from being attempted. A source-level error also normally allows the next source file to proceed.
+
+The final Failed total can omit a source-level exception, and Created/Updated can omit successful outputs that purged zero elements. Review earlier error messages and the output folder as well as the summary.
+
+---
+
+## Open Output Folder Does Nothing
+
+This action uses the first valid output path found in the run. It cannot open a folder when no result supplied an output path.
 
 ---
 
 ## Reporting a Problem
 
-If the problem continues, record:
+Record:
 
-* The Revit version.
-* The source RVT file being processed.
-* The drafting view involved.
-* Whether **Extract Missing / Old Only** or **Force Extract All** was used.
-* What you expected to happen.
-* What happened instead.
-* Any error message displayed by Flow.
-* A screenshot of the extraction preview or completion summary where useful.
+- Revit and Flow versions;
+- source RVT path;
+- drafting-view name;
+- extraction mode;
+- output RVT and PNG paths;
+- the displayed status or error;
+- expected and actual results; and
+- screenshots of the confirmation, progress or completion dialogue.
+
+---
+
+## Getting Help
+
+Hover over **Drafting** on the Flow ribbon and press **F1** to open Drafting View Extractor help.
 
 ---
 
 ## Related Help
 
-* [Drafting View Extractor](index.md)
-* [Extracting Drafting Views](extracting-drafting-views.md)
-* [Managing Extracted Views](managing-extracted-views.md)
+- [**Drafting View Extractor**](index.md)
+- [**Extracting Drafting Views**](extracting-drafting-views.md)
+- [**Managing Extracted Views**](managing-extracted-views.md)

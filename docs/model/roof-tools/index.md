@@ -1,45 +1,45 @@
 # Roof Tools
 
-The **Roof Tools** workspace brings together Flow tools for creating
-roof-related documentation and completing common roof detailing tasks.
+Roof Tools brings together specialised commands for roof documentation and detailing workflows in Revit.
 
+The current toolset includes **Roof Outline** for generating a clean 2D exterior roof perimeter and **Gutter Caps** for creating solid caps at the ends of Revit gutters.
 
----
+## Open Roof Tools
 
-## Opening Roof Tools
+Go to:
 
-On the Revit ribbon:
+**Flow → Model → Roof**
 
-**Flow → Model → Roof Tools**
+The **Roof** window opens with the available roof tools.
 
-The Roof Tools window provides access to the available roof workflows.
+<!-- SCREENSHOT: Roof window showing the Roof Outline and Gutter Caps cards. -->
 
----
+Select the required tool to begin.
 
-## Tools
+## Roof Outline
 
-### Roof Outline
+**Roof Outline** creates a clean 2D outline around the exterior perimeter of one or more adjoining Revit Roof by Footprint elements.
 
-Create a clean 2D outline around the outside perimeter of one or more
-footprint roofs.
+Flow reads the selected roof footprints, removes shared edges and determines the exterior boundary of the combined roof shape.
 
-Flow combines the selected roof profiles, removes shared internal edges
-and creates the resulting exterior boundary as detail lines in the
-active plan view.
+The resulting outline is created as Detail Lines in the active plan view using the `Roof_Outline` line style.
 
-➡️ [**Roof Outline**](roof-outline.md)
+[Learn how to use Roof Outline](roof-outline.md)
 
-### Gutter Caps
+## Gutter Caps
 
-Create small solid end caps at selected ends of a Revit gutter.
+**Gutter Caps** creates a small solid cap at a selected end of a Revit gutter without requiring a separate cap family.
 
-The workflow is intended for closing visually open gutter ends without
-requiring a separate custom family for each gutter profile.
+Select a gutter, then pick near the end that needs capping. The established workflow allows multiple ends of the same gutter to be processed before finishing the command.
 
-➡️ [**Gutter Caps**](gutter-caps.md)
+[Learn how to use Gutter Caps](gutter-caps.md)
 
----
+!!! note "Gutter Caps development status"
+
+	Gutter Caps is currently being migrated from its established pyRevit workflow to the native Flow Roof Tools implementation. This Help page describes the established workflow and will be updated as the native implementation develops.
 
 ## Related Help
 
-- [Roof Tools Troubleshooting](troubleshooting.md)
+* [Roof Outline](roof-outline.md)
+* [Gutter Caps](gutter-caps.md)
+* [Roof Tools Troubleshooting](troubleshooting.md)

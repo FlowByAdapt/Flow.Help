@@ -248,22 +248,20 @@ nav = [
       { "Overview" = "model/openings-manager/index.md" },
 
       { "Reviewing Openings" = "model/openings-manager/reviewing-openings.md" },
-      { "Selecting Openings" = "model/openings-manager/selecting-openings.md" },
+      { "Selecting Openings" = "model/openings-manager/selecting-and-locating-openings.md" },
 
       { "Opening Marks" = "model/openings-manager/opening-marks.md" },
       { "Standardising Openings" = "model/openings-manager/standardising-openings.md" },
       { "Guided Renumbering" = "model/openings-manager/guided-renumbering.md" },
       { "Tagging Openings" = "model/openings-manager/tagging-openings.md" },
 
-      { "Opening Views" = "model/openings-manager/opening-views.md" },
       { "Generating Opening Views" = "model/openings-manager/generating-opening-views.md" },
-      { "Curtain Wall Views" = "model/openings-manager/curtain-wall-views.md" },
       { "Conforming Opening Views" = "model/openings-manager/conforming-opening-views.md" },
       { "Placing Views on Sheets" = "model/openings-manager/placing-views-on-sheets.md" },
       { "Dimensioning Window Views" = "model/openings-manager/dimensioning-window-views.md" },
 
       { "Door Heights" = "model/openings-manager/door-heights.md" },
-      { "Global Parameters" = "model/openings-manager/global-parameters.md" },
+      { "Global Parameters" = "model/openings-manager/opening-global-parameters.md" },
       { "Head Height Overrides" = "model/openings-manager/head-height-overrides.md" },
 
       { "Troubleshooting" = "model/openings-manager/troubleshooting.md" },

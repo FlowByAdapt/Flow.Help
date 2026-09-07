@@ -1,34 +1,39 @@
 # Model Panel
 
-The **Model** panel contains tools for reviewing, managing and coordinating Revit model content and project data.
+The **Model** panel contains tools for reviewing, managing and
+coordinating Revit model content and project data.
 
 You can find the Model panel on the **Flow** ribbon in Revit.
 
----
+------------------------------------------------------------------------
 
 ## Tools
 
 ### Area Envelope
 
-Create area-based views and boundaries for reviewing external wall areas, including framing and cladding workflows.
+Create area-based views and boundaries for reviewing external wall
+areas, including framing and cladding workflows.
 
 [Area Envelope →](area-envelope/index.md)
 
 ### Keynotes
 
-Manage project keynote data, review keynote usage and maintain consistent keynote numbering and content.
+Manage project keynote data, review keynote usage and maintain
+consistent keynote numbering and content.
 
 [Keynotes →](keynotes/index.md)
 
 ### Model Health
 
-Review common model health issues and identify elements that may require attention.
+Review common model health issues and identify elements that may require
+attention.
 
 [Model Health →](model-health/index.md)
 
 ### Openings Manager
 
-Review and manage project doors, windows and other opening-related information, including numbering and coordination workflows.
+Review and manage project doors, windows and other opening-related
+information, including numbering and coordination workflows.
 
 [Openings Manager →](openings-manager/index.md)
 
@@ -40,24 +45,30 @@ Review and manage project parameters and parameter-related information.
 
 ### Pattern Manager
 
-Browse, create and manage Revit fill patterns, including project patterns and pattern library content.
+Browse, create and manage Revit fill patterns, including project
+patterns and pattern library content.
 
 [Pattern Manager →](pattern-manager/index.md)
 
 ### Risk Matrix
 
-Assess and document exterior wall risk using the Flow Risk Matrix workflow, including risk faces, project conditions and visual coordination.
+Assess and document exterior wall risk using the Flow Risk Matrix
+workflow, including risk faces, project conditions and visual
+coordination.
 
 [Risk Matrix →](risk-matrix/index.md)
 
 ### Roof Tools
 
-Access roof documentation and detailing tools, including creating clean roof outlines and adding caps to open gutter ends.
+Access roof documentation and detailing tools, including creating clean
+roof outlines and adding caps to open gutter ends.
 
 [Roof Tools →](roof-tools/index.md)
 
+------------------------------------------------------------------------
+
 !!! tip "Working with the model?"
 
-	Use the **Model** panel for tools that review, coordinate or modify information within the current Revit model.
+    Use the **Model** panel for tools that review, coordinate or modify information within the current Revit model.
 
-	Each tool provides more detailed guidance for its specific workflow.
+    Each tool provides more detailed guidance for its specific workflow.
