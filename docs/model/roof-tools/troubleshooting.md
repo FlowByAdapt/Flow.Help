@@ -2,6 +2,8 @@
 
 Use this page when Roof Outline or Gutter Caps does not produce the expected result.
 
+---
+
 ## Roof Outline Cannot Be Run
 
 **Message:** `Roof Outline can only be run from a plan view.`
@@ -43,10 +45,10 @@ Roof Outline treats the selected roof footprints as a combined boundary network.
 
 If the result is unexpected:
 
-* confirm that all roofs contributing to the required perimeter were selected;
-* check whether an unrelated roof was included accidentally;
-* check the roof footprint geometry for unusual intersections or overlaps; and
-* compare the generated Detail Lines with the roof geometry.
+- confirm that all roofs contributing to the required perimeter were selected;
+- check whether an unrelated roof was included accidentally;
+- check the roof footprint geometry for unusual intersections or overlaps; and
+- compare the generated Detail Lines with the roof geometry.
 
 Complex arrangements should always be visually checked after generation.
 
@@ -58,7 +60,7 @@ Before creating the new outline, Flow removes existing Detail Lines in the activ
 
 !!! warning
 
-	This is based on the line style rather than separate generated-element provenance. Manually created Detail Lines using `Roof_Outline` in the active view may therefore also be removed.
+    This is based on the line style rather than separate generated-element provenance. Manually created Detail Lines using `Roof_Outline` in the active view may therefore also be removed.
 
 ## The Roof Outline Has the Wrong Line Pattern
 
@@ -76,42 +78,84 @@ If the view does not return to its previous state after an unexpected failure, r
 
 ---
 
-## Gutter Caps — Invalid Element Selected
+## Gutter Caps Cannot Find a Roof Plan
 
-Gutter Caps operates on Revit **Gutter** elements.
+**Message:** `Gutter Caps requires a roof plan view. No suitable Roof Plan view could be found.`
 
-If the required gutter is difficult to select, use **Tab** to cycle through nearby Revit elements until the gutter is highlighted.
+Gutter Caps requires a non-template plan view whose name contains:
 
-## Gutter End Cannot Be Found
+**Roof Plan**
 
-Pick closer to the physical end of the gutter.
+If you are not already in a matching view, Flow searches the project and switches automatically.
 
-The established workflow searches for a suitable gutter-end face nearest the picked point. Picking too far from the end can prevent the correct geometry from being identified.
+If no suitable view exists, create or rename the required Roof Plan and run Gutter Caps again.
+
+## I Can't Select the Gutter
+
+Gutter Caps only accepts Revit **Gutter** elements during the gutter-selection step.
+
+If the gutter is difficult to highlight, use **Tab** to cycle through nearby roof elements until the gutter is highlighted, then click to select it.
+
+You can also preselect exactly one gutter before starting Gutter Caps.
+
+## Gutter Caps Used the Wrong End
+
+Flow uses the suitable gutter end nearest to the point you click.
+
+If the wrong end is processed, run the tool again and click much closer to the physical end you intend to cap.
 
 ## A Gutter Cap Was Not Created
 
-The selected end may already have a generated Gutter Cap.
+The selected end may already have a recognised generated Gutter Cap.
 
-The established workflow checks for an existing cap near the selected end and skips creation when a duplicate is detected.
+Flow checks for an existing cap near the selected end and skips creation when a duplicate is detected.
 
-If no cap is visible, inspect the end closely in a suitable 3D view before trying again.
+Review the completion summary. If **Skipped existing** increased, inspect the gutter end closely before trying again.
 
 ## The Gutter Cap Shape Is Unexpected
 
-The cap geometry is derived from the gutter's end profile.
+The cap geometry is derived from the actual gutter-end profile.
 
-Complex or unusual gutter profiles may produce geometry that needs additional checking.
+Complex or unusual gutter profiles can require additional visual checking.
 
-The generated cap is a separate element, so the original Revit gutter remains unchanged.
+Inspect the result in a suitable 3D view. If the generated profile is clearly incorrect, remove the generated cap and report the gutter type/profile used.
+
+## I Can See a Line Between the Gutter and Cap
+
+The generated cap is a separate DirectShape element. It is not geometrically joined to the native Revit gutter.
+
+A visible junction or internal edge can therefore remain between the gutter and cap in some model or 3D display conditions.
+
+This does not necessarily indicate that the cap geometry is incorrect.
+
+## The Cap Is a Generic Model
+
+Flow first attempts to create the generated DirectShape using the Revit **Gutter** category.
+
+Where Revit does not permit that category for the generated geometry, Flow falls back to **Generic Models**.
+
+This is expected fallback behaviour.
+
+## The Cap Material Does Not Match
+
+Flow attempts to resolve and apply a matching gutter material to each generated cap.
+
+If no usable material can be resolved, the cap can still be created. The completion summary reports how many newly created caps received a material.
 
 ## How Do I Finish Gutter Caps?
 
 Press **Esc** after processing the required ends of the selected gutter.
 
-The established workflow then selects the newly created caps and brings them into view for review.
+During end picking, Esc finishes the current run. Caps already created are retained.
+
+Flow then selects the newly created caps, attempts to bring them into view and displays the completion summary.
+
+To cap a different gutter, start Gutter Caps again.
+
+---
 
 ## Related Help
 
-* [Roof Tools](index.md)
-* [Roof Outline](roof-outline.md)
-* [Gutter Caps](gutter-caps.md)
+- [Roof Tools](index.md)
+- [Roof Outline](roof-outline.md)
+- [Gutter Caps](gutter-caps.md)
