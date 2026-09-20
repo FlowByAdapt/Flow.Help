@@ -68,7 +68,7 @@ Use the navigation to browse Flow tools and workflows.
 <h2>Annotation</h2>
 </div>
 
-<a class="flow-tool-link" href="model/annotation/">
+<a class="flow-tool-link" href="annotation/">
 <strong>Annotation</strong>
 <span>Access common dimensioning, tagging, text and numbering workflows.</span>
 </a>
