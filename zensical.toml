@@ -25,6 +25,29 @@ copyright = """
 nav = [
   { "Home" = "index.md" },
 
+  # ---------------------------------------------------------------------------
+  # FLOW SERVER PANEL
+  # ---------------------------------------------------------------------------
+
+{ "Applications" = [
+    { "Overview" = "applications/index.md" },
+
+    # Applications
+    # -------------------------------------------------------------------------
+
+    { "Flow Server" = [
+        { "Overview" = "applications/flow-server/index.md" },
+        { "Getting Started" = "applications/flow-server/getting-started.md" },
+        { "Connecting and Browsing" = "applications/flow-server/connecting-and-browsing.md" },
+        { "Reviewing Server Activity" = "applications/flow-server/reviewing-activity.md" },
+        { "Archiving Projects" = "applications/flow-server/archiving-projects.md" },
+        { "Upgrading Projects" = "applications/flow-server/upgrading-projects.md" },
+        { "Managing Server Content" = "applications/flow-server/managing-server-content.md" },
+        { "Troubleshooting" = "applications/flow-server/troubleshooting.md" },
+    ] },
+
+] },
+
 
   # ---------------------------------------------------------------------------
   # PROJECT PANEL

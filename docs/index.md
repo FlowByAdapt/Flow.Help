@@ -39,10 +39,29 @@ Use the navigation to browse Flow tools and workflows.
 
 
 <!-- =========================================================
-     PROJECT PANEL
+     FLOW SERVER PANEL
      ========================================================= -->
 
 <div class="flow-panel-card flow-panel-card--wide">
+
+<div class="flow-panel-header">
+<img src="assets/categories/flowserver_icon.png" class="flow-panel-icon" alt="">
+<h2>Applications</h2>
+</div>
+
+<a class="flow-tool-link" href="applications/flow-server/">
+<strong>Flow Server</strong>
+<span>Provides a central interface for browsing and administering Autodesk Revit Server content.</span>
+</a>
+
+</div>
+
+
+<!-- =========================================================
+     PROJECT PANEL
+     ========================================================= -->
+
+<div class="flow-panel-card">
 
 <div class="flow-panel-header">
 <img src="assets/categories/project_icon.png" class="flow-panel-icon" alt="">
@@ -61,7 +80,7 @@ Use the navigation to browse Flow tools and workflows.
      ANNOTATION PANEL
      ========================================================= -->
 
-<div class="flow-panel-card flow-panel-card--wide">
+<div class="flow-panel-card">
 
 <div class="flow-panel-header">
 <img src="assets/categories/annotation_icon.png" class="flow-panel-icon" alt="">
