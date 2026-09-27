@@ -14,6 +14,10 @@ You do not need to select every generated layer manually. Wall Manager uses the 
 
 Multiple original walls can be recreated in one operation, including walls from different recorded separation groups.
 
+!!! tip "One generated wall is enough"
+
+    Select a generated wall from each original wall you want to restore. Wall Manager uses its recorded separation identity to locate the related generated layers.
+
 ---
 
 ## Run Recreation
@@ -39,6 +43,10 @@ Ordinary join changes caused by neighboring walls being recreated do not by them
 Recreation may be blocked when generated walls have been deleted, substantially changed, or can no longer be matched safely to the recorded operation.
 
 This prevents Wall Manager from silently discarding later modelling work.
+
+!!! warning "Do not bypass an integrity warning"
+
+    A blocked recreation usually means a generated wall is missing or has been materially changed. Review the affected set before deciding how to restore it.
 
 ---
 
