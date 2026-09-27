@@ -23,6 +23,10 @@ Wall Manager can be opened from:
 
 Other view types are not supported.
 
+!!! info "Supported views"
+
+    Open Wall Manager from a Floor Plan, Ceiling Plan, Structural Plan or 3D view. The tool is intentionally unavailable in other view types.
+
 ---
 
 ## Typical Workflow
@@ -52,6 +56,10 @@ The **Selected Walls** grid is Wall Manager's current working set.
 
 You can therefore keep Wall Manager open, select additional walls in Revit, and add them to the operation.
 
+!!! tip "Keep the window open"
+
+    Select additional walls directly in Revit, then use **Add selected**. You do not need to close and restart Wall Manager to expand the working set.
+
 ---
 
 ## Layer Groups and Host Wall
@@ -63,6 +71,10 @@ By default, each physical source layer becomes a separate output wall. To combin
 Non-adjacent layers cannot be combined because a resulting wall must represent a continuous part of the original wall assembly.
 
 Where doors or windows are present, one proposed output wall must be selected as the host.
+
+!!! warning "Check the host before separating"
+
+    The selected host controls where supported doors and windows are rehosted. Confirm the host indicator before applying the separation.
 
 ➡️ [**Separating Walls**](separating-walls.md)
 
