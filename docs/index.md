@@ -216,6 +216,11 @@ Use the navigation to browse Flow tools and workflows.
 <span>Review and manage supported parameters within Revit projects and families.</span>
 </a>
 
+<a class="flow-tool-link" href="model/wall-manager/">
+<strong>Wall Manager</strong>
+<span>Separate compound wall layers and safely recreate the recorded original walls.</span>
+</a>
+
 <a class="flow-tool-link" href="model/roof-tools/">
 <strong>Roof Tools</strong>
 <span>Create roof documentation and detailing, including roof outlines and gutter caps.</span>
