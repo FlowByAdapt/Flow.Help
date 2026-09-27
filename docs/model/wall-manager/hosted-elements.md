@@ -17,6 +17,10 @@ When the source walls contain doors or windows:
 
 The selected wall should represent the construction layer intended to control the opening.
 
+!!! info "One host per wall type"
+
+    Confirm the host separately for each wall type in the working set, particularly when several different compound assemblies are selected.
+
 ---
 
 ## What Wall Manager Preserves
@@ -43,6 +47,10 @@ For a rehosted door or window, where the parameter is available and writable, Wa
 2. sets **Frame Setback** to **0.0 mm**.
 
 Other supported global parameter associations are retained.
+
+!!! warning "Frame Setback is intentionally reset"
+
+    **Frame Setback** is the exception to the normal preservation rule. Its global parameter association is removed and its value is set to **0.0 mm** for the separated-wall condition.
 
 ---
 
