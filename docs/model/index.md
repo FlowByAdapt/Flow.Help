@@ -58,6 +58,13 @@ coordination.
 
 [Risk Matrix →](risk-matrix/index.md)
 
+### Wall Manager
+
+Separate compound walls into coordinated layer walls, preserve supported
+hosted doors and windows, and recreate the recorded original walls.
+
+[Wall Manager →](wall-manager/index.md)
+
 ### Roof Tools
 
 Access roof documentation and detailing tools, including creating clean

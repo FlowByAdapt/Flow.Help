@@ -332,6 +332,18 @@ nav = [
     ] },
 
 
+    # Wall Manager
+    # -------------------------------------------------------------------------
+
+    { "Wall Manager" = [
+      { "Overview" = "model/wall-manager/index.md" },
+      { "Separating Walls" = "model/wall-manager/separating-walls.md" },
+      { "Hosted Elements" = "model/wall-manager/hosted-elements.md" },
+      { "Recreating Original Walls" = "model/wall-manager/recreating-walls.md" },
+      { "Troubleshooting" = "model/wall-manager/troubleshooting.md" },
+    ] },
+
+
     # Risk Matrix
     # -------------------------------------------------------------------------
 
