@@ -16,6 +16,10 @@ Multiple wall instances and multiple compatible wall types can be included in on
 
 Use **Remove selected** to remove only the walls currently selected in Revit. Use **Clear** to empty the entire working set.
 
+!!! tip "Remove and Clear are different"
+
+    **Remove selected** affects only walls currently selected in Revit. **Clear** empties the complete working set. Neither command changes the model.
+
 ---
 
 ## Review the Wall Preview
@@ -47,6 +51,10 @@ To combine layers:
 Only adjacent layers can be combined. Use **Separate all layers** to reset the selected wall type to one output wall per physical layer.
 
 Wall Manager creates unique wall-type names where required so repeated runs do not conflict with existing generated types.
+
+!!! warning "Adjacent layers only"
+
+    Combined layers must be continuous within the source assembly. Wall Manager will not combine non-adjacent layers.
 
 ---
 
@@ -91,6 +99,10 @@ For each supported source wall, Wall Manager:
 - records the generated set for later recreation.
 
 The operation is applied to Revit as one undoable action.
+
+!!! warning "This changes the Revit model"
+
+    Separation replaces the selected compound walls with generated output walls and may recreate hosted doors and windows. Save or synchronise the project as appropriate before processing a large selection.
 
 ---
 
