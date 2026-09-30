@@ -361,6 +361,7 @@ nav = [
 
     { "Roof Tools" = [
       { "Overview" = "model/roof-tools/index.md" },
+      { "Roof Surface Zones" = "model/roof-tools/roof-surface-zones.md" },
       { "Gutter Caps" = "model/roof-tools/gutter-caps.md" },
       { "Roof Outline" = "model/roof-tools/roof-outline.md" },
       { "Troubleshooting" = "model/roof-tools/troubleshooting.md" },
