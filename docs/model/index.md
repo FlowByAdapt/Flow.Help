@@ -67,8 +67,8 @@ hosted doors and windows, and recreate the recorded original walls.
 
 ### Roof Tools
 
-Access roof documentation and detailing tools, including creating clean
-roof outlines and adding caps to open gutter ends.
+Create roof flashing zones, generate clean roof outlines and add caps
+to open gutter ends.
 
 [Roof Tools →](roof-tools/index.md)
 

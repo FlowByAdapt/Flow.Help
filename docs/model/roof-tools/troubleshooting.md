@@ -1,6 +1,6 @@
 # Roof Tools Troubleshooting
 
-Use this page when Roof Outline or Gutter Caps does not produce the expected result.
+Use this page when Roof Surface Zones, Roof Outline or Gutter Caps does not produce the expected result.
 
 ---
 
@@ -154,8 +154,119 @@ To cap a different gutter, start Gutter Caps again.
 
 ---
 
+## Roof Surface Zones Cannot Find the Material
+
+**Message:** `The material '…' was not found in this project.`
+
+The material name entered in Roof Surface Zones must match a material that already exists in the current Revit project.
+
+Check the spelling and punctuation of the material name. The default is:
+
+`*ROF.SHEET_Flashing`
+
+Create or load the required material, or enter the name of another suitable project material.
+
+## No Qualifying Flashing Edges Were Found
+
+Flow creates automatic flashing only on recognised ridge, hip and gable/verge conditions.
+
+Check that:
+
+1. At least one flashing type is enabled.
+2. The selected roof contains planar upper faces.
+3. The required boundaries are straight roof-profile edges.
+4. All associated roof parts were selected where combined analysis is enabled.
+
+Valleys and horizontal eave boundaries are not automatically treated as flashing edges.
+
+## A Flashing Edge Is Missing
+
+For a roof made from several elements:
+
+1. Enable **Analyse associated roof parts together**.
+2. Enable **Review and correct combined result**.
+3. Select every roof element contributing to the physical roof.
+4. Select the affected roof plane.
+5. Use **Add Flashing Edge** on the omitted roof-profile edge.
+
+The added flashing uses the **Manually added flashing width**.
+
+If Revit does not expose a usable roof-profile edge at an unusual wall or upper-roof junction, the condition may not be correctable through the editor. Use an appropriate manual Revit modelling or material-based workaround.
+
+## An Incorrect Flashing Edge Was Created
+
+Select the affected roof plane in combined review, then use:
+
+- **Remove Edges** when the source roof-profile edge can be selected; or
+- **Remove Preview Piece** when it is easier to click the unwanted flashing fragment directly.
+
+Use **Reset Plane** if you need to discard the plane corrections and return to the automatic result.
+
+## A Wall Edge Has Fascia Overhang or a Gable Downstand
+
+The edge may have been classified as an exposed gable or fascia condition.
+
+During combined review:
+
+1. Select the affected roof plane.
+2. Select **Set as Wall Abutment**.
+3. Select the roof-profile edge meeting the wall.
+4. Finish the Revit selection.
+
+A wall-abutment edge has no fascia overhang or gable downstand.
+
+## The Gable End Is Open
+
+Select the affected roof plane, choose **Gable Downstand**, and select the exposed gable edge.
+
+The result uses the configured fascia overhang and gable downstand depth.
+
+## The Flashing Mitre Is Unexpected
+
+Roof Surface Zones derives mitres from the detected roof-face and roof-profile geometry.
+
+Check that:
+
+- all associated roof parts were included;
+- incorrect valley or shared edges have been removed;
+- wall-abutment edges are classified correctly; and
+- the source Revit roof and wall junctions meet cleanly in plan.
+
+Some unusual junctions, particularly where a hip or roof plane terminates against an upper-level wall without a usable roof-profile edge, may require a manual modelling workaround.
+
+## Existing and New Flashings Are Both Visible
+
+When existing Flow flashings are detected, select **Replace existing** before entering the preview editor.
+
+Flow removes the existing generated flashings while the replacement is reviewed. Cancelling the workflow restores the originals.
+
+Choose **Keep and add** only when both the existing and newly created flashings are required.
+
+## I Cannot Change Revit Views While Editing
+
+Revit does not allow changing views while an active selection operation is running.
+
+Use **Navigate View** to orbit, pan or zoom the current view. Press **Esc** to return to the editor.
+
+If another view is required, cancel the workflow, open the required view and run Roof Surface Zones again.
+
+## Material Keynotes Cannot Select the Flashing
+
+Roof Surface Zones creates Generic Model DirectShape geometry. Although the selected material controls appearance, Revit cannot reliably attach a native material keynote to the generated tessellated faces.
+
+Use a suitable user-keynote or manual annotation workflow where the flashing must be referenced in documentation.
+
+## Lines Appear Through the Flashing
+
+The generated flashing is raised slightly above the roof surface to reduce Revit display-line interference.
+
+If lines are visible only at particular zoom levels, this may be a Revit display effect rather than incorrect geometry. Check the result at the intended documentation scale and in a suitable plan or 3D view.
+
+---
+
 ## Related Help
 
 - [Roof Tools](index.md)
+- [Roof Surface Zones](roof-surface-zones.md)
 - [Roof Outline](roof-outline.md)
 - [Gutter Caps](gutter-caps.md)

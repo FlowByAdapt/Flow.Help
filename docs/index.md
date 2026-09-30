@@ -223,7 +223,7 @@ Use the navigation to browse Flow tools and workflows.
 
 <a class="flow-tool-link" href="model/roof-tools/">
 <strong>Roof Tools</strong>
-<span>Create roof documentation and detailing, including roof outlines and gutter caps.</span>
+<span>Create roof flashing zones, exterior roof outlines and generated gutter end caps.</span>
 </a>
 
 </div>

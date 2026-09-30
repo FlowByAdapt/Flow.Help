@@ -240,5 +240,6 @@ If Gutter Caps cannot find a suitable Roof Plan, the gutter cannot be selected, 
 ## Related Help
 
 - [Roof Tools](index.md)
+- [Roof Surface Zones](roof-surface-zones.md)
 - [Roof Outline](roof-outline.md)
 - [Roof Tools Troubleshooting](troubleshooting.md)

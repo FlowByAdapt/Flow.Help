@@ -1,8 +1,14 @@
+<a id="top"></a>
+
 # Roof Tools
 
-Roof Tools brings together specialised commands for roof documentation and detailing workflows in Revit.
+Roof Tools brings together specialised commands for roof modelling, documentation and detailing workflows in Revit.
 
-The current toolset includes **Roof Outline** for generating a clean 2D exterior roof perimeter and **Gutter Caps** for creating solid caps at the ends of Revit gutters.
+The current toolset includes:
+
+- **Roof Surface Zones** for creating ridge, hip and gable/verge flashing geometry;
+- **Roof Outline** for generating a clean 2D exterior roof perimeter; and
+- **Gutter Caps** for creating solid caps at the ends of Revit gutters.
 
 ---
 
@@ -14,11 +20,21 @@ Go to:
 
 The **Roof** window opens with the available roof tools.
 
-<!-- SCREENSHOT: Roof window showing the Roof Outline and Gutter Caps cards. -->
+<!-- SCREENSHOT: Roof window showing Roof Surface Zones, Roof Outline and Gutter Caps. -->
 
 Select the required tool to begin.
 
-Both **Roof Outline** and **Gutter Caps** can also be launched directly from **Flow Hub**.
+Roof tools can also be launched directly from **Flow Hub** or the **Command Palette**.
+
+---
+
+## Roof Surface Zones
+
+**Roof Surface Zones** creates modelled flashing zones along recognised roof ridges, hips and exposed gable or verge edges.
+
+It can process one roof automatically or analyse several associated roof elements as one temporary assembly. The combined review workflow allows individual roof planes and edges to be corrected before the final DirectShape flashings are created.
+
+[Learn how to use Roof Surface Zones](roof-surface-zones.md)
 
 ---
 
@@ -48,6 +64,13 @@ Gutter Caps also finds and activates a suitable **Roof Plan** automatically wher
 
 ## Related Help
 
+- [Roof Surface Zones](roof-surface-zones.md)
 - [Roof Outline](roof-outline.md)
 - [Gutter Caps](gutter-caps.md)
 - [Roof Tools Troubleshooting](troubleshooting.md)
+
+---
+
+<div align="right">
+  <a href="#top">🔝 Back to top</a>
+</div>
