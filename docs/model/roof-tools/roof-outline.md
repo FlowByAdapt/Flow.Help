@@ -124,5 +124,6 @@ Complex or unusual footprint arrangements should be checked visually after the c
 ## Related Help
 
 * [Roof Tools](index.md)
+* [Roof Surface Zones](roof-surface-zones.md)
 * [Gutter Caps](gutter-caps.md)
 * [Roof Tools Troubleshooting](troubleshooting.md)
