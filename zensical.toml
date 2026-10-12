@@ -177,6 +177,22 @@ nav = [
     ] },
 
     
+    # Content Optimiser
+    # -------------------------------------------------------------------------
+
+    { "Content Optimiser" = [
+      { "Overview" = "content/content-optimiser/index.md" },
+      { "Selecting and Auditing Families" = "content/content-optimiser/selecting-and-auditing.md" },
+      { "Cleaning Parameters" = "content/content-optimiser/cleaning-parameters.md" },
+      { "Renaming Types and Parameters" = "content/content-optimiser/renaming.md" },
+      { "Assigning Keynotes" = "content/content-optimiser/assigning-keynotes.md" },
+      { "Replacing Materials" = "content/content-optimiser/replacing-materials.md" },
+      { "Geometry and Output Options" = "content/content-optimiser/geometry-and-output-options.md" },
+      { "Purging Unused Content" = "content/content-optimiser/purging-unused-content.md" },
+      { "Reviewing and Saving" = "content/content-optimiser/reviewing-and-saving.md" },
+      { "Troubleshooting" = "content/content-optimiser/troubleshooting.md" },
+    ] },
+
     # Drafting Views
     # -------------------------------------------------------------------------
 
