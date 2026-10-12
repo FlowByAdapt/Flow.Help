@@ -15,6 +15,12 @@ Browse, search and load standard Revit content.
 
 [Content Browser →](content-browser/index.md)
 
+### Content Optimiser
+
+Review and clean Revit families, standardise supported metadata and materials, and save a separate reviewed copy.
+
+[Content Optimiser →](content-optimiser/index.md)
+
 ### Drafting Views
 
 Extract and manage reusable drafting view content.

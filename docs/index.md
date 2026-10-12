@@ -145,6 +145,11 @@ Use the navigation to browse Flow tools and workflows.
 <span>Browse, search, load and manage standard Revit content.</span>
 </a>
 
+<a class="flow-tool-link" href="content/content-optimiser/">
+<strong>Content Optimiser</strong>
+<span>Review and clean Revit families, standardise supported metadata and materials, and save a separate reviewed copy.</span>
+</a>
+
 <a class="flow-tool-link" href="content/type-catalogue-manager/">
 <strong>Type Catalogue</strong>
 <span>Create, review and manage Revit family type catalogues.</span>
