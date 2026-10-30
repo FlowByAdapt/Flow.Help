@@ -35,6 +35,17 @@ nav = [
     # Applications
     # -------------------------------------------------------------------------
 
+    { "Flow Workstation Manager" = [
+        { "Overview" = "applications/workstation-manager/index.md" },
+        { "Getting Started" = "applications/workstation-manager/getting-started.md" },
+        { "Installing and Updating Revit Tools" = "applications/workstation-manager/installing-and-updating-tools.md" },
+        { "Restoring Previous Tools" = "applications/workstation-manager/restoring-previous-tools.md" },
+        { "Installing and Updating Flow Apps" = "applications/workstation-manager/installing-and-updating-apps.md" },
+        { "Reviewing Office Computers" = "applications/workstation-manager/reviewing-office-computers.md" },
+        { "Background Checks and Update Notices" = "applications/workstation-manager/background-checks-and-notices.md" },
+        { "Troubleshooting" = "applications/workstation-manager/troubleshooting.md" },
+    ] },
+
     { "Flow Server" = [
         { "Overview" = "applications/flow-server/index.md" },
         { "Getting Started" = "applications/flow-server/getting-started.md" },

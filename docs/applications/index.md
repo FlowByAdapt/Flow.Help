@@ -1,12 +1,18 @@
-# Flow Server
+# Applications
 
-The **Flow Server** section contains guidance for connecting to, reviewing and administering Autodesk Revit Server content using the standalone Flow Server application.
+The **Applications** section contains guidance for the standalone Flow desktop applications.
 
-Flow Server is opened from the Windows desktop or Start menu. It does not require Revit to be open for browsing and administration, although supported archive and upgrade workflows use installed Revit versions for processing.
+Use Flow Workstation Manager to review office software and install approved Flow releases. Use Flow Server to browse and administer Autodesk Revit Server content.
 
 ---
 
-## Application
+## Applications
+
+### Flow Workstation Manager
+
+Review installed Revit versions, install and update approved Flow tools and applications, restore previous tools and check reports from office computers.
+
+[Flow Workstation Manager →](workstation-manager/index.md)
 
 ### Flow Server
 
@@ -38,3 +44,6 @@ Flow Server brings the main Revit Server administration workflows together in on
     Connecting, browsing, searching and reviewing activity do not change Revit Server content.
 
     Actions that create, move, rename, lock, unlock, archive, upgrade or delete content must be started deliberately and require confirmation where appropriate.
+!!! tip "Starting with Workstation Manager?"
+
+    Open the application while connected to the office network, confirm the **NAS folder**, and review **This computer**. Workstation Manager automatically scans and attempts to check in when opened.
