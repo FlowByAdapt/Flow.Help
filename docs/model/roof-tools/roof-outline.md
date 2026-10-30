@@ -4,6 +4,10 @@ Roof Outline creates a clean 2D outline around the outside perimeter of one or m
 
 It is particularly useful where several roof elements form a single overall roof and the required documentation should show the exterior roof perimeter without the junctions between individual roofs.
 
+## Video Tutorial
+
+[Watch the Roof Outline tutorial on YouTube](https://www.youtube.com/watch?v=Eovv9nxb12A&list=PLBq3hv3qo8K0&index=2).
+
 ## Open Roof Outline
 
 1. Open the plan view where the outline is required.
