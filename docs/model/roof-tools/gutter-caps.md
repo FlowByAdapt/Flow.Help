@@ -8,7 +8,7 @@ The cap is generated directly from the gutter-end geometry, so no separate cap f
 
 ## Video Tutorial
 
-[Watch the Gutter Caps tutorial on YouTube](https://www.youtube.com/watch?v=6-VyTc1xVyU&list=PLBq3hv3qo8K0&index=3).
+[Watch the Gutter Caps tutorial on YouTube](https://www.youtube.com/watch?v=6-VyTc1xVyU&list=PLBq3hv3qo8K0&index=3){ target="_blank" rel="noopener noreferrer" }.
 
 ---
 

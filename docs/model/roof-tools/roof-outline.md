@@ -6,7 +6,7 @@ It is particularly useful where several roof elements form a single overall roof
 
 ## Video Tutorial
 
-[Watch the Roof Outline tutorial on YouTube](https://www.youtube.com/watch?v=Eovv9nxb12A&list=PLBq3hv3qo8K0&index=2).
+[Watch the Roof Outline tutorial on YouTube](https://www.youtube.com/watch?v=Eovv9nxb12A&list=PLBq3hv3qo8K0&index=2){ target="_blank" rel="noopener noreferrer" }.
 
 ## Open Roof Outline
 

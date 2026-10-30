@@ -12,7 +12,7 @@ The tool can process a single Revit roof automatically or analyse several associ
 
 ## Video Tutorial
 
-[Watch the Roof Surface Zones tutorial on YouTube](https://www.youtube.com/watch?v=nuum4gep8pM&list=PLBq3hv3qo8K0&index=4).
+[Watch the Roof Surface Zones tutorial on YouTube](https://www.youtube.com/watch?v=nuum4gep8pM&list=PLBq3hv3qo8K0&index=4){ target="_blank" rel="noopener noreferrer" }.
 
 ---
 
