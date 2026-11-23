@@ -24,13 +24,22 @@ Follow [Preparing a Proposal](preparing-a-proposal.md) to select the shared proj
 
 ## Set Up the Project
 
-1. Start project setup from the accepted proposal.
-2. Review the project details, including the project number, client and site.
-3. Open the resulting project record and check that it reflects the accepted proposal.
+Once the approval has been recorded and reviewed, use the accepted proposal to set up the project. The agreed fees and starting budgets carry into the project alongside the tasks.
 
-## Check the Practice Manager Record
+## Check the Project Before Delivery
 
-Confirm that the project number, client and site match the accepted work. If setup stopped partway through, check whether a project record or project folders already exist before starting setup again.
+Open the project in Practice Manager and check it against the approved proposal.
+
+| Check | What to confirm |
+| --- | --- |
+| Project identity | The project number, client and site identify the right job. |
+| Stages and tasks | The work set up for delivery matches the scope the client approved. |
+| Stage fees | The amounts match the accepted proposal. |
+| Starting budgets | The budgets are in the right stages for tracking work as it progresses. |
+
+For the sample alteration, if the client approved design only, check that working drawings and consent support are outside the authorised scope for this stage of the job.
+
+If setup stopped partway through, check whether the project record or project folders already exist before trying again.
 
 ---
 
