@@ -46,6 +46,11 @@ nav = [
         { "Troubleshooting" = "applications/workstation-manager/troubleshooting.md" },
     ] },
 
+    { "Flow Practice Manager" = [
+        { "Overview" = "applications/flow-practice-manager/index.md" },
+        { "From Proposal to Project" = "applications/flow-practice-manager/from-proposal-to-project.md" },
+    ] },
+
     { "Flow Server" = [
         { "Overview" = "applications/flow-server/index.md" },
         { "Getting Started" = "applications/flow-server/getting-started.md" },
