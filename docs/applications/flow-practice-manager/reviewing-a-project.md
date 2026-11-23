@@ -29,3 +29,4 @@ Record the next action, who’s responsible and when to check in again. At the n
 
 - [Flow Practice Manager](index.md)
 - [From Proposal to Project](from-proposal-to-project.md)
+- [Preparing a Progress Claim](preparing-a-progress-claim.md)
