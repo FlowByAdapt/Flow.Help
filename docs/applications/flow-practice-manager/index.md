@@ -45,3 +45,15 @@ Use this guide when preparing a proposal, recording a client's acceptance or set
 ## Troubleshooting
 
 See [Troubleshooting](troubleshooting.md) for help with project selection, proposal drafts and RFIs.
+
+---
+
+## Planned Modules
+
+### Site and Contract Administration
+
+Planned workflows include recording site observations, tracking instructions and variations, reviewing contractor claims, and following up defects through to completion.
+
+### Specification Builder
+
+The planned workflow starts with a project template and a shared clause library. It will cover selecting and adapting clauses for the job, checking their sources and reviewing the specification before issue.
