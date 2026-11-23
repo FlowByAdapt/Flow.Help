@@ -8,23 +8,27 @@ Use this walkthrough to prepare a proposal, record its acceptance and check the 
 
 Follow [Preparing a Proposal](preparing-a-proposal.md) to select the shared project and save a draft. Review the project details, scope, stages, fees and exclusions for the alterations.
 
-!!! note "Acceptance and handover are still being checked"
+---
 
-    The acceptance and project setup steps in Practice Manager describe the intended workflow. The Revit steps below follow the existing Project Setup guide.
+## Record External Approval for a Migrated Quotient Proposal
 
-## Record Acceptance
+This workflow applies when the client approved a migrated Quotient proposal outside Flow. Have the approval evidence and the latest saved draft ready.
 
-1. Open the proposal the client accepted. If you issued a revision, check that the scope and fee match the client's acceptance.
-2. Record the acceptance against that proposal.
-3. Review any conditions or items that need to be resolved before starting project setup.
+1. Open the draft and check the original scope, prices, selected options, documents, site and agreed expiry.
+2. Select **Record Quotient approval and set up project**. Enter the client approver, date received, evidence reference and staff recorder.
+3. Review the saved totals and any budget estimates. Select an existing project for the same client or choose a project year for a new record. If the draft is already linked to a project, use that project.
+4. Map every included service to an active standard task. Review any existing tasks you intend to reuse.
+5. Complete the review confirmations and select **Record approval and activate reviewed work**.
 
-!!! tip "Check the accepted revision"
+!!! note "Use the date approval was received"
 
-    Compare the proposal reference or issue date with the client's acceptance before progressing the job.
+    The date received must fall within the agreed validity period. If approval arrived after expiry, review the revised agreement before proceeding.
 
-## Set Up the Project
+---
 
-Once the approval has been recorded and reviewed, use the accepted proposal to set up the project. The agreed fees and starting budgets carry into the project alongside the tasks.
+## Set Up the Project Team
+
+The proposal becomes **Approved** and locks. Follow the project link to **Tasks and allocations**. Assign staff to the new tasks before they enter time. Existing assignments stay with the tasks you chose to reuse. Check the saved scope and fee record in **Approved proposals and fee baselines**.
 
 ## Check the Project Before Delivery
 
