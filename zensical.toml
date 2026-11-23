@@ -38,6 +38,7 @@ nav = [
     { "Flow Practice Manager" = [
         { "Overview" = "applications/flow-practice-manager/index.md" },
         { "Getting Started" = "applications/flow-practice-manager/getting-started.md" },
+        { "Adding Contacts and Projects" = "applications/flow-practice-manager/adding-contacts-and-projects.md" },
         { "Preparing a Proposal" = "applications/flow-practice-manager/preparing-a-proposal.md" },
         { "From Proposal to Project" = "applications/flow-practice-manager/from-proposal-to-project.md" },
         { "Reviewing a Project" = "applications/flow-practice-manager/reviewing-a-project.md" },
