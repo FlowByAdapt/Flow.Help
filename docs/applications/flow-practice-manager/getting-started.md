@@ -15,6 +15,8 @@ Use **Projects and Contacts** to find the job you’re working on. Open **Propos
 
     A client may have several jobs, or different jobs may share a similar site description. Check the project number to confirm you’ve selected the right record.
 
+If the contact or project doesn’t exist yet, see [Adding Contacts and Projects](adding-contacts-and-projects.md).
+
 ---
 
 ## Open a Proposal
