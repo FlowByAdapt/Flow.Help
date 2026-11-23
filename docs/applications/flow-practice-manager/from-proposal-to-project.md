@@ -57,4 +57,5 @@ If the job needs a Revit model, open **Flow → Project → Setup** in Revit.
 ## Related Help
 
 - [Flow Practice Manager](index.md)
+- [Reviewing a Project](reviewing-a-project.md)
 - [Project Setup](../../project/project-setup/index.md)
