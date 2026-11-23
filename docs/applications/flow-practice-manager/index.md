@@ -10,6 +10,8 @@ Use this guide when preparing a proposal, recording a client's acceptance or set
 
 [Getting Started](getting-started.md) shows where to find a shared project and open a proposal.
 
+[Adding Contacts and Projects](adding-contacts-and-projects.md) covers creating the shared records you’ll use in proposals.
+
 [Preparing a Proposal](preparing-a-proposal.md) shows how to start from a template, link the project and save a draft.
 
 [From Proposal to Project](from-proposal-to-project.md) follows a sample alterations project from preparing the fee proposal through to checking the new project record and continuing in Revit where needed.
