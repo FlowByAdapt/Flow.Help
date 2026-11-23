@@ -6,9 +6,11 @@ Use this walkthrough to prepare a proposal, record its acceptance and check the 
 
 ## Prepare the Proposal
 
-1. Enter the client, site and a short description of the alterations.
-2. Set out the agreed scope, stages, fees and any exclusions.
-3. Review the proposal before issuing it. Check that the project description and site details will still make sense to the team when the job starts.
+Follow [Preparing a Proposal](preparing-a-proposal.md) to select the shared project and save a draft. Review the project details, scope, stages, fees and exclusions for the alterations.
+
+!!! note "Acceptance and handover are still being checked"
+
+    The remaining sections describe the intended workflow. The in-app steps for issuing, recording acceptance and handing over to Project Setup still need to be verified against the current release.
 
 ## Record Acceptance
 
