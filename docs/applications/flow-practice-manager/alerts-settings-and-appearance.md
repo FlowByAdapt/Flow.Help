@@ -12,19 +12,21 @@ If a message refers to a project or record that needs attention, check that you 
 
 ---
 
-## Review Proposal Settings
+On **Home**, use **Needs attention** to open the relevant workflow. The overdue timesheet count marked **Preview** is an example. Live overdue checks and reminders are planned.
 
-In the proposal workspace, open **Settings** and review **Shared defaults**. These defaults apply when selected for new work. Existing proposals retain their saved values.
+---
 
-If you need to change an office default, check with the person who maintains your practice’s proposal settings. See [Understanding Permissions](understanding-permissions.md) for general guidance on access.
+## Open Account Settings
+
+Select the **Account settings** cog beside the theme control. Use **Fees** for proposal defaults, **Documents** for layout and contact information, **Regional** for terminology and regional defaults, and **Data** for imports and backups. **Integrations** is where you review connected services.
+
+Proposal defaults apply when selected for new work. Existing proposals retain their saved values. See [Understanding Permissions](understanding-permissions.md) for guidance on access.
 
 ---
 
 ## Switch Between Light and Dark Mode
 
-In the header, select **Light mode** or **Dark mode** to switch. The button shows the mode you can switch to.
-
-Practice Manager follows your system preference until you choose a mode. It remembers your choice in the current browser.
+Use the theme control in the header to cycle through **System**, **Light** and **Dark**. **System** follows your device appearance. Practice Manager remembers your selection in the current browser.
 
 ---
 
