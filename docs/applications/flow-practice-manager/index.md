@@ -16,6 +16,8 @@ Use this guide when preparing a proposal, recording a client's acceptance or set
 
 [Reviewing a Project](reviewing-a-project.md) shows how to compare recorded hours, budgets and remaining work during delivery.
 
+[Preparing a Progress Claim](preparing-a-progress-claim.md) shows how to check the amount to claim this period and review the invoice draft.
+
 ---
 
 ## Troubleshooting
