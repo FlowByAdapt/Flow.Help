@@ -14,6 +14,8 @@ Use this guide when preparing a proposal, recording a client's acceptance or set
 
 [From Proposal to Project](from-proposal-to-project.md) follows a sample alterations project from preparing the fee proposal through to checking the new project record and continuing in Revit where needed.
 
+[Reviewing a Project](reviewing-a-project.md) shows how to compare recorded hours, budgets and remaining work during delivery.
+
 ---
 
 ## Troubleshooting
