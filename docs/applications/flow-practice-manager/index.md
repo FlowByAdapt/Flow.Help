@@ -10,6 +10,8 @@ Use this guide when preparing a proposal, recording a client's acceptance or set
 
 [Getting Started](getting-started.md) shows where to find a shared project and open a proposal.
 
+[Alerts, Settings and Appearance](alerts-settings-and-appearance.md) explains status messages, proposal defaults and how to switch display themes.
+
 [Adding Contacts and Projects](adding-contacts-and-projects.md) covers creating the shared records you’ll use in proposals.
 
 [Preparing a Proposal](preparing-a-proposal.md) shows how to start from a template, link the project and save a draft.
