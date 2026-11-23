@@ -1,5 +1,3 @@
-<a id="top"></a>
-
 # From Proposal to Project
 
 Use this walkthrough to prepare a proposal, record its acceptance and check the project before moving into delivery. The example is a fictional kitchen and living area alteration.
@@ -42,7 +40,3 @@ Find the project in Practice Manager and confirm that its project number, client
 
 - [Flow Practice Manager](index.md)
 - [Project Setup](../../project/project-setup/index.md)
-
-<div align="right">
-  <a href="#top">🔝 Back to top</a>
-</div>
