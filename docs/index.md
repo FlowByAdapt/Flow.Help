@@ -24,7 +24,7 @@
 
 # Flow Help
 
-Welcome to the user guide for **Flow**, a suite of Revit tools developed to streamline and standardise everyday architectural workflows.
+Welcome to the user guide for **Flow**, a suite of applications and Revit tools developed to streamline and standardise everyday architectural workflows.
 
 Use the navigation to browse Flow tools and workflows.
 
@@ -52,6 +52,11 @@ Use the navigation to browse Flow tools and workflows.
 <a class="flow-tool-link" href="applications/workstation-manager/">
 <strong>Flow Workstation Manager</strong>
 <span>Review office software, install approved Flow releases and manage update checks.</span>
+</a>
+
+<a class="flow-tool-link" href="applications/flow-practice-manager/">
+<strong>Flow Practice Manager</strong>
+<span>Prepare fee proposals and take accepted work through to project setup.</span>
 </a>
 
 <a class="flow-tool-link" href="applications/flow-server/">
