@@ -39,6 +39,7 @@ nav = [
         { "Overview" = "applications/flow-practice-manager/index.md" },
         { "Preparing a Proposal" = "applications/flow-practice-manager/preparing-a-proposal.md" },
         { "From Proposal to Project" = "applications/flow-practice-manager/from-proposal-to-project.md" },
+        { "Troubleshooting" = "applications/flow-practice-manager/troubleshooting.md" },
     ] },
 
     { "Flow Workstation Manager" = [
