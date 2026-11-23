@@ -43,6 +43,7 @@ nav = [
         { "Reviewing a Project" = "applications/flow-practice-manager/reviewing-a-project.md" },
         { "Preparing a Progress Claim" = "applications/flow-practice-manager/preparing-a-progress-claim.md" },
         { "Responding to Council RFIs" = "applications/flow-practice-manager/responding-to-council-rfis.md" },
+        { "Finding Previous RFI Responses" = "applications/flow-practice-manager/finding-previous-rfi-responses.md" },
         { "Troubleshooting" = "applications/flow-practice-manager/troubleshooting.md" },
     ] },
 
