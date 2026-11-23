@@ -18,6 +18,8 @@ Use this guide when preparing a proposal, recording a client's acceptance or set
 
 [Preparing a Progress Claim](preparing-a-progress-claim.md) shows how to check the amount to claim this period and review the invoice draft.
 
+[Responding to Council RFIs](responding-to-council-rfis.md) covers capturing council questions, checking the source and preparing responses.
+
 ---
 
 ## Troubleshooting
