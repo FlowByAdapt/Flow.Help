@@ -26,4 +26,4 @@ Use this guide when preparing a proposal, recording a client's acceptance or set
 
 ## Troubleshooting
 
-See [Troubleshooting](troubleshooting.md) for help finding a project, correcting proposal details or saving a draft.
+See [Troubleshooting](troubleshooting.md) for help with project selection, proposal drafts and RFIs.
