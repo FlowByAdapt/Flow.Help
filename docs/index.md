@@ -49,14 +49,14 @@ Use the navigation to browse Flow tools and workflows.
 <h2>Applications</h2>
 </div>
 
-<a class="flow-tool-link" href="applications/workstation-manager/">
-<strong>Flow Workstation Manager</strong>
-<span>Review office software, install approved Flow releases and manage update checks.</span>
-</a>
-
 <a class="flow-tool-link" href="applications/flow-practice-manager/">
 <strong>Flow Practice Manager</strong>
 <span>Prepare fee proposals and take accepted work through to project setup.</span>
+</a>
+
+<a class="flow-tool-link" href="applications/workstation-manager/">
+<strong>Flow Workstation Manager</strong>
+<span>Review office software, install approved Flow releases and manage update checks.</span>
 </a>
 
 <a class="flow-tool-link" href="applications/flow-server/">
