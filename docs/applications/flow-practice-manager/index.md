@@ -20,6 +20,8 @@ Use this guide when preparing a proposal, recording a client's acceptance or set
 
 [Responding to Council RFIs](responding-to-council-rfis.md) covers capturing council questions, checking the source and preparing responses.
 
+[Finding Previous RFI Responses](finding-previous-rfi-responses.md) shows how to search the reviewed library and check the source before using an earlier answer.
+
 ---
 
 ## Troubleshooting
