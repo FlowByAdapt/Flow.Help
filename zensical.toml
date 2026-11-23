@@ -40,6 +40,7 @@ nav = [
         { "Getting Started" = "applications/flow-practice-manager/getting-started.md" },
         { "Preparing a Proposal" = "applications/flow-practice-manager/preparing-a-proposal.md" },
         { "From Proposal to Project" = "applications/flow-practice-manager/from-proposal-to-project.md" },
+        { "Reviewing a Project" = "applications/flow-practice-manager/reviewing-a-project.md" },
         { "Troubleshooting" = "applications/flow-practice-manager/troubleshooting.md" },
     ] },
 
