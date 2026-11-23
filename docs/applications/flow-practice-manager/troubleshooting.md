@@ -36,6 +36,12 @@ When the connection is available, select **Save draft** again and wait for the s
 
 ---
 
+## Reporting a Problem
+
+Include the action you took, the full status or error message, and whether it happens on one proposal or several. If you include a screenshot, obscure client details, site information and fees.
+
+---
+
 ## Related Help
 
 - [Flow Practice Manager](index.md)
