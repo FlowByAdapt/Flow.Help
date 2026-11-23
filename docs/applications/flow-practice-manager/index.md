@@ -24,6 +24,20 @@ Use this guide when preparing a proposal, recording a client's acceptance or set
 
 ---
 
+## Day-to-Day Work
+
+[Editing Site Information](editing-site-information.md) shows how to check and update the site record linked to a project.
+
+[Recording Time and Costs](recording-time-and-costs.md) shows how to record time and costs against the right project and stage.
+
+[Running Reports](running-reports.md) shows how to select the scope, filters and period for a project report.
+
+[Reading Project Graphs](reading-project-graphs.md) shows how to interpret graphed project data and check the figures behind it.
+
+[Understanding Permissions](understanding-permissions.md) shows how to understand why access and available actions can vary.
+
+---
+
 ## Troubleshooting
 
 See [Troubleshooting](troubleshooting.md) for help with project selection, proposal drafts and RFIs.
