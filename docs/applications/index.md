@@ -8,17 +8,17 @@ Use Flow Workstation Manager to review office software and install approved Flow
 
 ## Applications
 
-### Flow Workstation Manager
-
-Review installed Revit versions, install and update approved Flow tools and applications, restore previous tools and check reports from office computers.
-
-[Flow Workstation Manager →](workstation-manager/index.md)
-
 ### Flow Practice Manager
 
 Prepare fee proposals, record acceptance and take agreed work through to project setup.
 
 [Flow Practice Manager →](flow-practice-manager/index.md)
+
+### Flow Workstation Manager
+
+Review installed Revit versions, install and update approved Flow tools and applications, restore previous tools and check reports from office computers.
+
+[Flow Workstation Manager →](workstation-manager/index.md)
 
 ### Flow Server
 
