@@ -10,7 +10,7 @@ Follow [Preparing a Proposal](preparing-a-proposal.md) to select the shared proj
 
 !!! note "Acceptance and handover are still being checked"
 
-    The remaining sections describe the intended workflow. The in-app steps for issuing, recording acceptance and handing over to Project Setup still need to be verified against the current release.
+    The acceptance and project setup steps in Practice Manager describe the intended workflow. The Revit steps below follow the existing Project Setup guide.
 
 ## Record Acceptance
 
@@ -28,13 +28,20 @@ Follow [Preparing a Proposal](preparing-a-proposal.md) to select the shared proj
 2. Review the project details, including the project number, client and site.
 3. Open the resulting project record and check that it reflects the accepted proposal.
 
-!!! note "Continue in Revit when a model is needed"
+## Check the Practice Manager Record
 
-    Use [Project Setup](../../project/project-setup/index.md) to create or review the Revit project. Check the **Project Identity** against the Practice Manager record before continuing.
+Confirm that the project number, client and site match the accepted work. If setup stopped partway through, check whether a project record or project folders already exist before starting setup again.
 
-## Check the Result
+---
 
-Find the project in Practice Manager and confirm that its project number, client and site are correct. If setup stopped partway through, check whether a project record or project folders already exist before starting setup again.
+## Continue in Revit
+
+If the job needs a Revit model, open **Flow → Project → Setup** in Revit.
+
+1. Check the **Project Year**, **Project Number**, **Client** and **Location** in [Project Identity](../../project/project-setup/project-identity.md) against the Practice Manager record.
+2. Select **Review Identity**.
+3. For a new model, follow [Creating a New Project](../../project/project-setup/new-projects.md) to select a project profile and confirm the template.
+4. If a model already exists, open it and select **Inspect Project**. Use the **Setup Overview** to see which items still need attention. See [Reviewing a Current Project](../../project/project-setup/current-projects.md).
 
 ---
 
