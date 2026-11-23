@@ -1,6 +1,6 @@
 # Applications
 
-The **Applications** section contains guidance for the standalone Flow desktop applications.
+The **Applications** section contains guidance for the Flow applications.
 
 Use Flow Workstation Manager to review office software and install approved Flow releases. Use Flow Server to browse and administer Autodesk Revit Server content.
 
@@ -13,6 +13,12 @@ Use Flow Workstation Manager to review office software and install approved Flow
 Review installed Revit versions, install and update approved Flow tools and applications, restore previous tools and check reports from office computers.
 
 [Flow Workstation Manager →](workstation-manager/index.md)
+
+### Flow Practice Manager
+
+Prepare fee proposals, record acceptance and take agreed work through to project setup.
+
+[Flow Practice Manager →](flow-practice-manager/index.md)
 
 ### Flow Server
 
