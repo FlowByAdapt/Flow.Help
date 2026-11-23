@@ -33,3 +33,4 @@ Return to **Project RFIs** to draft and save the response for the current projec
 
 - [Flow Practice Manager](index.md)
 - [Responding to Council RFIs](responding-to-council-rfis.md)
+- [Troubleshooting](troubleshooting.md)
