@@ -44,6 +44,11 @@ nav = [
         { "Preparing a Progress Claim" = "applications/flow-practice-manager/preparing-a-progress-claim.md" },
         { "Responding to Council RFIs" = "applications/flow-practice-manager/responding-to-council-rfis.md" },
         { "Finding Previous RFI Responses" = "applications/flow-practice-manager/finding-previous-rfi-responses.md" },
+        { "Editing Site Information" = "applications/flow-practice-manager/editing-site-information.md" },
+        { "Recording Time and Costs" = "applications/flow-practice-manager/recording-time-and-costs.md" },
+        { "Running Reports" = "applications/flow-practice-manager/running-reports.md" },
+        { "Reading Project Graphs" = "applications/flow-practice-manager/reading-project-graphs.md" },
+        { "Understanding Permissions" = "applications/flow-practice-manager/understanding-permissions.md" },
         { "Troubleshooting" = "applications/flow-practice-manager/troubleshooting.md" },
     ] },
 
